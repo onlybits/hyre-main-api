@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{777897E4-C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyre.Modules.Jobs.Tests.Unit", "test\Modules\Jobs\Hyre.Modules.Jobs.Tests.Unit\Hyre.Modules.Jobs.Tests.Unit.csproj", "{9A8A2F64-2B73-4702-9FF3-28ED859BA306}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyre.Modules.Jobs.Tests.Integration", "test\Modules\Jobs\Hyre.Modules.Jobs.Tests.Integration\Hyre.Modules.Jobs.Tests.Integration.csproj", "{9EBCE8F9-D220-4632-A7CA-D90020ED8537}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,7 @@ Global
 		{5041C60A-BF91-4E1F-A970-9828D926D886} = {66A49CD5-BC57-48BC-9A39-8C06130B448A}
 		{8250F940-CE71-4975-AB99-665A8E2536EC} = {66A49CD5-BC57-48BC-9A39-8C06130B448A}
 		{9A8A2F64-2B73-4702-9FF3-28ED859BA306} = {777897E4-C0C6-43A5-A684-DAA1B143074C}
+		{9EBCE8F9-D220-4632-A7CA-D90020ED8537} = {777897E4-C0C6-43A5-A684-DAA1B143074C}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{15096A03-82EE-41F5-8A66-5C2CE5E05231}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -88,5 +91,9 @@ Global
 		{9A8A2F64-2B73-4702-9FF3-28ED859BA306}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A8A2F64-2B73-4702-9FF3-28ED859BA306}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A8A2F64-2B73-4702-9FF3-28ED859BA306}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EBCE8F9-D220-4632-A7CA-D90020ED8537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EBCE8F9-D220-4632-A7CA-D90020ED8537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EBCE8F9-D220-4632-A7CA-D90020ED8537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EBCE8F9-D220-4632-A7CA-D90020ED8537}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

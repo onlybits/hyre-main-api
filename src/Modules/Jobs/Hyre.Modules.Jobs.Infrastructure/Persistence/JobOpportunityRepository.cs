@@ -29,7 +29,7 @@ internal sealed class JobOpportunityRepository : RepositoryBase<JobOpportunity>,
 	public async Task<PagedList<JobOpportunity>> ListAsync(JobOpportunityParameters parameters, CancellationToken cancellationToken)
 	{
 		var jobOpportunities = await FindAll(false)
-			.OrderBy(e => e.Name.Value)
+			.OrderBy(e => e.Name)
 			.Skip((parameters.PageNumber - 1) * parameters.PageSize)
 			.Take(parameters.PageSize)
 			.ToListAsync(cancellationToken);

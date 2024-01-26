@@ -15,23 +15,37 @@ public abstract class RequestParameters
 	private const int MaxPageSize = 50;
 
 	/// <summary>
-	///   The default page size for each request.
+	///   Initializes a new instance of the <see cref="RequestParameters" /> class.
 	/// </summary>
-	private int _pageSize = 10;
+	/// <param name="pageNumber">The page number for each request. Default is 1.</param>
+	/// <param name="pageSize">The page size for each request. Default is 10.</param>
+	protected RequestParameters(int? pageNumber, int? pageSize)
+	{
+		PageSize = pageSize ?? 10;
+		PageNumber = CheckPageNumber(pageNumber);
+	}
 
 	/// <summary>
 	///   The page number for each request. Default is 1.
 	/// </summary>
-	public int PageNumber { get; set; } = 1;
+	public int PageNumber { get; private set; }
 
 	/// <summary>
 	///   The page size for each request. Default is 10.
 	///   If the value is greater than <see cref="MaxPageSize" />, it will be set to <see cref="MaxPageSize" />.
 	///   Otherwise, it will be set to the value.
 	/// </summary>
-	public int PageSize
+	public int PageSize { get; private set; }
+
+
+	/// <summary>
+	///   This method calculates the page number for each request.
+	/// </summary>
+	/// <param name="pageNumber">The page number for each request.</param>
+	/// <returns>It will return the page number for each request.</returns>
+	public static int CheckPageNumber(int? pageNumber)
 	{
-		get => _pageSize;
-		set => _pageSize = value > MaxPageSize ? MaxPageSize : value;
+		pageNumber ??= 1;
+		return pageNumber > MaxPageSize ? MaxPageSize : pageNumber.Value;
 	}
 }

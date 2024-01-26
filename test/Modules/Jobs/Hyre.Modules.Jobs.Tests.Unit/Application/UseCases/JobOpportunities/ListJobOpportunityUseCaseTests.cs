@@ -32,12 +32,7 @@ public sealed class ListJobOpportunityUseCaseTests : ListJobOpportunityUseCaseTe
 	public void Handle_WhenGivenValidInput_ShouldListJobOpportunities()
 	{
 		// Arrange
-		var parameters = new JobOpportunityParameters
-		{
-			PageNumber = 1,
-			PageSize = 10
-		};
-
+		var parameters = new JobOpportunityParameters(1, 10);
 		var response = GenerateValidPagedList(parameters.PageSize, parameters.PageNumber, 10);
 		var request = new ListJobOpportunityRequest(parameters);
 

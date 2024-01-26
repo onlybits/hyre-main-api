@@ -14,5 +14,6 @@
     </ItemGroup>
     <ItemGroup>
         <InternalsVisibleTo Include="Hyre.Modules.Jobs.API"/>
+        <InternalsVisibleTo Include="Hyre.Modules.Jobs.Tests.Integration"/>
     </ItemGroup>
 </Project>
