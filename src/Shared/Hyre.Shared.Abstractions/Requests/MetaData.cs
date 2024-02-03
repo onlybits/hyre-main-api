@@ -26,12 +26,12 @@ public sealed class MetaData
 	/// <summary>
 	///   Gets or sets the current page.
 	/// </summary>
-	public int CurrentPage { get; private set; }
+	public int CurrentPage { get; }
 
 	/// <summary>
 	///   Gets or sets the total number of pages.
 	/// </summary>
-	public int TotalPages { get;  }
+	public int TotalPages { get; }
 
 	/// <summary>
 	///   Gets or sets the page size.
