@@ -65,7 +65,7 @@ internal sealed class JobOpportunitiesController : ControllerBase
 	[HttpGet("{id:guid}")]
 	[ProducesResponseType<JobOpportunity>(StatusCodes.Status200OK)]
 	[ProducesResponseType<NotFoundException>(StatusCodes.Status404NotFound)]
-	public async Task<IActionResult> FindByIdAsync([FromRoute] Guid id, CancellationToken cancellationToken = default)
+	public async Task<IActionResult> Find(Guid id, CancellationToken cancellationToken = default)
 	{
 		var request = new FindJobOpportunityRequest(id, false);
 		var response = await _sender.Send(request, cancellationToken);
@@ -86,7 +86,7 @@ internal sealed class JobOpportunitiesController : ControllerBase
 		var request = new CreateJobOpportunityRequest(input);
 		var response = await _sender.Send(request, cancellationToken);
 
-		return Ok(response);
+		return CreatedAtAction(nameof(Find), new { id = response.Id.Value }, response);
 	}
 
 	/// <summary>

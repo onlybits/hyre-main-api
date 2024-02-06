@@ -6,6 +6,7 @@
 
 using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
+using Hyre.Shared.Abstractions.Kernel.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -20,7 +21,7 @@ internal sealed class JobOpportunityConfiguration : IEntityTypeConfiguration<Job
 {
 	public void Configure(EntityTypeBuilder<JobOpportunity> builder)
 	{
-		_ = builder.ToTable("JobOpportunities");
+		_ = builder.ToTable("job_opportunities");
 
 		_ = builder.HasKey(jo => jo.Id);
 		_ = builder.Property(jo => jo.Id)
@@ -38,6 +39,11 @@ internal sealed class JobOpportunityConfiguration : IEntityTypeConfiguration<Job
 			.HasConversion(description => description.Value, value => new JobOpportunityDescription(value))
 			.HasColumnName("description")
 			.HasMaxLength(500)
+			.IsRequired();
+
+		_ = builder.Property(jo => jo.CreatedAt)
+			.HasConversion(jo => jo.Value, value => new CreateDate(value))
+			.HasColumnName("created_at")
 			.IsRequired();
 
 		_ = builder.Ignore(jo => jo.Events);

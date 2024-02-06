@@ -27,6 +27,8 @@ if (app.Environment.IsDevelopment())
 
 _ = app.UseExceptionHandler(_ => { });
 _ = app.UseHttpsRedirection()
-	.UseCors("Hyre.Cors");
+	.UseCors("Hyre.Cors")
+	.UseModules();
+
 _ = app.MapControllers();
 app.Run();

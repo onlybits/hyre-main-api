@@ -19,10 +19,10 @@ public sealed record JobOpportunityDescription : ValueObject
 	/// <summary>
 	///   Initializes a new instance of the <see cref="JobOpportunityDescription" /> class.
 	/// </summary>
-	/// <param name="description">The description of the job opportunity.</param>
-	public JobOpportunityDescription(string description)
+	/// <param name="value">The description of the job opportunity.</param>
+	public JobOpportunityDescription(string value)
 	{
-		Value = description;
+		Value = value;
 		Validate();
 	}
 

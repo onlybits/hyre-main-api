@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Hyre.Modules.Jobs.Infrastructure.Migrations
 {
     [DbContext(typeof(JobsRepositoryContext))]
-    [Migration("20240305150624_AddDescription")]
-    partial class AddDescription
+    [Migration("20240306101600_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,10 @@ namespace Hyre.Modules.Jobs.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -47,7 +51,7 @@ namespace Hyre.Modules.Jobs.Infrastructure.Migrations
                     b.HasKey("Id")
                         .HasName("pk_job_opportunities");
 
-                    b.ToTable("JobOpportunities", "jobs");
+                    b.ToTable("job_opportunities", "jobs");
                 });
 #pragma warning restore 612, 618
         }

@@ -26,6 +26,7 @@ internal static class Extensions
 	{
 		_ = services.AddPostgres<JobsRepositoryContext>();
 		_ = services.AddScoped<IJobsRepositoryManager, JobsRepositoryManager>();
+		
 		return services;
 	}
 }
