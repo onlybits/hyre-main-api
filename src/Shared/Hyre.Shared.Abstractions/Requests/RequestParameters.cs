@@ -10,42 +10,23 @@ namespace Hyre.Shared.Abstractions.Requests;
 public abstract class RequestParameters
 {
 	/// <summary>
-	///   Maximum page size for each request.
+	///   The maximum of items per page.
 	/// </summary>
 	private const int MaxPageSize = 50;
 
+	private int _pageSize = 10;
+
 	/// <summary>
-	///   Initializes a new instance of the <see cref="RequestParameters" /> class.
+	///   Gets or sets the page number.
 	/// </summary>
-	/// <param name="pageNumber">The page number for each request. Default is 1.</param>
-	/// <param name="pageSize">The page size for each request. Default is 10.</param>
-	protected RequestParameters(int? pageNumber, int? pageSize)
+	public int PageNumber { get; set; } = 1;
+
+	/// <summary>
+	///   Gets or sets the page size.
+	/// </summary>
+	public int PageSize
 	{
-		PageSize = pageSize ?? 10;
-		PageNumber = CheckPageNumber(pageNumber);
-	}
-
-	/// <summary>
-	///   The page number for each request. Default is 1.
-	/// </summary>
-	public int PageNumber { get; private set; }
-
-	/// <summary>
-	///   The page size for each request. Default is 10.
-	///   If the value is greater than <see cref="MaxPageSize" />, it will be set to <see cref="MaxPageSize" />.
-	///   Otherwise, it will be set to the value.
-	/// </summary>
-	public int PageSize { get; private set; }
-
-
-	/// <summary>
-	///   This method calculates the page number for each request.
-	/// </summary>
-	/// <param name="pageNumber">The page number for each request.</param>
-	/// <returns>It will return the page number for each request.</returns>
-	public static int CheckPageNumber(int? pageNumber)
-	{
-		pageNumber ??= 1;
-		return pageNumber > MaxPageSize ? MaxPageSize : pageNumber.Value;
+		get => _pageSize;
+		set => _pageSize = value > MaxPageSize ? MaxPageSize : value;
 	}
 }

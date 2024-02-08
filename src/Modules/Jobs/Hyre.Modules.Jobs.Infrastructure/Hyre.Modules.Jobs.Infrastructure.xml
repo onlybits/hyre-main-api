@@ -6,75 +6,68 @@
     <members>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.Configuration.JobOpportunityConfiguration">
             <summary>
-                This class configures the mapping of the
-                <see cref="T:Hyre.Modules.Jobs.Core.Entities.JobOpportunity"/>
-                entity to the database.
+              This class configures the mapping of the <see cref="T:Hyre.Modules.Jobs.Core.Entities.JobOpportunity" /> entity to the database.
             </summary>
         </member>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.Extensions">
             <summary>
-                This class contains the extension methods for the infrastructure layer.
+              This class contains the extension methods for the infrastructure layer.
             </summary>
         </member>
         <member name="M:Hyre.Modules.Jobs.Infrastructure.Extensions.AddInfrastructure(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-                This method adds the infrastructure layer to the service collection.
+              This method adds the infrastructure layer to the service collection.
             </summary>
             <param name="services">The service collection.</param>
             <returns>It will return the service collection.</returns>
         </member>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext">
             <summary>
-                Represents the database context for the jobs repository.
+              Represents the database context for the jobs repository.
             </summary>
         </member>
         <member name="M:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext})">
             <summary>
-                Initializes a new instance of the
-                <see cref="T:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext"/>
-                class.
+              Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext" /> class.
             </summary>
             <param name="options">The database context options.</param>
         </member>
         <member name="P:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext.JobOpportunities">
             <summary>
-                Gets or sets the job opportunities.
+              Gets or sets the job opportunities.
             </summary>
         </member>
         <member name="M:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
-                Override this method to further configure the model that was discovered by convention from the entity
-                types.
+              Override this method to further configure the model that was discovered by convention from the entity types.
             </summary>
             <param name="modelBuilder">
-                The builder being used to construct the model for this context.
+              The builder being used to construct the model for this context.
             </param>
         </member>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryManager">
             <summary>
-                This class is responsible for managing the all the repositories for the jobs module.
+              This class is responsible for managing the all the repositories for the jobs module.
             </summary>
-            <inheritdoc cref="T:Hyre.Modules.Jobs.Core.Repositories.IJobsRepositoryManager"/>
+            <inheritdoc cref="T:Hyre.Modules.Jobs.Core.Repositories.IJobsRepositoryManager" />
         </member>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.Migrations.Initial">
-            <inheritdoc/>
+            <inheritdoc />
         </member>
         <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc/>
+            <inheritdoc />
         </member>
         <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc/>
+            <inheritdoc />
         </member>
         <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc/>
+            <inheritdoc />
         </member>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.Persistence.JobOpportunityRepository">
             <summary>
-                This is the repository for the
-                <see cref="T:Hyre.Modules.Jobs.Core.Entities.JobOpportunity"/>
-                entity.
+              This is the repository for the <see cref="T:Hyre.Modules.Jobs.Core.Entities.JobOpportunity" /> entity.
             </summary>
-            <inheritdoc cref="T:Hyre.Modules.Jobs.Core.Repositories.IJobOpportunityRepository"/>
+            <inheritdoc cref="T:Hyre.Modules.Jobs.Core.Repositories.IJobOpportunityRepository" />
         </member>
     </members>
 </doc>

@@ -16,7 +16,8 @@ builder.Services
 	.AddJobsModule()
 	.AddCorsConfiguration()
 	.AddSwaggerConfiguration()
-	.AddSharedInfrastructure()
+	.AddModularInfrastructure()
+	.AddMediatRConfiguration()
 	.AddExceptionHandler<GlobalExceptionHandler>()
 	.AddControllersConfiguration();
 

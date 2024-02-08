@@ -284,34 +284,18 @@
         </member>
         <member name="F:Hyre.Shared.Abstractions.Requests.RequestParameters.MaxPageSize">
             <summary>
-              Maximum page size for each request.
+              The maximum of items per page.
             </summary>
-        </member>
-        <member name="M:Hyre.Shared.Abstractions.Requests.RequestParameters.#ctor(System.Nullable{System.Int32},System.Nullable{System.Int32})">
-            <summary>
-              Initializes a new instance of the <see cref="T:Hyre.Shared.Abstractions.Requests.RequestParameters" /> class.
-            </summary>
-            <param name="pageNumber">The page number for each request. Default is 1.</param>
-            <param name="pageSize">The page size for each request. Default is 10.</param>
         </member>
         <member name="P:Hyre.Shared.Abstractions.Requests.RequestParameters.PageNumber">
             <summary>
-              The page number for each request. Default is 1.
+              Gets or sets the page number.
             </summary>
         </member>
         <member name="P:Hyre.Shared.Abstractions.Requests.RequestParameters.PageSize">
             <summary>
-              The page size for each request. Default is 10.
-              If the value is greater than <see cref="F:Hyre.Shared.Abstractions.Requests.RequestParameters.MaxPageSize" />, it will be set to <see cref="F:Hyre.Shared.Abstractions.Requests.RequestParameters.MaxPageSize" />.
-              Otherwise, it will be set to the value.
+              Gets or sets the page size.
             </summary>
-        </member>
-        <member name="M:Hyre.Shared.Abstractions.Requests.RequestParameters.CheckPageNumber(System.Nullable{System.Int32})">
-            <summary>
-              This method calculates the page number for each request.
-            </summary>
-            <param name="pageNumber">The page number for each request.</param>
-            <returns>It will return the page number for each request.</returns>
         </member>
     </members>
 </doc>

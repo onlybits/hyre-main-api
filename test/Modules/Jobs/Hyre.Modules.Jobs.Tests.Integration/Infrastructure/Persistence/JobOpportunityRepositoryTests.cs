@@ -58,7 +58,11 @@ public sealed class JobOpportunityRepositoryTests : JobOpportunityRepositoryTest
 	{
 		// Arrange
 		var jobOpportunities = GenerateJobOpportunities(generate);
-		var parameters = new JobOpportunityParameters(pageNumber, pageSize);
+		var parameters = new JobOpportunityParameters
+		{
+			PageSize = pageSize,
+			PageNumber = pageNumber
+		};
 
 		// Act
 		await SeedDatabase(jobOpportunities);

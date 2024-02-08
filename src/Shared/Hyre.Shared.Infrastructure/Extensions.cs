@@ -24,7 +24,7 @@ internal static class Extensions
 	/// </summary>
 	/// <param name="services">The service collection.</param>
 	/// <returns>It will return the service collection with the shared infrastructure added.</returns>
-	public static IServiceCollection AddSharedInfrastructure(this IServiceCollection services) => services
+	public static IServiceCollection AddModularInfrastructure(this IServiceCollection services) => services
 		.AddTransient<ILoggerManager, LoggerManager>()
 		.AddPostgres();
 

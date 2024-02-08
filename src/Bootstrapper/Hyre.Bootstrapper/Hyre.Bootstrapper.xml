@@ -39,6 +39,18 @@
             <param name="cancellationToken">Used to cancel the operation.</param>
             <returns>It will return true if the exception was handled.</returns>
         </member>
+        <member name="T:Hyre.Bootstrapper.Extensions.CqrsExtensions">
+            <summary>
+              This class is used to configure the CQRS pattern.
+            </summary>
+        </member>
+        <member name="M:Hyre.Bootstrapper.Extensions.CqrsExtensions.AddMediatRConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+              This method is used to configure the <see cref="N:MediatR" /> package.
+            </summary>
+            <param name="services">The service collection.</param>
+            <returns>It will return the same service collection.</returns>
+        </member>
         <member name="T:Hyre.Bootstrapper.Extensions.DocumentationExtensions">
             <summary>
               This is an extension class that contains the documentation's configuration.

@@ -32,11 +32,16 @@ public sealed class ListJobOpportunityUseCaseTests : ListJobOpportunityUseCaseTe
 	public void Handle_WhenGivenValidInput_ShouldListJobOpportunities()
 	{
 		// Arrange
-		var parameters = new JobOpportunityParameters(1, 10);
+		var parameters = new JobOpportunityParameters
+		{
+			PageSize = 1,
+			PageNumber = 10
+		};
+
 		var response = GenerateValidPagedList(parameters.PageSize, parameters.PageNumber, 10);
 		var request = new ListJobOpportunityRequest(parameters);
 
-		_repository.JobOpportunity.ListAsync(Arg.Any<JobOpportunityParameters>(), CancellationToken.None).Returns(response);
+		_ = _repository.JobOpportunity.ListAsync(Arg.Any<JobOpportunityParameters>(), CancellationToken.None).Returns(response);
 
 		// Act
 		var result = _sut.Handle(request, CancellationToken.None);

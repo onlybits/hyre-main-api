@@ -4,6 +4,7 @@
 
 #region
 
+using Hyre.Shared.Infrastructure.API;
 using Hyre.Shared.Infrastructure.Serialization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,14 +40,16 @@ public static class ServicesExtensions
 		_ = services.AddEndpointsApiExplorer();
 		_ = services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
 		_ = services.AddControllers(config =>
-		{
-			config.RespectBrowserAcceptHeader = true;
-			config.ReturnHttpNotAcceptable = true;
-		}).AddJsonOptions(opt =>
-		{
-			var defaultOptions = CustomJsonOptions.GetDefault();
-			opt.JsonSerializerOptions.PropertyNamingPolicy = defaultOptions.PropertyNamingPolicy;
-			opt.JsonSerializerOptions.WriteIndented = defaultOptions.WriteIndented;
-		});
+			{
+				config.RespectBrowserAcceptHeader = true;
+				config.ReturnHttpNotAcceptable = true;
+			})
+			.ConfigureApplicationPartManager(manager => manager.FeatureProviders.Add(new InternalControllerFeatureProvider()))
+			.AddJsonOptions(opt =>
+			{
+				var defaultOptions = CustomJsonOptions.GetDefault();
+				opt.JsonSerializerOptions.PropertyNamingPolicy = defaultOptions.PropertyNamingPolicy;
+				opt.JsonSerializerOptions.WriteIndented = defaultOptions.WriteIndented;
+			});
 	}
 }

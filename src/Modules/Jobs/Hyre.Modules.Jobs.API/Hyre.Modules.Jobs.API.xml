@@ -4,6 +4,41 @@
         <name>Hyre.Modules.Jobs.API</name>
     </assembly>
     <members>
+        <member name="T:Hyre.Modules.Jobs.API.Controllers.JobOpportunitiesController">
+            <summary>
+              This controller is responsible for handling requests related to job opportunities.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.API.Controllers.JobOpportunitiesController.#ctor(MediatR.ISender)">
+            <summary>
+              Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.API.Controllers.JobOpportunitiesController" /> class.
+            </summary>
+            <param name="sender">The MediatR sender, used to send requests to the application layer.</param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.API.Controllers.JobOpportunitiesController.ListAsync(Hyre.Modules.Jobs.Core.Requests.JobOpportunityParameters,System.Threading.CancellationToken)">
+            <summary>
+              This endpoint is responsible for listing job opportunities.
+            </summary>
+            <param name="parameters">The parameters used to filter the job opportunities.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns a list of job opportunities.</returns>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.API.Controllers.JobOpportunitiesController.GetAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+              This endpoint is responsible for retrieving a job opportunity by its id.
+            </summary>
+            <param name="id">The id of the job opportunity.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns the job opportunity.</returns>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.API.Controllers.JobOpportunitiesController.Create(Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create.CreateJobOpportunityInput,System.Threading.CancellationToken)">
+            <summary>
+              This endpoint is responsible for creating a new job opportunity.
+            </summary>
+            <param name="input">The input data used to create the job opportunity.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns the created job opportunity.</returns>
+        </member>
         <member name="T:Hyre.Modules.Jobs.API.Extensions">
             <summary>
               Internal extensions for the Jobs module.

@@ -4,21 +4,33 @@
         <name>Hyre.Shared.Infrastructure</name>
     </assembly>
     <members>
-        <member name="T:Hyre.Shared.Infrastructure.Extensions">
+        <member name="T:Hyre.Shared.Infrastructure.API.InternalControllerFeatureProvider">
             <summary>
-                This class contains the extension methods for the shared infrastructure.
+              This class is responsible for filtering out internal controllers from the application.
             </summary>
         </member>
-        <member name="M:Hyre.Shared.Infrastructure.Extensions.AddSharedInfrastructure(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Hyre.Shared.Infrastructure.API.InternalControllerFeatureProvider.IsController(System.Reflection.TypeInfo)">
             <summary>
-                This method adds the shared infrastructure to the service collection.
+              Overrides the default implementation to filter out internal controllers.
+            </summary>
+            <param name="typeInfo">The type information of the controller.</param>
+            <returns> It will return true if the class is a controller. </returns>
+        </member>
+        <member name="T:Hyre.Shared.Infrastructure.Extensions">
+            <summary>
+              This class contains the extension methods for the shared infrastructure.
+            </summary>
+        </member>
+        <member name="M:Hyre.Shared.Infrastructure.Extensions.AddModularInfrastructure(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+              This method adds the shared infrastructure to the service collection.
             </summary>
             <param name="services">The service collection.</param>
             <returns>It will return the service collection with the shared infrastructure added.</returns>
         </member>
         <member name="M:Hyre.Shared.Infrastructure.Extensions.GetOptions``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
             <summary>
-                This method gets the options from the registered services.
+              This method gets the options from the registered services.
             </summary>
             <param name="services">The service collection.</param>
             <param name="sectionName">The section name from the configuration file.</param>
@@ -27,7 +39,7 @@
         </member>
         <member name="M:Hyre.Shared.Infrastructure.Extensions.GetOptions``1(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
             <summary>
-                This method gets the options from the configuration file.
+              This method gets the options from the configuration file.
             </summary>
             <param name="configuration">The configuration.</param>
             <param name="sectionName">The section name from the configuration file.</param>
@@ -36,27 +48,25 @@
         </member>
         <member name="T:Hyre.Shared.Infrastructure.Logging.LoggerManager">
             <summary>
-                Implementation of the
-                <see cref="T:Hyre.Shared.Abstractions.Logging.ILoggerManager"/>
-                interface.
+              Implementation of the <see cref="T:Hyre.Shared.Abstractions.Logging.ILoggerManager" /> interface.
             </summary>
         </member>
         <member name="T:Hyre.Shared.Infrastructure.Postgres.DbContextAppInitializer">
             <summary>
-                This class is used to automatically initialize the modules' Postgres contexts.
+              This class is used to automatically initialize the modules' Postgres contexts.
             </summary>
             <remarks>
-                Each module should have its own Postgres context, and this class will initialize them all.
+              Each module should have its own Postgres context, and this class will initialize them all.
             </remarks>
         </member>
         <member name="T:Hyre.Shared.Infrastructure.Postgres.PostgresExtensions">
             <summary>
-                This class contains the extension methods for the Postgres context.
+              This class contains the extension methods for the Postgres context.
             </summary>
         </member>
         <member name="M:Hyre.Shared.Infrastructure.Postgres.PostgresExtensions.AddPostgres``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-                This method is used to register the Postgres context from the modules.
+              This method is used to register the Postgres context from the modules.
             </summary>
             <param name="services">The module's service collection.</param>
             <typeparam name="T">The type of the Postgres context.</typeparam>
@@ -64,89 +74,79 @@
         </member>
         <member name="M:Hyre.Shared.Infrastructure.Postgres.PostgresExtensions.AddPostgres(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-                This method internally configures the Postgres options.
+              This method internally configures the Postgres options.
             </summary>
             <param name="services">The internal service collection.</param>
             <returns>It will return the service collection with the Postgres options added.</returns>
         </member>
         <member name="T:Hyre.Shared.Infrastructure.Postgres.PostgresOptions">
             <summary>
-                This is the base options for the Postgres database.
+              This is the base options for the Postgres database.
             </summary>
         </member>
         <member name="F:Hyre.Shared.Infrastructure.Postgres.PostgresOptions.SectionName">
             <summary>
-                Gets the section name for the Postgres database.
+              Gets the section name for the Postgres database.
             </summary>
         </member>
         <member name="P:Hyre.Shared.Infrastructure.Postgres.PostgresOptions.ConnectionString">
             <summary>
-                Gets the connection string for the Postgres database.
+              Gets the connection string for the Postgres database.
             </summary>
         </member>
         <member name="T:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1">
             <summary>
-                This class is the base for all repositories.
+              This class is the base for all repositories.
             </summary>
-            <inheritdoc cref="T:Hyre.Shared.Abstractions.Repositories.IRepositoryBase`1"/>
+            <inheritdoc cref="T:Hyre.Shared.Abstractions.Repositories.IRepositoryBase`1" />
         </member>
         <member name="M:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
             <summary>
-                Initializes a new instance of the
-                <see cref="T:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1"/>
-                class.
+              Initializes a new instance of the <see cref="T:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1" /> class.
             </summary>
             <param name="context">The database context.</param>
         </member>
         <member name="M:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1.FindAll(System.Boolean)">
             <summary>
-                This is used to query the database for all entities of type<typeparamref name="T"/>.
+              This is used to query the database for all entities of type <typeparamref name="T" />.
             </summary>
             <param name="trackChanges">Should EF Core track changes?</param>
-            <returns>It will return an IQueryable of
-                <typeparamref name="T"/>
-                type.
-            </returns>
+            <returns>It will return an IQueryable of <typeparamref name="T" /> type.</returns>
         </member>
         <member name="M:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1.FindByCondition(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
             <summary>
-                This is used to query the database for entities of type
-                <typeparamref name="T"/>
-                that match the given expression.
+              This is used to query the database for entities of type <typeparamref name="T" /> that match the given expression.
             </summary>
             <param name="expression">The expression to filter the entities.</param>
             <param name="trackChanges">Should EF Core track changes?</param>
-            <returns>If the expression is matched, it will return an IQueryable of
-                <typeparamref name="T"/>
-                type.
-            </returns>
+            <returns>If the expression is matched, it will return an IQueryable of <typeparamref name="T" /> type.</returns>
         </member>
         <member name="M:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1.Insert(`0)">
             <summary>
-                This method will insert a new entity to the context.
+              This method will insert a new entity to the context.
             </summary>
             <param name="entity">The entity to be inserted.</param>
         </member>
         <member name="M:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1.Edit(`0)">
             <summary>
-                This method will edit an entity in the context.
+              This method will edit an entity in the context.
             </summary>
             <param name="entity">The entity to be edited.</param>
         </member>
         <member name="M:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1.Remove(`0)">
             <summary>
-                This method will remove an entity from the context.
+              This method will remove an entity from the context.
             </summary>
             <param name="entity">The entity to be removed.</param>
         </member>
         <member name="T:Hyre.Shared.Infrastructure.Serialization.CustomJsonOptions">
             <summary>
-                Represents the options for JSON serialization.
+              Represents the options for JSON serialization.
             </summary>
         </member>
         <member name="M:Hyre.Shared.Infrastructure.Serialization.CustomJsonOptions.GetDefault">
             <summary>
-                Gets the default options for JSON serialization.
+              Gets the default options for JSON serialization.
             </summary>
             <returns>It will return the default options for JSON serialization.</returns>
         </member>

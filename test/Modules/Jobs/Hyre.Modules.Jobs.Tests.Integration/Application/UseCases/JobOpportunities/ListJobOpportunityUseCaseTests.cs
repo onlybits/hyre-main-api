@@ -17,6 +17,9 @@ using NSubstitute;
 
 namespace Hyre.Modules.Jobs.Tests.Integration.Application.UseCases.JobOpportunities;
 
+/// <summary>
+///   Integration tests for the <see cref="ListJobOpportunityUseCase" /> class.
+/// </summary>
 public sealed class ListJobOpportunityUseCaseTests : JobOpportunityUseCaseTestsFixture, IAsyncLifetime
 {
 	private readonly JobsRepositoryContext _context;
@@ -56,7 +59,12 @@ public sealed class ListJobOpportunityUseCaseTests : JobOpportunityUseCaseTestsF
 	{
 		// Arrange
 		var jobOpportunities = GenerateJobOpportunities(generate);
-		var parameters = new JobOpportunityParameters(pageNumber, pageSize);
+		var parameters = new JobOpportunityParameters
+		{
+			PageSize = pageSize,
+			PageNumber = pageNumber
+		};
+
 		var request = new ListJobOpportunityRequest(parameters);
 
 		// Act
