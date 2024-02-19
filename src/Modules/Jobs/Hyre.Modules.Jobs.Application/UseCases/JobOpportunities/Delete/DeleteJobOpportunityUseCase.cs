@@ -36,7 +36,7 @@ internal sealed class DeleteJobOpportunityUseCase : IDeleteJobOpportunityUseCase
 		}
 
 		_repository.JobOpportunity.Delete(jobOpportunity);
-		await _repository.SaveAsync(cancellationToken);
+		await _repository.CommitChangesAsync(cancellationToken);
 		_logger.LogInfo("Job opportunity with id {Id} was deleted.", request.Id);
 	}
 }

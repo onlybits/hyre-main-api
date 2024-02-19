@@ -4,9 +4,7 @@
 
 #region
 
-using Bogus.Extensions;
 using Hyre.Modules.Jobs.Core.Entities;
-using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 using Hyre.Modules.Jobs.Tests.Integration.Common;
 
 #endregion
@@ -16,7 +14,7 @@ namespace Hyre.Modules.Jobs.Tests.Integration.Application.UseCases;
 /// <summary>
 ///   This is the fixture for the all integration tests the use cases related to the <see cref="JobOpportunity" />.
 /// </summary>
-public abstract class JobOpportunityUseCaseTestsFixture : BaseFixture
+public abstract class JobOpportunityUseCaseTestsFixture : JobOpportunityBaseFixture
 {
 	/// <summary>
 	///   Initializes a new instance of the <see cref="JobOpportunityUseCaseTestsFixture" /> class.
@@ -35,18 +33,6 @@ public abstract class JobOpportunityUseCaseTestsFixture : BaseFixture
 		.Range(1, count)
 		.Select(_ => GenerateJobOpportunity())
 		.ToList();
-
-	/// <summary>
-	///   Generates a <see cref="JobOpportunity" />.
-	/// </summary>
-	/// <returns>It will return a <see cref="JobOpportunity" />.</returns>
-	protected JobOpportunity GenerateJobOpportunity() => JobOpportunity.Create(GenerateJobOpportunityName());
-
-	/// <summary>
-	///   Generates a <see cref="JobOpportunityName" /> with a random name.
-	/// </summary>
-	/// <returns>It will return a <see cref="JobOpportunityName" /> with a random name.</returns>
-	protected JobOpportunityName GenerateJobOpportunityName() => new(Faker.Name.JobTitle().ClampLength(3, 32));
 
 	/// <summary>
 	///   This method is responsible for seeding the database with the given job opportunities.

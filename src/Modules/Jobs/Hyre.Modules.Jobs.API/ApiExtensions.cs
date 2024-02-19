@@ -4,6 +4,7 @@
 
 #region
 
+using Hyre.Modules.Jobs.Application;
 using Hyre.Modules.Jobs.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +16,7 @@ namespace Hyre.Modules.Jobs.API;
 /// <summary>
 ///   Internal extensions for the Jobs module.
 /// </summary>
-internal static class Extensions
+internal static class ApiExtensions
 {
 	/// <summary>
 	///   Adds the Jobs module to the service collection.
@@ -23,6 +24,7 @@ internal static class Extensions
 	/// <param name="services">The main service collection.</param>
 	/// <returns>It will return the same service collection.</returns>
 	internal static IServiceCollection AddJobsModule(this IServiceCollection services) => services
+		.AddApplication()
 		.AddInfrastructure();
 
 	/// <summary>

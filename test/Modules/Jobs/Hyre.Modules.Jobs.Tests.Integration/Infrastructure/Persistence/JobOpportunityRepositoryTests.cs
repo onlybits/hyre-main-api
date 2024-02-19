@@ -147,6 +147,8 @@ public sealed class JobOpportunityRepositoryTests : JobOpportunityRepositoryTest
 
 		// Act
 		jobOpportunity.UpdateName(updatedJobOpportunity.Name);
+		jobOpportunity.UpdateDescription(updatedJobOpportunity.Description);
+
 		_sut.Update(jobOpportunity);
 		_ = await _context.SaveChangesAsync(_ct);
 

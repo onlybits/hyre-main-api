@@ -23,5 +23,6 @@ public static class JobOpportunityExtensions
 	/// <returns>It will return a job opportunity response.</returns>
 	public static JobOpportunityResponse ToResponse(this JobOpportunity jobOpportunity) => new(
 		jobOpportunity.Id,
-		jobOpportunity.Name);
+		jobOpportunity.Name,
+		jobOpportunity.Description);
 }

@@ -4,7 +4,6 @@
 
 #region
 
-using Bogus.Extensions;
 using Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Update;
 using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
@@ -17,13 +16,15 @@ namespace Hyre.Modules.Jobs.Tests.Unit.Application.UseCases.JobOpportunities;
 /// <summary>
 ///   Data provider for the <see cref="UpdateJobOpportunityUseCaseTests" /> class.
 /// </summary>
-public abstract class UpdateJobOpportunityUseCaseTestsFixture : BaseFixture
+public abstract class UpdateJobOpportunityUseCaseTestsFixture : JobOpportunityBaseFixture
 {
 	/// <summary>
 	///   Generates a valid <see cref="JobOpportunity" />.
 	/// </summary>
 	/// <returns>It will return a valid <see cref="JobOpportunity" />.</returns>
-	protected JobOpportunity GenerateValidJobOpportunity() => JobOpportunity.Create(GenerateValidName());
+	protected JobOpportunity GenerateValidJobOpportunity() => JobOpportunity.Create(
+		GenerateValidName(),
+		GenerateValidDescription());
 
 	/// <summary>
 	///   Generates a valid request for the <see cref="UpdateJobOpportunityUseCase" /> class.
@@ -39,11 +40,7 @@ public abstract class UpdateJobOpportunityUseCaseTestsFixture : BaseFixture
 	///   Generates a valid input for the <see cref="UpdateJobOpportunityRequest" /> record.
 	/// </summary>
 	/// <returns>It will return a valid <see cref="UpdateJobOpportunityInput" />.</returns>
-	private UpdateJobOpportunityInput GenerateValidInput() => new(GenerateValidName());
-
-	/// <summary>
-	///   Generates a valid <see cref="JobOpportunityName" />.
-	/// </summary>
-	/// <returns>It will return a valid <see cref="JobOpportunityName" />.</returns>
-	private JobOpportunityName GenerateValidName() => new(Faker.Name.JobTitle().ClampLength(3, 32));
+	private UpdateJobOpportunityInput GenerateValidInput() => new(
+		GenerateValidName(),
+		GenerateValidDescription());
 }

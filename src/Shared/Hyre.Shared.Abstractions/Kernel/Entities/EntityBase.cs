@@ -21,14 +21,23 @@ public abstract class EntityBase<TId> : IEntityBase where TId : StronglyTypedId<
 	///   Initializes a new instance of the <see cref="EntityBase{TId}" /> class.
 	/// </summary>
 	/// <param name="id">The identifier of the entity.</param>
-	protected EntityBase(TId id) => Id = id;
+	protected EntityBase(TId id)
+	{
+		Id = id;
+		CreatedAt = CreateDate.Create(TimeProvider.System);
+	}
 
 	/// <summary>
 	///   Gets the identifier of the entity.
 	/// </summary>
 	public TId Id { get; private set; }
 
-	#region Base
+	/// <summary>
+	///   Gets or sets the date and time the entity was created.
+	/// </summary>
+	public CreateDate CreatedAt { get; private set; }
+
+	#region Events
 
 	/// <summary>
 	///   The domain events that occurred in the entity.

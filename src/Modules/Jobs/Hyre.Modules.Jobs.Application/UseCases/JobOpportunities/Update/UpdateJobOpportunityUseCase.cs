@@ -36,15 +36,16 @@ internal sealed class UpdateJobOpportunityUseCase : IUpdateJobOpportunityUseCase
 		}
 
 		jobOpportunity.UpdateName(request.Input.Name);
+		jobOpportunity.UpdateDescription(request.Input.Description);
 
 		if (request.TrackChanges)
 		{
-			await _repository.SaveAsync(cancellationToken);
+			await _repository.CommitChangesAsync(cancellationToken);
 		}
 		else
 		{
 			_repository.JobOpportunity.Update(jobOpportunity);
-			await _repository.SaveAsync(cancellationToken);
+			await _repository.CommitChangesAsync(cancellationToken);
 		}
 
 		_logger.LogInfo("Job opportunity with id {Id} updated successfully.", request.Id);

@@ -35,7 +35,7 @@ public sealed class CreateJobOpportunityUseCaseTests : JobOpportunityUseCaseTest
 	public async Task Handle_WhenCalled_ShouldCreateJobOpportunity()
 	{
 		// Arrange
-		var createJobOpportunityInput = new CreateJobOpportunityInput(GenerateJobOpportunityName());
+		var createJobOpportunityInput = new CreateJobOpportunityInput(GenerateValidName(), GenerateValidDescription());
 		var createJobOpportunityRequest = new CreateJobOpportunityRequest(createJobOpportunityInput);
 
 		// Act

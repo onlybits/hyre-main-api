@@ -6,68 +6,130 @@
     <members>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.Configuration.JobOpportunityConfiguration">
             <summary>
-              This class configures the mapping of the <see cref="T:Hyre.Modules.Jobs.Core.Entities.JobOpportunity" /> entity to the database.
+                This class configures the mapping of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Entities.JobOpportunity"/>
+                entity to the database.
             </summary>
         </member>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.Extensions">
             <summary>
-              This class contains the extension methods for the infrastructure layer.
+                This class contains the extension methods for the infrastructure layer.
             </summary>
         </member>
         <member name="M:Hyre.Modules.Jobs.Infrastructure.Extensions.AddInfrastructure(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-              This method adds the infrastructure layer to the service collection.
+                This method adds the infrastructure layer to the service collection.
             </summary>
             <param name="services">The service collection.</param>
             <returns>It will return the service collection.</returns>
         </member>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext">
             <summary>
-              Represents the database context for the jobs repository.
+                Represents the database context for the jobs repository.
             </summary>
         </member>
         <member name="M:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext})">
             <summary>
-              Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext" /> class.
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext"/>
+                class.
             </summary>
             <param name="options">The database context options.</param>
         </member>
         <member name="P:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext.JobOpportunities">
             <summary>
-              Gets or sets the job opportunities.
+                Gets or sets the job opportunities.
             </summary>
         </member>
         <member name="M:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
-              Override this method to further configure the model that was discovered by convention from the entity types.
+                Override this method to further configure the model that was discovered by convention from the entity
+                types.
             </summary>
             <param name="modelBuilder">
-              The builder being used to construct the model for this context.
+                The builder being used to construct the model for this context.
             </param>
         </member>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryManager">
             <summary>
-              This class is responsible for managing the all the repositories for the jobs module.
+                This class is responsible for managing the all the repositories for the jobs module.
             </summary>
-            <inheritdoc cref="T:Hyre.Modules.Jobs.Core.Repositories.IJobsRepositoryManager" />
+            <inheritdoc cref="T:Hyre.Modules.Jobs.Core.Repositories.IJobsRepositoryManager"/>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Infrastructure.Migrations.AddDescription">
+            <inheritdoc/>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddDescription.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddDescription.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddDescription.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc/>
         </member>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.Migrations.Initial">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.Persistence.JobOpportunityRepository">
             <summary>
-              This is the repository for the <see cref="T:Hyre.Modules.Jobs.Core.Entities.JobOpportunity" /> entity.
+                This is the repository for the
+                <see cref="T:Hyre.Modules.Jobs.Core.Entities.JobOpportunity"/>
+                entity.
             </summary>
-            <inheritdoc cref="T:Hyre.Modules.Jobs.Core.Repositories.IJobOpportunityRepository" />
+            <inheritdoc cref="T:Hyre.Modules.Jobs.Core.Repositories.IJobOpportunityRepository"/>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Persistence.JobOpportunityRepository.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Infrastructure.Persistence.JobOpportunityRepository"/>
+                class.
+            </summary>
+            <param name="context">The database context.</param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Persistence.JobOpportunityRepository.ListAsync(Hyre.Modules.Jobs.Core.Requests.JobOpportunityParameters,System.Threading.CancellationToken)">
+            <summary>
+                This method is responsible for listing job opportunities.
+            </summary>
+            <param name="parameters">The parameters to be used in the listing.</param>
+            <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
+            <returns>It will return a paged list of job opportunities.</returns>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Persistence.JobOpportunityRepository.FindByIdAsync(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+                This method is responsible for finding a job opportunity by its id.
+            </summary>
+            <param name="id">The job opportunity id.</param>
+            <param name="trackChanges">Should EF keep track of the changes.</param>
+            <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
+            <returns>It will return the job opportunity found.</returns>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Persistence.JobOpportunityRepository.Create(Hyre.Modules.Jobs.Core.Entities.JobOpportunity)">
+            <summary>
+                This method is responsible for creating a new job opportunity.
+            </summary>
+            <param name="jobOpportunity">The job opportunity to be created.</param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Persistence.JobOpportunityRepository.Update(Hyre.Modules.Jobs.Core.Entities.JobOpportunity)">
+            <summary>
+                This method is responsible for updating a job opportunity.
+            </summary>
+            <param name="jobOpportunity">The job opportunity to be updated.</param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Persistence.JobOpportunityRepository.Delete(Hyre.Modules.Jobs.Core.Entities.JobOpportunity)">
+            <summary>
+                This method is responsible for deleting a job opportunity.
+            </summary>
+            <param name="jobOpportunity">The job opportunity to be deleted.</param>
         </member>
     </members>
 </doc>

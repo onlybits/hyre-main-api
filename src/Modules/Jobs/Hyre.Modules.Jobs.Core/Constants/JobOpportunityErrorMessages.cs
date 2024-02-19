@@ -40,4 +40,18 @@ public abstract class JobOpportunityErrorMessages
 	public const string NameTooLong = "O nome da oportunidade de emprego deve ter no máximo 32 caracteres.";
 
 	#endregion
+
+	#region 03 - Description
+
+	/// <summary>
+	///   Used when the description of the job opportunity is too short.
+	/// </summary>
+	public const string DescriptionTooShort = "A descrição da oportunidade de emprego deve ter no mínimo 10 caracteres.";
+
+	/// <summary>
+	///   Used when the description of the job opportunity is too long.
+	/// </summary>
+	public const string DescriptionTooLong = "A descrição da oportunidade de emprego deve ter no máximo 500 caracteres.";
+
+	#endregion
 }

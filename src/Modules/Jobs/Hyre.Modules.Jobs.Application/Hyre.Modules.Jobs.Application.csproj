@@ -26,6 +26,7 @@
     </ItemGroup>
     <ItemGroup>
         <InternalsVisibleTo Include="Hyre.Bootstrapper"/>
+        <InternalsVisibleTo Include="Hyre.Modules.Jobs.API"/>
         <InternalsVisibleTo Include="Hyre.Modules.Jobs.Tests.Unit"/>
         <InternalsVisibleTo Include="Hyre.Modules.Jobs.Tests.Integration"/>
         <InternalsVisibleTo Include="DynamicProxyGenAssembly2"/>

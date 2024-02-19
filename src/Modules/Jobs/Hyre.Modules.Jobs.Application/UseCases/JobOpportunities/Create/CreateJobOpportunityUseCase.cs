@@ -34,11 +34,11 @@ internal sealed class CreateJobOpportunityUseCase : ICreateJobOpportunityUseCase
 	public async Task<JobOpportunityResponse> Handle(CreateJobOpportunityRequest request,
 		CancellationToken cancellationToken)
 	{
-		var jobOpportunity = JobOpportunity.Create(request.Input.Name);
+		var jobOpportunity = JobOpportunity.Create(request.Input.Name, request.Input.Description);
 		try
 		{
 			_repository.JobOpportunity.Create(jobOpportunity);
-			await _repository.SaveAsync(cancellationToken);
+			await _repository.CommitChangesAsync(cancellationToken);
 
 			_logger.LogInfo("Job opportunity: {JobOpportunity} created successfully.", jobOpportunity);
 			return jobOpportunity.ToResponse();

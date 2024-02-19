@@ -7,6 +7,7 @@
 using FluentAssertions;
 using Hyre.Modules.Jobs.Application.Extensions;
 using Hyre.Modules.Jobs.Core.Entities;
+using Hyre.Modules.Jobs.Tests.Unit.Common;
 using Xunit;
 
 #endregion
@@ -16,14 +17,14 @@ namespace Hyre.Modules.Jobs.Tests.Unit.Application.Extensions;
 /// <summary>
 ///   Unit tests for the job opportunity extensions.
 /// </summary>
-public sealed class JobOpportunityExtensionsTests
+public sealed class JobOpportunityExtensionsTests : JobOpportunityBaseFixture
 {
 	[Fact(DisplayName = nameof(ToResponse_WhenUsedInValidEntity_ShouldMapToResponseObject))]
 	[Trait(ExtensionsTraits.Name, ExtensionsTraits.Value)]
 	public void ToResponse_WhenUsedInValidEntity_ShouldMapToResponseObject()
 	{
 		// Arrange
-		var jobOpportunity = JobOpportunity.Create("Job Opportunity");
+		var jobOpportunity = JobOpportunity.Create(GenerateValidName(), GenerateValidDescription());
 
 		// Act
 		var response = jobOpportunity.ToResponse();

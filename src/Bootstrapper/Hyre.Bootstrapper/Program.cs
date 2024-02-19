@@ -6,18 +6,16 @@
 
 using Hyre.Bootstrapper.Errors;
 using Hyre.Bootstrapper.Extensions;
-using Hyre.Modules.Jobs.API;
 using Hyre.Shared.Infrastructure;
 
 #endregion
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services
-	.AddJobsModule()
 	.AddCorsConfiguration()
 	.AddSwaggerConfiguration()
 	.AddModularInfrastructure()
-	.AddMediatRConfiguration()
+	.AddModulesConfiguration()
 	.AddExceptionHandler<GlobalExceptionHandler>()
 	.AddControllersConfiguration();
 

@@ -4,7 +4,6 @@
 
 #region
 
-using Bogus.Extensions;
 using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Tests.Unit.Common;
 using Hyre.Shared.Abstractions.Requests;
@@ -13,7 +12,7 @@ using Hyre.Shared.Abstractions.Requests;
 
 namespace Hyre.Modules.Jobs.Tests.Unit.Application.UseCases.JobOpportunities;
 
-public abstract class ListJobOpportunityUseCaseTestsFixture : BaseFixture
+public abstract class ListJobOpportunityUseCaseTestsFixture : JobOpportunityBaseFixture
 {
 	/// <summary>
 	///   Generates a valid paged list of job opportunities.
@@ -35,7 +34,7 @@ public abstract class ListJobOpportunityUseCaseTestsFixture : BaseFixture
 	/// <returns>It will return a list of job opportunities.</returns>
 	private IEnumerable<JobOpportunity> GenerateValidJobOpportunities(int max) => Enumerable
 		.Range(1, max)
-		.Select(x => JobOpportunity.Create(Faker.Name.JobTitle().ClampLength(3, 32)))
+		.Select(x => JobOpportunity.Create(GenerateValidName(), GenerateValidDescription()))
 		.ToList()
 		.AsEnumerable();
 }

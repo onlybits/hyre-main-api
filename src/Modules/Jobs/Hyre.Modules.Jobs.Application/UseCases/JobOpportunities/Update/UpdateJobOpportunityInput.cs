@@ -14,4 +14,7 @@ namespace Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Update;
 ///   This is the input data to update a job opportunity.
 /// </summary>
 /// <param name="Name">The new name of the job opportunity.</param>
-public sealed record UpdateJobOpportunityInput(JobOpportunityName? Name);
+/// <param name="Description">The new description of the job opportunity.</param>
+public sealed record UpdateJobOpportunityInput(
+	JobOpportunityName? Name,
+	JobOpportunityDescription? Description);

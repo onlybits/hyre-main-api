@@ -28,12 +28,18 @@ internal sealed class JobOpportunityConfiguration : IEntityTypeConfiguration<Job
 			.HasColumnName("id")
 			.IsRequired();
 
-		builder.Property(jo => jo.Name)
+		_ = builder.Property(jo => jo.Name)
 			.HasConversion(name => name.Value, value => new JobOpportunityName(value))
 			.HasColumnName("name")
 			.HasMaxLength(32)
 			.IsRequired();
 
-		builder.Ignore(jo => jo.Events);
+		_ = builder.Property(jo => jo.Description)
+			.HasConversion(description => description.Value, value => new JobOpportunityDescription(value))
+			.HasColumnName("description")
+			.HasMaxLength(500)
+			.IsRequired();
+
+		_ = builder.Ignore(jo => jo.Events);
 	}
 }

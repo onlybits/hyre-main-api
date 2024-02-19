@@ -12,4 +12,7 @@
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App"/>
     </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="Hyre.Shared.Abstractions.Tests.Unit"/>
+    </ItemGroup>
 </Project>

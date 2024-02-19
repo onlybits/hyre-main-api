@@ -4,7 +4,6 @@
 
 #region
 
-using Bogus.Extensions;
 using Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Delete;
 using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
@@ -17,23 +16,19 @@ namespace Hyre.Modules.Jobs.Tests.Unit.Application.UseCases.JobOpportunities;
 /// <summary>
 ///   Data provider for the <see cref="DeleteJobOpportunityUseCaseTests" /> class.
 /// </summary>
-public abstract class DeleteJobOpportunityUseCaseTestsFixture : BaseFixture
+public abstract class DeleteJobOpportunityUseCaseTestsFixture : JobOpportunityBaseFixture
 {
 	/// <summary>
 	///   Generates a valid <see cref="JobOpportunity" />.
 	/// </summary>
 	/// <returns>It will return a valid <see cref="JobOpportunity" />.</returns>
-	protected JobOpportunity GenerateValidJobOpportunity() => JobOpportunity.Create(GenerateValidName());
+	protected JobOpportunity GenerateValidJobOpportunity() => JobOpportunity.Create(
+		GenerateValidName(),
+		GenerateValidDescription());
 
 	/// <summary>
 	///   Generates a valid request for the <see cref="DeleteJobOpportunityUseCase" /> class.
 	/// </summary>
 	/// <returns>It will return a valid <see cref="DeleteJobOpportunityRequest" />.</returns>
 	protected DeleteJobOpportunityRequest GenerateValidRequest() => new(JobOpportunityId.New(), false);
-
-	/// <summary>
-	///   Generates a valid <see cref="JobOpportunityName" />.
-	/// </summary>
-	/// <returns>It will return a valid <see cref="JobOpportunityName" />.</returns>
-	private JobOpportunityName GenerateValidName() => new(Faker.Name.JobTitle().ClampLength(3, 32));
 }

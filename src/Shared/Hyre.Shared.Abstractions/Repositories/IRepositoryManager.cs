@@ -13,5 +13,5 @@ public interface IRepositoryManager
 	///   This method will save all changes made in the database.
 	/// </summary>
 	/// <returns>Returns a task.</returns>
-	Task SaveAsync(CancellationToken cancellationToken = default);
+	Task CommitChangesAsync(CancellationToken cancellationToken = default);
 }

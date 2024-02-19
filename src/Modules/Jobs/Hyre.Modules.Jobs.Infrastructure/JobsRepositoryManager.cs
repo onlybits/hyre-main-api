@@ -28,5 +28,5 @@ internal sealed class JobsRepositoryManager : IJobsRepositoryManager
 
 	public IJobOpportunityRepository JobOpportunity => _jobOpportunityRepository.Value;
 
-	public async Task SaveAsync(CancellationToken cancellationToken = default) => await _context.SaveChangesAsync(cancellationToken);
+	public async Task CommitChangesAsync(CancellationToken cancellationToken = default) => await _context.SaveChangesAsync(cancellationToken);
 }

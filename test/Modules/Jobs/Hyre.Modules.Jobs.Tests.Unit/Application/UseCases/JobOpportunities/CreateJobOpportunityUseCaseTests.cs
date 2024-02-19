@@ -51,7 +51,7 @@ public sealed class CreateJobOpportunityUseCaseTests : CreateJobOpportunityUseCa
 	{
 		// Arrange
 		var request = GenerateValidRequest();
-		_repository.SaveAsync(CancellationToken.None).ThrowsAsync(new ArgumentException(""));
+		_repository.CommitChangesAsync(CancellationToken.None).ThrowsAsync(new ArgumentException(""));
 
 		// Act
 		var act = async () => await _sut.Handle(request, CancellationToken.None);

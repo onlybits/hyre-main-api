@@ -21,19 +21,35 @@ public sealed class JobOpportunity : EntityBase<JobOpportunityId>
 	/// </summary>
 	/// <param name="id">The identifier of the job opportunity.</param>
 	/// <param name="name">The name of the job opportunity.</param>
-	private JobOpportunity(JobOpportunityId id, JobOpportunityName name) : base(id) => Name = name;
+	/// <param name="description">The description of the job opportunity.</param>
+	private JobOpportunity(
+		JobOpportunityId id,
+		JobOpportunityName name,
+		JobOpportunityDescription description) : base(id)
+	{
+		Name = name;
+		Description = description;
+	}
 
 	/// <summary>
-	///   Gets the name of the job opportunity.
+	///   Gets or sets the name of the job opportunity.
 	/// </summary>
 	public JobOpportunityName Name { get; private set; }
+
+	/// <summary>
+	///   Gets or sets the description of the job opportunity.
+	/// </summary>
+	public JobOpportunityDescription Description { get; private set; }
 
 	/// <summary>
 	///   Initializes a new instance of the <see cref="JobOpportunity" /> class.
 	/// </summary>
 	/// <param name="name">The name of the job opportunity.</param>
+	/// <param name="description">The description of the job opportunity.</param>
 	/// <returns>It will return a new instance of the <see cref="JobOpportunity" /> class.</returns>
-	public static JobOpportunity Create(JobOpportunityName name) => new(JobOpportunityId.New(), name);
+	public static JobOpportunity Create(
+		JobOpportunityName name,
+		JobOpportunityDescription description) => new(JobOpportunityId.New(), name, description);
 
 	#region Update Methods
 
@@ -42,6 +58,12 @@ public sealed class JobOpportunity : EntityBase<JobOpportunityId>
 	/// </summary>
 	/// <param name="name">The new name of the job opportunity.</param>
 	public void UpdateName(JobOpportunityName? name) => Name = name ?? Name;
+
+	/// <summary>
+	///   This method updates the description of the job opportunity.
+	/// </summary>
+	/// <param name="description">The new description of the job opportunity.</param>
+	public void UpdateDescription(JobOpportunityDescription? description) => Description = description ?? Description;
 
 	#endregion
 }

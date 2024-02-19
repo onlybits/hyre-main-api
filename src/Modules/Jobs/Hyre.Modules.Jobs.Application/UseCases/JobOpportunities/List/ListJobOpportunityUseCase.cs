@@ -4,7 +4,7 @@
 
 #region
 
-using Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Common;
+using Hyre.Modules.Jobs.Application.Extensions;
 using Hyre.Modules.Jobs.Core.Repositories;
 using Hyre.Shared.Abstractions.Logging;
 
@@ -31,7 +31,7 @@ internal sealed class ListJobOpportunityUseCase : IListJobOpportunityUseCase
 	{
 		var pagedList = await _repository.JobOpportunity.ListAsync(request.Parameters, cancellationToken);
 		var jobOpportunities = pagedList
-			.Select(jobOpportunity => new JobOpportunityResponse(jobOpportunity.Id, jobOpportunity.Name))
+			.Select(jobOpportunity => jobOpportunity.ToResponse())
 			.ToList();
 
 		_logger.LogInfo("{Count} Job opportunities listed successfully.", jobOpportunities.Count);

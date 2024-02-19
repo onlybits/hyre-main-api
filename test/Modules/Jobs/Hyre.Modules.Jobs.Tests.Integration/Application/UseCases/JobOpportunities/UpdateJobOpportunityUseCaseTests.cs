@@ -46,7 +46,7 @@ public sealed class UpdateJobOpportunityUseCaseTests : JobOpportunityUseCaseTest
 		var jobOpportunities = GenerateJobOpportunities(5);
 		jobOpportunities.Add(jobOpportunity);
 
-		var input = new UpdateJobOpportunityInput(GenerateJobOpportunityName());
+		var input = new UpdateJobOpportunityInput(GenerateValidName(), GenerateValidDescription());
 		var request = new UpdateJobOpportunityRequest(jobOpportunity.Id, input, trackChanges);
 
 		// Act
@@ -66,7 +66,7 @@ public sealed class UpdateJobOpportunityUseCaseTests : JobOpportunityUseCaseTest
 	{
 		// Arrange
 		var jobOpportunities = GenerateJobOpportunities(5);
-		var input = new UpdateJobOpportunityInput(GenerateJobOpportunityName());
+		var input = new UpdateJobOpportunityInput(GenerateValidName(), GenerateValidDescription());
 		var request = new UpdateJobOpportunityRequest(Guid.NewGuid(), input, false);
 
 		// Act
