@@ -14,14 +14,17 @@ namespace Hyre.Modules.Jobs.Tests.Unit.Core.Entities;
 /// <summary>
 ///   Contains tests for the <see cref="JobOpportunity" /> class.
 /// </summary>
-public sealed class JobOpportunityTests
+public sealed class JobOpportunityTests : JobOpportunityTestsFixture
 {
 	[Fact(DisplayName = nameof(Create_WithValidParameters_ShouldCreateAnInstance))]
 	[Trait(EntitiesTraits.Name, EntitiesTraits.Value)]
 	public void Create_WithValidParameters_ShouldCreateAnInstance()
 	{
-		// Arrange & Act
-		var jobOpportunity = JobOpportunity.Create();
+		// Arrange
+		var name = GenerateValidName();
+
+		// Act
+		var jobOpportunity = JobOpportunity.Create(name);
 
 		// Assert
 		_ = jobOpportunity.Should().NotBeNull();

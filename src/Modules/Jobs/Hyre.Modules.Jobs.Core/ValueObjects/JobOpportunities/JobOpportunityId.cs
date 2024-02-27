@@ -4,6 +4,7 @@
 
 #region
 
+using Hyre.Modules.Jobs.Core.Constants;
 using Hyre.Shared.Abstractions.Exceptions;
 using Hyre.Shared.Abstractions.Kernel.ValueObjects;
 
@@ -36,8 +37,7 @@ public sealed record JobOpportunityId : StronglyTypedId<Guid>
 	{
 		if (Value == Guid.Empty)
 		{
-			//TODO: Add the english version of the message.
-			throw new DomainException("O identificador da oportunidade de emprego não pode ser vazio.");
+			throw new DomainException(JobOpportunityErrorMessages.IdCannotBeEmpty);
 		}
 	}
 }

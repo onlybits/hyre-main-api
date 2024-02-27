@@ -5,6 +5,7 @@
 #region
 
 using FluentAssertions;
+using Hyre.Modules.Jobs.Core.Constants;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 using Hyre.Shared.Abstractions.Exceptions;
 
@@ -43,7 +44,8 @@ public sealed class JobOpportunityIdTests
 		var act = () => new JobOpportunityId(value);
 
 		// Assert
-		_ = act.Should().ThrowExactly<DomainException>();
+		_ = act.Should().ThrowExactly<DomainException>()
+			.WithMessage(JobOpportunityErrorMessages.IdCannotBeEmpty);
 	}
 
 	[Fact(DisplayName = nameof(New_WithValidParameters_ShouldCreateAnInstance))]

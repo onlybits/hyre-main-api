@@ -20,13 +20,15 @@ public sealed class JobOpportunity : EntityBase<JobOpportunityId>
 	///   Initializes a new instance of the <see cref="JobOpportunity" /> class.
 	/// </summary>
 	/// <param name="id">The identifier of the job opportunity.</param>
-	private JobOpportunity(JobOpportunityId id) : base(id)
-	{
-	}
+	/// <param name="name">The name of the job opportunity.</param>
+	private JobOpportunity(JobOpportunityId id, JobOpportunityName name) : base(id) => Name = name;
+
+	public JobOpportunityName Name { get; private set; }
 
 	/// <summary>
 	///   Initializes a new instance of the <see cref="JobOpportunity" /> class.
 	/// </summary>
+	/// <param name="name">The name of the job opportunity.</param>
 	/// <returns>It will return a new instance of the <see cref="JobOpportunity" /> class.</returns>
-	public static JobOpportunity Create() => new(JobOpportunityId.New());
+	public static JobOpportunity Create(JobOpportunityName name) => new(JobOpportunityId.New(), name);
 }

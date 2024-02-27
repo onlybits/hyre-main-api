@@ -5,17 +5,17 @@
 namespace Hyre.Modules.Jobs.Tests.Unit.Core;
 
 /// <summary>
-///   Represents the traits definition of the value objects.
+///   Represents the traits definition of the entities.
 /// </summary>
-public abstract class ValueObjectsTraits
+public abstract class EntitiesTraits
 {
 	/// <summary>
-	///   Gets the name of the value objects trait.
+	///   Gets the name of the entities trait.
 	/// </summary>
 	public const string Name = "Jobs/Unit/Core";
 
 	/// <summary>
-	///   Gets the value of the value objects trait.
+	///   Gets the value of the entities trait.
 	/// </summary>
-	public const string Value = "ValueObjects";
+	public const string Value = "Entities";
 }
