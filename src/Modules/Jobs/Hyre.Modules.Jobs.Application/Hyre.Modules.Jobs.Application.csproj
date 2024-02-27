@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\Hyre.Modules.Jobs.Core\Hyre.Modules.Jobs.Core.csproj"/>
+    </ItemGroup>
+
 </Project>

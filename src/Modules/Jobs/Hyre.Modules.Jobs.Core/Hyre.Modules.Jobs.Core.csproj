@@ -6,4 +6,11 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\Shared\Hyre.Shared.Infrastructure\Hyre.Shared.Infrastructure.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="Hyre.Modules.Jobs.API"/>
+    </ItemGroup>
+
 </Project>

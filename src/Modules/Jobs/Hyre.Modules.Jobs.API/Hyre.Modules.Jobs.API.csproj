@@ -6,4 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\Hyre.Modules.Jobs.Application\Hyre.Modules.Jobs.Application.csproj"/>
+        <ProjectReference Include="..\Hyre.Modules.Jobs.Infrastructure\Hyre.Modules.Jobs.Infrastructure.csproj"/>
+    </ItemGroup>
+
 </Project>
