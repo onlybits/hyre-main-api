@@ -6,6 +6,7 @@
 
 using FluentAssertions;
 using Hyre.Modules.Jobs.Core.Entities;
+using Xunit;
 
 #endregion
 

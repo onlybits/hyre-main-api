@@ -4,7 +4,7 @@
 
 #region
 
-using Hyre.Modules.Jobs.Core.Constants;
+using Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities;
 using Hyre.Shared.Abstractions.Exceptions;
 using Hyre.Shared.Abstractions.Kernel.ValueObjects;
 
@@ -41,9 +41,9 @@ public sealed record JobOpportunityName : ValueObject
 		switch (Value.Length)
 		{
 			case < 3:
-				throw new DomainException(JobOpportunityErrorMessages.NameTooShort);
+				throw new JobOpportunityNameTooShortException();
 			case > 32:
-				throw new DomainException(JobOpportunityErrorMessages.NameTooLong);
+				throw new JobOpportunityNameTooLongException();
 		}
 	}
 

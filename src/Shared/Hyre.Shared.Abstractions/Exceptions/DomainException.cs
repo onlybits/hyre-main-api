@@ -5,15 +5,15 @@
 namespace Hyre.Shared.Abstractions.Exceptions;
 
 /// <summary>
-///   Exception thrown when a domain rule is violated.
+///   Base exception that is used when a domain rule is violated.
 /// </summary>
-public sealed class DomainException : Exception
+public abstract class DomainException : Exception
 {
 	/// <summary>
 	///   Initializes a new instance of the <see cref="DomainException" /> class.
 	/// </summary>
 	/// <param name="message">The message that describes the error.</param>
-	public DomainException(string message) : base(message)
+	protected DomainException(string message) : base(message)
 	{
 	}
 }

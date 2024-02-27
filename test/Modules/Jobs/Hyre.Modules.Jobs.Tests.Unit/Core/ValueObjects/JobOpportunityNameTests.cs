@@ -7,9 +7,10 @@
 using Bogus.Extensions;
 using FluentAssertions;
 using Hyre.Modules.Jobs.Core.Constants;
+using Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 using Hyre.Modules.Jobs.Tests.Unit.Common;
-using Hyre.Shared.Abstractions.Exceptions;
+using Xunit;
 
 #endregion
 
@@ -43,7 +44,7 @@ public sealed class JobOpportunityNameTests : BaseFixture
 		var act = () => new JobOpportunityName(value);
 
 		// Assert
-		_ = act.Should().ThrowExactly<DomainException>()
+		_ = act.Should().ThrowExactly<JobOpportunityNameTooShortException>()
 			.WithMessage(JobOpportunityErrorMessages.NameTooShort);
 	}
 
@@ -58,7 +59,7 @@ public sealed class JobOpportunityNameTests : BaseFixture
 		var act = () => new JobOpportunityName(value);
 
 		// Assert
-		_ = act.Should().ThrowExactly<DomainException>()
+		_ = act.Should().ThrowExactly<JobOpportunityNameTooLongException>()
 			.WithMessage(JobOpportunityErrorMessages.NameTooLong);
 	}
 }

@@ -4,7 +4,7 @@
 
 #region
 
-using Hyre.Modules.Jobs.Core.Constants;
+using Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities;
 using Hyre.Shared.Abstractions.Exceptions;
 using Hyre.Shared.Abstractions.Kernel.ValueObjects;
 
@@ -37,7 +37,7 @@ public sealed record JobOpportunityId : StronglyTypedId<Guid>
 	{
 		if (Value == Guid.Empty)
 		{
-			throw new DomainException(JobOpportunityErrorMessages.IdCannotBeEmpty);
+			throw new JobOpportunityIdHasEmptyValueException();
 		}
 	}
 }

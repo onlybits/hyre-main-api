@@ -24,6 +24,8 @@ dotnet_diagnostic.CA1024.severity = none
 dotnet_diagnostic.CA1812.severity = none
 dotnet_diagnostic.CA1724.severity = none
 dotnet_diagnostic.CA1848.severity = none
+dotnet_diagnostic.CA1716.severity = none
+dotnet_diagnostic.CA2225.severity = none
 
 #### Naming styles ####
 

@@ -4,7 +4,6 @@
 
 #region
 
-using Hyre.Modules.Jobs.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,10 +11,22 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Hyre.Modules.Jobs.API;
 
+/// <summary>
+///   Internal extensions for the Jobs module.
+/// </summary>
 internal static class Extensions
 {
-	internal static IServiceCollection AddJobsModule(this IServiceCollection services) => services
-		.AddJobsCore();
+	/// <summary>
+	///   Adds the Jobs module to the service collection.
+	/// </summary>
+	/// <param name="services">The main service collection.</param>
+	/// <returns>It will return the same service collection.</returns>
+	internal static IServiceCollection AddJobsModule(this IServiceCollection services) => services;
 
+	/// <summary>
+	///   Adds the Jobs module to the application builder.
+	/// </summary>
+	/// <param name="app">The main application builder.</param>
+	/// <returns>It will return the same application builder.</returns>
 	internal static IApplicationBuilder UseJobsModule(this IApplicationBuilder app) => app;
 }
