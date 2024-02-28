@@ -40,4 +40,22 @@ public sealed record JobOpportunityId : StronglyTypedId<Guid>
 			throw new JobOpportunityIdHasEmptyValueException();
 		}
 	}
+
+	#region Implicit Operators
+
+	/// <summary>
+	///   Implicitly converts the <see cref="JobOpportunityId" /> to a <see cref="Guid" />.
+	/// </summary>
+	/// <param name="id">The identifier of the job opportunity.</param>
+	/// <returns>It will return the value of the job opportunity identifier.</returns>
+	public static implicit operator Guid(JobOpportunityId id) => id.Value;
+
+	/// <summary>
+	///   Implicitly converts the <see cref="Guid" /> to a <see cref="JobOpportunityId" />.
+	/// </summary>
+	/// <param name="id">The value of the identifier.</param>
+	/// <returns>It will return a new instance of the <see cref="JobOpportunityId" /> class.</returns>
+	public static implicit operator JobOpportunityId(Guid id) => new(id);
+
+	#endregion
 }

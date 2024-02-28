@@ -16,9 +16,14 @@
     <ItemGroup>
         <Folder Include="Behaviors\"/>
         <Folder Include="Exceptions\"/>
+        <Folder Include="Extensions\"/>
+        <Folder Include="UseCases\"/>
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="MediatR" Version="12.2.0"/>
     </ItemGroup>
-
+    <ItemGroup>
+        <InternalsVisibleTo Include="Hyre.Modules.Jobs.Tests.Unit"/>
+        <InternalsVisibleTo Include="DynamicProxyGenAssembly2"/>
+    </ItemGroup>
 </Project>

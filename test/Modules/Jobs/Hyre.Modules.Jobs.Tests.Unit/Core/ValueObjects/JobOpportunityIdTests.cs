@@ -15,7 +15,7 @@ using Xunit;
 namespace Hyre.Modules.Jobs.Tests.Unit.Core.ValueObjects;
 
 /// <summary>
-///   Contains tests for the <see cref="JobOpportunityId" /> value object.
+///   Unit tests for the <see cref="JobOpportunityId" /> value object.
 /// </summary>
 public sealed class JobOpportunityIdTests
 {
@@ -27,11 +27,11 @@ public sealed class JobOpportunityIdTests
 		var value = Guid.NewGuid();
 
 		// Act
-		var id = new JobOpportunityId(value);
+		JobOpportunityId sut = value;
 
 		// Assert
-		_ = id.Should().NotBeNull();
-		_ = id.Value.Should().NotBeEmpty();
+		_ = sut.Should().NotBeNull();
+		_ = sut.Value.Should().NotBeEmpty();
 	}
 
 	[Fact(DisplayName = nameof(Constructor_WithEmptyValue_ShouldThrowAnException))]
@@ -54,10 +54,10 @@ public sealed class JobOpportunityIdTests
 	public void New_WithValidParameters_ShouldCreateAnInstance()
 	{
 		// Arrange
-		var id = JobOpportunityId.New();
+		var sut = JobOpportunityId.New();
 
 		// Assert
-		_ = id.Should().NotBeNull();
-		_ = id.Value.Should().NotBeEmpty();
+		_ = sut.Should().NotBeNull();
+		_ = sut.Value.Should().NotBeEmpty();
 	}
 }

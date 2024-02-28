@@ -13,7 +13,7 @@ using Xunit;
 namespace Hyre.Modules.Jobs.Tests.Unit.Core.Entities;
 
 /// <summary>
-///   Contains tests for the <see cref="JobOpportunity" /> class.
+///   Unit tests for the <see cref="JobOpportunity" /> class.
 /// </summary>
 public sealed class JobOpportunityTests : JobOpportunityTestsFixture
 {
@@ -25,10 +25,10 @@ public sealed class JobOpportunityTests : JobOpportunityTestsFixture
 		var name = GenerateValidName();
 
 		// Act
-		var jobOpportunity = JobOpportunity.Create(name);
+		var sut = JobOpportunity.Create(name);
 
 		// Assert
-		_ = jobOpportunity.Should().NotBeNull();
-		_ = jobOpportunity.Id.Should().NotBe(default!);
+		_ = sut.Should().NotBeNull();
+		_ = sut.Id.Should().NotBe(default!);
 	}
 }

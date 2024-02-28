@@ -26,11 +26,11 @@ public sealed class JobOpportunityNameTests : BaseFixture
 		var value = Faker.Name.JobTitle().ClampLength(3, 32);
 
 		// Act
-		JobOpportunityName name = value;
+		JobOpportunityName sut = value;
 
 		// Assert
-		_ = name.Should().NotBeNull();
-		_ = name.Value.Should().NotBeEmpty();
+		_ = sut.Should().NotBeNull();
+		_ = sut.Value.Should().NotBeEmpty();
 	}
 
 	[Fact(DisplayName = nameof(Constructor_WithValueTooShort_ShouldThrowADomainException))]

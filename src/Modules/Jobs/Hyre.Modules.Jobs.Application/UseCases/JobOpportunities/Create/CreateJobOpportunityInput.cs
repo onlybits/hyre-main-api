@@ -8,7 +8,7 @@ using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 
 #endregion
 
-namespace Hyre.Modules.Jobs.Application.UseCase.JobOpportunities.Create;
+namespace Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create;
 
 /// <summary>
 ///   Represents the input data to create a new job opportunity.

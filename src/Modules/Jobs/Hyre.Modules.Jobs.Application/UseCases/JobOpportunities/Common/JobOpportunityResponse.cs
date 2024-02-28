@@ -8,7 +8,7 @@ using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 
 #endregion
 
-namespace Hyre.Modules.Jobs.Application.UseCase.JobOpportunities.Common;
+namespace Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Common;
 
 /// <summary>
 ///   Represents the response of a job opportunity.

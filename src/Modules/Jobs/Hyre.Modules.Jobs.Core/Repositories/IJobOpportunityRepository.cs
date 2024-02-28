@@ -5,7 +5,9 @@
 #region
 
 using Hyre.Modules.Jobs.Core.Entities;
+using Hyre.Modules.Jobs.Core.Requests;
 using Hyre.Shared.Abstractions.Repositories;
+using Hyre.Shared.Abstractions.Requests;
 
 #endregion
 
@@ -16,6 +18,14 @@ namespace Hyre.Modules.Jobs.Core.Repositories;
 /// </summary>
 public interface IJobOpportunityRepository : IRepositoryBase<JobOpportunity>
 {
+	/// <summary>
+	///   This method is responsible for listing job opportunities.
+	/// </summary>
+	/// <param name="parameters">The parameters to be used in the listing.</param>
+	/// <param name="cancellationToken">The cancellation token.</param>
+	/// <returns>It will return a paged list of job opportunities.</returns>
+	Task<PagedList<JobOpportunity>> ListAsync(JobOpportunityParameters parameters, CancellationToken cancellationToken);
+
 	/// <summary>
 	///   This method is responsible for creating a new job opportunity.
 	/// </summary>

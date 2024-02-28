@@ -4,12 +4,12 @@
 
 #region
 
-using Hyre.Modules.Jobs.Application.UseCase.JobOpportunities.Common;
+using Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Common;
 using MediatR;
 
 #endregion
 
-namespace Hyre.Modules.Jobs.Application.UseCase.JobOpportunities.Create;
+namespace Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create;
 
 /// <summary>
 ///   This is the use case contract to create a new job opportunity.

@@ -18,5 +18,5 @@ public abstract class BaseFixture
 	/// <summary>
 	///   Gets the Bogus faker instance.
 	/// </summary>
-	public Faker Faker { get; } = new("pt_BR");
+	protected Faker Faker { get; } = new("pt_BR");
 }
