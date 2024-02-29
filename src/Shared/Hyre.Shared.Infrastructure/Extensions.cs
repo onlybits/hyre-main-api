@@ -12,12 +12,16 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Hyre.Shared.Infrastructure;
 
+/// <summary>
+///   This class contains the extension methods for the shared infrastructure.
+/// </summary>
 internal static class Extensions
 {
-	public static IServiceCollection AddSharedInfrastructure(this IServiceCollection services)
-	{
-		// Register the logger manager
-		services.AddTransient(typeof(ILoggerManager<>), typeof(LoggerManager<>));
-		return services;
-	}
+	/// <summary>
+	///   This method adds the shared infrastructure to the service collection.
+	/// </summary>
+	/// <param name="services">The service collection.</param>
+	/// <returns>It will return the service collection with the shared infrastructure added.</returns>
+	public static IServiceCollection AddSharedInfrastructure(this IServiceCollection services) => services
+		.AddTransient<ILoggerManager, LoggerManager>();
 }

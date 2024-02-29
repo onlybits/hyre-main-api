@@ -4,18 +4,26 @@
 
 #region
 
+using Hyre.Bootstrapper.Extensions;
 using Hyre.Shared.Infrastructure;
 
 #endregion
 
 var builder = WebApplication.CreateBuilder(args);
-{
-	builder.Services.AddSharedInfrastructure();
-	builder.Services.AddControllers();
-}
+builder.Services
+	.AddCorsConfiguration()
+	.AddSwaggerConfiguration()
+	.AddSharedInfrastructure()
+	.AddControllersConfiguration();
 
 var app = builder.Build();
+if (app.Environment.IsDevelopment())
 {
-	app.MapControllers();
-	app.Run();
+	_ = app.AddSwagger();
 }
+
+_ = app.UseExceptionHandler(_ => { });
+_ = app.UseHttpsRedirection()
+	.UseCors("Hyre.Cors");
+_ = app.MapControllers();
+app.Run();

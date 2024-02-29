@@ -9,6 +9,15 @@ namespace Hyre.Modules.Jobs.Core.Constants;
 /// </summary>
 public abstract class JobOpportunityErrorMessages
 {
+	#region 00 - Application
+
+	/// <summary>
+	///   Used when the job opportunity is not found.
+	/// </summary>
+	public const string NotFound = "A oportunidade de emprego não foi encontrada.";
+
+	#endregion
+
 	#region 01 - Id
 
 	/// <summary>

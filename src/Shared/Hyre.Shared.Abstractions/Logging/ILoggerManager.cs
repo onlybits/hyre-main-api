@@ -7,8 +7,7 @@ namespace Hyre.Shared.Abstractions.Logging;
 /// <summary>
 ///   This interface represents a logger manager.
 /// </summary>
-/// <typeparam name="TType">The type of the logger manager.</typeparam>
-public interface ILoggerManager<TType>
+public interface ILoggerManager
 {
 	/// <summary>
 	///   Log a information message.
@@ -34,8 +33,7 @@ public interface ILoggerManager<TType>
 	/// <summary>
 	///   Log an error message.
 	/// </summary>
-	/// <param name="exception">The exception to be logged.</param>
 	/// <param name="message">The message to be logged.</param>
 	/// <param name="args">The arguments to be formatted into the message.</param>
-	void LogError(Exception exception, string message, params object?[] args);
+	void LogError(string message, params object?[] args);
 }

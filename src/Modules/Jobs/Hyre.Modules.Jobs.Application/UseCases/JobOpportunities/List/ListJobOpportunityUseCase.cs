@@ -17,10 +17,10 @@ namespace Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.List;
 /// </summary>
 internal sealed class ListJobOpportunityUseCase : IListJobOpportunityUseCase
 {
-	private readonly ILoggerManager<ListJobOpportunityUseCase> _logger;
+	private readonly ILoggerManager _logger;
 	private readonly IJobsRepositoryManager _repository;
 
-	public ListJobOpportunityUseCase(IJobsRepositoryManager repository, ILoggerManager<ListJobOpportunityUseCase> logger)
+	public ListJobOpportunityUseCase(IJobsRepositoryManager repository, ILoggerManager logger)
 	{
 		_repository = repository;
 		_logger = logger;

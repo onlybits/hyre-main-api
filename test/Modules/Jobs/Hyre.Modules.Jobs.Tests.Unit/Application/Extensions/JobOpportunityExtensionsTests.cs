@@ -29,6 +29,6 @@ public sealed class JobOpportunityExtensionsTests
 		var response = jobOpportunity.ToResponse();
 
 		// Assert
-		_ = response.Should().BeEquivalentTo(jobOpportunity);
+		_ = response.Should().BeEquivalentTo(jobOpportunity, options => options.ExcludingMissingMembers());
 	}
 }

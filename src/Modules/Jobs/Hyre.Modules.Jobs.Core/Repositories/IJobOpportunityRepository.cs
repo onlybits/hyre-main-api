@@ -6,6 +6,7 @@
 
 using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Core.Requests;
+using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 using Hyre.Shared.Abstractions.Repositories;
 using Hyre.Shared.Abstractions.Requests;
 
@@ -22,9 +23,17 @@ public interface IJobOpportunityRepository : IRepositoryBase<JobOpportunity>
 	///   This method is responsible for listing job opportunities.
 	/// </summary>
 	/// <param name="parameters">The parameters to be used in the listing.</param>
-	/// <param name="cancellationToken">The cancellation token.</param>
+	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
 	/// <returns>It will return a paged list of job opportunities.</returns>
 	Task<PagedList<JobOpportunity>> ListAsync(JobOpportunityParameters parameters, CancellationToken cancellationToken);
+
+	/// <summary>
+	///   This method is responsible for finding a job opportunity by its id.
+	/// </summary>
+	/// <param name="id">The job opportunity id.</param>
+	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
+	/// <returns>It will return the job opportunity found.</returns>
+	Task<JobOpportunity?> FindByIdAsync(JobOpportunityId id, CancellationToken cancellationToken);
 
 	/// <summary>
 	///   This method is responsible for creating a new job opportunity.

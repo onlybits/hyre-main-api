@@ -21,9 +21,7 @@ namespace Hyre.Modules.Jobs.Tests.Unit.Application.UseCases.JobOpportunities;
 /// </summary>
 public sealed class ListJobOpportunityUseCaseTests : ListJobOpportunityUseCaseTestsFixture
 {
-	private readonly ILoggerManager<ListJobOpportunityUseCase> _logger =
-		Substitute.For<ILoggerManager<ListJobOpportunityUseCase>>();
-
+	private readonly ILoggerManager _logger = Substitute.For<ILoggerManager>();
 	private readonly IJobsRepositoryManager _repository = Substitute.For<IJobsRepositoryManager>();
 	private readonly ListJobOpportunityUseCase _sut;
 

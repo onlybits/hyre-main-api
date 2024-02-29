@@ -21,9 +21,7 @@ namespace Hyre.Modules.Jobs.Tests.Unit.Application.UseCases.JobOpportunities;
 /// </summary>
 public sealed class CreateJobOpportunityUseCaseTests : CreateJobOpportunityUseCaseTestsFixture
 {
-	private readonly ILoggerManager<CreateJobOpportunityUseCase> _logger =
-		Substitute.For<ILoggerManager<CreateJobOpportunityUseCase>>();
-
+	private readonly ILoggerManager _logger = Substitute.For<ILoggerManager>();
 	private readonly IJobsRepositoryManager _repository = Substitute.For<IJobsRepositoryManager>();
 	private readonly CreateJobOpportunityUseCase _sut;
 
@@ -62,7 +60,6 @@ public sealed class CreateJobOpportunityUseCaseTests : CreateJobOpportunityUseCa
 		await act.Should().ThrowAsync<ArgumentException>();
 
 		_logger.Received(1).LogError(
-			Arg.Any<Exception>(),
 			Arg.Is("Error creating job opportunity: {JobOpportunity}."),
 			Arg.Any<object?[]>());
 	}

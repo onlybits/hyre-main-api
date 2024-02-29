@@ -13,15 +13,14 @@ using Microsoft.Extensions.Logging;
 namespace Hyre.Shared.Infrastructure.Logging;
 
 /// <summary>
-///   Implementation of the <see cref="ILoggerManager{TType}" /> interface.
+///   Implementation of the <see cref="ILoggerManager" /> interface.
 /// </summary>
-/// <typeparam name="TType">The type to be logged.</typeparam>
 [SuppressMessage("Usage", "CA2254:Template should be a static expression")]
-internal sealed class LoggerManager<TType> : ILoggerManager<TType>
+internal sealed class LoggerManager : ILoggerManager
 {
-	private readonly ILogger<TType> _logger;
+	private readonly ILogger _logger;
 
-	public LoggerManager(ILogger<TType> logger) => _logger = logger;
+	public LoggerManager(ILogger logger) => _logger = logger;
 
 	public void LogInfo(string message, params object?[] args) => _logger.LogInformation(message, args);
 
@@ -29,6 +28,5 @@ internal sealed class LoggerManager<TType> : ILoggerManager<TType>
 
 	public void LogDebug(string message, params object?[] args) => _logger.LogDebug(message, args);
 
-	public void LogError(Exception exception, string message, params object?[] args) =>
-		_logger.LogError(exception, message, args);
+	public void LogError(string message, params object?[] args) => _logger.LogError(message, args);
 }

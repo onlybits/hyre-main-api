@@ -20,12 +20,12 @@ namespace Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create;
 /// <inheritdoc cref="ICreateJobOpportunityUseCase" />
 internal sealed class CreateJobOpportunityUseCase : ICreateJobOpportunityUseCase
 {
-	private readonly ILoggerManager<CreateJobOpportunityUseCase> _logger;
+	private readonly ILoggerManager _logger;
 	private readonly IJobsRepositoryManager _repository;
 
 	public CreateJobOpportunityUseCase(
 		IJobsRepositoryManager repository,
-		ILoggerManager<CreateJobOpportunityUseCase> logger)
+		ILoggerManager logger)
 	{
 		_repository = repository;
 		_logger = logger;
@@ -43,9 +43,9 @@ internal sealed class CreateJobOpportunityUseCase : ICreateJobOpportunityUseCase
 			_logger.LogInfo("Job opportunity: {JobOpportunity} created successfully.", jobOpportunity);
 			return jobOpportunity.ToResponse();
 		}
-		catch (Exception exception)
+		catch (Exception)
 		{
-			_logger.LogError(exception, "Error creating job opportunity: {JobOpportunity}.", jobOpportunity);
+			_logger.LogError("Error creating job opportunity: {JobOpportunity}.", jobOpportunity);
 			throw;
 		}
 	}
