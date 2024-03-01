@@ -6,7 +6,9 @@
         <Nullable>enable</Nullable>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     </PropertyGroup>
-
+    <PropertyGroup>
+        <DocumentationFile>Hyre.Modules.Jobs.API.xml</DocumentationFile>
+    </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\Hyre.Modules.Jobs.Application\Hyre.Modules.Jobs.Application.csproj"/>
         <ProjectReference Include="..\Hyre.Modules.Jobs.Infrastructure\Hyre.Modules.Jobs.Infrastructure.csproj"/>

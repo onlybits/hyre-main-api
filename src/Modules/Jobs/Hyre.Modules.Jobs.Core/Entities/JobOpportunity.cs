@@ -23,6 +23,9 @@ public sealed class JobOpportunity : EntityBase<JobOpportunityId>
 	/// <param name="name">The name of the job opportunity.</param>
 	private JobOpportunity(JobOpportunityId id, JobOpportunityName name) : base(id) => Name = name;
 
+	/// <summary>
+	///   Gets the name of the job opportunity.
+	/// </summary>
 	public JobOpportunityName Name { get; private set; }
 
 	/// <summary>

@@ -1,0 +1,249 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hyre.Modules.Jobs.Application</name>
+    </assembly>
+    <members>
+        <member name="T:Hyre.Modules.Jobs.Application.Exceptions.JobOpportunityNotFoundException">
+            <summary>
+                Exception thrown when a job opportunity is not found.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Application.Exceptions.JobOpportunityNotFoundException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Application.Exceptions.JobOpportunityNotFoundException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.Extensions.JobOpportunityExtensions">
+            <summary>
+                The extensions for the job opportunity entity.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Application.Extensions.JobOpportunityExtensions.ToResponse(Hyre.Modules.Jobs.Core.Entities.JobOpportunity)">
+            <summary>
+                This method converts a job opportunity to a job opportunity response.
+            </summary>
+            <param name="jobOpportunity">The job opportunity to be converted.</param>
+            <returns>It will return a job opportunity response.</returns>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Common.JobOpportunityResponse">
+            <summary>
+                Represents the response of a job opportunity.
+            </summary>
+            <param name="Id">The job opportunity identifier.</param>
+            <param name="Name">The job opportunity name.</param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Common.JobOpportunityResponse.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityName)">
+            <summary>
+                Represents the response of a job opportunity.
+            </summary>
+            <param name="Id">The job opportunity identifier.</param>
+            <param name="Name">The job opportunity name.</param>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Common.JobOpportunityResponse.Id">
+            <summary>The job opportunity identifier.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Common.JobOpportunityResponse.Name">
+            <summary>The job opportunity name.</summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create.CreateJobOpportunityInput">
+            <summary>
+                Represents the input data to create a new job opportunity.
+            </summary>
+            <param name="Name">The name of the job opportunity.</param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create.CreateJobOpportunityInput.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityName)">
+            <summary>
+                Represents the input data to create a new job opportunity.
+            </summary>
+            <param name="Name">The name of the job opportunity.</param>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create.CreateJobOpportunityInput.Name">
+            <summary>The name of the job opportunity.</summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create.CreateJobOpportunityRequest">
+            <summary>
+                Represents the use case to create a new job opportunity.
+            </summary>
+            <param name="Input"></param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create.CreateJobOpportunityRequest.#ctor(Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create.CreateJobOpportunityInput)">
+            <summary>
+                Represents the use case to create a new job opportunity.
+            </summary>
+            <param name="Input"></param>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create.CreateJobOpportunityRequest.Input">
+            <summary></summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create.CreateJobOpportunityUseCase">
+            <summary>
+                Represents the use case to create a new job opportunity.
+            </summary>
+            <inheritdoc
+                    cref="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create.ICreateJobOpportunityUseCase"/>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create.ICreateJobOpportunityUseCase">
+            <summary>
+                This is the use case contract to create a new job opportunity.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Delete.DeleteJobOpportunityRequest">
+            <summary>
+                This is the request for deleting a job opportunity.
+            </summary>
+            <param name="Id">The job opportunity id to be deleted.</param>
+            <param name="TrackChanges">Should EF keep track of the changes?</param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Delete.DeleteJobOpportunityRequest.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,System.Boolean)">
+            <summary>
+                This is the request for deleting a job opportunity.
+            </summary>
+            <param name="Id">The job opportunity id to be deleted.</param>
+            <param name="TrackChanges">Should EF keep track of the changes?</param>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Delete.DeleteJobOpportunityRequest.Id">
+            <summary>The job opportunity id to be deleted.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Delete.DeleteJobOpportunityRequest.TrackChanges">
+            <summary>Should EF keep track of the changes?</summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Delete.DeleteJobOpportunityUseCase">
+            <summary>
+                This is the use case to delete a job opportunity by its id.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Delete.IDeleteJobOpportunityUseCase">
+            <summary>
+                This is the use case contract for deleting a job opportunity.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Find.FindJobOpportunityRequest">
+            <summary>
+                This is the request data to find a job opportunity by its id.
+            </summary>
+            <param name="Id">The job opportunity id.</param>
+            <param name="TrackChanges">Should EF keep track of the changes.</param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Find.FindJobOpportunityRequest.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,System.Boolean)">
+            <summary>
+                This is the request data to find a job opportunity by its id.
+            </summary>
+            <param name="Id">The job opportunity id.</param>
+            <param name="TrackChanges">Should EF keep track of the changes.</param>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Find.FindJobOpportunityRequest.Id">
+            <summary>The job opportunity id.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Find.FindJobOpportunityRequest.TrackChanges">
+            <summary>Should EF keep track of the changes.</summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Find.FindJobOpportunityUseCase">
+            <summary>
+                This is the use case to find a job opportunity by its id.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Find.IFindJobOpportunityUseCase">
+            <summary>
+                This is the use case contract to find a job opportunity by its id.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.List.IListJobOpportunityUseCase">
+            <summary>
+                This is the use case contract to list job opportunities.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.List.ListJobOpportunityRequest">
+            <summary>
+                This is the request for the list job opportunities use case.
+            </summary>
+            <param name="Parameters">The parameters to filter the job opportunities.</param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.List.ListJobOpportunityRequest.#ctor(Hyre.Modules.Jobs.Core.Requests.JobOpportunityParameters)">
+            <summary>
+                This is the request for the list job opportunities use case.
+            </summary>
+            <param name="Parameters">The parameters to filter the job opportunities.</param>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.List.ListJobOpportunityRequest.Parameters">
+            <summary>The parameters to filter the job opportunities.</summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.List.ListJobOpportunityResponse">
+            <summary>
+                This is the response for the list job opportunities use case.
+            </summary>
+            <param name="MetaData">The metadata containing the pagination information.</param>
+            <param name="JobOpportunities">The list of job opportunities.</param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.List.ListJobOpportunityResponse.#ctor(Hyre.Shared.Abstractions.Requests.MetaData,System.Collections.Generic.IReadOnlyList{Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Common.JobOpportunityResponse})">
+            <summary>
+                This is the response for the list job opportunities use case.
+            </summary>
+            <param name="MetaData">The metadata containing the pagination information.</param>
+            <param name="JobOpportunities">The list of job opportunities.</param>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.List.ListJobOpportunityResponse.MetaData">
+            <summary>The metadata containing the pagination information.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.List.ListJobOpportunityResponse.JobOpportunities">
+            <summary>The list of job opportunities.</summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.List.ListJobOpportunityUseCase">
+            <summary>
+                This is the use case to list job opportunities.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Update.IUpdateJobOpportunityUseCase">
+            <summary>
+                This is the use case contract to update a job opportunity.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Update.UpdateJobOpportunityInput">
+            <summary>
+                This is the input data to update a job opportunity.
+            </summary>
+            <param name="Name">The new name of the job opportunity.</param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Update.UpdateJobOpportunityInput.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityName)">
+            <summary>
+                This is the input data to update a job opportunity.
+            </summary>
+            <param name="Name">The new name of the job opportunity.</param>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Update.UpdateJobOpportunityInput.Name">
+            <summary>The new name of the job opportunity.</summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Update.UpdateJobOpportunityRequest">
+            <summary>
+                This is the request to update a job opportunity.
+            </summary>
+            <param name="Id">The id of the job opportunity to be updated.</param>
+            <param name="Input">The input data to update the job opportunity.</param>
+            <param name="TrackChanges">Should EF keep track of the changes.</param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Update.UpdateJobOpportunityRequest.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Update.UpdateJobOpportunityInput,System.Boolean)">
+            <summary>
+                This is the request to update a job opportunity.
+            </summary>
+            <param name="Id">The id of the job opportunity to be updated.</param>
+            <param name="Input">The input data to update the job opportunity.</param>
+            <param name="TrackChanges">Should EF keep track of the changes.</param>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Update.UpdateJobOpportunityRequest.Id">
+            <summary>The id of the job opportunity to be updated.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Update.UpdateJobOpportunityRequest.Input">
+            <summary>The input data to update the job opportunity.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Update.UpdateJobOpportunityRequest.TrackChanges">
+            <summary>Should EF keep track of the changes.</summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Update.UpdateJobOpportunityUseCase">
+            <summary>
+                Represents the use case to update a job opportunity.
+            </summary>
+        </member>
+    </members>
+</doc>

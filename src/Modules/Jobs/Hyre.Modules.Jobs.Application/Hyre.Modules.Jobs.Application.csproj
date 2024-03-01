@@ -7,6 +7,9 @@
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <DocumentationFile>Hyre.Modules.Jobs.Application.xml</DocumentationFile>
+    </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\Hyre.Modules.Jobs.Core\Hyre.Modules.Jobs.Core.csproj"/>
     </ItemGroup>
@@ -17,7 +20,6 @@
         <Folder Include="Behaviors\"/>
         <Folder Include="Extensions\"/>
         <Folder Include="UseCases\"/>
-        <Folder Include="UseCases\JobOpportunities\Delete\"/>
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="MediatR" Version="12.2.0"/>

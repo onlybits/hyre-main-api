@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hyre.Shared.Infrastructure</name>
+    </assembly>
+    <members>
+        <member name="T:Hyre.Shared.Infrastructure.Extensions">
+            <summary>
+                This class contains the extension methods for the shared infrastructure.
+            </summary>
+        </member>
+        <member name="M:Hyre.Shared.Infrastructure.Extensions.AddSharedInfrastructure(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                This method adds the shared infrastructure to the service collection.
+            </summary>
+            <param name="services">The service collection.</param>
+            <returns>It will return the service collection with the shared infrastructure added.</returns>
+        </member>
+        <member name="T:Hyre.Shared.Infrastructure.Logging.LoggerManager">
+            <summary>
+                Implementation of the
+                <see cref="T:Hyre.Shared.Abstractions.Logging.ILoggerManager"/>
+                interface.
+            </summary>
+        </member>
+        <member name="T:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1">
+            <summary>
+                This class is the base for all repositories.
+            </summary>
+            <inheritdoc cref="T:Hyre.Shared.Abstractions.Repositories.IRepositoryBase`1"/>
+        </member>
+        <member name="M:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1"/>
+                class.
+            </summary>
+            <param name="context">The database context.</param>
+        </member>
+        <member name="M:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1.FindAll(System.Boolean)">
+            <summary>
+                This is used to query the database for all entities of type<typeparamref name="T"/>.
+            </summary>
+            <param name="trackChanges">Should EF Core track changes?</param>
+            <returns>It will return an IQueryable of
+                <typeparamref name="T"/>
+                type.
+            </returns>
+        </member>
+        <member name="M:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1.FindByCondition(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
+            <summary>
+                This is used to query the database for entities of type
+                <typeparamref name="T"/>
+                that match the given expression.
+            </summary>
+            <param name="expression">The expression to filter the entities.</param>
+            <param name="trackChanges">Should EF Core track changes?</param>
+            <returns>If the expression is matched, it will return an IQueryable of
+                <typeparamref name="T"/>
+                type.
+            </returns>
+        </member>
+        <member name="M:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1.Insert(`0)">
+            <summary>
+                This method will insert a new entity to the context.
+            </summary>
+            <param name="entity">The entity to be inserted.</param>
+        </member>
+        <member name="M:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1.Edit(`0)">
+            <summary>
+                This method will edit an entity in the context.
+            </summary>
+            <param name="entity">The entity to be edited.</param>
+        </member>
+        <member name="M:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1.Remove(`0)">
+            <summary>
+                This method will remove an entity from the context.
+            </summary>
+            <param name="entity">The entity to be removed.</param>
+        </member>
+        <member name="T:Hyre.Shared.Infrastructure.Serialization.CustomJsonOptions">
+            <summary>
+                Represents the options for JSON serialization.
+            </summary>
+        </member>
+        <member name="M:Hyre.Shared.Infrastructure.Serialization.CustomJsonOptions.GetDefault">
+            <summary>
+                Gets the default options for JSON serialization.
+            </summary>
+            <returns>It will return the default options for JSON serialization.</returns>
+        </member>
+    </members>
+</doc>

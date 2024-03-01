@@ -47,4 +47,10 @@ public interface IJobOpportunityRepository : IRepositoryBase<JobOpportunity>
 	/// </summary>
 	/// <param name="jobOpportunity">The job opportunity to be updated.</param>
 	void Update(JobOpportunity jobOpportunity);
+
+	/// <summary>
+	///   This method is responsible for deleting a job opportunity.
+	/// </summary>
+	/// <param name="jobOpportunity">The job opportunity to be deleted.</param>
+	void Delete(JobOpportunity jobOpportunity);
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hyre.Bootstrapper</name>
+    </assembly>
+    <members>
+        <member name="T:Hyre.Bootstrapper.Extensions.DocumentationExtensions">
+            <summary>
+                This is an extension class that contains the documentation's configuration.
+            </summary>
+        </member>
+        <member name="M:Hyre.Bootstrapper.Extensions.DocumentationExtensions.AddSwaggerConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                This configures the swagger to use in the Program.cs
+            </summary>
+            <param name="services"></param>
+            <returns>Returns the service collection.</returns>
+        </member>
+        <member name="M:Hyre.Bootstrapper.Extensions.DocumentationExtensions.AddSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+                This tells the application to use the swagger
+            </summary>
+            <param name="app">The application builder.</param>
+            <returns>Returns the application builder.</returns>
+        </member>
+        <member name="T:Hyre.Bootstrapper.Extensions.ServicesExtensions">
+            <summary>
+                This class contains the extension methods for the
+                <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>
+                interface.
+            </summary>
+        </member>
+        <member name="M:Hyre.Bootstrapper.Extensions.ServicesExtensions.AddCorsConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                This will configure the CORS policy for the application.
+            </summary>
+            <param name="services">The service's collection.</param>
+            <returns>Returns the services collection.</returns>
+        </member>
+        <member name="M:Hyre.Bootstrapper.Extensions.ServicesExtensions.AddControllersConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                This will configure the controllers for the application.
+            </summary>
+            <param name="services">The service's collection.</param>
+            <returns>It will return the same services collection.</returns>
+        </member>
+    </members>
+</doc>

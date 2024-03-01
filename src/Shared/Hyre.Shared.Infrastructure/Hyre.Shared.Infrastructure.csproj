@@ -6,7 +6,9 @@
         <Nullable>enable</Nullable>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     </PropertyGroup>
-
+    <PropertyGroup>
+        <DocumentationFile>Hyre.Shared.Infrastructure.xml</DocumentationFile>
+    </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\Hyre.Shared.Abstractions\Hyre.Shared.Abstractions.csproj"/>
     </ItemGroup>

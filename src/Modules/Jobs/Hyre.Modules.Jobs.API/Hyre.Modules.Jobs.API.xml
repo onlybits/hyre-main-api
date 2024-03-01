@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hyre.Modules.Jobs.API</name>
+    </assembly>
+    <members>
+        <member name="T:Hyre.Modules.Jobs.API.Extensions">
+            <summary>
+                Internal extensions for the Jobs module.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.API.Extensions.AddJobsModule(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                Adds the Jobs module to the service collection.
+            </summary>
+            <param name="services">The main service collection.</param>
+            <returns>It will return the same service collection.</returns>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.API.Extensions.UseJobsModule(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+                Adds the Jobs module to the application builder.
+            </summary>
+            <param name="app">The main application builder.</param>
+            <returns>It will return the same application builder.</returns>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.API.IJobsApiMarker">
+            <summary>
+                This is a marker for the API project of the Jobs module.
+            </summary>
+        </member>
+    </members>
+</doc>
