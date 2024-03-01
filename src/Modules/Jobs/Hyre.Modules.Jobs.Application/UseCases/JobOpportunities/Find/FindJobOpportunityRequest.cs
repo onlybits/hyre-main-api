@@ -16,4 +16,5 @@ namespace Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Find;
 ///   This is the request data to find a job opportunity by its id.
 /// </summary>
 /// <param name="Id">The job opportunity id.</param>
-public sealed record FindJobOpportunityRequest(JobOpportunityId Id) : IRequest<JobOpportunityResponse>;
+/// <param name="TrackChanges">Should EF keep track of the changes.</param>
+public sealed record FindJobOpportunityRequest(JobOpportunityId Id, bool TrackChanges) : IRequest<JobOpportunityResponse>;

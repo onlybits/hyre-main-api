@@ -31,4 +31,14 @@ public sealed class JobOpportunity : EntityBase<JobOpportunityId>
 	/// <param name="name">The name of the job opportunity.</param>
 	/// <returns>It will return a new instance of the <see cref="JobOpportunity" /> class.</returns>
 	public static JobOpportunity Create(JobOpportunityName name) => new(JobOpportunityId.New(), name);
+
+	#region Update Methods
+
+	/// <summary>
+	///   This method updates the name of the job opportunity.
+	/// </summary>
+	/// <param name="name">The new name of the job opportunity.</param>
+	public void UpdateName(JobOpportunityName? name) => Name = name ?? Name;
+
+	#endregion
 }

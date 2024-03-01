@@ -31,4 +31,20 @@ public sealed class JobOpportunityTests : JobOpportunityTestsFixture
 		_ = sut.Should().NotBeNull();
 		_ = sut.Id.Should().NotBe(default!);
 	}
+
+	[Fact(DisplayName = nameof(UpdateName_WithValidParameters_ShouldUpdateName))]
+	[Trait(EntitiesTraits.Name, EntitiesTraits.Value)]
+	public void UpdateName_WithValidParameters_ShouldUpdateName()
+	{
+		// Arrange
+		var name = GenerateValidName();
+		var newName = GenerateValidName();
+		var sut = JobOpportunity.Create(name);
+
+		// Act
+		sut.UpdateName(newName);
+
+		// Assert
+		_ = sut.Name.Should().Be(newName);
+	}
 }

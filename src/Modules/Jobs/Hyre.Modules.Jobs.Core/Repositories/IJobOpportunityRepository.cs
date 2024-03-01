@@ -31,13 +31,20 @@ public interface IJobOpportunityRepository : IRepositoryBase<JobOpportunity>
 	///   This method is responsible for finding a job opportunity by its id.
 	/// </summary>
 	/// <param name="id">The job opportunity id.</param>
+	/// <param name="trackChanges">Should EF keep track of the changes.</param>
 	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
 	/// <returns>It will return the job opportunity found.</returns>
-	Task<JobOpportunity?> FindByIdAsync(JobOpportunityId id, CancellationToken cancellationToken);
+	Task<JobOpportunity?> FindByIdAsync(JobOpportunityId id, bool trackChanges, CancellationToken cancellationToken);
 
 	/// <summary>
 	///   This method is responsible for creating a new job opportunity.
 	/// </summary>
 	/// <param name="jobOpportunity">The job opportunity to be created.</param>
 	void Create(JobOpportunity jobOpportunity);
+
+	/// <summary>
+	///   This method is responsible for updating a job opportunity.
+	/// </summary>
+	/// <param name="jobOpportunity">The job opportunity to be updated.</param>
+	void Update(JobOpportunity jobOpportunity);
 }
