@@ -16,11 +16,64 @@
             <param name="services">The service collection.</param>
             <returns>It will return the service collection with the shared infrastructure added.</returns>
         </member>
+        <member name="M:Hyre.Shared.Infrastructure.Extensions.GetOptions``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+                This method gets the options from the registered services.
+            </summary>
+            <param name="services">The service collection.</param>
+            <param name="sectionName">The section name from the configuration file.</param>
+            <typeparam name="T">The type of the options.</typeparam>
+            <returns>It will return the options from the configuration file.</returns>
+        </member>
+        <member name="M:Hyre.Shared.Infrastructure.Extensions.GetOptions``1(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+                This method gets the options from the configuration file.
+            </summary>
+            <param name="configuration">The configuration.</param>
+            <param name="sectionName">The section name from the configuration file.</param>
+            <typeparam name="T">The type of the options.</typeparam>
+            <returns>It will return the options from the configuration file.</returns>
+        </member>
         <member name="T:Hyre.Shared.Infrastructure.Logging.LoggerManager">
             <summary>
                 Implementation of the
                 <see cref="T:Hyre.Shared.Abstractions.Logging.ILoggerManager"/>
                 interface.
+            </summary>
+        </member>
+        <member name="T:Hyre.Shared.Infrastructure.Postgres.PostgresExtensions">
+            <summary>
+                This class contains the extension methods for the Postgres context.
+            </summary>
+        </member>
+        <member name="M:Hyre.Shared.Infrastructure.Postgres.PostgresExtensions.AddPostgres``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                This method is used to register the Postgres context from the modules.
+            </summary>
+            <param name="services">The module's service collection.</param>
+            <typeparam name="T">The type of the Postgres context.</typeparam>
+            <returns>It will return the service collection with the Postgres context added.</returns>
+        </member>
+        <member name="M:Hyre.Shared.Infrastructure.Postgres.PostgresExtensions.AddPostgres(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                This method internally configures the Postgres options.
+            </summary>
+            <param name="services">The internal service collection.</param>
+            <returns>It will return the service collection with the Postgres options added.</returns>
+        </member>
+        <member name="T:Hyre.Shared.Infrastructure.Postgres.PostgresOptions">
+            <summary>
+                This is the base options for the Postgres database.
+            </summary>
+        </member>
+        <member name="F:Hyre.Shared.Infrastructure.Postgres.PostgresOptions.SectionName">
+            <summary>
+                Gets the section name for the Postgres database.
+            </summary>
+        </member>
+        <member name="P:Hyre.Shared.Infrastructure.Postgres.PostgresOptions.ConnectionString">
+            <summary>
+                Gets the connection string for the Postgres database.
             </summary>
         </member>
         <member name="T:Hyre.Shared.Infrastructure.Repositories.RepositoryBase`1">

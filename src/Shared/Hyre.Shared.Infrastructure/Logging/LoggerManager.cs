@@ -18,9 +18,9 @@ namespace Hyre.Shared.Infrastructure.Logging;
 [SuppressMessage("Usage", "CA2254:Template should be a static expression")]
 internal sealed class LoggerManager : ILoggerManager
 {
-	private readonly ILogger _logger;
+	private readonly ILogger<LoggerManager> _logger;
 
-	public LoggerManager(ILogger logger) => _logger = logger;
+	public LoggerManager(ILogger<LoggerManager> logger) => _logger = logger;
 
 	public void LogInfo(string message, params object?[] args) => _logger.LogInformation(message, args);
 

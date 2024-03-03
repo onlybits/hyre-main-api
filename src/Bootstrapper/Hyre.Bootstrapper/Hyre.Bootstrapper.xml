@@ -4,6 +4,41 @@
         <name>Hyre.Bootstrapper</name>
     </assembly>
     <members>
+        <member name="T:Hyre.Bootstrapper.Errors.ErrorDetails">
+            <summary>
+                This class is used to return error details in the response body.
+            </summary>
+        </member>
+        <member name="P:Hyre.Bootstrapper.Errors.ErrorDetails.Status">
+            <summary>
+                Gets or sets the status code of the response.
+            </summary>
+        </member>
+        <member name="P:Hyre.Bootstrapper.Errors.ErrorDetails.Message">
+            <summary>
+                Gets or sets the error message of the response.
+            </summary>
+        </member>
+        <member name="M:Hyre.Bootstrapper.Errors.ErrorDetails.ToString">
+            <summary>
+                Used to return the validation errors in the response.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Hyre.Bootstrapper.Errors.GlobalExceptionHandler">
+            <summary>
+                This class contains the global exception handler.
+            </summary>
+        </member>
+        <member name="M:Hyre.Bootstrapper.Errors.GlobalExceptionHandler.TryHandleAsync(Microsoft.AspNetCore.Http.HttpContext,System.Exception,System.Threading.CancellationToken)">
+            <summary>
+                This method handles the exception.
+            </summary>
+            <param name="httpContext">The http context.</param>
+            <param name="exception">The exception.</param>
+            <param name="cancellationToken">Used to cancel the operation.</param>
+            <returns>It will return true if the exception was handled.</returns>
+        </member>
         <member name="T:Hyre.Bootstrapper.Extensions.DocumentationExtensions">
             <summary>
                 This is an extension class that contains the documentation's configuration.

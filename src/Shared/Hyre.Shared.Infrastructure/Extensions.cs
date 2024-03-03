@@ -6,6 +6,8 @@
 
 using Hyre.Shared.Abstractions.Logging;
 using Hyre.Shared.Infrastructure.Logging;
+using Hyre.Shared.Infrastructure.Postgres;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 #endregion
@@ -23,5 +25,34 @@ internal static class Extensions
 	/// <param name="services">The service collection.</param>
 	/// <returns>It will return the service collection with the shared infrastructure added.</returns>
 	public static IServiceCollection AddSharedInfrastructure(this IServiceCollection services) => services
-		.AddTransient<ILoggerManager, LoggerManager>();
+		.AddTransient<ILoggerManager, LoggerManager>()
+		.AddPostgres();
+
+	/// <summary>
+	///   This method gets the options from the registered services.
+	/// </summary>
+	/// <param name="services">The service collection.</param>
+	/// <param name="sectionName">The section name from the configuration file.</param>
+	/// <typeparam name="T">The type of the options.</typeparam>
+	/// <returns>It will return the options from the configuration file.</returns>
+	public static T GetOptions<T>(this IServiceCollection services, string sectionName) where T : class, new()
+	{
+		using var scope = services.BuildServiceProvider().CreateScope();
+		var configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
+		return configuration.GetOptions<T>(sectionName);
+	}
+
+	/// <summary>
+	///   This method gets the options from the configuration file.
+	/// </summary>
+	/// <param name="configuration">The configuration.</param>
+	/// <param name="sectionName">The section name from the configuration file.</param>
+	/// <typeparam name="T">The type of the options.</typeparam>
+	/// <returns>It will return the options from the configuration file.</returns>
+	private static T GetOptions<T>(this IConfiguration configuration, string sectionName) where T : class, new()
+	{
+		var options = new T();
+		configuration.GetSection(sectionName).Bind(options);
+		return options;
+	}
 }
