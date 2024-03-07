@@ -5,7 +5,6 @@
 #region
 
 using Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Find;
-using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 using Hyre.Modules.Jobs.Tests.Unit.Common;
 
@@ -23,12 +22,4 @@ public abstract class FindJobOpportunityUseCaseTestsFixture : JobOpportunityBase
 	/// </summary>
 	/// <returns>It will return a valid <see cref="FindJobOpportunityRequest" />.</returns>
 	protected FindJobOpportunityRequest GenerateValidRequest() => new(JobOpportunityId.New(), true);
-
-	/// <summary>
-	///   Generates a valid <see cref="JobOpportunity" />.
-	/// </summary>
-	/// <returns>It will return a valid <see cref="JobOpportunity" />.</returns>
-	protected JobOpportunity GenerateValidJobOpportunity() => JobOpportunity.Create(
-		GenerateValidName(),
-		GenerateValidDescription());
 }

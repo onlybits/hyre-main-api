@@ -34,7 +34,7 @@ public abstract class ListJobOpportunityUseCaseTestsFixture : JobOpportunityBase
 	/// <returns>It will return a list of job opportunities.</returns>
 	private IEnumerable<JobOpportunity> GenerateValidJobOpportunities(int max) => Enumerable
 		.Range(1, max)
-		.Select(x => JobOpportunity.Create(GenerateValidName(), GenerateValidDescription()))
+		.Select(x => GenerateValidJobOpportunity())
 		.ToList()
 		.AsEnumerable();
 }

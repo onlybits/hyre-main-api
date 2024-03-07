@@ -5,7 +5,6 @@
 #region
 
 using Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Update;
-using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 using Hyre.Modules.Jobs.Tests.Unit.Common;
 
@@ -18,14 +17,6 @@ namespace Hyre.Modules.Jobs.Tests.Unit.Application.UseCases.JobOpportunities;
 /// </summary>
 public abstract class UpdateJobOpportunityUseCaseTestsFixture : JobOpportunityBaseFixture
 {
-	/// <summary>
-	///   Generates a valid <see cref="JobOpportunity" />.
-	/// </summary>
-	/// <returns>It will return a valid <see cref="JobOpportunity" />.</returns>
-	protected JobOpportunity GenerateValidJobOpportunity() => JobOpportunity.Create(
-		GenerateValidName(),
-		GenerateValidDescription());
-
 	/// <summary>
 	///   Generates a valid request for the <see cref="UpdateJobOpportunityUseCase" /> class.
 	/// </summary>

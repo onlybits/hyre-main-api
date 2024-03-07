@@ -28,5 +28,6 @@ public abstract class CreateJobOpportunityUseCaseTestsFixture : JobOpportunityBa
 	/// <returns>It will return a valid <see cref="CreateJobOpportunityInput" />.</returns>
 	private CreateJobOpportunityInput GenerateValidInput() => new(
 		GenerateValidName(),
-		GenerateValidDescription());
+		GenerateValidDescription(),
+		GenerateValidLocation());
 }

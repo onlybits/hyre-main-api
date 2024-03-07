@@ -46,6 +46,20 @@ internal sealed class JobOpportunityConfiguration : IEntityTypeConfiguration<Job
 			.HasColumnName("created_at")
 			.IsRequired();
 
+		var location = builder.OwnsOne(jo => jo.Location);
+		_ = location.Property(l => l.Type)
+			.HasConversion<string>()
+			.HasColumnName("location_type")
+			.IsRequired();
+
+		_ = location.Property(l => l.City)
+			.HasColumnName("location_city")
+			.HasMaxLength(32);
+
+		_ = location.Property(l => l.State)
+			.HasColumnName("location_state")
+			.HasMaxLength(2);
+
 		_ = builder.Ignore(jo => jo.Events);
 	}
 }

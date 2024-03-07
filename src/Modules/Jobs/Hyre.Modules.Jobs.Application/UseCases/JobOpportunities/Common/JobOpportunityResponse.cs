@@ -16,7 +16,9 @@ namespace Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Common;
 /// <param name="Id">The job opportunity identifier.</param>
 /// <param name="Name">The job opportunity name.</param>
 /// <param name="Description">The job opportunity description.</param>
+/// <param name="Location">The job opportunity location.</param>
 public sealed record JobOpportunityResponse(
 	JobOpportunityId Id,
 	JobOpportunityName Name,
-	JobOpportunityDescription Description);
+	JobOpportunityDescription Description,
+	JobOpportunityLocation? Location);

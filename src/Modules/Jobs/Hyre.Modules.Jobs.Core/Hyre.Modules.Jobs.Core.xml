@@ -39,18 +39,49 @@
               Used when the description of the job opportunity is too long.
             </summary>
         </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.JobOpportunityErrorMessages.LocationCityNameTooShort">
+            <summary>
+              Used when the location city name of the job opportunity is too short.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.JobOpportunityErrorMessages.LocationCityNameTooLong">
+            <summary>
+              Used when the location city name of the job opportunity is too long.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.JobOpportunityErrorMessages.LocationStateNameTooShort">
+            <summary>
+              Used when the location state name of the job opportunity is too short.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.JobOpportunityErrorMessages.LocationStateNameTooLong">
+            <summary>
+              Used when the location state name of the job opportunity is too long.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.JobOpportunityErrorMessages.LocationCantBeNullOnSiteOrHybrid">
+            <summary>
+              Used when the location is null for on-site job opportunities.
+            </summary>
+        </member>
         <member name="T:Hyre.Modules.Jobs.Core.Entities.JobOpportunity">
             <summary>
               Represents a job opportunity in the system.
             </summary>
         </member>
-        <member name="M:Hyre.Modules.Jobs.Core.Entities.JobOpportunity.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityName,Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityDescription)">
+        <member name="M:Hyre.Modules.Jobs.Core.Entities.JobOpportunity.#ctor">
+            <summary>
+              This constructor is only used by EF Core.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Entities.JobOpportunity.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityName,Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityDescription,Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityLocation)">
             <summary>
               Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Core.Entities.JobOpportunity" /> class.
             </summary>
             <param name="id">The identifier of the job opportunity.</param>
             <param name="name">The name of the job opportunity.</param>
             <param name="description">The description of the job opportunity.</param>
+            <param name="location">The location of the job opportunity.</param>
         </member>
         <member name="P:Hyre.Modules.Jobs.Core.Entities.JobOpportunity.Name">
             <summary>
@@ -62,12 +93,18 @@
               Gets or sets the description of the job opportunity.
             </summary>
         </member>
-        <member name="M:Hyre.Modules.Jobs.Core.Entities.JobOpportunity.Create(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityName,Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityDescription)">
+        <member name="P:Hyre.Modules.Jobs.Core.Entities.JobOpportunity.Location">
+            <summary>
+              Gets or sets the location of the job opportunity.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Entities.JobOpportunity.Create(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityName,Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityDescription,Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityLocation)">
             <summary>
               Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Core.Entities.JobOpportunity" /> class.
             </summary>
             <param name="name">The name of the job opportunity.</param>
             <param name="description">The description of the job opportunity.</param>
+            <param name="location">The location of the job opportunity.</param>
             <returns>It will return a new instance of the <see cref="T:Hyre.Modules.Jobs.Core.Entities.JobOpportunity" /> class.</returns>
         </member>
         <member name="M:Hyre.Modules.Jobs.Core.Entities.JobOpportunity.UpdateName(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityName)">
@@ -81,6 +118,26 @@
               This method updates the description of the job opportunity.
             </summary>
             <param name="description">The new description of the job opportunity.</param>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Enums.LocationType">
+            <summary>
+              Represents the location type of a job opportunity.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Enums.LocationType.Remote">
+            <summary>
+              When you can work from anywhere and don't need to be in a specific location.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Enums.LocationType.Hybrid">
+            <summary>
+              When you can work some days from anywhere and some days from a specific location.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Enums.LocationType.OnSite">
+            <summary>
+              When you need to be in a specific location to work every day.
+            </summary>
         </member>
         <member name="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityDescriptionTooLongException">
             <summary>
@@ -110,6 +167,56 @@
         <member name="M:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityIdHasEmptyValueException.#ctor">
             <summary>
               Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityIdHasEmptyValueException" /> class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationCantBeNullOnSiteOrHybridException">
+            <summary>
+              Exception thrown when the location of a job opportunity is null and the location type is on site.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationCantBeNullOnSiteOrHybridException.#ctor">
+            <summary>
+              Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationCantBeNullOnSiteOrHybridException" /> class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationCityTooLongException">
+            <summary>
+              Exception thrown when the location city name of a job opportunity is too long.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationCityTooLongException.#ctor">
+            <summary>
+              Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationCityTooLongException" /> class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationCityTooShortException">
+            <summary>
+              Exception thrown when the location city name of a job opportunity is too short.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationCityTooShortException.#ctor">
+            <summary>
+              Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationCityTooShortException" /> class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationStateTooLongException">
+            <summary>
+              Exception thrown when the location state name of a job opportunity is too long.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationStateTooLongException.#ctor">
+            <summary>
+              Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationStateTooLongException" /> class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationStateTooShortException">
+            <summary>
+              Exception thrown when the location state name of a job opportunity is too long.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationStateTooShortException.#ctor">
+            <summary>
+              Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationStateTooShortException" /> class.
             </summary>
         </member>
         <member name="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityNameTooLongException">
@@ -196,7 +303,7 @@
             <summary>
               Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityDescription" /> class.
             </summary>
-            <param name="description">The description of the job opportunity.</param>
+            <param name="value">The description of the job opportunity.</param>
         </member>
         <member name="P:Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityDescription.Value">
             <summary>
@@ -260,6 +367,55 @@
             </summary>
             <param name="id">The value of the identifier.</param>
             <returns>It will return a new instance of the <see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId" /> class.</returns>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityLocation">
+            <summary>
+              Represents the location of a job opportunity.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityLocation.#ctor(Hyre.Modules.Jobs.Core.Enums.LocationType,System.String,System.String)">
+            <summary>
+              Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityLocation" /> class.
+            </summary>
+            <param name="type">The type of the location of the job opportunity.</param>
+            <param name="city">The city of the job opportunity.</param>
+            <param name="state">The state of the job opportunity.</param>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityLocation.Type">
+            <summary>
+              Gets the type of the location of the job opportunity.
+            </summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityLocation.City">
+            <summary>
+              Gets the city of the job opportunity.
+            </summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityLocation.State">
+            <summary>
+              Gets the state of the job opportunity.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityLocation.Validate">
+            <summary>
+              This is used to validate the location of the job opportunity.
+            </summary>
+            <exception cref="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationCityTooLongException">
+              Exception thrown when the location city name of a job opportunity
+              is too short.
+            </exception>
+            <exception cref="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationStateTooShortException">
+              Exception thrown when the location city name of a job opportunity
+              is too long.
+            </exception>
+            <exception cref="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationStateTooLongException">
+              Exception thrown when the location state name of a job
+              opportunity is too short.
+            </exception>
+            <exception cref="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityLocationCityTooShortException">
+              Exception thrown when the location state name of a job
+              opportunity is too long.
+            </exception>
         </member>
         <member name="T:Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityName">
             <summary>

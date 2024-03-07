@@ -44,7 +44,8 @@ public sealed class JobOpportunityNameTests : BaseFixture
 		var act = () => new JobOpportunityName(value);
 
 		// Assert
-		_ = act.Should().ThrowExactly<JobOpportunityNameTooShortException>()
+		_ = act.Should()
+			.ThrowExactly<JobOpportunityNameTooShortException>()
 			.WithMessage(JobOpportunityErrorMessages.NameTooShort);
 	}
 

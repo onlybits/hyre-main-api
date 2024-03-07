@@ -54,4 +54,33 @@ public abstract class JobOpportunityErrorMessages
 	public const string DescriptionTooLong = "A descrição da oportunidade de emprego deve ter no máximo 500 caracteres.";
 
 	#endregion
+
+	#region 04 - Location
+
+	/// <summary>
+	///   Used when the location city name of the job opportunity is too short.
+	/// </summary>
+	public const string LocationCityNameTooShort = "O nome da cidade da oportunidade de emprego deve ter no mínimo 3 caracteres.";
+
+	/// <summary>
+	///   Used when the location city name of the job opportunity is too long.
+	/// </summary>
+	public const string LocationCityNameTooLong = "O nome da cidade da oportunidade de emprego deve ter no máximo 32 caracteres.";
+
+	/// <summary>
+	///   Used when the location state name of the job opportunity is too short.
+	/// </summary>
+	public const string LocationStateNameTooShort = "O nome do estado da oportunidade de emprego deve ter no mínimo 2 caracteres.";
+
+	/// <summary>
+	///   Used when the location state name of the job opportunity is too long.
+	/// </summary>
+	public const string LocationStateNameTooLong = "O nome do estado da oportunidade de emprego deve ter no máximo 2 caracteres.";
+
+	/// <summary>
+	///   Used when the location is null for on-site job opportunities.
+	/// </summary>
+	public const string LocationCantBeNullOnSiteOrHybrid = "A localização não pode ser nula para oportunidades de emprego presenciais.";
+
+	#endregion
 }

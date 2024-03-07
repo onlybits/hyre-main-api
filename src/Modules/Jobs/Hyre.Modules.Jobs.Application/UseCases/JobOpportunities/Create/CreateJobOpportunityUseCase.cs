@@ -34,7 +34,11 @@ internal sealed class CreateJobOpportunityUseCase : ICreateJobOpportunityUseCase
 	public async Task<JobOpportunityResponse> Handle(CreateJobOpportunityRequest request,
 		CancellationToken cancellationToken)
 	{
-		var jobOpportunity = JobOpportunity.Create(request.Input.Name, request.Input.Description);
+		var jobOpportunity = JobOpportunity.Create(
+			request.Input.Name,
+			request.Input.Description,
+			request.Input.Location);
+
 		try
 		{
 			_repository.JobOpportunity.Create(jobOpportunity);

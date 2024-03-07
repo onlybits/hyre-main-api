@@ -6,7 +6,6 @@
 
 using FluentAssertions;
 using Hyre.Modules.Jobs.Application.Extensions;
-using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Tests.Unit.Common;
 using Xunit;
 
@@ -24,7 +23,7 @@ public sealed class JobOpportunityExtensionsTests : JobOpportunityBaseFixture
 	public void ToResponse_WhenUsedInValidEntity_ShouldMapToResponseObject()
 	{
 		// Arrange
-		var jobOpportunity = JobOpportunity.Create(GenerateValidName(), GenerateValidDescription());
+		var jobOpportunity = GenerateValidJobOpportunity();
 
 		// Act
 		var response = jobOpportunity.ToResponse();

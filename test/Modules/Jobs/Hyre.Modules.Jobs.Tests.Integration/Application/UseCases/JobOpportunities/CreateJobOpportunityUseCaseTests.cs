@@ -9,6 +9,7 @@ using Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create;
 using Hyre.Modules.Jobs.Infrastructure;
 using Hyre.Modules.Jobs.Tests.Integration.Common;
 using Hyre.Shared.Abstractions.Logging;
+using Microsoft.EntityFrameworkCore;
 using NSubstitute;
 
 #endregion
@@ -18,24 +19,36 @@ namespace Hyre.Modules.Jobs.Tests.Integration.Application.UseCases.JobOpportunit
 /// <summary>
 ///   Integration tests for the <see cref="CreateJobOpportunityUseCase" />.
 /// </summary>
-public sealed class CreateJobOpportunityUseCaseTests : JobOpportunityUseCaseTestsFixture
+public sealed class CreateJobOpportunityUseCaseTests : JobOpportunityUseCaseTestsFixture, IAsyncLifetime
 {
+	private readonly JobsRepositoryContext _context;
 	private readonly CreateJobOpportunityUseCase _sut;
 
 	public CreateJobOpportunityUseCaseTests(IntegrationTestsWebApplicationFactory factory) : base(factory)
 	{
-		var context = CreateRepositoryContext();
+		_context = CreateRepositoryContext();
 		var logger = Substitute.For<ILoggerManager>();
-		var repository = new JobsRepositoryManager(context);
+		var repository = new JobsRepositoryManager(_context);
 		_sut = new CreateJobOpportunityUseCase(repository, logger);
 	}
+
+
+	/// <summary>
+	///   Runs before the first test in the test class to perform any setup.
+	/// </summary>
+	public async Task InitializeAsync() => await Task.CompletedTask;
+
+	/// <summary>
+	///   Runs after all tests in a test class have run and provides a point for cleanup.
+	/// </summary>
+	public async Task DisposeAsync() => await _context.JobOpportunities.ExecuteDeleteAsync();
 
 	[Fact(DisplayName = nameof(Handle_WhenCalled_ShouldCreateJobOpportunity))]
 	[Trait(UseCasesTraits.Name, UseCasesTraits.Value)]
 	public async Task Handle_WhenCalled_ShouldCreateJobOpportunity()
 	{
 		// Arrange
-		var createJobOpportunityInput = new CreateJobOpportunityInput(GenerateValidName(), GenerateValidDescription());
+		var createJobOpportunityInput = new CreateJobOpportunityInput(GenerateValidName(), GenerateValidDescription(), GenerateValidLocation());
 		var createJobOpportunityRequest = new CreateJobOpportunityRequest(createJobOpportunityInput);
 
 		// Act

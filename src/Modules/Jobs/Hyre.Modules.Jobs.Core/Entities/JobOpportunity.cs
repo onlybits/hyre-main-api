@@ -17,18 +17,28 @@ namespace Hyre.Modules.Jobs.Core.Entities;
 public sealed class JobOpportunity : EntityBase<JobOpportunityId>
 {
 	/// <summary>
+	///   This constructor is only used by EF Core.
+	/// </summary>
+	private JobOpportunity() : base(JobOpportunityId.New())
+	{
+	}
+
+	/// <summary>
 	///   Initializes a new instance of the <see cref="JobOpportunity" /> class.
 	/// </summary>
 	/// <param name="id">The identifier of the job opportunity.</param>
 	/// <param name="name">The name of the job opportunity.</param>
 	/// <param name="description">The description of the job opportunity.</param>
+	/// <param name="location">The location of the job opportunity.</param>
 	private JobOpportunity(
 		JobOpportunityId id,
 		JobOpportunityName name,
-		JobOpportunityDescription description) : base(id)
+		JobOpportunityDescription description,
+		JobOpportunityLocation location) : base(id)
 	{
 		Name = name;
 		Description = description;
+		Location = location;
 	}
 
 	/// <summary>
@@ -42,14 +52,25 @@ public sealed class JobOpportunity : EntityBase<JobOpportunityId>
 	public JobOpportunityDescription Description { get; private set; }
 
 	/// <summary>
+	///   Gets or sets the location of the job opportunity.
+	/// </summary>
+	public JobOpportunityLocation Location { get; }
+
+	/// <summary>
 	///   Initializes a new instance of the <see cref="JobOpportunity" /> class.
 	/// </summary>
 	/// <param name="name">The name of the job opportunity.</param>
 	/// <param name="description">The description of the job opportunity.</param>
+	/// <param name="location">The location of the job opportunity.</param>
 	/// <returns>It will return a new instance of the <see cref="JobOpportunity" /> class.</returns>
 	public static JobOpportunity Create(
 		JobOpportunityName name,
-		JobOpportunityDescription description) => new(JobOpportunityId.New(), name, description);
+		JobOpportunityDescription description,
+		JobOpportunityLocation location) => new(
+		JobOpportunityId.New(),
+		name,
+		description,
+		location);
 
 	#region Update Methods
 

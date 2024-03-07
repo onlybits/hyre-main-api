@@ -23,7 +23,7 @@
             <param name="cancellationToken">The cancellation token.</param>
             <returns>Returns a list of job opportunities.</returns>
         </member>
-        <member name="M:Hyre.Modules.Jobs.API.Controllers.JobOpportunitiesController.FindByIdAsync(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:Hyre.Modules.Jobs.API.Controllers.JobOpportunitiesController.Find(System.Guid,System.Threading.CancellationToken)">
             <summary>
               This endpoint is responsible for retrieving a job opportunity by its id.
             </summary>

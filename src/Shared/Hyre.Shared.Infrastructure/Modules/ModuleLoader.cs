@@ -5,7 +5,6 @@
 #region
 
 using System.Reflection;
-using Hyre.Shared.Abstractions.Exceptions;
 using Hyre.Shared.Abstractions.Modules;
 
 #endregion
@@ -56,19 +55,4 @@ public static class ModuleLoader
 
 		return modules;
 	}
-}
-
-/// <summary>
-///   Exception that is thrown when the assemblies list is empty
-/// </summary>
-internal sealed class EmptyAssembliesException : ServerFailureException
-{
-	/// <summary>
-	///   Initializes a new instance of the <see cref="EmptyAssembliesException" /> class.
-	/// </summary>
-	public EmptyAssembliesException() : base("The assemblies list is empty")
-	{
-	}
-
-	//TODO: Add translation to the exception message
 }

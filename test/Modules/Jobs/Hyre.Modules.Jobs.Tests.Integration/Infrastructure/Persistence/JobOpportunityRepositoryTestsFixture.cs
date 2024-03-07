@@ -29,7 +29,7 @@ public abstract class JobOpportunityRepositoryTestsFixture : JobOpportunityBaseF
 	/// </summary>
 	/// <param name="count">The number of <see cref="JobOpportunity" /> to generate.</param>
 	/// <returns>It will return a list of <see cref="JobOpportunity" />.</returns>
-	protected IList<JobOpportunity> GenerateJobOpportunities(int count) => Enumerable
+	protected ICollection<JobOpportunity> GenerateJobOpportunities(int count) => Enumerable
 		.Range(1, count)
 		.Select(_ => GenerateJobOpportunity())
 		.ToList();

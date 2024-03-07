@@ -51,6 +51,30 @@
             </summary>
             <inheritdoc cref="T:Hyre.Modules.Jobs.Core.Repositories.IJobsRepositoryManager" />
         </member>
+        <member name="T:Hyre.Modules.Jobs.Infrastructure.Migrations.AddLocation">
+            <inheritdoc />
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddLocation.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddLocation.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddLocation.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Infrastructure.Migrations.Initial">
+            <inheritdoc />
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.Persistence.JobOpportunityRepository">
             <summary>
               This is the repository for the <see cref="T:Hyre.Modules.Jobs.Core.Entities.JobOpportunity" /> entity.

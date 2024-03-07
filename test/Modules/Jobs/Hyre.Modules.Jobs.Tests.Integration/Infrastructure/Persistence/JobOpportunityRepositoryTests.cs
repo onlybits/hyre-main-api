@@ -97,7 +97,9 @@ public sealed class JobOpportunityRepositoryTests : JobOpportunityRepositoryTest
 
 		// Assert
 		_ = result.Should().NotBeNull();
-		_ = result!.Should().BeEquivalentTo(jobOpportunity, opt => opt.ExcludingMissingMembers());
+		_ = result!.Should().BeEquivalentTo(jobOpportunity, opt => opt
+			.Excluding(x => x.Events)
+			.Excluding(x => x.CreatedAt));
 	}
 
 	[Fact(DisplayName = nameof(FindByIdAsync_WhenJobOpportunityDoesNotExist_ShouldReturnNull))]
@@ -131,7 +133,9 @@ public sealed class JobOpportunityRepositoryTests : JobOpportunityRepositoryTest
 
 		// Assert
 		_ = result.Should().NotBeNull();
-		_ = result.Should().BeEquivalentTo(jobOpportunity, opt => opt.ExcludingMissingMembers());
+		_ = result.Should().BeEquivalentTo(jobOpportunity, opt => opt
+			.Excluding(x => x.Events)
+			.Excluding(x => x.CreatedAt));
 	}
 
 	[Fact(DisplayName = nameof(Update_WhenGivenValidInputData_ShouldUpdateJobOpportunity))]
@@ -157,8 +161,13 @@ public sealed class JobOpportunityRepositoryTests : JobOpportunityRepositoryTest
 		// Assert
 		_ = result.Should().NotBeNull();
 		_ = result.Should().BeEquivalentTo(updatedJobOpportunity,
-			opt => opt.Excluding(x => x.Id)
+			opt => opt
+				.Excluding(x => x.Id)
+				.Excluding(x => x.Events)
+				.Excluding(x => x.CreatedAt)
+				.Excluding(x => x.Location)
 			// I'm excluding the Id because i'm comparing with a new generated job opportunity.
+			// I'm excluding the Location because I don't have an updated location yet. TODO: Replace this when the location is updated.
 		);
 	}
 

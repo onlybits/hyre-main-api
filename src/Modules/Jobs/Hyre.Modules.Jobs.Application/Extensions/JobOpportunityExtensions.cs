@@ -24,5 +24,6 @@ public static class JobOpportunityExtensions
 	public static JobOpportunityResponse ToResponse(this JobOpportunity jobOpportunity) => new(
 		jobOpportunity.Id,
 		jobOpportunity.Name,
-		jobOpportunity.Description);
+		jobOpportunity.Description,
+		jobOpportunity.Location);
 }

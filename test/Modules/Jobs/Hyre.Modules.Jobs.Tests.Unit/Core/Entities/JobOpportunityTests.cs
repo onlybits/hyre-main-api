@@ -24,8 +24,10 @@ public sealed class JobOpportunityTests : JobOpportunityTestsFixture
 		// Arrange
 		var name = GenerateValidName();
 		var description = GenerateValidDescription();
+		var location = GenerateValidLocation();
+
 		// Act
-		var sut = JobOpportunity.Create(name, description);
+		var sut = JobOpportunity.Create(name, description, location);
 
 		// Assert
 		_ = sut.Should().NotBeNull();
@@ -34,6 +36,7 @@ public sealed class JobOpportunityTests : JobOpportunityTestsFixture
 		_ = sut.Description.Should().Be(description);
 		_ = sut.CreatedAt.Should().NotBe(default!);
 		_ = sut.CreatedAt.Value.Should().BeCloseTo(DateTimeOffset.UtcNow, TimeSpan.FromSeconds(2));
+		_ = sut.Location.Should().NotBeNull();
 	}
 
 	[Fact(DisplayName = nameof(UpdateName_WithValidParameters_ShouldUpdateName))]
@@ -43,11 +46,11 @@ public sealed class JobOpportunityTests : JobOpportunityTestsFixture
 		// Arrange
 		var name = GenerateValidName();
 		var description = GenerateValidDescription();
-
+		var location = GenerateValidLocation();
 		var newName = GenerateValidName();
-		var sut = JobOpportunity.Create(name, description);
 
 		// Act
+		var sut = JobOpportunity.Create(name, description, location);
 		sut.UpdateName(newName);
 
 		// Assert
@@ -61,14 +64,37 @@ public sealed class JobOpportunityTests : JobOpportunityTestsFixture
 		// Arrange
 		var name = GenerateValidName();
 		var description = GenerateValidDescription();
+		var location = GenerateValidLocation();
 
 		var newDescription = GenerateValidDescription();
-		var sut = JobOpportunity.Create(name, description);
+		var sut = JobOpportunity.Create(name, description, location);
 
 		// Act
 		sut.UpdateDescription(newDescription);
 
 		// Assert
 		_ = sut.Description.Should().Be(newDescription);
+	}
+
+	[Fact(DisplayName = nameof(Constructor_WhenGivenLocationOnSiteAndValidLocation_ShouldCreateAnInstance))]
+	[Trait(EntitiesTraits.Name, EntitiesTraits.Value)]
+	public void Constructor_WhenGivenLocationOnSiteAndValidLocation_ShouldCreateAnInstance()
+	{
+		// Arrange
+		var name = GenerateValidName();
+		var description = GenerateValidDescription();
+		var location = GenerateValidLocation();
+
+		// Act
+		var sut = JobOpportunity.Create(name, description, location);
+
+		// Assert
+		_ = sut.Should().NotBeNull();
+		_ = sut.Id.Should().NotBe(default!);
+		_ = sut.Name.Should().Be(name);
+		_ = sut.Description.Should().Be(description);
+		_ = sut.CreatedAt.Should().NotBe(default!);
+		_ = sut.CreatedAt.Value.Should().BeCloseTo(DateTimeOffset.UtcNow, TimeSpan.FromSeconds(2));
+		_ = sut.Location.Should().Be(location);
 	}
 }

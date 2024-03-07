@@ -6,6 +6,7 @@
 
 using Bogus.Extensions;
 using Hyre.Modules.Jobs.Core.Entities;
+using Hyre.Modules.Jobs.Core.Enums;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 
 #endregion
@@ -29,7 +30,10 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 	///   Generates a <see cref="JobOpportunity" />.
 	/// </summary>
 	/// <returns>It will return a <see cref="JobOpportunity" />.</returns>
-	protected JobOpportunity GenerateJobOpportunity() => JobOpportunity.Create(GenerateValidName(), GenerateValidDescription());
+	protected JobOpportunity GenerateJobOpportunity() => JobOpportunity.Create(
+		GenerateValidName(),
+		GenerateValidDescription(),
+		GenerateValidLocation());
 
 	/// <summary>
 	///   Generates a valid name for the <see cref="JobOpportunityName" /> class.
@@ -42,4 +46,14 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 	/// </summary>
 	/// <returns>I will return a valid <see cref="JobOpportunityDescription" />.</returns>
 	protected JobOpportunityDescription GenerateValidDescription() => new(Faker.Lorem.Paragraph().ClampLength(10, 500));
+
+	/// <summary>
+	///   Generates a valid <see cref="JobOpportunityLocation" />.
+	/// </summary>
+	/// <returns>If will return a valid <see cref="JobOpportunityLocation" />.</returns>
+	protected JobOpportunityLocation GenerateValidLocation() => new(
+		Faker.PickRandom<LocationType>(),
+		Faker.Address.City().ClampLength(3, 32),
+		Faker.Address.StateAbbr().ClampLength(2, 2)
+	);
 }
