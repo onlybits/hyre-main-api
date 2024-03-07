@@ -15,6 +15,10 @@ namespace Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Update;
 /// </summary>
 /// <param name="Name">The new name of the job opportunity.</param>
 /// <param name="Description">The new description of the job opportunity.</param>
+/// <param name="Location">The new location of the job opportunity.</param>
+/// <param name="Contract">The new contract of the job opportunity.</param>
 public sealed record UpdateJobOpportunityInput(
 	JobOpportunityName? Name,
-	JobOpportunityDescription? Description);
+	JobOpportunityDescription? Description,
+	JobOpportunityLocation? Location,
+	JobOpportunityContract? Contract);

@@ -4,9 +4,9 @@
 
 #region
 
+using Hyre.Modules.Jobs.Application.Common;
 using Hyre.Modules.Jobs.Application.Exceptions;
 using Hyre.Modules.Jobs.Application.Extensions;
-using Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Common;
 using Hyre.Modules.Jobs.Core.Repositories;
 using Hyre.Shared.Abstractions.Logging;
 
@@ -28,9 +28,11 @@ internal sealed class FindJobOpportunityUseCase : IFindJobOpportunityUseCase
 		_logger = logger;
 	}
 
-	public async Task<JobOpportunityResponse> Handle(FindJobOpportunityRequest request, CancellationToken cancellationToken)
+	public async Task<JobOpportunityResponse> Handle(FindJobOpportunityRequest request,
+		CancellationToken cancellationToken)
 	{
-		var jobOpportunity = await _repository.JobOpportunity.FindByIdAsync(request.Id, request.TrackChanges, cancellationToken);
+		var jobOpportunity =
+			await _repository.JobOpportunity.FindByIdAsync(request.Id, request.TrackChanges, cancellationToken);
 		if (jobOpportunity is not null)
 		{
 			_logger.LogInfo("Job opportunity with id {Id} found successfully.", request.Id);

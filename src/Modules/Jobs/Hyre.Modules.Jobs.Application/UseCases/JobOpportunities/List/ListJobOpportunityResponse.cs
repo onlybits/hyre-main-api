@@ -4,7 +4,7 @@
 
 #region
 
-using Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Common;
+using Hyre.Modules.Jobs.Application.Common;
 using Hyre.Shared.Abstractions.Requests;
 
 #endregion

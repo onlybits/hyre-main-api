@@ -6,216 +6,191 @@
     <members>
         <member name="T:Hyre.Shared.Abstractions.Exceptions.DomainException">
             <summary>
-                Base exception that is used when a domain rule is violated.
+              Base exception that is used when a domain rule is violated.
             </summary>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Exceptions.DomainException.#ctor(System.String)">
             <summary>
-                Initializes a new instance of the
-                <see cref="T:Hyre.Shared.Abstractions.Exceptions.DomainException"/>
-                class.
+              Initializes a new instance of the <see cref="T:Hyre.Shared.Abstractions.Exceptions.DomainException" /> class.
             </summary>
             <param name="message">The message that describes the error.</param>
         </member>
         <member name="T:Hyre.Shared.Abstractions.Exceptions.NotFoundException">
             <summary>
-                Base exception that is used when a resource is not found.
+              Base exception that is used when a resource is not found.
             </summary>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Exceptions.NotFoundException.#ctor(System.String)">
             <summary>
-                Initializes a new instance of the
-                <see cref="T:Hyre.Shared.Abstractions.Exceptions.NotFoundException"/>
-                class.
+              Initializes a new instance of the <see cref="T:Hyre.Shared.Abstractions.Exceptions.NotFoundException" /> class.
             </summary>
             <param name="message">The message that describes the error.</param>
         </member>
         <member name="T:Hyre.Shared.Abstractions.Exceptions.ServerFailureException">
             <summary>
-                Base exception that is used when a server failure occurs.
+              Base exception that is used when a server failure occurs.
             </summary>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Exceptions.ServerFailureException.#ctor(System.String)">
             <summary>
-                Initializes a new instance of the
-                <see cref="T:Hyre.Shared.Abstractions.Exceptions.ServerFailureException"/>
-                class.
+              Initializes a new instance of the <see cref="T:Hyre.Shared.Abstractions.Exceptions.ServerFailureException" /> class.
             </summary>
             <param name="message">The message that describes the error.</param>
         </member>
         <member name="T:Hyre.Shared.Abstractions.Kernel.Constants.EntityErrorMessages">
             <summary>
-                Error messages for the entity.
+              Error messages for the entity.
             </summary>
         </member>
         <member name="F:Hyre.Shared.Abstractions.Kernel.Constants.EntityErrorMessages.CreateDateWithEmptyValue">
             <summary>
-                Used when the creation date is empty.
+              Used when the creation date is empty.
             </summary>
         </member>
         <member name="F:Hyre.Shared.Abstractions.Kernel.Constants.EntityErrorMessages.CreateDateInTheFuture">
             <summary>
-                Used when the creation date is in the future.
+              Used when the creation date is in the future.
             </summary>
         </member>
         <member name="T:Hyre.Shared.Abstractions.Kernel.Entities.EntityBase`1">
             <summary>
-                This class is the base class for all entities in the system.
+              This class is the base class for all entities in the system.
             </summary>
-            <inheritdoc cref="T:Hyre.Shared.Abstractions.Kernel.Entities.IEntityBase"/>
+            <inheritdoc cref="T:Hyre.Shared.Abstractions.Kernel.Entities.IEntityBase" />
         </member>
         <member name="M:Hyre.Shared.Abstractions.Kernel.Entities.EntityBase`1.#ctor(`0)">
             <summary>
-                Initializes a new instance of the
-                <see cref="T:Hyre.Shared.Abstractions.Kernel.Entities.EntityBase`1"/>
-                class.
+              Initializes a new instance of the <see cref="T:Hyre.Shared.Abstractions.Kernel.Entities.EntityBase`1" /> class.
             </summary>
             <param name="id">The identifier of the entity.</param>
         </member>
         <member name="P:Hyre.Shared.Abstractions.Kernel.Entities.EntityBase`1.Id">
             <summary>
-                Gets the identifier of the entity.
+              Gets the identifier of the entity.
             </summary>
         </member>
         <member name="P:Hyre.Shared.Abstractions.Kernel.Entities.EntityBase`1.CreatedAt">
             <summary>
-                Gets or sets the date and time the entity was created.
+              Gets or sets the date and time the entity was created.
             </summary>
         </member>
         <member name="F:Hyre.Shared.Abstractions.Kernel.Entities.EntityBase`1._events">
             <summary>
-                The domain events that occurred in the entity.
+              The domain events that occurred in the entity.
             </summary>
         </member>
         <member name="P:Hyre.Shared.Abstractions.Kernel.Entities.EntityBase`1.Events">
             <summary>
-                Gets the domain events that occurred in the entity.
+              Gets the domain events that occurred in the entity.
             </summary>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Kernel.Entities.EntityBase`1.RaiseEvent(Hyre.Shared.Abstractions.Kernel.Events.DomainEvent)">
             <summary>
-                This method adds a domain event to the entity.
+              This method adds a domain event to the entity.
             </summary>
             <param name="domainEvent"></param>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Kernel.Entities.EntityBase`1.ClearEvents">
             <summary>
-                This method clears the domain events.
+              This method clears the domain events.
             </summary>
         </member>
         <member name="T:Hyre.Shared.Abstractions.Kernel.Entities.IEntityBase">
             <summary>
-                This interface represents the base of all entities in the system.
+              This interface represents the base of all entities in the system.
             </summary>
         </member>
         <member name="P:Hyre.Shared.Abstractions.Kernel.Entities.IEntityBase.Events">
             <summary>
-                Gets the domain events that occurred in the entity.
+              Gets the domain events that occurred in the entity.
             </summary>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Kernel.Entities.IEntityBase.RaiseEvent(Hyre.Shared.Abstractions.Kernel.Events.DomainEvent)">
             <summary>
-                This method adds a domain event to the entity.
+              This method adds a domain event to the entity.
             </summary>
             <param name="domainEvent">The domain event to be added.</param>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Kernel.Entities.IEntityBase.ClearEvents">
             <summary>
-                This method clears the domain events.
+              This method clears the domain events.
             </summary>
         </member>
         <member name="T:Hyre.Shared.Abstractions.Kernel.Events.DomainEvent">
             <summary>
-                This is the base class for all domain events.
+              This is the base class for all domain events.
             </summary>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Kernel.Events.DomainEvent.#ctor">
             <summary>
-                Initializes a new instance of the
-                <see cref="T:Hyre.Shared.Abstractions.Kernel.Events.DomainEvent"/>
-                class.
+              Initializes a new instance of the <see cref="T:Hyre.Shared.Abstractions.Kernel.Events.DomainEvent" /> class.
             </summary>
         </member>
         <member name="P:Hyre.Shared.Abstractions.Kernel.Events.DomainEvent.OccurredAt">
             <summary>
-                Gets the date and time when the event occurred.
+              Gets the date and time when the event occurred.
             </summary>
         </member>
         <member name="T:Hyre.Shared.Abstractions.Kernel.Exceptions.CreateDateInTheFutureException">
             <summary>
-                Exception thrown when the creation date is in the future.
+              Exception thrown when the creation date is in the future.
             </summary>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Kernel.Exceptions.CreateDateInTheFutureException.#ctor">
             <summary>
-                Initializes a new instance of the
-                <see cref="T:Hyre.Shared.Abstractions.Kernel.Exceptions.CreateDateInTheFutureException"/>
-                class.
+              Initializes a new instance of the <see cref="T:Hyre.Shared.Abstractions.Kernel.Exceptions.CreateDateInTheFutureException" /> class.
             </summary>
         </member>
         <member name="T:Hyre.Shared.Abstractions.Kernel.Exceptions.CreateDateWithEmptyValueException">
             <summary>
-                Exception thrown when the creation date is empty.
+              Exception thrown when the creation date is empty.
             </summary>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Kernel.Exceptions.CreateDateWithEmptyValueException.#ctor">
             <summary>
-                Initializes a new instance of the
-                <see cref="T:Hyre.Shared.Abstractions.Kernel.Exceptions.CreateDateWithEmptyValueException"/>
-                class.
+              Initializes a new instance of the <see cref="T:Hyre.Shared.Abstractions.Kernel.Exceptions.CreateDateWithEmptyValueException" /> class.
             </summary>
         </member>
         <member name="T:Hyre.Shared.Abstractions.Kernel.ValueObjects.CreateDate">
             <summary>
-                Represents the creation date of an entity.
+              Represents the creation date of an entity.
             </summary>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Kernel.ValueObjects.CreateDate.#ctor(System.DateTimeOffset)">
             <summary>
-                Initializes a new instance of the
-                <see cref="T:Hyre.Shared.Abstractions.Kernel.ValueObjects.CreateDate"/>
-                class.
+              Initializes a new instance of the <see cref="T:Hyre.Shared.Abstractions.Kernel.ValueObjects.CreateDate" /> class.
             </summary>
             <param name="value">The creation date.</param>
         </member>
         <member name="P:Hyre.Shared.Abstractions.Kernel.ValueObjects.CreateDate.Value">
             <summary>
-                Gets or sets the creation date.
+              Gets or sets the creation date.
             </summary>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Kernel.ValueObjects.CreateDate.Create(System.TimeProvider)">
             <summary>
-                Creates a new instance of the
-                <see cref="T:Hyre.Shared.Abstractions.Kernel.ValueObjects.CreateDate"/>
-                class.
+              Creates a new instance of the <see cref="T:Hyre.Shared.Abstractions.Kernel.ValueObjects.CreateDate" /> class.
             </summary>
             <param name="timeProvider">The system time provider.</param>
-            <returns>Returns a new instance of the
-                <see cref="T:Hyre.Shared.Abstractions.Kernel.ValueObjects.CreateDate"/>
-                class.
-            </returns>
+            <returns>Returns a new instance of the <see cref="T:Hyre.Shared.Abstractions.Kernel.ValueObjects.CreateDate" /> class.</returns>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Kernel.ValueObjects.CreateDate.Validate">
             <summary>
-                This method validates the creation date.
+              This method validates the creation date.
             </summary>
-            <exception cref="T:Hyre.Shared.Abstractions.Kernel.Exceptions.CreateDateWithEmptyValueException">Exception
-                thrown when the creation date is empty.
-            </exception>
-            <exception cref="T:Hyre.Shared.Abstractions.Kernel.Exceptions.CreateDateInTheFutureException">Exception
-                thrown when the creation date is in the future.
-            </exception>
+            <exception cref="T:Hyre.Shared.Abstractions.Kernel.Exceptions.CreateDateWithEmptyValueException">Exception thrown when the creation date is empty.</exception>
+            <exception cref="T:Hyre.Shared.Abstractions.Kernel.Exceptions.CreateDateInTheFutureException">Exception thrown when the creation date is in the future.</exception>
         </member>
         <member name="T:Hyre.Shared.Abstractions.Kernel.ValueObjects.StronglyTypedId`1">
             <summary>
-                This is the base record for all strongly typed identifiers in the system.
+              This is the base record for all strongly typed identifiers in the system.
             </summary>
             <param name="Value">The value of the identifier.</param>
             <typeparam name="T">The type of the identifier.</typeparam>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Kernel.ValueObjects.StronglyTypedId`1.#ctor(`0)">
             <summary>
-                This is the base record for all strongly typed identifiers in the system.
+              This is the base record for all strongly typed identifiers in the system.
             </summary>
             <param name="Value">The value of the identifier.</param>
             <typeparam name="T">The type of the identifier.</typeparam>
@@ -225,134 +200,124 @@
         </member>
         <member name="T:Hyre.Shared.Abstractions.Kernel.ValueObjects.ValueObject">
             <summary>
-                This class is the base class for all value objects in the system.
+              This class is the base class for all value objects in the system.
             </summary>
         </member>
         <member name="T:Hyre.Shared.Abstractions.Logging.ILoggerManager">
             <summary>
-                This interface represents a logger manager.
+              This interface represents a logger manager.
             </summary>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Logging.ILoggerManager.LogInfo(System.String,System.Object[])">
             <summary>
-                Log a information message.
+              Log a information message.
             </summary>
             <param name="message">The message to be logged.</param>
             <param name="args">The arguments to be formatted into the message.</param>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Logging.ILoggerManager.LogWarn(System.String,System.Object[])">
             <summary>
-                Log a warning message.
+              Log a warning message.
             </summary>
             <param name="message">The message to be logged.</param>
             <param name="args">The arguments to be formatted into the message.</param>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Logging.ILoggerManager.LogDebug(System.String,System.Object[])">
             <summary>
-                Log a debug message.
+              Log a debug message.
             </summary>
             <param name="message">The message to be logged.</param>
             <param name="args">The arguments to be formatted into the message.</param>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Logging.ILoggerManager.LogError(System.String,System.Object[])">
             <summary>
-                Log an error message.
+              Log an error message.
             </summary>
             <param name="message">The message to be logged.</param>
             <param name="args">The arguments to be formatted into the message.</param>
         </member>
         <member name="T:Hyre.Shared.Abstractions.Modules.IModule">
             <summary>
-                This is the contract for a module.
+              This is the contract for a module.
             </summary>
         </member>
         <member name="P:Hyre.Shared.Abstractions.Modules.IModule.Name">
             <summary>
-                Gets the name of the module.
+              Gets the name of the module.
             </summary>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Modules.IModule.Register(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-                This method registers the module's services.
+              This method registers the module's services.
             </summary>
             <param name="services">The service collection.</param>
             <returns>It will return the same service collection.</returns>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Modules.IModule.Use(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
-                This method configures the module's services.
+              This method configures the module's services.
             </summary>
             <param name="app">The application builder.</param>
             <returns>It will return the same application builder.</returns>
         </member>
         <member name="T:Hyre.Shared.Abstractions.Repositories.IRepositoryBase`1">
             <summary>
-                This interface will be used to define the base methods for all repositories.
+              This interface will be used to define the base methods for all repositories.
             </summary>
             <typeparam name="T">The entity type.</typeparam>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Repositories.IRepositoryBase`1.FindAll(System.Boolean)">
             <summary>
-                This is used to query the database for all entities of type<typeparamref name="T"/>.
+              This is used to query the database for all entities of type <typeparamref name="T" />.
             </summary>
             <param name="trackChanges">Should EF Core track changes?</param>
-            <returns>Returns an IQueryable of
-                <typeparamref name="T"/>
-                type.
-            </returns>
+            <returns>Returns an IQueryable of <typeparamref name="T" /> type.</returns>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Repositories.IRepositoryBase`1.FindByCondition(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
             <summary>
-                This method will return a list of
-                <typeparamref name="T"/>
-                type, that match the given expression.
+              This method will return a list of <typeparamref name="T" /> type, that match the given expression.
             </summary>
             <param name="expression">The expression to filter the entities.</param>
             <param name="trackChanges">Should EF Core track changes?</param>
-            <returns>Returns an IQueryable of
-                <typeparamref name="T"/>
-                type.
-            </returns>
+            <returns>Returns an IQueryable of <typeparamref name="T" /> type.</returns>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Repositories.IRepositoryBase`1.Insert(`0)">
             <summary>
-                This method will insert a new entity to the context.
+              This method will insert a new entity to the context.
             </summary>
             <param name="entity">The entity to be inserted.</param>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Repositories.IRepositoryBase`1.Edit(`0)">
             <summary>
-                This method will update an entity in the context.
+              This method will update an entity in the context.
             </summary>
             <param name="entity">The entity to be updated.</param>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Repositories.IRepositoryBase`1.Remove(`0)">
             <summary>
-                This method will delete an entity from the context.
+              This method will delete an entity from the context.
             </summary>
             <param name="entity">The entity to be deleted.</param>
         </member>
         <member name="T:Hyre.Shared.Abstractions.Repositories.IRepositoryManager">
             <summary>
-                Use this interface to manage all repositories.
+              Use this interface to manage all repositories.
             </summary>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Repositories.IRepositoryManager.CommitChangesAsync(System.Threading.CancellationToken)">
             <summary>
-                This method will save all changes made in the database.
+              This method will save all changes made in the database.
             </summary>
             <returns>Returns a task.</returns>
         </member>
         <member name="T:Hyre.Shared.Abstractions.Requests.MetaData">
             <summary>
-                This class represents the metadata of a paginated list.
+              This class represents the metadata of a paginated list.
             </summary>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Requests.MetaData.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>
-                Initializes a new instance of the
-                <see cref="T:Hyre.Shared.Abstractions.Requests.MetaData"/>
-                class.
+              Initializes a new instance of the <see cref="T:Hyre.Shared.Abstractions.Requests.MetaData" /> class.
             </summary>
             <param name="currentPage"></param>
             <param name="pageSize"></param>
@@ -360,45 +325,43 @@
         </member>
         <member name="P:Hyre.Shared.Abstractions.Requests.MetaData.CurrentPage">
             <summary>
-                Gets or sets the current page.
+              Gets or sets the current page.
             </summary>
         </member>
         <member name="P:Hyre.Shared.Abstractions.Requests.MetaData.TotalPages">
             <summary>
-                Gets or sets the total number of pages.
+              Gets or sets the total number of pages.
             </summary>
         </member>
         <member name="P:Hyre.Shared.Abstractions.Requests.MetaData.PageSize">
             <summary>
-                Gets or sets the page size.
+              Gets or sets the page size.
             </summary>
         </member>
         <member name="P:Hyre.Shared.Abstractions.Requests.MetaData.TotalCount">
             <summary>
-                Gets or sets the total count.
+              Gets or sets the total count.
             </summary>
         </member>
         <member name="P:Hyre.Shared.Abstractions.Requests.MetaData.HasPrevious">
             <summary>
-                Gets a value indicating whether we have a previous page.
+              Gets a value indicating whether we have a previous page.
             </summary>
         </member>
         <member name="P:Hyre.Shared.Abstractions.Requests.MetaData.HasNext">
             <summary>
-                Gets a value indicating whether we have a next page.
+              Gets a value indicating whether we have a next page.
             </summary>
         </member>
         <member name="T:Hyre.Shared.Abstractions.Requests.PagedList`1">
             <summary>
-                Represents a list with pagination data.
+              Represents a list with pagination data.
             </summary>
             <typeparam name="T">The type of the items.</typeparam>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Requests.PagedList`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32,System.Int32)">
             <summary>
-                Initializes a new instance of the
-                <see cref="T:Hyre.Shared.Abstractions.Requests.PagedList`1"/>
-                class.
+              Initializes a new instance of the <see cref="T:Hyre.Shared.Abstractions.Requests.PagedList`1" /> class.
             </summary>
             <param name="items">The items to be paged.</param>
             <param name="count">The total number of items.</param>
@@ -407,37 +370,36 @@
         </member>
         <member name="P:Hyre.Shared.Abstractions.Requests.PagedList`1.MetaData">
             <summary>
-                Gets or sets the metadata values.
+              Gets or sets the metadata values.
             </summary>
         </member>
         <member name="M:Hyre.Shared.Abstractions.Requests.PagedList`1.ToPagedList(System.Collections.Generic.IList{`0},System.Int32,System.Int32)">
             <summary>
-                Creates a new instance of<see cref="T:Hyre.Shared.Abstractions.Requests.PagedList`1"/>.
+              Creates a new instance of <see cref="T:Hyre.Shared.Abstractions.Requests.PagedList`1" />.
             </summary>
             <param name="source">The source.</param>
             <param name="pageNumber">The page number.</param>
             <param name="pageSize">The page size.</param>
-            <returns>Returns a new instance of<see cref="T:Hyre.Shared.Abstractions.Requests.PagedList`1"/>.
-            </returns>
+            <returns>Returns a new instance of <see cref="T:Hyre.Shared.Abstractions.Requests.PagedList`1" />.</returns>
         </member>
         <member name="T:Hyre.Shared.Abstractions.Requests.RequestParameters">
             <summary>
-                This is the base class for all request parameters.
+              This is the base class for all request parameters.
             </summary>
         </member>
         <member name="F:Hyre.Shared.Abstractions.Requests.RequestParameters.MaxPageSize">
             <summary>
-                The maximum of items per page.
+              The maximum of items per page.
             </summary>
         </member>
         <member name="P:Hyre.Shared.Abstractions.Requests.RequestParameters.PageNumber">
             <summary>
-                Gets or sets the page number.
+              Gets or sets the page number.
             </summary>
         </member>
         <member name="P:Hyre.Shared.Abstractions.Requests.RequestParameters.PageSize">
             <summary>
-                Gets or sets the page size.
+              Gets or sets the page size.
             </summary>
         </member>
     </members>

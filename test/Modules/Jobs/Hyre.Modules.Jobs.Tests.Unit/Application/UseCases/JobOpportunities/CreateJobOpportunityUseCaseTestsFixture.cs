@@ -29,5 +29,6 @@ public abstract class CreateJobOpportunityUseCaseTestsFixture : JobOpportunityBa
 	private CreateJobOpportunityInput GenerateValidInput() => new(
 		GenerateValidName(),
 		GenerateValidDescription(),
-		GenerateValidLocation());
+		GenerateValidLocation(),
+		GenerateValidContract());
 }

@@ -29,6 +29,11 @@ public sealed class JobOpportunityExtensionsTests : JobOpportunityBaseFixture
 		var response = jobOpportunity.ToResponse();
 
 		// Assert
-		_ = response.Should().BeEquivalentTo(jobOpportunity, options => options.ExcludingMissingMembers());
+		_ = response.Should().NotBeNull();
+		_ = response.Id.Should().Be(jobOpportunity.Id);
+		_ = response.Name.Should().Be(jobOpportunity.Name);
+		_ = response.Description.Should().Be(jobOpportunity.Description);
+		_ = response.Location.Should().Be(jobOpportunity.Location);
+		_ = response.Contract.Should().Be(jobOpportunity.Contract);
 	}
 }

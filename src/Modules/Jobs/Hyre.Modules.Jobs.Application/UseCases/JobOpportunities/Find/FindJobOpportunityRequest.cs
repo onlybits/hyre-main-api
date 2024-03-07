@@ -4,7 +4,7 @@
 
 #region
 
-using Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Common;
+using Hyre.Modules.Jobs.Application.Common;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 using MediatR;
 
@@ -17,4 +17,5 @@ namespace Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Find;
 /// </summary>
 /// <param name="Id">The job opportunity id.</param>
 /// <param name="TrackChanges">Should EF keep track of the changes.</param>
-public sealed record FindJobOpportunityRequest(JobOpportunityId Id, bool TrackChanges) : IRequest<JobOpportunityResponse>;
+public sealed record FindJobOpportunityRequest(JobOpportunityId Id, bool TrackChanges)
+	: IRequest<JobOpportunityResponse>;

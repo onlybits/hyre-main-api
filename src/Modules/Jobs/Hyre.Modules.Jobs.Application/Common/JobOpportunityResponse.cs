@@ -8,7 +8,7 @@ using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 
 #endregion
 
-namespace Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Common;
+namespace Hyre.Modules.Jobs.Application.Common;
 
 /// <summary>
 ///   Represents the response of a job opportunity.
@@ -17,8 +17,10 @@ namespace Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Common;
 /// <param name="Name">The job opportunity name.</param>
 /// <param name="Description">The job opportunity description.</param>
 /// <param name="Location">The job opportunity location.</param>
+/// <param name="Contract">The job opportunity contract.</param>
 public sealed record JobOpportunityResponse(
 	JobOpportunityId Id,
 	JobOpportunityName Name,
 	JobOpportunityDescription Description,
-	JobOpportunityLocation? Location);
+	JobOpportunityLocation? Location,
+	JobOpportunityContract Contract);

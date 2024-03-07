@@ -60,6 +60,20 @@ internal sealed class JobOpportunityConfiguration : IEntityTypeConfiguration<Job
 			.HasColumnName("location_state")
 			.HasMaxLength(2);
 
+		var contract = builder.OwnsOne(jo => jo.Contract);
+		_ = contract.Property(c => c.Type)
+			.HasConversion<string>()
+			.HasColumnName("contract_type")
+			.IsRequired();
+
+		_ = contract.Property(c => c.MinSalary)
+			.HasColumnName("contract_min_salary")
+			.IsRequired();
+
+		_ = contract.Property(c => c.MaxSalary)
+			.HasColumnName("contract_max_salary")
+			.IsRequired();
+
 		_ = builder.Ignore(jo => jo.Events);
 	}
 }

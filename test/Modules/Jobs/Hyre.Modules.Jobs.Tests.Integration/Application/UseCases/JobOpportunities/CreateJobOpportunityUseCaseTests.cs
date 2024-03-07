@@ -48,7 +48,12 @@ public sealed class CreateJobOpportunityUseCaseTests : JobOpportunityUseCaseTest
 	public async Task Handle_WhenCalled_ShouldCreateJobOpportunity()
 	{
 		// Arrange
-		var createJobOpportunityInput = new CreateJobOpportunityInput(GenerateValidName(), GenerateValidDescription(), GenerateValidLocation());
+		var createJobOpportunityInput = new CreateJobOpportunityInput(
+			GenerateValidName(),
+			GenerateValidDescription(),
+			GenerateValidLocation(),
+			GenerateValidContract());
+
 		var createJobOpportunityRequest = new CreateJobOpportunityRequest(createJobOpportunityInput);
 
 		// Act
@@ -58,5 +63,8 @@ public sealed class CreateJobOpportunityUseCaseTests : JobOpportunityUseCaseTest
 		_ = result.Should().NotBeNull();
 		_ = result.Id.Should().NotBeNull();
 		_ = result.Name.Should().Be(createJobOpportunityInput.Name);
+		_ = result.Description.Should().Be(createJobOpportunityInput.Description);
+		_ = result.Location.Should().Be(createJobOpportunityInput.Location);
+		_ = result.Contract.Should().Be(createJobOpportunityInput.Contract);
 	}
 }

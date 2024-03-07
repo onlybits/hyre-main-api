@@ -16,7 +16,9 @@ namespace Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create;
 /// <param name="Name">The name of the job opportunity.</param>
 /// <param name="Description">The description of the job opportunity.</param>
 /// <param name="Location">The job opportunity location.</param>
+/// <param name="Contract">The job opportunity contract.</param>
 public sealed record CreateJobOpportunityInput(
 	JobOpportunityName Name,
 	JobOpportunityDescription Description,
-	JobOpportunityLocation Location);
+	JobOpportunityLocation Location,
+	JobOpportunityContract Contract);

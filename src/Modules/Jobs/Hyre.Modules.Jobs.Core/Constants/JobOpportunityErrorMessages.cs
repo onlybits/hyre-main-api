@@ -60,27 +60,51 @@ public abstract class JobOpportunityErrorMessages
 	/// <summary>
 	///   Used when the location city name of the job opportunity is too short.
 	/// </summary>
-	public const string LocationCityNameTooShort = "O nome da cidade da oportunidade de emprego deve ter no mínimo 3 caracteres.";
+	public const string LocationCityNameTooShort =
+		"O nome da cidade da oportunidade de emprego deve ter no mínimo 3 caracteres.";
 
 	/// <summary>
 	///   Used when the location city name of the job opportunity is too long.
 	/// </summary>
-	public const string LocationCityNameTooLong = "O nome da cidade da oportunidade de emprego deve ter no máximo 32 caracteres.";
+	public const string LocationCityNameTooLong =
+		"O nome da cidade da oportunidade de emprego deve ter no máximo 32 caracteres.";
 
 	/// <summary>
 	///   Used when the location state name of the job opportunity is too short.
 	/// </summary>
-	public const string LocationStateNameTooShort = "O nome do estado da oportunidade de emprego deve ter no mínimo 2 caracteres.";
+	public const string LocationStateNameTooShort =
+		"O nome do estado da oportunidade de emprego deve ter no mínimo 2 caracteres.";
 
 	/// <summary>
 	///   Used when the location state name of the job opportunity is too long.
 	/// </summary>
-	public const string LocationStateNameTooLong = "O nome do estado da oportunidade de emprego deve ter no máximo 2 caracteres.";
+	public const string LocationStateNameTooLong =
+		"O nome do estado da oportunidade de emprego deve ter no máximo 2 caracteres.";
 
 	/// <summary>
 	///   Used when the location is null for on-site job opportunities.
 	/// </summary>
-	public const string LocationCantBeNullOnSiteOrHybrid = "A localização não pode ser nula para oportunidades de emprego presenciais.";
+	public const string LocationCantBeNullOnSiteOrHybrid =
+		"A localização não pode ser nula para oportunidades de emprego presenciais.";
+
+	#endregion
+
+	#region 05 - Contract
+
+	/// <summary>
+	///   Used when the minimum salary of the job opportunity is invalid.
+	/// </summary>
+	public const string MinSalaryInvalid = "O salário mínimo da oportunidade de emprego é inválido.";
+
+	/// <summary>
+	///   Used when the maximum salary of the job opportunity is invalid.
+	/// </summary>
+	public const string MaxSalaryInvalid = "O salário máximo da oportunidade de emprego é inválido.";
+
+	/// <summary>
+	///   Used when the minimum salary is greater than the maximum salary.
+	/// </summary>
+	public const string MinSalaryGreaterThanMaxSalary = "O salário mínimo não pode ser maior que o salário máximo.";
 
 	#endregion
 }

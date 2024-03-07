@@ -25,7 +25,8 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 	protected JobOpportunity GenerateValidJobOpportunity() => JobOpportunity.Create(
 		GenerateValidName(),
 		GenerateValidDescription(),
-		GenerateValidLocation()
+		GenerateValidLocation(),
+		GenerateValidContract()
 	);
 
 	/// <summary>
@@ -48,5 +49,15 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 		Faker.PickRandom<LocationType>(),
 		Faker.Address.City().ClampLength(3, 32),
 		Faker.Address.StateAbbr().ClampLength(2, 2)
+	);
+
+	/// <summary>
+	///   Generates a valid <see cref="JobOpportunityContract" />.
+	/// </summary>
+	/// <returns>It will return a valid <see cref="JobOpportunityContract" />.</returns>
+	protected JobOpportunityContract GenerateValidContract() => new(
+		Faker.PickRandom<ContractType>(),
+		Faker.Random.Decimal(1000, 10000),
+		Faker.Random.Decimal(10000, 100000)
 	);
 }

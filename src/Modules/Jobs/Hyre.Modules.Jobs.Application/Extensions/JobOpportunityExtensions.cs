@@ -4,7 +4,7 @@
 
 #region
 
-using Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Common;
+using Hyre.Modules.Jobs.Application.Common;
 using Hyre.Modules.Jobs.Core.Entities;
 
 #endregion
@@ -25,5 +25,6 @@ public static class JobOpportunityExtensions
 		jobOpportunity.Id,
 		jobOpportunity.Name,
 		jobOpportunity.Description,
-		jobOpportunity.Location);
+		jobOpportunity.Location,
+		jobOpportunity.Contract);
 }

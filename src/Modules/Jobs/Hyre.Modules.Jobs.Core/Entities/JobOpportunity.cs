@@ -30,15 +30,18 @@ public sealed class JobOpportunity : EntityBase<JobOpportunityId>
 	/// <param name="name">The name of the job opportunity.</param>
 	/// <param name="description">The description of the job opportunity.</param>
 	/// <param name="location">The location of the job opportunity.</param>
+	/// <param name="contract">The contract of the job opportunity.</param>
 	private JobOpportunity(
 		JobOpportunityId id,
 		JobOpportunityName name,
 		JobOpportunityDescription description,
-		JobOpportunityLocation location) : base(id)
+		JobOpportunityLocation location,
+		JobOpportunityContract contract) : base(id)
 	{
 		Name = name;
 		Description = description;
 		Location = location;
+		Contract = contract;
 	}
 
 	/// <summary>
@@ -54,7 +57,12 @@ public sealed class JobOpportunity : EntityBase<JobOpportunityId>
 	/// <summary>
 	///   Gets or sets the location of the job opportunity.
 	/// </summary>
-	public JobOpportunityLocation Location { get; }
+	public JobOpportunityLocation Location { get; private set; }
+
+	/// <summary>
+	///   Gets or sets the contract of the job opportunity.
+	/// </summary>
+	public JobOpportunityContract Contract { get; private set; }
 
 	/// <summary>
 	///   Initializes a new instance of the <see cref="JobOpportunity" /> class.
@@ -62,15 +70,18 @@ public sealed class JobOpportunity : EntityBase<JobOpportunityId>
 	/// <param name="name">The name of the job opportunity.</param>
 	/// <param name="description">The description of the job opportunity.</param>
 	/// <param name="location">The location of the job opportunity.</param>
+	/// <param name="contract">The contract of the job opportunity.</param>
 	/// <returns>It will return a new instance of the <see cref="JobOpportunity" /> class.</returns>
 	public static JobOpportunity Create(
 		JobOpportunityName name,
 		JobOpportunityDescription description,
-		JobOpportunityLocation location) => new(
+		JobOpportunityLocation location,
+		JobOpportunityContract contract) => new(
 		JobOpportunityId.New(),
 		name,
 		description,
-		location);
+		location,
+		contract);
 
 	#region Update Methods
 
@@ -85,6 +96,18 @@ public sealed class JobOpportunity : EntityBase<JobOpportunityId>
 	/// </summary>
 	/// <param name="description">The new description of the job opportunity.</param>
 	public void UpdateDescription(JobOpportunityDescription? description) => Description = description ?? Description;
+
+	/// <summary>
+	///   This method updates the location of the job opportunity.
+	/// </summary>
+	/// <param name="location">The new location of the job opportunity.</param>
+	public void UpdateLocation(JobOpportunityLocation? location) => Location = location ?? Location;
+
+	/// <summary>
+	///   This method updates the contract of the job opportunity.
+	/// </summary>
+	/// <param name="contract">The new contract of the job opportunity.</param>
+	public void UpdateContract(JobOpportunityContract? contract) => Contract = contract ?? Contract;
 
 	#endregion
 }

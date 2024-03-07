@@ -3,6 +3,7 @@ using System;
 using Hyre.Modules.Jobs.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Hyre.Modules.Jobs.Infrastructure.Migrations
 {
     [DbContext(typeof(JobsRepositoryContext))]
-    partial class JobsRepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20240307152241_AddContract")]
+    partial class AddContract
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

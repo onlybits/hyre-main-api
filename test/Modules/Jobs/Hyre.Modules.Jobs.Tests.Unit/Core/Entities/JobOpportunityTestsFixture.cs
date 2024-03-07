@@ -33,10 +33,20 @@ public abstract class JobOpportunityTestsFixture : BaseFixture
 	/// <summary>
 	///   Generates a valid <see cref="JobOpportunityLocation" />.
 	/// </summary>
-	/// <returns>If will return a valid <see cref="JobOpportunityLocation" />.</returns>
+	/// <returns>It will return a valid <see cref="JobOpportunityLocation" />.</returns>
 	protected JobOpportunityLocation GenerateValidLocation() => new(
 		Faker.PickRandom<LocationType>(),
 		Faker.Address.City().ClampLength(3, 32),
 		Faker.Address.StateAbbr().ClampLength(2, 2)
+	);
+
+	/// <summary>
+	///   Generates a valid <see cref="JobOpportunityContract" />.
+	/// </summary>
+	/// <returns>It will return a valid <see cref="JobOpportunityContract" />.</returns>
+	protected JobOpportunityContract GenerateValidContract() => new(
+		Faker.PickRandom<ContractType>(),
+		Faker.Random.Decimal(1000, 10000),
+		Faker.Random.Decimal(10000, 100000)
 	);
 }

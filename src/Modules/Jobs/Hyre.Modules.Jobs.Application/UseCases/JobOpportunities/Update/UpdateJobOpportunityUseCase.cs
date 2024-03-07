@@ -28,7 +28,8 @@ internal sealed class UpdateJobOpportunityUseCase : IUpdateJobOpportunityUseCase
 
 	public async Task Handle(UpdateJobOpportunityRequest request, CancellationToken cancellationToken)
 	{
-		var jobOpportunity = await _repository.JobOpportunity.FindByIdAsync(request.Id, request.TrackChanges, cancellationToken);
+		var jobOpportunity =
+			await _repository.JobOpportunity.FindByIdAsync(request.Id, request.TrackChanges, cancellationToken);
 		if (jobOpportunity is null)
 		{
 			_logger.LogError("Job opportunity with id {Id} was not found.", request.Id);
@@ -37,6 +38,8 @@ internal sealed class UpdateJobOpportunityUseCase : IUpdateJobOpportunityUseCase
 
 		jobOpportunity.UpdateName(request.Input.Name);
 		jobOpportunity.UpdateDescription(request.Input.Description);
+		jobOpportunity.UpdateLocation(request.Input.Location);
+		jobOpportunity.UpdateContract(request.Input.Contract);
 
 		if (request.TrackChanges)
 		{

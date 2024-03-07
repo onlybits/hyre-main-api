@@ -4,8 +4,8 @@
 
 #region
 
+using Hyre.Modules.Jobs.Application.Common;
 using Hyre.Modules.Jobs.Application.Extensions;
-using Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Common;
 using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Core.Repositories;
 using Hyre.Shared.Abstractions.Logging;
@@ -37,7 +37,8 @@ internal sealed class CreateJobOpportunityUseCase : ICreateJobOpportunityUseCase
 		var jobOpportunity = JobOpportunity.Create(
 			request.Input.Name,
 			request.Input.Description,
-			request.Input.Location);
+			request.Input.Location,
+			request.Input.Contract);
 
 		try
 		{
