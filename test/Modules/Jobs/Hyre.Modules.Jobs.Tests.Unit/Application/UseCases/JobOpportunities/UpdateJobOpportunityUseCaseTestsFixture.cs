@@ -35,5 +35,6 @@ public abstract class UpdateJobOpportunityUseCaseTestsFixture : JobOpportunityBa
 		GenerateValidName(),
 		GenerateValidDescription(),
 		GenerateValidLocation(),
-		GenerateValidContract());
+		GenerateValidContract(),
+		GenerateListOfRequirements(3));
 }

@@ -35,5 +35,6 @@ public sealed class JobOpportunityExtensionsTests : JobOpportunityBaseFixture
 		_ = response.Description.Should().Be(jobOpportunity.Description);
 		_ = response.Location.Should().Be(jobOpportunity.Location);
 		_ = response.Contract.Should().Be(jobOpportunity.Contract);
+		_ = response.Requirements.Should().BeEquivalentTo(jobOpportunity.Requirements);
 	}
 }

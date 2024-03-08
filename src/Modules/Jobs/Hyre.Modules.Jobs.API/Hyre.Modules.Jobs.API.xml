@@ -6,18 +6,20 @@
     <members>
         <member name="T:Hyre.Modules.Jobs.API.Controllers.JobOpportunitiesController">
             <summary>
-              This controller is responsible for handling requests related to job opportunities.
+                This controller is responsible for handling requests related to job opportunities.
             </summary>
         </member>
         <member name="M:Hyre.Modules.Jobs.API.Controllers.JobOpportunitiesController.#ctor(MediatR.ISender)">
             <summary>
-              Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.API.Controllers.JobOpportunitiesController" /> class.
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.API.Controllers.JobOpportunitiesController"/>
+                class.
             </summary>
             <param name="sender">The MediatR sender, used to send requests to the application layer.</param>
         </member>
         <member name="M:Hyre.Modules.Jobs.API.Controllers.JobOpportunitiesController.ListAsync(Hyre.Modules.Jobs.Core.Requests.JobOpportunityParameters,System.Threading.CancellationToken)">
             <summary>
-              This endpoint is responsible for listing job opportunities.
+                This endpoint is responsible for listing job opportunities.
             </summary>
             <param name="parameters">The parameters used to filter the job opportunities.</param>
             <param name="cancellationToken">The cancellation token.</param>
@@ -25,7 +27,7 @@
         </member>
         <member name="M:Hyre.Modules.Jobs.API.Controllers.JobOpportunitiesController.Find(System.Guid,System.Threading.CancellationToken)">
             <summary>
-              This endpoint is responsible for retrieving a job opportunity by its id.
+                This endpoint is responsible for retrieving a job opportunity by its id.
             </summary>
             <param name="id">The id of the job opportunity.</param>
             <param name="cancellationToken">The cancellation token.</param>
@@ -33,7 +35,7 @@
         </member>
         <member name="M:Hyre.Modules.Jobs.API.Controllers.JobOpportunitiesController.Create(Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create.CreateJobOpportunityInput,System.Threading.CancellationToken)">
             <summary>
-              This endpoint is responsible for creating a new job opportunity.
+                This endpoint is responsible for creating a new job opportunity.
             </summary>
             <param name="input">The input data used to create the job opportunity.</param>
             <param name="cancellationToken">The cancellation token.</param>
@@ -41,7 +43,7 @@
         </member>
         <member name="M:Hyre.Modules.Jobs.API.Controllers.JobOpportunitiesController.Update(System.Guid,Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Update.UpdateJobOpportunityInput,System.Threading.CancellationToken)">
             <summary>
-              This endpoint is responsible for updating a job opportunity.
+                This endpoint is responsible for updating a job opportunity.
             </summary>
             <param name="id">The id of the job opportunity.</param>
             <param name="input">The input data used to update the job opportunity.</param>
@@ -50,7 +52,7 @@
         </member>
         <member name="M:Hyre.Modules.Jobs.API.Controllers.JobOpportunitiesController.Delete(System.Guid,System.Threading.CancellationToken)">
             <summary>
-              This endpoint is responsible for deleting a job opportunity.
+                This endpoint is responsible for deleting a job opportunity.
             </summary>
             <param name="id">The id of the job opportunity.</param>
             <param name="cancellationToken">The cancellation token.</param>
@@ -58,29 +60,29 @@
         </member>
         <member name="T:Hyre.Modules.Jobs.API.IJobsApiMarker">
             <summary>
-              This is a marker for the API project of the Jobs module.
+                This is a marker for the API project of the Jobs module.
             </summary>
         </member>
         <member name="T:Hyre.Modules.Jobs.API.JobsModule">
             <summary>
-              This is the jobs module configuration.
+                This is the jobs module configuration.
             </summary>
-            <inheritdoc cref="T:Hyre.Shared.Abstractions.Modules.IModule" />
+            <inheritdoc cref="T:Hyre.Shared.Abstractions.Modules.IModule"/>
         </member>
         <member name="P:Hyre.Modules.Jobs.API.JobsModule.Name">
             <summary>
-              Gets the name of the module.
+                Gets the name of the module.
             </summary>
         </member>
         <member name="M:Hyre.Modules.Jobs.API.JobsModule.Register(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-              This method is responsible for registering the services of the module.
+                This method is responsible for registering the services of the module.
             </summary>
             <param name="services">The services collection.</param>
         </member>
         <member name="M:Hyre.Modules.Jobs.API.JobsModule.Use(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
-              This method is responsible for configuring the module.
+                This method is responsible for configuring the module.
             </summary>
             <param name="app">The application builder.</param>
             <returns>Returns the application builder.</returns>

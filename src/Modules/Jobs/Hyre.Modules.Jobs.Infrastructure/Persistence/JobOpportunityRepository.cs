@@ -30,7 +30,6 @@ internal sealed class JobOpportunityRepository : RepositoryBase<JobOpportunity>,
 	{
 	}
 
-
 	/// <summary>
 	///   This method is responsible for listing job opportunities.
 	/// </summary>

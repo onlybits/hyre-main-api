@@ -6,6 +6,7 @@
 
 using FluentAssertions;
 using Hyre.Modules.Jobs.Core.Entities;
+using Hyre.Modules.Jobs.Tests.Unit.Common;
 using Xunit;
 
 #endregion
@@ -15,7 +16,7 @@ namespace Hyre.Modules.Jobs.Tests.Unit.Core.Entities;
 /// <summary>
 ///   Unit tests for the <see cref="JobOpportunity" /> class.
 /// </summary>
-public sealed class JobOpportunityTests : JobOpportunityTestsFixture
+public sealed class JobOpportunityTests : JobOpportunityBaseFixture
 {
 	[Fact(DisplayName = nameof(Create_WithValidParameters_ShouldCreateAnInstance))]
 	[Trait(EntitiesTraits.Name, EntitiesTraits.Value)]
@@ -26,9 +27,15 @@ public sealed class JobOpportunityTests : JobOpportunityTestsFixture
 		var description = GenerateValidDescription();
 		var location = GenerateValidLocation();
 		var contract = GenerateValidContract();
+		var requirements = GenerateListOfRequirements(5);
 
 		// Act
-		var sut = JobOpportunity.Create(name, description, location, contract);
+		var sut = JobOpportunity.Create(
+			name,
+			description,
+			location,
+			contract,
+			requirements);
 
 		// Assert
 		_ = sut.Should().NotBeNull();
@@ -38,6 +45,11 @@ public sealed class JobOpportunityTests : JobOpportunityTestsFixture
 		_ = sut.CreatedAt.Should().NotBe(default!);
 		_ = sut.CreatedAt.Value.Should().BeCloseTo(DateTimeOffset.UtcNow, TimeSpan.FromSeconds(2));
 		_ = sut.Location.Should().NotBeNull();
+		_ = sut.Location.Should().Be(location);
+		_ = sut.Contract.Should().NotBeNull();
+		_ = sut.Contract.Should().Be(contract);
+		_ = sut.Requirements.Should().NotBeNull();
+		_ = sut.Requirements.Should().BeEquivalentTo(requirements);
 	}
 
 	[Fact(DisplayName = nameof(UpdateName_WithValidParameters_ShouldUpdateName))]
@@ -49,11 +61,18 @@ public sealed class JobOpportunityTests : JobOpportunityTestsFixture
 		var description = GenerateValidDescription();
 		var location = GenerateValidLocation();
 		var contract = GenerateValidContract();
+		var requirements = GenerateListOfRequirements(5);
 
 		var newName = GenerateValidName();
 
 		// Act
-		var sut = JobOpportunity.Create(name, description, location, contract);
+		var sut = JobOpportunity.Create(
+			name,
+			description,
+			location,
+			contract,
+			requirements);
+
 		sut.UpdateName(newName);
 
 		// Assert
@@ -69,11 +88,18 @@ public sealed class JobOpportunityTests : JobOpportunityTestsFixture
 		var description = GenerateValidDescription();
 		var location = GenerateValidLocation();
 		var contract = GenerateValidContract();
+		var requirements = GenerateListOfRequirements(5);
 
 		var newDescription = GenerateValidDescription();
 
 		// Act
-		var sut = JobOpportunity.Create(name, description, location, contract);
+		var sut = JobOpportunity.Create(
+			name,
+			description,
+			location,
+			contract,
+			requirements);
+
 		sut.UpdateDescription(newDescription);
 
 		// Assert
@@ -89,11 +115,18 @@ public sealed class JobOpportunityTests : JobOpportunityTestsFixture
 		var description = GenerateValidDescription();
 		var location = GenerateValidLocation();
 		var contract = GenerateValidContract();
+		var requirements = GenerateListOfRequirements(5);
 
 		var newLocation = GenerateValidLocation();
 
 		// Act
-		var sut = JobOpportunity.Create(name, description, location, contract);
+		var sut = JobOpportunity.Create(
+			name,
+			description,
+			location,
+			contract,
+			requirements);
+
 		sut.UpdateLocation(newLocation);
 
 		// Assert
@@ -109,14 +142,46 @@ public sealed class JobOpportunityTests : JobOpportunityTestsFixture
 		var description = GenerateValidDescription();
 		var location = GenerateValidLocation();
 		var contract = GenerateValidContract();
+		var requirements = GenerateListOfRequirements(5);
 
 		var newContract = GenerateValidContract();
 
 		// Act
-		var sut = JobOpportunity.Create(name, description, location, contract);
+		var sut = JobOpportunity.Create(
+			name,
+			description,
+			location,
+			contract,
+			requirements);
 		sut.UpdateContract(newContract);
 
 		// Assert
 		_ = sut.Contract.Should().Be(newContract);
+	}
+
+	[Fact(DisplayName = nameof(UpdateRequirements_WithValidParameters_ShouldUpdateRequirements))]
+	[Trait(EntitiesTraits.Name, EntitiesTraits.Value)]
+	public void UpdateRequirements_WithValidParameters_ShouldUpdateRequirements()
+	{
+		// Arrange
+		var name = GenerateValidName();
+		var description = GenerateValidDescription();
+		var location = GenerateValidLocation();
+		var contract = GenerateValidContract();
+		var requirements = GenerateListOfRequirements(5);
+
+		var newRequirements = GenerateListOfRequirements(5);
+
+		// Act
+		var sut = JobOpportunity.Create(
+			name,
+			description,
+			location,
+			contract,
+			requirements);
+		sut.UpdateRequirements(newRequirements);
+
+		// Assert
+		_ = sut.Requirements.Should().BeEquivalentTo(newRequirements);
 	}
 }

@@ -152,6 +152,9 @@ public sealed class JobOpportunityRepositoryTests : JobOpportunityRepositoryTest
 		// Act
 		jobOpportunity.UpdateName(updatedJobOpportunity.Name);
 		jobOpportunity.UpdateDescription(updatedJobOpportunity.Description);
+		jobOpportunity.UpdateContract(updatedJobOpportunity.Contract);
+		jobOpportunity.UpdateLocation(updatedJobOpportunity.Location);
+		jobOpportunity.UpdateRequirements(updatedJobOpportunity.Requirements);
 
 		_sut.Update(jobOpportunity);
 		_ = await _context.SaveChangesAsync(_ct);
@@ -165,9 +168,7 @@ public sealed class JobOpportunityRepositoryTests : JobOpportunityRepositoryTest
 				.Excluding(x => x.Id)
 				.Excluding(x => x.Events)
 				.Excluding(x => x.CreatedAt)
-				.Excluding(x => x.Location)
 			// I'm excluding the Id because i'm comparing with a new generated job opportunity.
-			// I'm excluding the Location because I don't have an updated location yet. TODO: Replace this when the location is updated.
 		);
 	}
 

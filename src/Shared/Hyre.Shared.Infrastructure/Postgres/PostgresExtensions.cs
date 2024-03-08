@@ -25,7 +25,7 @@ public static class PostgresExtensions
 	public static IServiceCollection AddPostgres<T>(this IServiceCollection services) where T : DbContext
 	{
 		var options = services.GetOptions<PostgresOptions>(PostgresOptions.SectionName);
-		services.AddDbContext<T>(opt => opt.UseNpgsql(options.ConnectionString).UseSnakeCaseNamingConvention());
+		_ = services.AddDbContext<T>(opt => opt.UseNpgsql(options.ConnectionString).UseSnakeCaseNamingConvention());
 		return services;
 	}
 
@@ -37,8 +37,9 @@ public static class PostgresExtensions
 	internal static IServiceCollection AddPostgres(this IServiceCollection services)
 	{
 		var options = services.GetOptions<PostgresOptions>(PostgresOptions.SectionName);
-		services.AddSingleton(options);
-		services.AddHostedService<DbContextAppInitializer>();
+		_ = services.AddSingleton(options);
+		_ = services.AddHostedService<DbContextAppInitializer>();
+
 		return services;
 	}
 }

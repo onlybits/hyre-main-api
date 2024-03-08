@@ -34,7 +34,8 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 		GenerateValidName(),
 		GenerateValidDescription(),
 		GenerateValidLocation(),
-		GenerateValidContract());
+		GenerateValidContract(),
+		GenerateListOfRequirements(5));
 
 	/// <summary>
 	///   Generates a valid name for the <see cref="JobOpportunityName" /> class.
@@ -67,4 +68,19 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 		Faker.Random.Decimal(1000, 10000),
 		Faker.Random.Decimal(10000, 100000)
 	);
+
+	/// <summary>
+	///   Generates a list of requirements.
+	/// </summary>
+	/// <param name="count">The count of requirements to generate.</param>
+	/// <returns>Returns a list of requirements.</returns>
+	protected JobOpportunityRequirements GenerateListOfRequirements(int count)
+	{
+		var values = Enumerable
+			.Range(0, count)
+			.Select(_ => Faker.Lorem.Word().ClampLength(3, 32))
+			.ToList();
+
+		return new JobOpportunityRequirements(values);
+	}
 }

@@ -54,6 +54,7 @@ public sealed class FindJobOpportunityUseCaseTests : JobOpportunityUseCaseTestsF
 		_ = result.Description.Should().Be(jobOpportunity.Description);
 		_ = result.Location.Should().Be(jobOpportunity.Location);
 		_ = result.Contract.Should().Be(jobOpportunity.Contract);
+		_ = result.Requirements.Should().BeEquivalentTo(jobOpportunity.Requirements);
 	}
 
 	[Fact(DisplayName = nameof(Handle_WhenCalledWithInvalidId_ShouldThrowJobOpportunityNotFoundException))]

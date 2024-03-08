@@ -51,13 +51,13 @@ public sealed class CreateJobOpportunityUseCaseTests : CreateJobOpportunityUseCa
 	{
 		// Arrange
 		var request = GenerateValidRequest();
-		_repository.CommitChangesAsync(CancellationToken.None).ThrowsAsync(new ArgumentException(""));
+		_ = _repository.CommitChangesAsync(CancellationToken.None).ThrowsAsync(new ArgumentException(""));
 
 		// Act
 		var act = async () => await _sut.Handle(request, CancellationToken.None);
 
 		// Asser
-		await act.Should().ThrowAsync<ArgumentException>();
+		_ = await act.Should().ThrowAsync<ArgumentException>();
 
 		_logger.Received(1).LogError(
 			Arg.Is("Error creating job opportunity: {JobOpportunity}."),

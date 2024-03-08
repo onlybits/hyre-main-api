@@ -27,6 +27,22 @@ public abstract class JobOpportunityErrorMessages
 
 	#endregion
 
+	#region 06 - Requirements
+
+	/// <summary>
+	///   Used when the requirement of the job opportunity is too short.
+	/// </summary>
+	public static string RequirementTooShort(int index) =>
+		$"O requisito da oportunidade de emprego na posição {index} deve ter no mínimo 3 caracteres.";
+
+	/// <summary>
+	///   Used when the requirement of the job opportunity is too long.
+	/// </summary>
+	public static string RequirementTooLong(int index) =>
+		$"O requisito da oportunidade de emprego na posição {index} deve ter no máximo 500 caracteres.";
+
+	#endregion
+
 	#region 02 - Name
 
 	/// <summary>

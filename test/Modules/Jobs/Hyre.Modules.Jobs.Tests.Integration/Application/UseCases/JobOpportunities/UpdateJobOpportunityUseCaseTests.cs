@@ -50,7 +50,8 @@ public sealed class UpdateJobOpportunityUseCaseTests : JobOpportunityUseCaseTest
 			GenerateValidName(),
 			GenerateValidDescription(),
 			GenerateValidLocation(),
-			GenerateValidContract());
+			GenerateValidContract(),
+			GenerateListOfRequirements(2));
 
 		var request = new UpdateJobOpportunityRequest(jobOpportunity.Id, input, trackChanges);
 
@@ -66,6 +67,7 @@ public sealed class UpdateJobOpportunityUseCaseTests : JobOpportunityUseCaseTest
 		_ = result.Description.Should().Be(input.Description);
 		_ = result.Location.Should().Be(input.Location);
 		_ = result.Contract.Should().Be(input.Contract);
+		_ = result.Requirements.Should().BeEquivalentTo(input.Requirements);
 	}
 
 	[Fact(DisplayName = nameof(Handle_WhenCalledWithInvalidId_ShouldThrowJobOpportunityNotFoundException))]
@@ -78,7 +80,8 @@ public sealed class UpdateJobOpportunityUseCaseTests : JobOpportunityUseCaseTest
 			GenerateValidName(),
 			GenerateValidDescription(),
 			GenerateValidLocation(),
-			GenerateValidContract());
+			GenerateValidContract(),
+			GenerateListOfRequirements(7));
 
 		var request = new UpdateJobOpportunityRequest(Guid.NewGuid(), input, false);
 

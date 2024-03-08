@@ -26,5 +26,6 @@ public static class JobOpportunityExtensions
 		jobOpportunity.Name,
 		jobOpportunity.Description,
 		jobOpportunity.Location,
-		jobOpportunity.Contract);
+		jobOpportunity.Contract,
+		jobOpportunity.Requirements);
 }

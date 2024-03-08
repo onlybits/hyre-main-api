@@ -31,14 +31,14 @@ internal sealed class CreateJobOpportunityUseCase : ICreateJobOpportunityUseCase
 		_logger = logger;
 	}
 
-	public async Task<JobOpportunityResponse> Handle(CreateJobOpportunityRequest request,
-		CancellationToken cancellationToken)
+	public async Task<JobOpportunityResponse> Handle(CreateJobOpportunityRequest request, CancellationToken cancellationToken)
 	{
 		var jobOpportunity = JobOpportunity.Create(
 			request.Input.Name,
 			request.Input.Description,
 			request.Input.Location,
-			request.Input.Contract);
+			request.Input.Contract,
+			request.Input.Requirements);
 
 		try
 		{

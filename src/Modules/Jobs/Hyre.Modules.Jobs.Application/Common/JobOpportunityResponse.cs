@@ -18,9 +18,11 @@ namespace Hyre.Modules.Jobs.Application.Common;
 /// <param name="Description">The job opportunity description.</param>
 /// <param name="Location">The job opportunity location.</param>
 /// <param name="Contract">The job opportunity contract.</param>
+/// <param name="Requirements">The job opportunity requirements.</param>
 public sealed record JobOpportunityResponse(
 	JobOpportunityId Id,
 	JobOpportunityName Name,
 	JobOpportunityDescription Description,
 	JobOpportunityLocation? Location,
-	JobOpportunityContract Contract);
+	JobOpportunityContract Contract,
+	JobOpportunityRequirements? Requirements);

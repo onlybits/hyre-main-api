@@ -74,6 +74,12 @@ internal sealed class JobOpportunityConfiguration : IEntityTypeConfiguration<Job
 			.HasColumnName("contract_max_salary")
 			.IsRequired();
 
+		_ = builder.OwnsOne(jo => jo.Requirements, v =>
+		{
+			_ = v.ToJson();
+			_ = v.Property(x => x.Values).HasJsonPropertyName("values");
+		});
+
 		_ = builder.Ignore(jo => jo.Events);
 	}
 }

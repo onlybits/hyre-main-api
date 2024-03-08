@@ -30,5 +30,6 @@ public abstract class CreateJobOpportunityUseCaseTestsFixture : JobOpportunityBa
 		GenerateValidName(),
 		GenerateValidDescription(),
 		GenerateValidLocation(),
-		GenerateValidContract());
+		GenerateValidContract(),
+		GenerateListOfRequirements(3));
 }

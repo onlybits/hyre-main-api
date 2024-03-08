@@ -52,7 +52,8 @@ public sealed class CreateJobOpportunityUseCaseTests : JobOpportunityUseCaseTest
 			GenerateValidName(),
 			GenerateValidDescription(),
 			GenerateValidLocation(),
-			GenerateValidContract());
+			GenerateValidContract(),
+			GenerateListOfRequirements(5));
 
 		var createJobOpportunityRequest = new CreateJobOpportunityRequest(createJobOpportunityInput);
 
@@ -66,5 +67,6 @@ public sealed class CreateJobOpportunityUseCaseTests : JobOpportunityUseCaseTest
 		_ = result.Description.Should().Be(createJobOpportunityInput.Description);
 		_ = result.Location.Should().Be(createJobOpportunityInput.Location);
 		_ = result.Contract.Should().Be(createJobOpportunityInput.Contract);
+		_ = result.Requirements.Should().BeEquivalentTo(createJobOpportunityInput.Requirements);
 	}
 }

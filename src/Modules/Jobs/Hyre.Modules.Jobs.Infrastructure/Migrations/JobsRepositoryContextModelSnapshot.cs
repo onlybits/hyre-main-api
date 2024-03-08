@@ -111,11 +111,34 @@ namespace Hyre.Modules.Jobs.Infrastructure.Migrations
                                 .HasConstraintName("fk_job_opportunities_job_opportunities_id");
                         });
 
+                    b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityRequirements", "Requirements", b1 =>
+                        {
+                            b1.Property<Guid>("JobOpportunityId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string[]>("Values")
+                                .IsRequired()
+                                .HasColumnType("text[]")
+                                .HasAnnotation("Relational:JsonPropertyName", "values");
+
+                            b1.HasKey("JobOpportunityId");
+
+                            b1.ToTable("job_opportunities", "jobs");
+
+                            b1.ToJson("requirements");
+
+                            b1.WithOwner()
+                                .HasForeignKey("JobOpportunityId")
+                                .HasConstraintName("fk_job_opportunities_job_opportunities_id");
+                        });
+
                     b.Navigation("Contract")
                         .IsRequired();
 
                     b.Navigation("Location")
                         .IsRequired();
+
+                    b.Navigation("Requirements");
                 });
 #pragma warning restore 612, 618
         }
