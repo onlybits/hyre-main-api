@@ -50,6 +50,7 @@ public sealed class JobOpportunityTests : JobOpportunityBaseFixture
 		_ = sut.Contract.Should().Be(contract);
 		_ = sut.Requirements.Should().NotBeNull();
 		_ = sut.Requirements.Should().BeEquivalentTo(requirements);
+		_ = sut.Candidates.Should().BeNullOrEmpty();
 	}
 
 	[Fact(DisplayName = nameof(UpdateName_WithValidParameters_ShouldUpdateName))]
@@ -194,11 +195,11 @@ public sealed class JobOpportunityTests : JobOpportunityBaseFixture
 		var candidate = GenerateValidCandidate();
 
 		// Act
-		sut.AddCandidate(candidate.Id);
+		sut.AddCandidate(candidate);
 
 		// Assert
 		_ = sut.Candidates.Should().NotBeEmpty();
-		_ = sut.Candidates.Should().Contain(candidate.Id);
+		_ = sut.Candidates.Should().Contain(candidate);
 		_ = sut.Candidates.Should().HaveCount(1);
 	}
 }

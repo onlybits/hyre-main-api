@@ -85,6 +85,7 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 	/// </summary>
 	/// <returns>The valid <see cref="Candidate" />.</returns>
 	protected Candidate GenerateValidCandidate() => Candidate.Create(
+		JobOpportunityId.New(),
 		GenerateCandidateValidName());
 
 	/// <summary>

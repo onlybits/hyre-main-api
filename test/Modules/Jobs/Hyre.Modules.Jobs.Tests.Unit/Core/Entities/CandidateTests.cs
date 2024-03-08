@@ -6,6 +6,7 @@
 
 using FluentAssertions;
 using Hyre.Modules.Jobs.Core.Entities;
+using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 using Hyre.Modules.Jobs.Tests.Unit.Common;
 using Xunit;
 
@@ -24,9 +25,10 @@ public sealed class CandidateTests : CandidateBaseFixture
 	{
 		// Arrange
 		var name = GenerateValidName();
+		var jobOpportunityId = JobOpportunityId.New();
 
 		// Act
-		var sut = Candidate.Create(name);
+		var sut = Candidate.Create(jobOpportunityId, name);
 
 		// Assert
 		_ = sut.Should().NotBeNull();
@@ -34,6 +36,25 @@ public sealed class CandidateTests : CandidateBaseFixture
 		_ = sut.Name.Should().Be(name);
 		_ = sut.CreatedAt.Should().NotBe(default!);
 		_ = sut.CreatedAt.Value.Should().BeCloseTo(DateTimeOffset.UtcNow, TimeSpan.FromSeconds(2));
+		_ = sut.JobOpportunityId.Should().NotBe(default!);
+		_ = sut.JobOpportunityId.Value.Should().NotBeEmpty();
+		_ = sut.JobOpportunityId.Should().Be(jobOpportunityId);
 		_ = sut.Events.Should().HaveCount(1);
+	}
+
+	[Fact(DisplayName = nameof(UpdateName_WhenGivenValidName_ShouldUpdateName))]
+	[Trait(EntitiesTraits.Name, EntitiesTraits.Value)]
+	public void UpdateName_WhenGivenValidName_ShouldUpdateName()
+	{
+		// Arrange
+		var sut = GenerateValidCandidate();
+		var newName = GenerateValidName();
+
+		// Act
+		sut.UpdateName(newName);
+
+		// Assert
+		_ = sut.Should().NotBeNull();
+		_ = sut.Name.Should().Be(newName);
 	}
 }

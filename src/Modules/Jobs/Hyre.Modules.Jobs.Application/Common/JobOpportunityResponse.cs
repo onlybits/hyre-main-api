@@ -5,6 +5,7 @@
 #region
 
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
+using Hyre.Shared.Abstractions.Kernel.ValueObjects;
 
 #endregion
 
@@ -19,10 +20,12 @@ namespace Hyre.Modules.Jobs.Application.Common;
 /// <param name="Location">The job opportunity location.</param>
 /// <param name="Contract">The job opportunity contract.</param>
 /// <param name="Requirements">The job opportunity requirements.</param>
+/// <param name="CreatedAt">The job opportunity creation date.</param>
 public sealed record JobOpportunityResponse(
 	JobOpportunityId Id,
 	JobOpportunityName Name,
 	JobOpportunityDescription Description,
 	JobOpportunityLocation? Location,
 	JobOpportunityContract Contract,
-	JobOpportunityRequirements? Requirements);
+	JobOpportunityRequirements? Requirements,
+	CreateDate CreatedAt);

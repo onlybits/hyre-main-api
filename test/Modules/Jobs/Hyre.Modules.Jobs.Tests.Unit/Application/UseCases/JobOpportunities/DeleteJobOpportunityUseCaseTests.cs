@@ -38,7 +38,9 @@ public sealed class DeleteJobOpportunityUseCaseTests : DeleteJobOpportunityUseCa
 		// Arrange
 		var request = GenerateValidRequest();
 		var jobOpportunity = GenerateValidJobOpportunity();
-		_ = _repository.JobOpportunity.FindByIdAsync(Arg.Any<JobOpportunityId>(), Arg.Any<bool>(), CancellationToken.None)
+		_ = _repository
+			.JobOpportunity
+			.FindByIdAsync(Arg.Any<JobOpportunityId>(), Arg.Any<bool>(), Arg.Any<bool>(), CancellationToken.None)
 			.Returns(jobOpportunity);
 
 		// Act
@@ -58,10 +60,14 @@ public sealed class DeleteJobOpportunityUseCaseTests : DeleteJobOpportunityUseCa
 	{
 		// Arrange
 		var request = GenerateValidRequest();
-		_repository.JobOpportunity.FindByIdAsync(Arg.Any<JobOpportunityId>(), Arg.Any<bool>(), CancellationToken.None).ReturnsNull();
+		_ = _repository
+			.JobOpportunity
+			.FindByIdAsync(Arg.Any<JobOpportunityId>(), Arg.Any<bool>(), Arg.Any<bool>(), CancellationToken.None)
+			.ReturnsNull();
 
 		// Act
 		var act = async () => await _sut.Handle(request, CancellationToken.None);
+
 		// Assert
 		_ = await act.Should().ThrowAsync<JobOpportunityNotFoundException>()
 			.WithMessage(JobOpportunityErrorMessages.NotFound);

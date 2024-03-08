@@ -37,7 +37,10 @@ public sealed class FindJobOpportunityUseCaseTests : FindJobOpportunityUseCaseTe
 		// Arrange
 		var request = GenerateValidRequest();
 		var finalResult = GenerateValidJobOpportunity();
-		_ = _repository.JobOpportunity.FindByIdAsync(Arg.Any<JobOpportunityId>(), Arg.Any<bool>(), CancellationToken.None).Returns(finalResult);
+		_ = _repository
+			.JobOpportunity
+			.FindByIdAsync(Arg.Any<JobOpportunityId>(), Arg.Any<bool>(), Arg.Any<bool>(), CancellationToken.None)
+			.Returns(finalResult);
 
 		// Act
 		var result = await _sut.Handle(request, CancellationToken.None);
@@ -57,13 +60,17 @@ public sealed class FindJobOpportunityUseCaseTests : FindJobOpportunityUseCaseTe
 	{
 		// Arrange
 		var request = GenerateValidRequest();
-		_ = _repository.JobOpportunity.FindByIdAsync(Arg.Any<JobOpportunityId>(), Arg.Any<bool>(), CancellationToken.None).ReturnsNull();
+		_ = _repository
+			.JobOpportunity
+			.FindByIdAsync(Arg.Any<JobOpportunityId>(), Arg.Any<bool>(), Arg.Any<bool>(), CancellationToken.None)
+			.ReturnsNull();
 
 		// Act
 		var act = async () => await _sut.Handle(request, CancellationToken.None);
 
 		// Assert
-		_ = await act.Should().ThrowAsync<JobOpportunityNotFoundException>()
+		_ = await act.Should()
+			.ThrowAsync<JobOpportunityNotFoundException>()
 			.WithMessage(JobOpportunityErrorMessages.NotFound);
 
 		_logger.Received(1).LogError(

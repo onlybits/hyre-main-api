@@ -1,0 +1,29 @@
+using FluentAssertions;
+using Hyre.Modules.Jobs.Application.Extensions;
+using Hyre.Modules.Jobs.Tests.Unit.Common;
+using Xunit;
+
+namespace Hyre.Modules.Jobs.Tests.Unit.Application.Extensions;
+
+/// <summary>
+///   Unit tests for the candidate extensions.
+/// </summary>
+public sealed class CandidateExtensionsTests : CandidateBaseFixture
+{
+	[Fact(DisplayName = nameof(ToResponse_WhenUsedInValidEntity_ShouldMapToResponseObject))]
+	[Trait(ExtensionsTraits.Name, ExtensionsTraits.Value)]
+	public void ToResponse_WhenUsedInValidEntity_ShouldMapToResponseObject()
+	{
+		// Arrange
+		var candidate = GenerateValidCandidate();
+
+		// Act
+		var response = candidate.ToResponse();
+
+		// Assert
+		_ = response.Should().NotBeNull();
+		_ = response.Id.Should().Be(candidate.Id);
+		_ = response.Name.Should().Be(candidate.Name);
+		_ = response.CreatedAt.Should().Be(candidate.CreatedAt);
+	}
+}

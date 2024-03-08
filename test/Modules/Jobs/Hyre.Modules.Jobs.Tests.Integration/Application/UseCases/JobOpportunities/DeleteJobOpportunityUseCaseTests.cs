@@ -50,7 +50,7 @@ public sealed class DeleteJobOpportunityUseCaseTests : JobOpportunityUseCaseTest
 		// Act
 		await SeedDatabase(jobOpportunities);
 		await _sut.Handle(request, _cancellationToken);
-		var result = await _repository.JobOpportunity.FindByIdAsync(jobOpportunity.Id, false, _cancellationToken);
+		var result = await _repository.JobOpportunity.FindByIdAsync(jobOpportunity.Id, false, false, _cancellationToken);
 
 		// Assert
 		_ = result.Should().BeNull();

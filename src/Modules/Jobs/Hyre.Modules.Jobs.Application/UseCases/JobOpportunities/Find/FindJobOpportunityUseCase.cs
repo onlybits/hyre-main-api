@@ -31,8 +31,10 @@ internal sealed class FindJobOpportunityUseCase : IFindJobOpportunityUseCase
 	public async Task<JobOpportunityResponse> Handle(FindJobOpportunityRequest request,
 		CancellationToken cancellationToken)
 	{
-		var jobOpportunity =
-			await _repository.JobOpportunity.FindByIdAsync(request.Id, request.TrackChanges, cancellationToken);
+		var jobOpportunity = await _repository
+			.JobOpportunity
+			.FindByIdAsync(request.Id, request.TrackChanges, cancellationToken: cancellationToken);
+
 		if (jobOpportunity is not null)
 		{
 			_logger.LogInfo("Job opportunity with id {Id} found successfully.", request.Id);

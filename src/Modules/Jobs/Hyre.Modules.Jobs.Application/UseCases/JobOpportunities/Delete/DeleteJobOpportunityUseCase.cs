@@ -28,7 +28,10 @@ internal sealed class DeleteJobOpportunityUseCase : IDeleteJobOpportunityUseCase
 
 	public async Task Handle(DeleteJobOpportunityRequest request, CancellationToken cancellationToken)
 	{
-		var jobOpportunity = await _repository.JobOpportunity.FindByIdAsync(request.Id, request.TrackChanges, cancellationToken);
+		var jobOpportunity = await _repository
+			.JobOpportunity
+			.FindByIdAsync(request.Id, request.TrackChanges, cancellationToken: cancellationToken);
+
 		if (jobOpportunity is null)
 		{
 			_logger.LogError("Job opportunity with id {Id} was not found.", request.Id);

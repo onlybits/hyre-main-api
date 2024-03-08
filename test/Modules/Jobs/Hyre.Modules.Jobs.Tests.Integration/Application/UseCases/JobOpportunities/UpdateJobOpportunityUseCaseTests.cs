@@ -58,7 +58,7 @@ public sealed class UpdateJobOpportunityUseCaseTests : JobOpportunityUseCaseTest
 		// Act
 		await SeedDatabase(jobOpportunities);
 		await _sut.Handle(request, _cancellationToken);
-		var result = await _repository.JobOpportunity.FindByIdAsync(jobOpportunity.Id, trackChanges, _cancellationToken);
+		var result = await _repository.JobOpportunity.FindByIdAsync(jobOpportunity.Id, trackChanges, false, _cancellationToken);
 
 		// Assert
 		_ = result.Should().NotBeNull();

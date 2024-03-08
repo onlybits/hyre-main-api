@@ -41,11 +41,6 @@ internal sealed class JobOpportunityConfiguration : IEntityTypeConfiguration<Job
 			.HasMaxLength(500)
 			.IsRequired();
 
-		_ = builder.Property(jo => jo.CreatedAt)
-			.HasConversion(jo => jo.Value, value => new CreateDate(value))
-			.HasColumnName("created_at")
-			.IsRequired();
-
 		var location = builder.OwnsOne(jo => jo.Location);
 		_ = location.Property(l => l.Type)
 			.HasConversion<string>()
@@ -79,6 +74,16 @@ internal sealed class JobOpportunityConfiguration : IEntityTypeConfiguration<Job
 			_ = v.ToJson();
 			_ = v.Property(x => x.Values).HasJsonPropertyName("values");
 		});
+
+		_ = builder.Property(jo => jo.CreatedAt)
+			.HasConversion(jo => jo.Value, value => new CreateDate(value))
+			.HasColumnName("created_at")
+			.IsRequired();
+
+		_ = builder.HasMany(jo => jo.Candidates)
+			.WithOne(c => c.JobOpportunity)
+			.HasForeignKey(c => c.JobOpportunityId)
+			.OnDelete(DeleteBehavior.Cascade);
 
 		_ = builder.Ignore(jo => jo.Events);
 	}

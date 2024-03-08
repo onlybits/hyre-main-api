@@ -54,10 +54,24 @@ internal sealed class JobOpportunityRepository : RepositoryBase<JobOpportunity>,
 	/// </summary>
 	/// <param name="id">The job opportunity id.</param>
 	/// <param name="trackChanges">Should EF keep track of the changes.</param>
+	/// <param name="includeCandidates">Should the candidates be included in the result.</param>
 	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
 	/// <returns>It will return the job opportunity found.</returns>
-	public async Task<JobOpportunity?> FindByIdAsync(JobOpportunityId id, bool trackChanges, CancellationToken cancellationToken) =>
-		await FindByCondition(jo => jo.Id == id, trackChanges).SingleOrDefaultAsync(cancellationToken);
+	public async Task<JobOpportunity?> FindByIdAsync(
+		JobOpportunityId id,
+		bool trackChanges,
+		bool includeCandidates,
+		CancellationToken cancellationToken)
+	{
+		var query = FindByCondition(jo => jo.Id == id, trackChanges);
+
+		if (includeCandidates)
+		{
+			query = query.Include(jo => jo.Candidates);
+		}
+
+		return await query.SingleOrDefaultAsync(cancellationToken);
+	}
 
 	/// <summary>
 	///   This method is responsible for creating a new job opportunity.
@@ -76,4 +90,13 @@ internal sealed class JobOpportunityRepository : RepositoryBase<JobOpportunity>,
 	/// </summary>
 	/// <param name="jobOpportunity">The job opportunity to be deleted.</param>
 	public void Delete(JobOpportunity jobOpportunity) => Remove(jobOpportunity);
+
+	/// <summary>
+	///   This method is responsible for checking if a job opportunity exists in the database.
+	/// </summary>
+	/// <param name="id">The job opportunity id.</param>
+	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
+	/// <returns>Returns true if the job opportunity exists, otherwise false.</returns>
+	public async Task<bool> ExistsAsync(JobOpportunityId id, CancellationToken cancellationToken = default) =>
+		await FindByCondition(c => c.Id == id, false).AnyAsync(cancellationToken);
 }

@@ -20,12 +20,13 @@ public static class JobOpportunityExtensions
 	///   This method converts a job opportunity to a job opportunity response.
 	/// </summary>
 	/// <param name="jobOpportunity">The job opportunity to be converted.</param>
-	/// <returns>It will return a job opportunity response.</returns>
+	/// <returns>Returns a job opportunity response.</returns>
 	public static JobOpportunityResponse ToResponse(this JobOpportunity jobOpportunity) => new(
 		jobOpportunity.Id,
 		jobOpportunity.Name,
 		jobOpportunity.Description,
 		jobOpportunity.Location,
 		jobOpportunity.Contract,
-		jobOpportunity.Requirements);
+		jobOpportunity.Requirements,
+		jobOpportunity.CreatedAt);
 }

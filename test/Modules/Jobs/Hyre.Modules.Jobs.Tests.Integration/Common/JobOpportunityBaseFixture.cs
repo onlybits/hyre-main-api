@@ -7,6 +7,7 @@
 using Bogus.Extensions;
 using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Core.Enums;
+using Hyre.Modules.Jobs.Core.ValueObjects.Candidates;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 
 #endregion
@@ -83,4 +84,23 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 
 		return new JobOpportunityRequirements(values);
 	}
+
+	/// <summary>
+	///   Generates a valid <see cref="Candidate" />.
+	/// </summary>
+	/// <param name="jobOpportunityId">The job opportunity id.</param>
+	/// <returns>The valid <see cref="Candidate" />.</returns>
+	protected Candidate GenerateValidCandidate(JobOpportunityId jobOpportunityId) => Candidate.Create(
+		jobOpportunityId,
+		GenerateValidCandidateName());
+
+	/// <summary>
+	///   Generates a valid <see cref="Candidate" />.
+	/// </summary>
+	/// <returns>Returns a valid <see cref="Candidate" />.</returns>
+	private CandidateName GenerateValidCandidateName() => new(
+		Faker.Name.FirstName().ClampLength(3, 32),
+		Faker.Name.FirstName().ClampLength(3, 32),
+		Faker.Name.LastName().ClampLength(3, 32)
+	);
 }

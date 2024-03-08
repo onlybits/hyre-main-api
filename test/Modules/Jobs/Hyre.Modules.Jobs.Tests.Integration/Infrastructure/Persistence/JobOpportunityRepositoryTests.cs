@@ -93,7 +93,7 @@ public sealed class JobOpportunityRepositoryTests : JobOpportunityRepositoryTest
 
 		// Act
 		await SeedDatabase(jobOpportunities);
-		var result = await _sut.FindByIdAsync(jobOpportunity.Id, false, _ct);
+		var result = await _sut.FindByIdAsync(jobOpportunity.Id, false, false, _ct);
 
 		// Assert
 		_ = result.Should().NotBeNull();
@@ -112,10 +112,27 @@ public sealed class JobOpportunityRepositoryTests : JobOpportunityRepositoryTest
 
 		// Act
 		await SeedDatabase(jobOpportunities);
-		var result = await _sut.FindByIdAsync(id, false, _ct);
+		var result = await _sut.FindByIdAsync(id, false, false, _ct);
 
 		// Assert
 		_ = result.Should().BeNull();
+	}
+
+	[Fact(DisplayName = nameof(FindByIdAsync_WhenIncludeCandidatesIsTrue_ShouldIncludeCandidates))]
+	[Trait(PersistenceTraits.Name, PersistenceTraits.Value)]
+	public async Task FindByIdAsync_WhenIncludeCandidatesIsTrue_ShouldIncludeCandidates()
+	{
+		// Arrange
+		var jobOpportunity = GenerateJobOpportunityWithCandidates();
+		var list = new List<JobOpportunity> { jobOpportunity };
+
+		// Act
+		await SeedDatabase(list);
+		var result = await _sut.FindByIdAsync(jobOpportunity.Id, true, true, _ct);
+
+		// Assert
+		_ = result.Should().NotBeNull();
+		_ = result!.Candidates.Should().NotBeNullOrEmpty();
 	}
 
 	[Fact(DisplayName = nameof(Create_WhenGivenValidInputData_ShouldCreateJobOpportunity))]
@@ -129,7 +146,7 @@ public sealed class JobOpportunityRepositoryTests : JobOpportunityRepositoryTest
 		_sut.Create(jobOpportunity);
 		_ = await _context.SaveChangesAsync(_ct);
 
-		var result = await _sut.FindByIdAsync(jobOpportunity.Id, false, _ct);
+		var result = await _sut.FindByIdAsync(jobOpportunity.Id, false, false, _ct);
 
 		// Assert
 		_ = result.Should().NotBeNull();
@@ -159,7 +176,7 @@ public sealed class JobOpportunityRepositoryTests : JobOpportunityRepositoryTest
 		_sut.Update(jobOpportunity);
 		_ = await _context.SaveChangesAsync(_ct);
 
-		var result = await _sut.FindByIdAsync(jobOpportunity.Id, false, _ct);
+		var result = await _sut.FindByIdAsync(jobOpportunity.Id, false, false, _ct);
 
 		// Assert
 		_ = result.Should().NotBeNull();
@@ -185,7 +202,7 @@ public sealed class JobOpportunityRepositoryTests : JobOpportunityRepositoryTest
 		_sut.Delete(jobOpportunitiesToDelete);
 		_ = await _context.SaveChangesAsync(_ct);
 
-		var result = await _sut.FindByIdAsync(jobOpportunitiesToDelete.Id, false, _ct);
+		var result = await _sut.FindByIdAsync(jobOpportunitiesToDelete.Id, false, false, _ct);
 		var allJobOpportunities = await _context.JobOpportunities.ToListAsync(_ct);
 
 		// Assert

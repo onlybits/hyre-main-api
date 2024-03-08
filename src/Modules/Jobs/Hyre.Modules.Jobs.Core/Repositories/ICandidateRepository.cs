@@ -5,7 +5,11 @@
 #region
 
 using Hyre.Modules.Jobs.Core.Entities;
+using Hyre.Modules.Jobs.Core.Requests;
+using Hyre.Modules.Jobs.Core.ValueObjects.Candidates;
+using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 using Hyre.Shared.Abstractions.Repositories;
+using Hyre.Shared.Abstractions.Requests;
 
 #endregion
 
@@ -14,4 +18,47 @@ namespace Hyre.Modules.Jobs.Core.Repositories;
 /// <summary>
 ///   This is the repository contract for the job opportunity entity.
 /// </summary>
-public interface ICandidateRepository : IRepositoryBase<Candidate>;
+public interface ICandidateRepository : IRepositoryBase<Candidate>
+{
+	/// <summary>
+	///   This method is responsible for listing candidates.
+	/// </summary>
+	/// <param name="jobOpportunityId">The job opportunity id.</param>
+	/// <param name="parameters">The parameters to be used in the listing.</param>
+	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
+	/// <returns>Returns a paged list of candidates.</returns>
+	Task<PagedList<Candidate>> ListAsync(
+		JobOpportunityId jobOpportunityId,
+		CandidateParameters parameters,
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	///   This method is responsible for finding a candidate by its id.
+	/// </summary>
+	/// <param name="candidateId">The candidate id.</param>
+	/// <param name="trackChanges">Should EF Core keep track of changes in the candidate entity.</param>
+	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
+	/// <returns>Returns the candidate found, or null if not found.</returns>
+	Task<Candidate?> FindByIdAsync(
+		CandidateId candidateId,
+		bool trackChanges,
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	///   This method is responsible for creating a new candidate.
+	/// </summary>
+	/// <param name="candidate">The candidate to be created.</param>
+	void Create(Candidate candidate);
+
+	/// <summary>
+	///   This method is responsible for updating a candidate.
+	/// </summary>
+	/// <param name="candidate">The candidate to be updated.</param>
+	void Update(Candidate candidate);
+
+	/// <summary>
+	///   This method is responsible for deleting a candidate.
+	/// </summary>
+	/// <param name="candidate">The candidate to be deleted.</param>
+	void Delete(Candidate candidate);
+}

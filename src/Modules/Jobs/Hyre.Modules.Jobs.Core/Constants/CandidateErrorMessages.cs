@@ -9,6 +9,15 @@ namespace Hyre.Modules.Jobs.Core.Constants;
 /// </summary>
 public abstract class CandidateErrorMessages
 {
+	#region Application
+
+	/// <summary>
+	///   Used when the candidate is not found.
+	/// </summary>
+	public const string NotFound = "O candidato não foi encontrado.";
+
+	#endregion
+
 	#region Id
 
 	/// <summary>

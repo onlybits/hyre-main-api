@@ -33,4 +33,18 @@ public abstract class JobOpportunityRepositoryTestsFixture : JobOpportunityBaseF
 		.Range(1, count)
 		.Select(_ => GenerateJobOpportunity())
 		.ToList();
+
+	/// <summary>
+	///   Generates a <see cref="JobOpportunity" /> with candidates.
+	/// </summary>
+	/// <returns>Returns a <see cref="JobOpportunity" /> with candidates.</returns>
+	protected JobOpportunity GenerateJobOpportunityWithCandidates()
+	{
+		var jobOpportunity = GenerateJobOpportunity();
+		var candidate = GenerateValidCandidate(jobOpportunity.Id);
+
+		jobOpportunity.AddCandidate(candidate);
+
+		return jobOpportunity;
+	}
 }
