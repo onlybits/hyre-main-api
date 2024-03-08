@@ -4,6 +4,46 @@
         <name>Hyre.Modules.Jobs.Core</name>
     </assembly>
     <members>
+        <member name="T:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages">
+            <summary>
+                Error messages for the candidate entity properties.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.IdCannotBeEmpty">
+            <summary>
+                Used when the identifier of the candidate is empty.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.FirstNameTooShort">
+            <summary>
+                Used when the first name of the candidate is too short.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.MiddleNameTooShort">
+            <summary>
+                Used when the middle name of the candidate is too short.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.LastNameTooShort">
+            <summary>
+                Used when the last name of the candidate is too short.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.FirstNameTooLong">
+            <summary>
+                Used when the first name of the candidate is too long.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.MiddleNameTooLong">
+            <summary>
+                Used when the middle name of the candidate is too long.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.LastNameTooLong">
+            <summary>
+                Used when the last name of the candidate is too long.
+            </summary>
+        </member>
         <member name="T:Hyre.Modules.Jobs.Core.Constants.JobOpportunityErrorMessages">
             <summary>
                 Error messages for the job opportunity entity properties.
@@ -89,9 +129,44 @@
                 Used when the minimum salary is greater than the maximum salary.
             </summary>
         </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Entities.Candidate">
+            <summary>
+                Represents a candidate for a job opportunity in the system.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Entities.Candidate.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName)">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Entities.Candidate"/>
+                class.
+            </summary>
+            <param name="name">The candidate's name.</param>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Core.Entities.Candidate.Name">
+            <summary>
+                Gets or sets the candidate's name.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Entities.Candidate.Create(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName)">
+            <summary>
+                Creates a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Entities.Candidate"/>
+                class.
+            </summary>
+            <param name="name">The candidate's name.</param>
+            <returns>Returns a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Entities.Candidate"/>
+                class.
+            </returns>
+        </member>
         <member name="T:Hyre.Modules.Jobs.Core.Entities.JobOpportunity">
             <summary>
                 Represents a job opportunity in the system.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Entities.JobOpportunity._candidates">
+            <summary>
+                Internal list of candidates.
             </summary>
         </member>
         <member name="M:Hyre.Modules.Jobs.Core.Entities.JobOpportunity.#ctor">
@@ -137,6 +212,11 @@
                 Gets or sets the requirements of the job opportunity.
             </summary>
         </member>
+        <member name="P:Hyre.Modules.Jobs.Core.Entities.JobOpportunity.Candidates">
+            <summary>
+                Gets or sets the candidates of the job opportunity.
+            </summary>
+        </member>
         <member name="M:Hyre.Modules.Jobs.Core.Entities.JobOpportunity.Create(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityName,Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityDescription,Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityLocation,Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityContract,Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityRequirements)">
             <summary>
                 Initializes a new instance of the
@@ -152,6 +232,12 @@
                 <see cref="T:Hyre.Modules.Jobs.Core.Entities.JobOpportunity"/>
                 class.
             </returns>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Entities.JobOpportunity.AddCandidate(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId)">
+            <summary>
+                This method adds a candidate to the job opportunity.
+            </summary>
+            <param name="candidateId">The identifier of the candidate.</param>
         </member>
         <member name="M:Hyre.Modules.Jobs.Core.Entities.JobOpportunity.UpdateName(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityName)">
             <summary>
@@ -226,6 +312,90 @@
         <member name="F:Hyre.Modules.Jobs.Core.Enums.LocationType.OnSite">
             <summary>
                 When you need to be in a specific location to work every day.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateFirstNameTooLongException">
+            <summary>
+                Exception thrown when the first name of the candidate is too long.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateFirstNameTooLongException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateFirstNameTooLongException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateFirstNameTooShortException">
+            <summary>
+                Exception thrown when the first name of the candidate is too short.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateFirstNameTooShortException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateFirstNameTooShortException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateIdCannotBeEmptyException">
+            <summary>
+                Exception thrown when the candidate identifier is empty.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateIdCannotBeEmptyException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateIdCannotBeEmptyException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateLastNameTooLongException">
+            <summary>
+                Exception thrown when the middle name of the candidate is too long.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateLastNameTooLongException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateLastNameTooLongException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateLastNameTooShortException">
+            <summary>
+                Exception thrown when the last name of the candidate is too short.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateLastNameTooShortException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateLastNameTooShortException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateMiddleNameTooLongException">
+            <summary>
+                Exception thrown when the middle name of the candidate is too long.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateMiddleNameTooLongException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateMiddleNameTooLongException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateMiddleNameTooShortException">
+            <summary>
+                Exception thrown when the middle name of the candidate is too short.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateMiddleNameTooShortException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateMiddleNameTooShortException"/>
+                class.
             </summary>
         </member>
         <member name="T:Hyre.Modules.Jobs.Core.Exceptions.JobOpportunities.JobOpportunityDescriptionTooLongException">
@@ -408,6 +578,11 @@
                 class.
             </summary>
         </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Repositories.ICandidateRepository">
+            <summary>
+                This is the repository contract for the job opportunity entity.
+            </summary>
+        </member>
         <member name="T:Hyre.Modules.Jobs.Core.Repositories.IJobOpportunityRepository">
             <summary>
                 This is the repository contract for the job opportunity entity.
@@ -453,6 +628,11 @@
                 This is the main repository container for the Jobs module.
             </summary>
         </member>
+        <member name="P:Hyre.Modules.Jobs.Core.Repositories.IJobsRepositoryManager.Candidate">
+            <summary>
+                The candidate repository.
+            </summary>
+        </member>
         <member name="P:Hyre.Modules.Jobs.Core.Repositories.IJobsRepositoryManager.JobOpportunity">
             <summary>
                 The job opportunity repository.
@@ -462,6 +642,113 @@
             <summary>
                 Parameters for the job opportunity listing.
             </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId">
+            <summary>
+                Represents the unique identifier of a candidate.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId.#ctor(System.Guid)">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId"/>
+                class.
+            </summary>
+            <param name="Value">The value of the identifier.</param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId.New">
+            <summary>
+                Creates a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId"/>
+                class.
+            </summary>
+            <returns>Returns a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId"/>
+                class.
+            </returns>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId.Validate">
+            <summary>
+                This method is used to validate the identifier of the candidate.
+            </summary>
+            <exception cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateIdCannotBeEmptyException">Exception
+                thrown when the identifier of the candidate is empty.
+            </exception>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId.op_Implicit(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId)~System.Guid">
+            <summary>
+                Implicitly converts the
+                <see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId"/>
+                to a<see cref="T:System.Guid"/>.
+            </summary>
+            <param name="id">The identifier of the candidate.</param>
+            <returns>Returns the value of the candidate identifier.</returns>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId.op_Implicit(System.Guid)~Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId">
+            <summary>
+                Implicitly converts the
+                <see cref="T:System.Guid"/>
+                to a<see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId"/>.
+            </summary>
+            <param name="id">The value of the identifier.</param>
+            <returns>Returns a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId"/>
+                class.
+            </returns>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName">
+            <summary>
+                Represents the name of a candidate.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName.#ctor(System.String,System.String,System.String)">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName"/>
+                class.
+            </summary>
+            <param name="firstName">The first name of the candidate.</param>
+            <param name="middleName">The middle name of the candidate.</param>
+            <param name="lastName">The last name of the candidate.</param>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName.FirstName">
+            <summary>
+                Gets the first name of the candidate.
+            </summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName.MiddleName">
+            <summary>
+                Gets the middle name of the candidate.
+            </summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName.LastName">
+            <summary>
+                Gets the last name of the candidate.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName.Validate">
+            <summary>
+                The method that validates the<see
+                    cref="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName"/>.
+            </summary>
+            <exception cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateFirstNameTooShortException">
+                Exception thrown when the first name is too short.
+            </exception>
+            <exception cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateFirstNameTooLongException">
+                Exception thrown when the first name is too long.
+            </exception>
+            <exception cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateMiddleNameTooShortException">
+                Exception thrown when the middle name is too short.
+            </exception>
+            <exception cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateMiddleNameTooLongException">
+                Exception thrown when the middle name is too long.
+            </exception>
+            <exception cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateLastNameTooShortException">
+                Exception thrown when the last name is too short.
+            </exception>
+            <exception cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateLastNameTooLongException">Exception
+                thrown when the last name is too long.
+            </exception>
         </member>
         <member name="T:Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityContract">
             <summary>

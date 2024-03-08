@@ -17,14 +17,22 @@ namespace Hyre.Modules.Jobs.Infrastructure;
 /// <inheritdoc cref="IJobsRepositoryManager" />
 internal sealed class JobsRepositoryManager : IJobsRepositoryManager
 {
+	private readonly Lazy<ICandidateRepository> _candidateRepository;
 	private readonly JobsRepositoryContext _context;
 	private readonly Lazy<IJobOpportunityRepository> _jobOpportunityRepository;
 
+	/// <summary>
+	///   Initializes a new instance of the <see cref="JobsRepositoryManager" /> class.
+	/// </summary>
+	/// <param name="context">The jobs repository context.</param>
 	public JobsRepositoryManager(JobsRepositoryContext context)
 	{
 		_context = context;
 		_jobOpportunityRepository = new Lazy<IJobOpportunityRepository>(() => new JobOpportunityRepository(context));
+		_candidateRepository = new Lazy<ICandidateRepository>(() => new CandidateRepository(context));
 	}
+
+	public ICandidateRepository Candidate => _candidateRepository.Value;
 
 	public IJobOpportunityRepository JobOpportunity => _jobOpportunityRepository.Value;
 

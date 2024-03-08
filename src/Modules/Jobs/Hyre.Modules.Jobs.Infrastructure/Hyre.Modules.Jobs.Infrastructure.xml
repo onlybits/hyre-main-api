@@ -36,6 +36,11 @@
             </summary>
             <param name="options">The database context options.</param>
         </member>
+        <member name="P:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext.Candidates">
+            <summary>
+                Gets or sets the candidates.
+            </summary>
+        </member>
         <member name="P:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext.JobOpportunities">
             <summary>
                 Gets or sets the job opportunities.
@@ -56,6 +61,14 @@
             </summary>
             <inheritdoc cref="T:Hyre.Modules.Jobs.Core.Repositories.IJobsRepositoryManager"/>
         </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryManager.#ctor(Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext)">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryManager"/>
+                class.
+            </summary>
+            <param name="context">The jobs repository context.</param>
+        </member>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.Migrations.AddInitialJobOpportunities">
             <inheritdoc/>
         </member>
@@ -67,6 +80,22 @@
         </member>
         <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddInitialJobOpportunities.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc/>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Infrastructure.Persistence.CandidateRepository">
+            <summary>
+                This is the repository for the
+                <see cref="T:Hyre.Modules.Jobs.Core.Entities.Candidate"/>
+                entity.
+            </summary>
+            <inheritdoc cref="T:Hyre.Modules.Jobs.Core.Repositories.ICandidateRepository"/>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Persistence.CandidateRepository.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Infrastructure.Persistence.CandidateRepository"/>
+                class.
+            </summary>
+            <param name="context">The database context.</param>
         </member>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.Persistence.JobOpportunityRepository">
             <summary>

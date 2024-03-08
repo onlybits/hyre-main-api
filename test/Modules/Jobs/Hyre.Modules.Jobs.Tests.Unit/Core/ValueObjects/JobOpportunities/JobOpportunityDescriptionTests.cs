@@ -14,7 +14,7 @@ using Xunit;
 
 #endregion
 
-namespace Hyre.Modules.Jobs.Tests.Unit.Core.ValueObjects;
+namespace Hyre.Modules.Jobs.Tests.Unit.Core.ValueObjects.JobOpportunities;
 
 /// <summary>
 ///   Unit tests for the <see cref="JobOpportunityDescription" /> value object.
@@ -29,7 +29,7 @@ public sealed class JobOpportunityDescriptionTests : BaseFixture
 		var value = Faker.Lorem.Paragraph().ClampLength(10, 500);
 
 		// Act
-		JobOpportunityDescription sut = value;
+		var sut = new JobOpportunityDescription(value);
 
 		// Assert
 		_ = sut.Should().NotBeNull();

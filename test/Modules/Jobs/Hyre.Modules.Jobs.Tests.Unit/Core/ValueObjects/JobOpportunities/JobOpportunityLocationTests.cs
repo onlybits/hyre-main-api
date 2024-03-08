@@ -15,7 +15,7 @@ using Xunit;
 
 #endregion
 
-namespace Hyre.Modules.Jobs.Tests.Unit.Core.ValueObjects;
+namespace Hyre.Modules.Jobs.Tests.Unit.Core.ValueObjects.JobOpportunities;
 
 public sealed class JobOpportunityLocationTests : BaseFixture
 {

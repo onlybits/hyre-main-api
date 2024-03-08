@@ -4,6 +4,7 @@
 
 #region
 
+using Hyre.Modules.Jobs.Core.ValueObjects.Candidates;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 using Hyre.Shared.Abstractions.Kernel.Entities;
 
@@ -16,6 +17,11 @@ namespace Hyre.Modules.Jobs.Core.Entities;
 /// </summary>
 public sealed class JobOpportunity : EntityBase<JobOpportunityId>
 {
+	/// <summary>
+	///   Internal list of candidates.
+	/// </summary>
+	private readonly List<CandidateId> _candidates;
+
 	/// <summary>
 	///   This constructor is only used by EF Core.
 	/// </summary>
@@ -45,6 +51,7 @@ public sealed class JobOpportunity : EntityBase<JobOpportunityId>
 		Location = location;
 		Contract = contract;
 		Requirements = requirements;
+		_candidates = [];
 	}
 
 	/// <summary>
@@ -73,6 +80,11 @@ public sealed class JobOpportunity : EntityBase<JobOpportunityId>
 	public JobOpportunityRequirements? Requirements { get; private set; }
 
 	/// <summary>
+	///   Gets or sets the candidates of the job opportunity.
+	/// </summary>
+	public IEnumerable<CandidateId> Candidates => _candidates.AsReadOnly();
+
+	/// <summary>
 	///   Initializes a new instance of the <see cref="JobOpportunity" /> class.
 	/// </summary>
 	/// <param name="name">The name of the job opportunity.</param>
@@ -93,6 +105,16 @@ public sealed class JobOpportunity : EntityBase<JobOpportunityId>
 		location,
 		contract,
 		requirements);
+
+	#region Relation Methods
+
+	/// <summary>
+	///   This method adds a candidate to the job opportunity.
+	/// </summary>
+	/// <param name="candidateId">The identifier of the candidate.</param>
+	public void AddCandidate(CandidateId candidateId) => _candidates.Add(candidateId);
+
+	#endregion
 
 	#region Update Methods
 

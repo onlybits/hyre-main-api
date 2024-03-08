@@ -14,7 +14,7 @@ using Xunit;
 
 #endregion
 
-namespace Hyre.Modules.Jobs.Tests.Unit.Core.ValueObjects;
+namespace Hyre.Modules.Jobs.Tests.Unit.Core.ValueObjects.JobOpportunities;
 
 /// <summary>
 ///   Unit tests for the <see cref="JobOpportunityRequirements" /> value object.

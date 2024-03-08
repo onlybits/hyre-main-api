@@ -14,7 +14,7 @@ using Xunit;
 
 #endregion
 
-namespace Hyre.Modules.Jobs.Tests.Unit.Core.ValueObjects;
+namespace Hyre.Modules.Jobs.Tests.Unit.Core.ValueObjects.JobOpportunities;
 
 public sealed class JobOpportunityNameTests : BaseFixture
 {
@@ -26,7 +26,7 @@ public sealed class JobOpportunityNameTests : BaseFixture
 		var value = Faker.Name.JobTitle().ClampLength(3, 32);
 
 		// Act
-		JobOpportunityName sut = value;
+		var sut = new JobOpportunityName(value);
 
 		// Assert
 		_ = sut.Should().NotBeNull();

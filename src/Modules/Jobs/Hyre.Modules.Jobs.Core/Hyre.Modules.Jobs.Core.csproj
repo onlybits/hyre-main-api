@@ -16,8 +16,5 @@
     <ItemGroup>
         <InternalsVisibleTo Include="Hyre.Modules.Jobs.API"/>
     </ItemGroup>
-    <ItemGroup>
-        <Folder Include="ValueObjects\"/>
-    </ItemGroup>
 
 </Project>

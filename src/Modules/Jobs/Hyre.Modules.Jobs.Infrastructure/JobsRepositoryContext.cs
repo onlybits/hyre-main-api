@@ -25,6 +25,11 @@ internal sealed class JobsRepositoryContext : DbContext
 	}
 
 	/// <summary>
+	///   Gets or sets the candidates.
+	/// </summary>
+	public DbSet<Candidate> Candidates => Set<Candidate>();
+
+	/// <summary>
 	///   Gets or sets the job opportunities.
 	/// </summary>
 	public DbSet<JobOpportunity> JobOpportunities => Set<JobOpportunity>();

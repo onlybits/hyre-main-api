@@ -14,7 +14,7 @@ using Xunit;
 
 #endregion
 
-namespace Hyre.Modules.Jobs.Tests.Unit.Core.ValueObjects;
+namespace Hyre.Modules.Jobs.Tests.Unit.Core.ValueObjects.JobOpportunities;
 
 /// <summary>
 ///   Unit tests for the <see cref="JobOpportunityContract" /> class.
@@ -22,7 +22,7 @@ namespace Hyre.Modules.Jobs.Tests.Unit.Core.ValueObjects;
 public sealed class JobOpportunityContractTests : BaseFixture
 {
 	[Fact(DisplayName = nameof(Constructor_WhenGivenValidArguments_ShouldCreateAnInstance))]
-	[Trait(ValueObjectsTraits.Value, ValueObjectsTraits.Value)]
+	[Trait(ValueObjectsTraits.Name, ValueObjectsTraits.Value)]
 	public void Constructor_WhenGivenValidArguments_ShouldCreateAnInstance()
 	{
 		// Arrange
@@ -41,7 +41,7 @@ public sealed class JobOpportunityContractTests : BaseFixture
 	}
 
 	[Fact(DisplayName = nameof(Constructor_WhenMinSalaryIsInvalid_ShouldThrowAnException))]
-	[Trait(ValueObjectsTraits.Value, ValueObjectsTraits.Value)]
+	[Trait(ValueObjectsTraits.Name, ValueObjectsTraits.Value)]
 	public void Constructor_WhenMinSalaryIsInvalid_ShouldThrowAnException()
 	{
 		// Arrange
@@ -59,7 +59,7 @@ public sealed class JobOpportunityContractTests : BaseFixture
 	}
 
 	[Fact(DisplayName = nameof(Constructor_WhenMaxSalaryIsInvalid_ShouldThrowAnException))]
-	[Trait(ValueObjectsTraits.Value, ValueObjectsTraits.Value)]
+	[Trait(ValueObjectsTraits.Name, ValueObjectsTraits.Value)]
 	public void Constructor_WhenMaxSalaryIsInvalid_ShouldThrowAnException()
 	{
 		// Arrange
@@ -77,7 +77,7 @@ public sealed class JobOpportunityContractTests : BaseFixture
 	}
 
 	[Fact(DisplayName = nameof(Constructor_WhenMinSalaryIsGreaterThanMaxSalary_ShouldThrowAnException))]
-	[Trait(ValueObjectsTraits.Value, ValueObjectsTraits.Value)]
+	[Trait(ValueObjectsTraits.Name, ValueObjectsTraits.Value)]
 	public void Constructor_WhenMinSalaryIsGreaterThanMaxSalary_ShouldThrowAnException()
 	{
 		// Arrange

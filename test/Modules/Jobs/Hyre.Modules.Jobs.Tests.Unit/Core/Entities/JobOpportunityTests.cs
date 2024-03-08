@@ -184,4 +184,21 @@ public sealed class JobOpportunityTests : JobOpportunityBaseFixture
 		// Assert
 		_ = sut.Requirements.Should().BeEquivalentTo(newRequirements);
 	}
+
+	[Fact(DisplayName = nameof(AddCandidate_WhenPassingValidCandidate_ShouldAddCandidate))]
+	[Trait(EntitiesTraits.Name, EntitiesTraits.Value)]
+	public void AddCandidate_WhenPassingValidCandidate_ShouldAddCandidate()
+	{
+		// Arrange
+		var sut = GenerateValidJobOpportunity();
+		var candidate = GenerateValidCandidate();
+
+		// Act
+		sut.AddCandidate(candidate.Id);
+
+		// Assert
+		_ = sut.Candidates.Should().NotBeEmpty();
+		_ = sut.Candidates.Should().Contain(candidate.Id);
+		_ = sut.Candidates.Should().HaveCount(1);
+	}
 }

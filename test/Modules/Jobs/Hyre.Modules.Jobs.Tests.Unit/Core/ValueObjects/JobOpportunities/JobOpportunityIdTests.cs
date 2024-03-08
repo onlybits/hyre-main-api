@@ -12,7 +12,7 @@ using Xunit;
 
 #endregion
 
-namespace Hyre.Modules.Jobs.Tests.Unit.Core.ValueObjects;
+namespace Hyre.Modules.Jobs.Tests.Unit.Core.ValueObjects.JobOpportunities;
 
 /// <summary>
 ///   Unit tests for the <see cref="JobOpportunityId" /> value object.
@@ -27,7 +27,7 @@ public sealed class JobOpportunityIdTests
 		var value = Guid.NewGuid();
 
 		// Act
-		JobOpportunityId sut = value;
+		var sut = new JobOpportunityId(value);
 
 		// Assert
 		_ = sut.Should().NotBeNull();
@@ -59,5 +59,37 @@ public sealed class JobOpportunityIdTests
 		// Assert
 		_ = sut.Should().NotBeNull();
 		_ = sut.Value.Should().NotBeEmpty();
+	}
+
+	[Fact(DisplayName = nameof(ImplicitOperatorToValueObject_WithValidParameters_ShouldCreateAnInstance))]
+	[Trait(ValueObjectsTraits.Name, ValueObjectsTraits.Value)]
+	public void ImplicitOperatorToValueObject_WithValidParameters_ShouldCreateAnInstance()
+	{
+		// Arrange
+		var value = Guid.NewGuid();
+
+		// Act
+		JobOpportunityId result = value;
+
+		// Assert
+		_ = result.Should().NotBeNull();
+		_ = result.Value.Should().NotBeEmpty();
+		_ = result.Value.Should().Be(value);
+	}
+
+	[Fact(DisplayName = nameof(ImplicitOperatorToGuid_WithValidParameters_ShouldCreateAnInstance))]
+	[Trait(ValueObjectsTraits.Name, ValueObjectsTraits.Value)]
+	public void ImplicitOperatorToGuid_WithValidParameters_ShouldCreateAnInstance()
+	{
+		// Arrange
+		var value = Guid.NewGuid();
+		var sut = new JobOpportunityId(value);
+
+		// Act
+		Guid result = sut;
+
+		// Assert
+		_ = result.Should().NotBeEmpty();
+		_ = result.Should().Be(value);
 	}
 }

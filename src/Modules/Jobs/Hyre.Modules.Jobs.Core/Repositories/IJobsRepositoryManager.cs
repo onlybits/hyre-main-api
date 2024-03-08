@@ -16,6 +16,11 @@ namespace Hyre.Modules.Jobs.Core.Repositories;
 public interface IJobsRepositoryManager : IRepositoryManager
 {
 	/// <summary>
+	///   The candidate repository.
+	/// </summary>
+	ICandidateRepository Candidate { get; }
+
+	/// <summary>
 	///   The job opportunity repository.
 	/// </summary>
 	IJobOpportunityRepository JobOpportunity { get; }
