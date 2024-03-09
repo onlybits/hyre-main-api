@@ -1,3 +1,9 @@
+// Licensed to Hyre under one or more agreements.
+// Hyre [www.hyre.com.br] licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+#region
+
 using FluentAssertions;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.List;
 using Hyre.Modules.Jobs.Core.Repositories;
@@ -7,6 +13,8 @@ using Hyre.Modules.Jobs.Tests.Unit.Common;
 using Hyre.Shared.Abstractions.Logging;
 using NSubstitute;
 using Xunit;
+
+#endregion
 
 namespace Hyre.Modules.Jobs.Tests.Unit.Application.UseCases.Candidates;
 

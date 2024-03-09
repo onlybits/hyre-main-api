@@ -1,6 +1,12 @@
+// Licensed to Hyre under one or more agreements.
+// Hyre [www.hyre.com.br] licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+#region
+
 using FluentAssertions;
 using Hyre.Modules.Jobs.Application.Exceptions;
-using Hyre.Modules.Jobs.Application.UseCases.Delete;
+using Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete;
 using Hyre.Modules.Jobs.Core.Repositories;
 using Hyre.Modules.Jobs.Core.ValueObjects.Candidates;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
@@ -9,6 +15,8 @@ using Hyre.Shared.Abstractions.Logging;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using Xunit;
+
+#endregion
 
 namespace Hyre.Modules.Jobs.Tests.Unit.Application.UseCases.Candidates;
 

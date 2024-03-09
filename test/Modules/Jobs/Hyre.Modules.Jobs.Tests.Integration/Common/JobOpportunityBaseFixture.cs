@@ -28,6 +28,30 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 	}
 
 	/// <summary>
+	///   Generates a list of <see cref="JobOpportunity" />.
+	/// </summary>
+	/// <param name="count">The number of <see cref="JobOpportunity" /> to generate.</param>
+	/// <returns>It will return a list of <see cref="JobOpportunity" />.</returns>
+	protected ICollection<JobOpportunity> GenerateJobOpportunities(int count) => Enumerable
+		.Range(1, count)
+		.Select(_ => GenerateJobOpportunity())
+		.ToList();
+
+	/// <summary>
+	///   Generates a <see cref="JobOpportunity" /> with candidates.
+	/// </summary>
+	/// <returns>Returns a <see cref="JobOpportunity" /> with candidates.</returns>
+	protected JobOpportunity GenerateJobOpportunityWithCandidates()
+	{
+		var jobOpportunity = GenerateJobOpportunity();
+		var candidate = GenerateValidCandidate(jobOpportunity.Id);
+
+		jobOpportunity.AddCandidate(candidate);
+
+		return jobOpportunity;
+	}
+
+	/// <summary>
 	///   Generates a <see cref="JobOpportunity" />.
 	/// </summary>
 	/// <returns>It will return a <see cref="JobOpportunity" />.</returns>
@@ -103,4 +127,15 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 		Faker.Name.FirstName().ClampLength(3, 32),
 		Faker.Name.LastName().ClampLength(3, 32)
 	);
+
+	/// <summary>
+	///   This method is responsible for seeding the database with the given job opportunities.
+	/// </summary>
+	/// <param name="jobOpportunities">The job opportunities to be seeded.</param>
+	protected async Task SeedDatabase(IEnumerable<JobOpportunity> jobOpportunities)
+	{
+		var contextToSeed = CreateRepositoryContext();
+		await contextToSeed.JobOpportunities.AddRangeAsync(jobOpportunities);
+		_ = await contextToSeed.SaveChangesAsync();
+	}
 }

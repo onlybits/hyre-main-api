@@ -10,7 +10,7 @@ using Hyre.Shared.Abstractions.Logging;
 
 #endregion
 
-namespace Hyre.Modules.Jobs.Application.UseCases.Delete;
+namespace Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete;
 
 /// <summary>
 ///   This is the use case to delete a candidate.

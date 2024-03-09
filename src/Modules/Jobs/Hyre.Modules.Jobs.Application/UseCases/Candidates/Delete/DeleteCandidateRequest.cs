@@ -10,7 +10,7 @@ using MediatR;
 
 #endregion
 
-namespace Hyre.Modules.Jobs.Application.UseCases.Delete;
+namespace Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete;
 
 /// <summary>
 ///   Represents the request to delete a candidate.

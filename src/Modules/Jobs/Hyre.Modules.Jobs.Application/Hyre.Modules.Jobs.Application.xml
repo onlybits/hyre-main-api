@@ -191,6 +191,41 @@
               This use case contract responsible for creating a candidate.
             </summary>
         </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete.DeleteCandidateRequest">
+            <summary>
+              Represents the request to delete a candidate.
+            </summary>
+            <param name="JobOpportunityId">The job opportunity id.</param>
+            <param name="CandidateId">The candidate id.</param>
+            <param name="CandidateTrackChanges">Should EF Core keep track of changes in the candidate entity.</param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete.DeleteCandidateRequest.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId,System.Boolean)">
+            <summary>
+              Represents the request to delete a candidate.
+            </summary>
+            <param name="JobOpportunityId">The job opportunity id.</param>
+            <param name="CandidateId">The candidate id.</param>
+            <param name="CandidateTrackChanges">Should EF Core keep track of changes in the candidate entity.</param>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete.DeleteCandidateRequest.JobOpportunityId">
+            <summary>The job opportunity id.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete.DeleteCandidateRequest.CandidateId">
+            <summary>The candidate id.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete.DeleteCandidateRequest.CandidateTrackChanges">
+            <summary>Should EF Core keep track of changes in the candidate entity.</summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete.DeleteCandidateUseCase">
+            <summary>
+              This is the use case to delete a candidate.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete.IDeleteCandidateUseCase">
+            <summary>
+              This is the use case contract to delete a candidate.
+            </summary>
+        </member>
         <member name="T:Hyre.Modules.Jobs.Application.UseCases.Candidates.Find.FindCandidateRequest">
             <summary>
               Represents the request to find a candidate.
@@ -334,41 +369,6 @@
         <member name="T:Hyre.Modules.Jobs.Application.UseCases.Candidates.Update.UpdateCandidateUseCase">
             <summary>
               This is the use case to update a candidate.
-            </summary>
-        </member>
-        <member name="T:Hyre.Modules.Jobs.Application.UseCases.Delete.DeleteCandidateRequest">
-            <summary>
-              Represents the request to delete a candidate.
-            </summary>
-            <param name="JobOpportunityId">The job opportunity id.</param>
-            <param name="CandidateId">The candidate id.</param>
-            <param name="CandidateTrackChanges">Should EF Core keep track of changes in the candidate entity.</param>
-        </member>
-        <member name="M:Hyre.Modules.Jobs.Application.UseCases.Delete.DeleteCandidateRequest.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId,System.Boolean)">
-            <summary>
-              Represents the request to delete a candidate.
-            </summary>
-            <param name="JobOpportunityId">The job opportunity id.</param>
-            <param name="CandidateId">The candidate id.</param>
-            <param name="CandidateTrackChanges">Should EF Core keep track of changes in the candidate entity.</param>
-        </member>
-        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Delete.DeleteCandidateRequest.JobOpportunityId">
-            <summary>The job opportunity id.</summary>
-        </member>
-        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Delete.DeleteCandidateRequest.CandidateId">
-            <summary>The candidate id.</summary>
-        </member>
-        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Delete.DeleteCandidateRequest.CandidateTrackChanges">
-            <summary>Should EF Core keep track of changes in the candidate entity.</summary>
-        </member>
-        <member name="T:Hyre.Modules.Jobs.Application.UseCases.Delete.DeleteCandidateUseCase">
-            <summary>
-              This is the use case to delete a candidate.
-            </summary>
-        </member>
-        <member name="T:Hyre.Modules.Jobs.Application.UseCases.Delete.IDeleteCandidateUseCase">
-            <summary>
-              This is the use case contract to delete a candidate.
             </summary>
         </member>
         <member name="T:Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Create.CreateJobOpportunityInput">

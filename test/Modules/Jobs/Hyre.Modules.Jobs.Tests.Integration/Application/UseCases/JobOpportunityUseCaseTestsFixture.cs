@@ -25,20 +25,10 @@ public abstract class JobOpportunityUseCaseTestsFixture : JobOpportunityBaseFixt
 	}
 
 	/// <summary>
-	///   Generates a list of <see cref="JobOpportunity" />.
-	/// </summary>
-	/// <param name="count">The number of <see cref="JobOpportunity" /> to generate.</param>
-	/// <returns>It will return a list of <see cref="JobOpportunity" />.</returns>
-	protected IList<JobOpportunity> GenerateJobOpportunities(int count) => Enumerable
-		.Range(1, count)
-		.Select(_ => GenerateJobOpportunity())
-		.ToList();
-
-	/// <summary>
 	///   This method is responsible for seeding the database with the given job opportunities.
 	/// </summary>
 	/// <param name="jobOpportunities">The job opportunities to be seeded.</param>
-	protected async Task SeedDatabase(IEnumerable<JobOpportunity> jobOpportunities)
+	protected async Task SeedDatabaseWithJobOpportunities(IEnumerable<JobOpportunity> jobOpportunities)
 	{
 		var contextToSeed = CreateRepositoryContext();
 		await contextToSeed.JobOpportunities.AddRangeAsync(jobOpportunities, CancellationToken.None);

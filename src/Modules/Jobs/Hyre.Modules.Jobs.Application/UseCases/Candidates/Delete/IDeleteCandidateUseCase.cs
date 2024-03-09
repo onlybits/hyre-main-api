@@ -8,7 +8,7 @@ using MediatR;
 
 #endregion
 
-namespace Hyre.Modules.Jobs.Application.UseCases.Delete;
+namespace Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete;
 
 /// <summary>
 ///   This is the use case contract to delete a candidate.

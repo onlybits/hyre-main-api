@@ -45,7 +45,9 @@ internal sealed class CandidateRepository : RepositoryBase<Candidate>, ICandidat
 	{
 		var candidates = await FindAll(false)
 			.Where(c => c.JobOpportunityId == jobOpportunityId)
-			.OrderBy(c => c.Name)
+			.OrderBy(c => c.Name.FirstName)
+			.ThenBy(c => c.Name.MiddleName)
+			.ThenBy(c => c.Name.LastName)
 			.Skip((parameters.PageNumber - 1) * parameters.PageSize)
 			.Take(parameters.PageSize)
 			.ToListAsync(cancellationToken);

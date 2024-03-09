@@ -20,7 +20,7 @@ namespace Hyre.Modules.Jobs.Tests.Integration.Infrastructure.Persistence;
 /// <summary>
 ///   Integration tests for the <see cref="JobOpportunityRepository" />.
 /// </summary>
-public sealed class JobOpportunityRepositoryTests : JobOpportunityRepositoryTestsFixture, IAsyncLifetime
+public sealed class JobOpportunityRepositoryTests : JobOpportunityBaseFixture, IAsyncLifetime
 {
 	private readonly JobsRepositoryContext _context;
 	private readonly CancellationToken _ct = CancellationToken.None;
@@ -212,14 +212,35 @@ public sealed class JobOpportunityRepositoryTests : JobOpportunityRepositoryTest
 		_ = allJobOpportunities.Should().HaveCount(4);
 	}
 
-	/// <summary>
-	///   This method is responsible for seeding the database with the given job opportunities.
-	/// </summary>
-	/// <param name="jobOpportunities">The job opportunities to be seeded.</param>
-	private async Task SeedDatabase(IEnumerable<JobOpportunity> jobOpportunities)
+	[Fact(DisplayName = nameof(ExistsAsync_WhenJobOpportunityExists_ShouldReturnTrue))]
+	[Trait(PersistenceTraits.Name, PersistenceTraits.Value)]
+	public async Task ExistsAsync_WhenJobOpportunityExists_ShouldReturnTrue()
 	{
-		var contextToSeed = CreateRepositoryContext();
-		await contextToSeed.JobOpportunities.AddRangeAsync(jobOpportunities, _ct);
-		_ = await contextToSeed.SaveChangesAsync(_ct);
+		// Arrange
+		var jobOpportunities = GenerateJobOpportunities(5);
+		var jobOpportunity = jobOpportunities.First();
+
+		// Act
+		await SeedDatabase(jobOpportunities);
+		var result = await _sut.ExistsAsync(jobOpportunity.Id, _ct);
+
+		// Assert
+		_ = result.Should().BeTrue();
+	}
+
+	[Fact(DisplayName = nameof(ExistsAsync_WhenJobOpportunityDoesNotExist_ShouldReturnFalse))]
+	[Trait(PersistenceTraits.Name, PersistenceTraits.Value)]
+	public async Task ExistsAsync_WhenJobOpportunityDoesNotExist_ShouldReturnFalse()
+	{
+		// Arrange
+		var jobOpportunities = GenerateJobOpportunities(5);
+		JobOpportunityId id = Guid.NewGuid();
+
+		// Act
+		await SeedDatabase(jobOpportunities);
+		var result = await _sut.ExistsAsync(id, _ct);
+
+		// Assert
+		_ = result.Should().BeFalse();
 	}
 }
