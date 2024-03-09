@@ -51,34 +51,6 @@
               Implementation of the <see cref="T:Hyre.Shared.Abstractions.Logging.ILoggerManager" /> interface.
             </summary>
         </member>
-        <member name="T:Hyre.Shared.Infrastructure.Modules.EmptyAssembliesException">
-            <summary>
-              Exception that is thrown when the assemblies list is empty
-            </summary>
-        </member>
-        <member name="M:Hyre.Shared.Infrastructure.Modules.EmptyAssembliesException.#ctor">
-            <summary>
-              Initializes a new instance of the <see cref="T:Hyre.Shared.Infrastructure.Modules.EmptyAssembliesException" /> class.
-            </summary>
-        </member>
-        <member name="T:Hyre.Shared.Infrastructure.Modules.ModuleLoader">
-            <summary>
-              This class is responsible for loading the assemblies and the modules from the assemblies
-            </summary>
-        </member>
-        <member name="M:Hyre.Shared.Infrastructure.Modules.ModuleLoader.LoadAssemblies">
-            <summary>
-              This method will load all the assemblies from the current domain and the subdirectories
-            </summary>
-            <returns>Returns a list of assemblies</returns>
-        </member>
-        <member name="M:Hyre.Shared.Infrastructure.Modules.ModuleLoader.LoadModules(System.Collections.Generic.IEnumerable{System.Reflection.Assembly})">
-            <summary>
-              This method will load all the modules from the assemblies
-            </summary>
-            <param name="assemblies">The assemblies to load the modules from</param>
-            <returns>Returns a list of modules</returns>
-        </member>
         <member name="T:Hyre.Shared.Infrastructure.Postgres.DbContextAppInitializer">
             <summary>
               This class is used to automatically initialize the modules' Postgres contexts.

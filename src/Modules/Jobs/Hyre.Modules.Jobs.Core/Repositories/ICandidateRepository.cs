@@ -35,11 +35,13 @@ public interface ICandidateRepository : IRepositoryBase<Candidate>
 	/// <summary>
 	///   This method is responsible for finding a candidate by its id.
 	/// </summary>
+	/// <param name="jobOpportunityId">The job opportunity id.</param>
 	/// <param name="candidateId">The candidate id.</param>
 	/// <param name="trackChanges">Should EF Core keep track of changes in the candidate entity.</param>
 	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
 	/// <returns>Returns the candidate found, or null if not found.</returns>
 	Task<Candidate?> FindByIdAsync(
+		JobOpportunityId jobOpportunityId,
 		CandidateId candidateId,
 		bool trackChanges,
 		CancellationToken cancellationToken = default);

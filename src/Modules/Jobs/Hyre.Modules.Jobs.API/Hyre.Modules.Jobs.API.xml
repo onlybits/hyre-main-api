@@ -65,20 +65,14 @@
             <summary>
               This is the jobs module configuration.
             </summary>
-            <inheritdoc cref="T:Hyre.Shared.Abstractions.Modules.IModule" />
         </member>
-        <member name="P:Hyre.Modules.Jobs.API.JobsModule.Name">
-            <summary>
-              Gets the name of the module.
-            </summary>
-        </member>
-        <member name="M:Hyre.Modules.Jobs.API.JobsModule.Register(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Hyre.Modules.Jobs.API.JobsModule.RegisterJobsModule(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
               This method is responsible for registering the services of the module.
             </summary>
             <param name="services">The services collection.</param>
         </member>
-        <member name="M:Hyre.Modules.Jobs.API.JobsModule.Use(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="M:Hyre.Modules.Jobs.API.JobsModule.UseJobsModule(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
               This method is responsible for configuring the module.
             </summary>

@@ -32,7 +32,7 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 	/// </summary>
 	/// <param name="count">The number of <see cref="JobOpportunity" /> to generate.</param>
 	/// <returns>It will return a list of <see cref="JobOpportunity" />.</returns>
-	protected ICollection<JobOpportunity> GenerateJobOpportunities(int count) => Enumerable
+	protected IReadOnlyList<JobOpportunity> GenerateJobOpportunities(int count) => Enumerable
 		.Range(1, count)
 		.Select(_ => GenerateJobOpportunity())
 		.ToList();
@@ -114,7 +114,7 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 	/// </summary>
 	/// <param name="jobOpportunityId">The job opportunity id.</param>
 	/// <returns>The valid <see cref="Candidate" />.</returns>
-	protected Candidate GenerateValidCandidate(JobOpportunityId jobOpportunityId) => Candidate.Create(
+	private Candidate GenerateValidCandidate(JobOpportunityId jobOpportunityId) => Candidate.Create(
 		jobOpportunityId,
 		GenerateValidCandidateName());
 

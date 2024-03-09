@@ -37,7 +37,8 @@ internal sealed class FindCandidateUseCase : IFindCandidateUseCase
 			throw new JobOpportunityNotFoundException();
 		}
 
-		var candidate = await _repository.Candidate.FindByIdAsync(request.CandidateId, request.CandidateTrackChanges, cancellationToken);
+		var candidate = await _repository.Candidate.FindByIdAsync(request.JobOpportunityId, request.CandidateId, request.CandidateTrackChanges,
+			cancellationToken);
 		if (candidate is null)
 		{
 			_logger.LogError("Candidate with id {CandidateId} not found.", request.CandidateId);

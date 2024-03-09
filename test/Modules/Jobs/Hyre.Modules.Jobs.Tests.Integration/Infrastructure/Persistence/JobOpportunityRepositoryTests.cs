@@ -89,7 +89,7 @@ public sealed class JobOpportunityRepositoryTests : JobOpportunityBaseFixture, I
 	{
 		// Arrange
 		var jobOpportunities = GenerateJobOpportunities(5);
-		var jobOpportunity = jobOpportunities.First();
+		var jobOpportunity = jobOpportunities[0];
 
 		// Act
 		await SeedDatabase(jobOpportunities);
@@ -161,7 +161,7 @@ public sealed class JobOpportunityRepositoryTests : JobOpportunityBaseFixture, I
 	{
 		// Arrange
 		var jobOpportunities = GenerateJobOpportunities(5);
-		var jobOpportunity = jobOpportunities.First();
+		var jobOpportunity = jobOpportunities[0];
 		await SeedDatabase(jobOpportunities);
 
 		var updatedJobOpportunity = GenerateJobOpportunity();
@@ -195,7 +195,7 @@ public sealed class JobOpportunityRepositoryTests : JobOpportunityBaseFixture, I
 	{
 		// Arrange
 		var jobOpportunities = GenerateJobOpportunities(5);
-		var jobOpportunitiesToDelete = jobOpportunities.First();
+		var jobOpportunitiesToDelete = jobOpportunities[0];
 
 		// Act
 		await SeedDatabase(jobOpportunities);
@@ -218,7 +218,7 @@ public sealed class JobOpportunityRepositoryTests : JobOpportunityBaseFixture, I
 	{
 		// Arrange
 		var jobOpportunities = GenerateJobOpportunities(5);
-		var jobOpportunity = jobOpportunities.First();
+		var jobOpportunity = jobOpportunities[0];
 
 		// Act
 		await SeedDatabase(jobOpportunities);

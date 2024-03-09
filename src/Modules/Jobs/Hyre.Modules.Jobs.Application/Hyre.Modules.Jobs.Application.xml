@@ -298,7 +298,7 @@
             <param name="MetaData">The metadata of the paged list.</param>
             <param name="Candidates">The list of candidates.</param>
         </member>
-        <member name="M:Hyre.Modules.Jobs.Application.UseCases.Candidates.List.ListCandidateResponse.#ctor(Hyre.Shared.Abstractions.Requests.MetaData,System.Collections.Generic.IEnumerable{Hyre.Modules.Jobs.Core.Entities.Candidate})">
+        <member name="M:Hyre.Modules.Jobs.Application.UseCases.Candidates.List.ListCandidateResponse.#ctor(Hyre.Shared.Abstractions.Requests.MetaData,System.Collections.Generic.IReadOnlyList{Hyre.Modules.Jobs.Core.Entities.Candidate})">
             <summary>
               Represents the response to list candidates.
             </summary>
@@ -343,7 +343,7 @@
             <param name="JobOpportunityId">The job opportunity id.</param>
             <param name="CandidateId">The candidate id.</param>
             <param name="Input">The input data to update the candidate.</param>
-            <param name="CandidateTrackChanges">Should EF Core keep track of changes in the candidate entity.</param>
+            <param name="TrackChanges">Should EF Core keep track of changes in the candidate entity.</param>
         </member>
         <member name="M:Hyre.Modules.Jobs.Application.UseCases.Candidates.Update.UpdateCandidateRequest.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId,Hyre.Modules.Jobs.Application.UseCases.Candidates.Update.UpdateCandidateInput,System.Boolean)">
             <summary>
@@ -352,7 +352,7 @@
             <param name="JobOpportunityId">The job opportunity id.</param>
             <param name="CandidateId">The candidate id.</param>
             <param name="Input">The input data to update the candidate.</param>
-            <param name="CandidateTrackChanges">Should EF Core keep track of changes in the candidate entity.</param>
+            <param name="TrackChanges">Should EF Core keep track of changes in the candidate entity.</param>
         </member>
         <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Update.UpdateCandidateRequest.JobOpportunityId">
             <summary>The job opportunity id.</summary>
@@ -363,7 +363,7 @@
         <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Update.UpdateCandidateRequest.Input">
             <summary>The input data to update the candidate.</summary>
         </member>
-        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Update.UpdateCandidateRequest.CandidateTrackChanges">
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Update.UpdateCandidateRequest.TrackChanges">
             <summary>Should EF Core keep track of changes in the candidate entity.</summary>
         </member>
         <member name="T:Hyre.Modules.Jobs.Application.UseCases.Candidates.Update.UpdateCandidateUseCase">

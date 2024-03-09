@@ -236,30 +236,6 @@
             <param name="message">The message to be logged.</param>
             <param name="args">The arguments to be formatted into the message.</param>
         </member>
-        <member name="T:Hyre.Shared.Abstractions.Modules.IModule">
-            <summary>
-              This is the contract for a module.
-            </summary>
-        </member>
-        <member name="P:Hyre.Shared.Abstractions.Modules.IModule.Name">
-            <summary>
-              Gets the name of the module.
-            </summary>
-        </member>
-        <member name="M:Hyre.Shared.Abstractions.Modules.IModule.Register(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-              This method registers the module's services.
-            </summary>
-            <param name="services">The service collection.</param>
-            <returns>It will return the same service collection.</returns>
-        </member>
-        <member name="M:Hyre.Shared.Abstractions.Modules.IModule.Use(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
-            <summary>
-              This method configures the module's services.
-            </summary>
-            <param name="app">The application builder.</param>
-            <returns>It will return the same application builder.</returns>
-        </member>
         <member name="T:Hyre.Shared.Abstractions.Repositories.IRepositoryBase`1">
             <summary>
               This interface will be used to define the base methods for all repositories.

@@ -562,10 +562,11 @@
             <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
             <returns>Returns a paged list of candidates.</returns>
         </member>
-        <member name="M:Hyre.Modules.Jobs.Core.Repositories.ICandidateRepository.FindByIdAsync(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId,System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:Hyre.Modules.Jobs.Core.Repositories.ICandidateRepository.FindByIdAsync(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId,System.Boolean,System.Threading.CancellationToken)">
             <summary>
               This method is responsible for finding a candidate by its id.
             </summary>
+            <param name="jobOpportunityId">The job opportunity id.</param>
             <param name="candidateId">The candidate id.</param>
             <param name="trackChanges">Should EF Core keep track of changes in the candidate entity.</param>
             <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>

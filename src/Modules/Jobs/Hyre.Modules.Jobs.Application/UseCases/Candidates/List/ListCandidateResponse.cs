@@ -18,4 +18,4 @@ namespace Hyre.Modules.Jobs.Application.UseCases.Candidates.List;
 /// <param name="Candidates">The list of candidates.</param>
 public sealed record ListCandidateResponse(
 	MetaData MetaData,
-	IEnumerable<Candidate> Candidates);
+	IReadOnlyList<Candidate> Candidates);

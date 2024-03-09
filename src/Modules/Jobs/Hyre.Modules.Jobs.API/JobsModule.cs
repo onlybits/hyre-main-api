@@ -6,7 +6,6 @@
 
 using Hyre.Modules.Jobs.Application;
 using Hyre.Modules.Jobs.Infrastructure;
-using Hyre.Shared.Abstractions.Modules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,19 +16,13 @@ namespace Hyre.Modules.Jobs.API;
 /// <summary>
 ///   This is the jobs module configuration.
 /// </summary>
-/// <inheritdoc cref="IModule" />
-internal sealed class JobsModule : IModule
+internal static class JobsModule
 {
-	/// <summary>
-	///   Gets the name of the module.
-	/// </summary>
-	public string Name => "Jobs";
-
 	/// <summary>
 	///   This method is responsible for registering the services of the module.
 	/// </summary>
 	/// <param name="services">The services collection.</param>
-	public IServiceCollection Register(IServiceCollection services) => services
+	public static IServiceCollection RegisterJobsModule(this IServiceCollection services) => services
 		.AddApplication()
 		.AddInfrastructure();
 
@@ -38,5 +31,5 @@ internal sealed class JobsModule : IModule
 	/// </summary>
 	/// <param name="app">The application builder.</param>
 	/// <returns>Returns the application builder.</returns>
-	public IApplicationBuilder Use(IApplicationBuilder app) => app;
+	public static IApplicationBuilder UseJobsModule(this IApplicationBuilder app) => app;
 }

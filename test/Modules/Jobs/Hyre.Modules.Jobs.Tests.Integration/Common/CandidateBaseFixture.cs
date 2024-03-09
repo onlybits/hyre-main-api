@@ -53,7 +53,7 @@ public abstract class CandidateBaseFixture : BaseFixture
 	/// </summary>
 	/// <param name="jobOpportunityId">The <see cref="JobOpportunityId" /> to associate with the <see cref="Candidate" />.</param>
 	/// <returns>Returns a <see cref="Candidate" />.</returns>
-	private Candidate GenerateCandidateWithJobOpportunity(JobOpportunityId jobOpportunityId) => Candidate.Create(
+	protected Candidate GenerateCandidateWithJobOpportunity(JobOpportunityId jobOpportunityId) => Candidate.Create(
 		jobOpportunityId,
 		GenerateValidCandidateName());
 
@@ -69,32 +69,35 @@ public abstract class CandidateBaseFixture : BaseFixture
 	///   Generates a valid <see cref="CandidateName" />.
 	/// </summary>
 	/// <returns>Returns a valid <see cref="CandidateName" />.</returns>
-	private CandidateName GenerateValidCandidateName() => new(
+	protected CandidateName GenerateValidCandidateName() => new(
 		Faker.Name.FirstName().ClampLength(3, 32),
 		Faker.Name.FirstName().ClampLength(3, 32),
 		Faker.Name.LastName().ClampLength(3, 32)
 	);
 
 	/// <summary>
-	///   This method will seed the database with the given candidates.
+	///   This method will seed the database with the given <see cref="JobOpportunity" /> and a list of
+	///   <see cref="Candidate" />.
 	/// </summary>
-	/// <param name="candidates">The candidates to seed the database with.</param>
-	protected async Task SeedDatabaseWithCandidates(IEnumerable<Candidate> candidates)
+	/// <param name="jobOpportunity">The <see cref="JobOpportunity" /> to seed the database with.</param>
+	/// <param name="candidates">The <see cref="Candidate" /> to seed the database with.</param>
+	protected async Task SeedDatabaseAsync(JobOpportunity? jobOpportunity = null, IEnumerable<Candidate>? candidates = null)
 	{
 		var context = CreateRepositoryContext();
-		await context.Candidates.AddRangeAsync(candidates);
-		_ = await context.SaveChangesAsync();
-	}
+		if (jobOpportunity is not null)
+		{
+			await context.JobOpportunities.AddRangeAsync(jobOpportunity);
+		}
 
-	/// <summary>
-	///   This method will seed the database with the given job opportunity.
-	/// </summary>
-	/// <param name="jobOpportunity">The job opportunity to seed the database with.</param>
-	protected async Task SeedDatabaseWithJobOpportunity(JobOpportunity jobOpportunity)
-	{
-		var context = CreateRepositoryContext();
-		_ = await context.JobOpportunities.AddAsync(jobOpportunity);
+		if (candidates is not null)
+		{
+			await context.Candidates.AddRangeAsync(candidates);
+		}
+
 		_ = await context.SaveChangesAsync();
+
+		// I need to clear the change tracker to avoid conflicts with the next test.
+		context.ChangeTracker.Clear();
 	}
 
 	#region Core Entity - JobOpportunity

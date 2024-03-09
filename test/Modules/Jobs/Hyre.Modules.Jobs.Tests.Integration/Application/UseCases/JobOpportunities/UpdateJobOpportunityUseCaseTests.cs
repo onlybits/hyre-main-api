@@ -42,9 +42,9 @@ public sealed class UpdateJobOpportunityUseCaseTests : JobOpportunityUseCaseTest
 	public async Task Handle_WhenCalledWithValidId_ShouldReturnJobOpportunity(bool trackChanges)
 	{
 		// Arrange
-		var jobOpportunity = GenerateJobOpportunity();
 		var jobOpportunities = GenerateJobOpportunities(5);
-		jobOpportunities.Add(jobOpportunity);
+		var jobOpportunity = jobOpportunities[0];
+
 
 		var input = new UpdateJobOpportunityInput(
 			GenerateValidName(),

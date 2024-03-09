@@ -38,9 +38,9 @@ public sealed class FindJobOpportunityUseCaseTests : JobOpportunityUseCaseTestsF
 	public async Task Handle_WhenCalledWithValidId_ShouldReturnJobOpportunity()
 	{
 		// Arrange
-		var jobOpportunity = GenerateJobOpportunity();
 		var jobOpportunities = GenerateJobOpportunities(5);
-		jobOpportunities.Add(jobOpportunity);
+		var jobOpportunity = jobOpportunities[0];
+
 		var request = new FindJobOpportunityRequest(jobOpportunity.Id, false);
 
 		// Act

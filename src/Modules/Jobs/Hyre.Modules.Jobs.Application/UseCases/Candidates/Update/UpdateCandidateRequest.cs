@@ -18,9 +18,9 @@ namespace Hyre.Modules.Jobs.Application.UseCases.Candidates.Update;
 /// <param name="JobOpportunityId">The job opportunity id.</param>
 /// <param name="CandidateId">The candidate id.</param>
 /// <param name="Input">The input data to update the candidate.</param>
-/// <param name="CandidateTrackChanges">Should EF Core keep track of changes in the candidate entity.</param>
+/// <param name="TrackChanges">Should EF Core keep track of changes in the candidate entity.</param>
 public sealed record UpdateCandidateRequest(
 	JobOpportunityId JobOpportunityId,
 	CandidateId CandidateId,
 	UpdateCandidateInput Input,
-	bool CandidateTrackChanges) : IRequest;
+	bool TrackChanges) : IRequest;

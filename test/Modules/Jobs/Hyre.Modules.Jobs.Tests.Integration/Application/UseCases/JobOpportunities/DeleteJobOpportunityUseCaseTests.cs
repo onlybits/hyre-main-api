@@ -41,9 +41,8 @@ public sealed class DeleteJobOpportunityUseCaseTests : JobOpportunityUseCaseTest
 	public async Task Handle_WhenCalledWithValidId_ShouldDeleteJobOpportunity()
 	{
 		// Arrange
-		var jobOpportunity = GenerateJobOpportunity();
 		var jobOpportunities = GenerateJobOpportunities(5);
-		jobOpportunities.Add(jobOpportunity);
+		var jobOpportunity = jobOpportunities[0];
 
 		var request = new DeleteJobOpportunityRequest(jobOpportunity.Id, false);
 

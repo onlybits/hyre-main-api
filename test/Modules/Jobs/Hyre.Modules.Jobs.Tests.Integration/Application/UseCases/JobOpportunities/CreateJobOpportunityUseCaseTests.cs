@@ -32,7 +32,6 @@ public sealed class CreateJobOpportunityUseCaseTests : JobOpportunityUseCaseTest
 		_sut = new CreateJobOpportunityUseCase(repository, logger);
 	}
 
-
 	/// <summary>
 	///   Runs before the first test in the test class to perform any setup.
 	/// </summary>

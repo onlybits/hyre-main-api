@@ -30,8 +30,14 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 		_sut = new CandidateRepository(_context);
 	}
 
-	public Task InitializeAsync() => Task.CompletedTask;
+	/// <summary>
+	///   Runs before the test execution.
+	/// </summary>
+	public async Task InitializeAsync() => await Task.CompletedTask;
 
+	/// <summary>
+	///   Runs after the test execution.
+	/// </summary>
 	public async Task DisposeAsync()
 	{
 		_ = await _context.JobOpportunities.ExecuteDeleteAsync();
@@ -62,8 +68,7 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 		var candidates = GenerateCandidatesWithJobOpportunity(generate, jobOpportunity.Id);
 
 		// Act
-		await SeedDatabaseWithJobOpportunity(jobOpportunity);
-		await SeedDatabaseWithCandidates(candidates);
+		await SeedDatabaseAsync(jobOpportunity, candidates);
 		var result = await _sut.ListAsync(jobOpportunity.Id, parameters, CancellationToken.None);
 		var items = result.Select(c => c).ToList();
 		var metadata = result.MetaData;
@@ -92,9 +97,8 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 		var candidate = candidates.First();
 
 		// Act
-		await SeedDatabaseWithJobOpportunity(jobOpportunity);
-		await SeedDatabaseWithCandidates(candidates);
-		var result = await _sut.FindByIdAsync(candidate.Id, false, CancellationToken.None);
+		await SeedDatabaseAsync(jobOpportunity, candidates);
+		var result = await _sut.FindByIdAsync(jobOpportunity.Id, candidate.Id, false, CancellationToken.None);
 
 		// Assert
 		_ = result.Should().NotBeNull();
@@ -111,9 +115,8 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 		var candidates = GenerateCandidatesWithJobOpportunity(5, jobOpportunity.Id);
 
 		// Act
-		await SeedDatabaseWithJobOpportunity(jobOpportunity);
-		await SeedDatabaseWithCandidates(candidates);
-		var result = await _sut.FindByIdAsync(CandidateId.New(), false, CancellationToken.None);
+		await SeedDatabaseAsync(jobOpportunity, candidates);
+		var result = await _sut.FindByIdAsync(jobOpportunity.Id, CandidateId.New(), false, CancellationToken.None);
 
 		// Assert
 		_ = result.Should().BeNull();
@@ -129,11 +132,11 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 		var candidate = candidates.First();
 
 		// Act
-		await SeedDatabaseWithJobOpportunity(jobOpportunity);
+		await SeedDatabaseAsync(jobOpportunity);
 		_sut.Create(candidate);
 		_ = await _context.SaveChangesAsync();
 
-		var result = await _sut.FindByIdAsync(candidate.Id, false, CancellationToken.None);
+		var result = await _sut.FindByIdAsync(jobOpportunity.Id, candidate.Id, false, CancellationToken.None);
 
 		// Assert
 		_ = _context.Candidates.Should().Contain(candidate);
@@ -143,9 +146,11 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 			.Excluding(x => x.CreatedAt));
 	}
 
-	[Fact(DisplayName = nameof(Update_WhenCandidateIsValid_ShouldUpdateCandidate))]
+	[Theory(DisplayName = nameof(Update_WhenCandidateIsValid_ShouldUpdateCandidate))]
 	[Trait(PersistenceTraits.Name, PersistenceTraits.Value)]
-	public async Task Update_WhenCandidateIsValid_ShouldUpdateCandidate()
+	[InlineData(true)]
+	[InlineData(false)]
+	public async Task Update_WhenCandidateIsValid_ShouldUpdateCandidate(bool trackChanges)
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
@@ -154,14 +159,13 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 		var newCandidate = GenerateValidCandidates(1).FirstOrDefault();
 
 		// Act
-		await SeedDatabaseWithJobOpportunity(jobOpportunity);
-		await SeedDatabaseWithCandidates(candidates);
+		await SeedDatabaseAsync(jobOpportunity, candidates);
 
 		candidate.UpdateName(newCandidate!.Name);
 		_sut.Update(candidate);
 		_ = await _context.SaveChangesAsync();
 
-		var result = await _sut.FindByIdAsync(candidate.Id, false, CancellationToken.None);
+		var result = await _sut.FindByIdAsync(jobOpportunity.Id, candidate.Id, trackChanges, CancellationToken.None);
 
 		// Assert
 		_ = _context.Candidates.Should().Contain(candidate);
@@ -169,6 +173,7 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 		_ = result.Should().BeEquivalentTo(candidate, opt => opt
 			.Excluding(x => x.Id)
 			.Excluding(x => x.Events)
+			.Excluding(x => x.JobOpportunity)
 			.Excluding(x => x.CreatedAt));
 	}
 
@@ -182,13 +187,12 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 		var candidate = candidates.First();
 
 		// Act
-		await SeedDatabaseWithJobOpportunity(jobOpportunity);
-		await SeedDatabaseWithCandidates(candidates);
+		await SeedDatabaseAsync(jobOpportunity, candidates);
 
 		_sut.Delete(candidate);
 		_ = await _context.SaveChangesAsync();
 
-		var result = await _sut.FindByIdAsync(candidate.Id, false, CancellationToken.None);
+		var result = await _sut.FindByIdAsync(jobOpportunity.Id, candidate.Id, false, CancellationToken.None);
 
 		// Assert
 		_ = _context.Candidates.Should().NotContain(candidate);
