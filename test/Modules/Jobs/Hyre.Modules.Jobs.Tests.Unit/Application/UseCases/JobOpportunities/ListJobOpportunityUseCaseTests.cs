@@ -8,6 +8,7 @@ using FluentAssertions;
 using Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.List;
 using Hyre.Modules.Jobs.Core.Repositories;
 using Hyre.Modules.Jobs.Core.Requests;
+using Hyre.Modules.Jobs.Tests.Unit.Common;
 using Hyre.Shared.Abstractions.Logging;
 using NSubstitute;
 using Xunit;
@@ -19,7 +20,7 @@ namespace Hyre.Modules.Jobs.Tests.Unit.Application.UseCases.JobOpportunities;
 /// <summary>
 ///   Unit tests for the <see cref="ListJobOpportunityUseCase" /> class.
 /// </summary>
-public sealed class ListJobOpportunityUseCaseTests : ListJobOpportunityUseCaseTestsFixture
+public sealed class ListJobOpportunityUseCaseTests : JobOpportunityBaseFixture
 {
 	private readonly ILoggerManager _logger = Substitute.For<ILoggerManager>();
 	private readonly IJobsRepositoryManager _repository = Substitute.For<IJobsRepositoryManager>();
@@ -38,7 +39,7 @@ public sealed class ListJobOpportunityUseCaseTests : ListJobOpportunityUseCaseTe
 			PageNumber = 10
 		};
 
-		var response = GenerateValidPagedList(parameters.PageSize, parameters.PageNumber, 10);
+		var response = GeneratePagedListOfJobOpportunities(parameters.PageSize, parameters.PageNumber, 10);
 		var request = new ListJobOpportunityRequest(parameters);
 
 		_ = _repository.JobOpportunity.ListAsync(Arg.Any<JobOpportunityParameters>(), CancellationToken.None).Returns(response);

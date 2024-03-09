@@ -23,11 +23,11 @@ public sealed class JobOpportunityTests : JobOpportunityBaseFixture
 	public void Create_WithValidParameters_ShouldCreateAnInstance()
 	{
 		// Arrange
-		var name = GenerateValidName();
-		var description = GenerateValidDescription();
-		var location = GenerateValidLocation();
-		var contract = GenerateValidContract();
-		var requirements = GenerateListOfRequirements(5);
+		var name = GenerateJobOpportunityName();
+		var description = GenerateJobOpportunityDescription();
+		var location = GenerateJobOpportunityLocation();
+		var contract = GenerateJobOpportunityContract();
+		var requirements = GenerateJobOpportunityRequirements(5);
 
 		// Act
 		var sut = JobOpportunity.Create(
@@ -58,13 +58,13 @@ public sealed class JobOpportunityTests : JobOpportunityBaseFixture
 	public void UpdateName_WithValidParameters_ShouldUpdateName()
 	{
 		// Arrange
-		var name = GenerateValidName();
-		var description = GenerateValidDescription();
-		var location = GenerateValidLocation();
-		var contract = GenerateValidContract();
-		var requirements = GenerateListOfRequirements(5);
+		var name = GenerateJobOpportunityName();
+		var description = GenerateJobOpportunityDescription();
+		var location = GenerateJobOpportunityLocation();
+		var contract = GenerateJobOpportunityContract();
+		var requirements = GenerateJobOpportunityRequirements(5);
 
-		var newName = GenerateValidName();
+		var newName = GenerateJobOpportunityName();
 
 		// Act
 		var sut = JobOpportunity.Create(
@@ -85,13 +85,13 @@ public sealed class JobOpportunityTests : JobOpportunityBaseFixture
 	public void UpdateDescription_WithValidParameters_ShouldUpdateDescription()
 	{
 		// Arrange
-		var name = GenerateValidName();
-		var description = GenerateValidDescription();
-		var location = GenerateValidLocation();
-		var contract = GenerateValidContract();
-		var requirements = GenerateListOfRequirements(5);
+		var name = GenerateJobOpportunityName();
+		var description = GenerateJobOpportunityDescription();
+		var location = GenerateJobOpportunityLocation();
+		var contract = GenerateJobOpportunityContract();
+		var requirements = GenerateJobOpportunityRequirements(5);
 
-		var newDescription = GenerateValidDescription();
+		var newDescription = GenerateJobOpportunityDescription();
 
 		// Act
 		var sut = JobOpportunity.Create(
@@ -112,13 +112,13 @@ public sealed class JobOpportunityTests : JobOpportunityBaseFixture
 	public void UpdateLocation_WithValidParameters_ShouldUpdateLocation()
 	{
 		// Arrange
-		var name = GenerateValidName();
-		var description = GenerateValidDescription();
-		var location = GenerateValidLocation();
-		var contract = GenerateValidContract();
-		var requirements = GenerateListOfRequirements(5);
+		var name = GenerateJobOpportunityName();
+		var description = GenerateJobOpportunityDescription();
+		var location = GenerateJobOpportunityLocation();
+		var contract = GenerateJobOpportunityContract();
+		var requirements = GenerateJobOpportunityRequirements(5);
 
-		var newLocation = GenerateValidLocation();
+		var newLocation = GenerateJobOpportunityLocation();
 
 		// Act
 		var sut = JobOpportunity.Create(
@@ -139,13 +139,13 @@ public sealed class JobOpportunityTests : JobOpportunityBaseFixture
 	public void UpdateContract_WithValidParameters_ShouldUpdateContract()
 	{
 		// Arrange
-		var name = GenerateValidName();
-		var description = GenerateValidDescription();
-		var location = GenerateValidLocation();
-		var contract = GenerateValidContract();
-		var requirements = GenerateListOfRequirements(5);
+		var name = GenerateJobOpportunityName();
+		var description = GenerateJobOpportunityDescription();
+		var location = GenerateJobOpportunityLocation();
+		var contract = GenerateJobOpportunityContract();
+		var requirements = GenerateJobOpportunityRequirements(5);
 
-		var newContract = GenerateValidContract();
+		var newContract = GenerateJobOpportunityContract();
 
 		// Act
 		var sut = JobOpportunity.Create(
@@ -165,13 +165,13 @@ public sealed class JobOpportunityTests : JobOpportunityBaseFixture
 	public void UpdateRequirements_WithValidParameters_ShouldUpdateRequirements()
 	{
 		// Arrange
-		var name = GenerateValidName();
-		var description = GenerateValidDescription();
-		var location = GenerateValidLocation();
-		var contract = GenerateValidContract();
-		var requirements = GenerateListOfRequirements(5);
+		var name = GenerateJobOpportunityName();
+		var description = GenerateJobOpportunityDescription();
+		var location = GenerateJobOpportunityLocation();
+		var contract = GenerateJobOpportunityContract();
+		var requirements = GenerateJobOpportunityRequirements(5);
 
-		var newRequirements = GenerateListOfRequirements(5);
+		var newRequirements = GenerateJobOpportunityRequirements(5);
 
 		// Act
 		var sut = JobOpportunity.Create(
@@ -191,8 +191,8 @@ public sealed class JobOpportunityTests : JobOpportunityBaseFixture
 	public void AddCandidate_WhenPassingValidCandidate_ShouldAddCandidate()
 	{
 		// Arrange
-		var sut = GenerateValidJobOpportunity();
-		var candidate = GenerateValidCandidate();
+		var sut = GenerateJobOpportunity();
+		var candidate = GenerateCandidate();
 
 		// Act
 		sut.AddCandidate(candidate);

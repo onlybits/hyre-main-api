@@ -23,7 +23,7 @@ public sealed class JobOpportunityExtensionsTests : JobOpportunityBaseFixture
 	public void ToResponse_WhenUsedInValidEntity_ShouldMapToResponseObject()
 	{
 		// Arrange
-		var jobOpportunity = GenerateValidJobOpportunity();
+		var jobOpportunity = GenerateJobOpportunity();
 
 		// Act
 		var response = jobOpportunity.ToResponse();

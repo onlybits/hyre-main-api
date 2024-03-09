@@ -10,6 +10,7 @@ using Hyre.Modules.Jobs.Application.UseCases.JobOpportunities.Update;
 using Hyre.Modules.Jobs.Core.Constants;
 using Hyre.Modules.Jobs.Core.Repositories;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
+using Hyre.Modules.Jobs.Tests.Unit.Common;
 using Hyre.Shared.Abstractions.Logging;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
@@ -22,7 +23,7 @@ namespace Hyre.Modules.Jobs.Tests.Unit.Application.UseCases.JobOpportunities;
 /// <summary>
 ///   Unit tests for the <see cref="UpdateJobOpportunityUseCase" /> class.
 /// </summary>
-public sealed class UpdateJobOpportunityUseCaseTests : UpdateJobOpportunityUseCaseTestsFixture
+public sealed class UpdateJobOpportunityUseCaseTests : JobOpportunityBaseFixture
 {
 	private readonly ILoggerManager _logger = Substitute.For<ILoggerManager>();
 	private readonly IJobsRepositoryManager _repository = Substitute.For<IJobsRepositoryManager>();
@@ -37,8 +38,8 @@ public sealed class UpdateJobOpportunityUseCaseTests : UpdateJobOpportunityUseCa
 	public async Task Handle_WhenGivenValidParameters_ShouldUpdateJobOpportunity(bool trackChanges)
 	{
 		// Arrange
-		var request = GenerateValidRequest(trackChanges);
-		var jobOpportunity = GenerateValidJobOpportunity();
+		var request = GenerateUpdateJobOpportunityRequest(trackChanges);
+		var jobOpportunity = GenerateJobOpportunity();
 		_ = _repository
 			.JobOpportunity
 			.FindByIdAsync(Arg.Any<JobOpportunityId>(), Arg.Any<bool>(), Arg.Any<bool>(), CancellationToken.None)
@@ -58,7 +59,7 @@ public sealed class UpdateJobOpportunityUseCaseTests : UpdateJobOpportunityUseCa
 	public async Task Handle_WhenGivenInvalidId_ShouldThrowJobOpportunityNotFoundException()
 	{
 		// Arrange
-		var request = GenerateValidRequest(true);
+		var request = GenerateUpdateJobOpportunityRequest(true);
 		_ = _repository
 			.JobOpportunity
 			.FindByIdAsync(Arg.Any<JobOpportunityId>(), Arg.Any<bool>(), Arg.Any<bool>(), CancellationToken.None)
