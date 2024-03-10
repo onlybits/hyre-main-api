@@ -42,7 +42,7 @@ public sealed record JobOpportunityName : ValueObject
 		{
 			case < 3:
 				throw new JobOpportunityNameTooShortException();
-			case > 32:
+			case > 64:
 				throw new JobOpportunityNameTooLongException();
 		}
 	}

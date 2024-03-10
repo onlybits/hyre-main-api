@@ -23,7 +23,7 @@ public sealed class JobOpportunityNameTests : BaseFixture
 	public void Constructor_WithValidParameters_ShouldCreateAnInstance()
 	{
 		// Arrange
-		var value = Faker.Name.JobTitle().ClampLength(3, 32);
+		var value = Faker.Name.JobTitle().ClampLength(3, 64);
 
 		// Act
 		var sut = new JobOpportunityName(value);
@@ -54,7 +54,7 @@ public sealed class JobOpportunityNameTests : BaseFixture
 	public void Constructor_WithValueTooLong_ShouldThrowADomainException()
 	{
 		// Arrange
-		var value = Faker.Name.JobTitle().ClampLength(33, 100);
+		var value = Faker.Name.JobTitle().ClampLength(65, 100);
 
 		// Act
 		var act = () => new JobOpportunityName(value);

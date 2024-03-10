@@ -32,7 +32,7 @@ internal sealed class JobOpportunityConfiguration : IEntityTypeConfiguration<Job
 		_ = builder.Property(jo => jo.Name)
 			.HasConversion(name => name.Value, value => new JobOpportunityName(value))
 			.HasColumnName("name")
-			.HasMaxLength(32)
+			.HasMaxLength(64)
 			.IsRequired();
 
 		_ = builder.Property(jo => jo.Description)

@@ -118,7 +118,7 @@ public abstract class CandidateBaseFixture : BaseFixture
 	///   Generates a valid name for the <see cref="JobOpportunityName" /> class.
 	/// </summary>
 	/// <returns>It will return a valid <see cref="JobOpportunityName" />.</returns>
-	private JobOpportunityName GenerateValidJobOpportunityName() => new(Faker.Name.JobTitle().ClampLength(3, 32));
+	private JobOpportunityName GenerateValidJobOpportunityName() => new(Faker.Name.JobTitle().ClampLength(3, 64));
 
 	/// <summary>
 	///   Generates a valid description for the <see cref="JobOpportunityDescription" /> class.

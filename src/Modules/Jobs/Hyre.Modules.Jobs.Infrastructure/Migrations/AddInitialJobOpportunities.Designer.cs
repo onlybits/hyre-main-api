@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Hyre.Modules.Jobs.Infrastructure.Migrations
 {
     [DbContext(typeof(JobsRepositoryContext))]
-    [Migration("20240307234146_AddInitialJobOpportunities")]
+    [Migration("20240310110952_AddInitialJobOpportunities")]
     partial class AddInitialJobOpportunities
     {
         /// <inheritdoc />
@@ -25,6 +25,29 @@ namespace Hyre.Modules.Jobs.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Hyre.Modules.Jobs.Core.Entities.Candidate", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<Guid>("JobOpportunityId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("job_opportunity_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_candidates");
+
+                    b.HasIndex("JobOpportunityId")
+                        .HasDatabaseName("ix_candidates_job_opportunity_id");
+
+                    b.ToTable("candidates", "jobs");
+                });
 
             modelBuilder.Entity("Hyre.Modules.Jobs.Core.Entities.JobOpportunity", b =>
                 {
@@ -44,14 +67,62 @@ namespace Hyre.Modules.Jobs.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("character varying(32)")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
                         .HasColumnName("name");
 
                     b.HasKey("Id")
                         .HasName("pk_job_opportunities");
 
                     b.ToTable("job_opportunities", "jobs");
+                });
+
+            modelBuilder.Entity("Hyre.Modules.Jobs.Core.Entities.Candidate", b =>
+                {
+                    b.HasOne("Hyre.Modules.Jobs.Core.Entities.JobOpportunity", "JobOpportunity")
+                        .WithMany("Candidates")
+                        .HasForeignKey("JobOpportunityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_candidates_job_opportunities_job_opportunity_id");
+
+                    b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName", "Name", b1 =>
+                        {
+                            b1.Property<Guid>("CandidateId")
+                                .HasColumnType("uuid")
+                                .HasColumnName("id");
+
+                            b1.Property<string>("FirstName")
+                                .IsRequired()
+                                .HasMaxLength(32)
+                                .HasColumnType("character varying(32)")
+                                .HasColumnName("first_name");
+
+                            b1.Property<string>("LastName")
+                                .IsRequired()
+                                .HasMaxLength(32)
+                                .HasColumnType("character varying(32)")
+                                .HasColumnName("last_name");
+
+                            b1.Property<string>("MiddleName")
+                                .IsRequired()
+                                .HasMaxLength(32)
+                                .HasColumnType("character varying(32)")
+                                .HasColumnName("middle_name");
+
+                            b1.HasKey("CandidateId");
+
+                            b1.ToTable("candidates", "jobs");
+
+                            b1.WithOwner()
+                                .HasForeignKey("CandidateId")
+                                .HasConstraintName("fk_candidates_candidates_id");
+                        });
+
+                    b.Navigation("JobOpportunity");
+
+                    b.Navigation("Name")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Hyre.Modules.Jobs.Core.Entities.JobOpportunity", b =>
@@ -142,6 +213,11 @@ namespace Hyre.Modules.Jobs.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Requirements");
+                });
+
+            modelBuilder.Entity("Hyre.Modules.Jobs.Core.Entities.JobOpportunity", b =>
+                {
+                    b.Navigation("Candidates");
                 });
 #pragma warning restore 612, 618
         }
