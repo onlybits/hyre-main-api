@@ -12,10 +12,10 @@ public abstract class ValueObjectsTraits
 	/// <summary>
 	///   Gets the name of the value objects trait.
 	/// </summary>
-	public const string Name = "Jobs/Unit/Core";
+	public const string Name = "Unit/Core/ValueObjects";
 
 	/// <summary>
 	///   Gets the value of the value objects trait.
 	/// </summary>
-	public const string Value = "ValueObjects";
+	public const string Value = "Jobs";
 }

@@ -12,10 +12,10 @@ public abstract class PersistenceTraits
 	/// <summary>
 	///   Gets the name of the persistence trait.
 	/// </summary>
-	public const string Name = "Jobs/Integration/Infrastructure";
+	public const string Name = "Integration/Infrastructure/Persistence";
 
 	/// <summary>
 	///   Gets the value of the persistence trait.
 	/// </summary>
-	public const string Value = "Persistence";
+	public const string Value = "Jobs";
 }

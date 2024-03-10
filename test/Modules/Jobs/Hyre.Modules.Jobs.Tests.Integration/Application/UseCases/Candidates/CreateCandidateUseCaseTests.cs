@@ -54,7 +54,7 @@ public sealed class CreateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var createCandidateInput = new CreateCandidateInput(GenerateValidCandidateName());
+		var createCandidateInput = new CreateCandidateInput(GenerateCandidateName(), GenerateCandidateEmail());
 		var createCandidateRequest = new CreateCandidateRequest(jobOpportunity.Id, createCandidateInput, false);
 
 		// Act
@@ -65,6 +65,8 @@ public sealed class CreateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 		_ = response.Should().NotBeNull();
 		_ = response.Id.Should().NotBe(default);
 		_ = response.Name.Should().Be(createCandidateInput.Name);
+		_ = response.Email.Should().Be(createCandidateInput.Email);
+		_ = response.JobOpportunityId.Should().Be(jobOpportunity.Id);
 	}
 
 	[Fact(DisplayName = nameof(Handle_WhenGivenInvalidJobOpportunityId_ShouldThrowException))]
@@ -72,7 +74,7 @@ public sealed class CreateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 	public async Task Handle_WhenGivenInvalidJobOpportunityId_ShouldThrowException()
 	{
 		// Arrange
-		var createCandidateInput = new CreateCandidateInput(GenerateValidCandidateName());
+		var createCandidateInput = new CreateCandidateInput(GenerateCandidateName(), GenerateCandidateEmail());
 		var createCandidateRequest = new CreateCandidateRequest(Guid.NewGuid(), createCandidateInput, false);
 
 		// Act

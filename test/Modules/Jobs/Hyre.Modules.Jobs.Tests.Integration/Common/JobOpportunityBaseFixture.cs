@@ -116,18 +116,26 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 	/// <returns>The valid <see cref="Candidate" />.</returns>
 	private Candidate GenerateValidCandidate(JobOpportunityId jobOpportunityId) => Candidate.Create(
 		jobOpportunityId,
-		GenerateValidCandidateName());
+		GenerateCandidateName(),
+		GenerateCandidateEmail());
 
 	/// <summary>
 	///   Generates a valid <see cref="Candidate" />.
 	/// </summary>
 	/// <returns>Returns a valid <see cref="Candidate" />.</returns>
-	private CandidateName GenerateValidCandidateName() => new(
+	private CandidateName GenerateCandidateName() => new(
 		Faker.Name.FirstName().ClampLength(3, 32),
 		Faker.Name.FirstName().ClampLength(3, 32),
 		Faker.Name.LastName().ClampLength(3, 32)
 	);
 
+	/// <summary>
+	///   Generates a valid <see cref="CandidateEmail" />.
+	/// </summary>
+	/// <returns>Returns a valid <see cref="CandidateEmail" />.</returns>
+	protected CandidateEmail GenerateCandidateEmail() => new(
+		Faker.Internet.Email());
+	
 	/// <summary>
 	///   This method is responsible for seeding the database with the given job opportunities.
 	/// </summary>

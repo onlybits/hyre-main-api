@@ -27,6 +27,16 @@ public abstract class CandidateErrorMessages
 
 	#endregion
 
+	#region Email
+
+	/// <summary>
+	///   Used when the email of the candidate is invalid.
+	/// </summary>
+	/// <param name="email">The email of the candidate.</param>
+	public static string EmailInvalid(string email) => $"O e-mail: '{email}' é inválido.";
+
+	#endregion
+
 	#region Name
 
 	/// <summary>

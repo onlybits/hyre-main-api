@@ -65,6 +65,8 @@ public sealed class FindCandidateUseCaseTests : CandidateBaseFixture, IAsyncLife
 		_ = response.Should().NotBeNull();
 		_ = response.Id.Should().Be(candidate.Id);
 		_ = response.Name.Should().Be(candidate.Name);
+		_ = response.Email.Should().Be(candidate.Email);
+		_ = response.JobOpportunityId.Should().Be(candidate.JobOpportunityId);
 		_ = response.CreatedAt.Value.Should().BeCloseTo(candidate.CreatedAt.Value, TimeSpan.FromSeconds(2));
 	}
 

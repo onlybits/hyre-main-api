@@ -32,7 +32,7 @@ public abstract class CandidateBaseFixture : BaseFixture
 	/// </summary>
 	/// <param name="count">The number of <see cref="Candidate" /> to generate.</param>
 	/// <returns>Returns a list of <see cref="Candidate" />.</returns>
-	protected ICollection<Candidate> GenerateValidCandidates(int count) => Enumerable
+	protected IEnumerable<Candidate> GenerateValidCandidates(int count) => Enumerable
 		.Range(1, count)
 		.Select(_ => GenerateValidCandidate())
 		.ToList();
@@ -55,7 +55,8 @@ public abstract class CandidateBaseFixture : BaseFixture
 	/// <returns>Returns a <see cref="Candidate" />.</returns>
 	protected Candidate GenerateCandidateWithJobOpportunity(JobOpportunityId jobOpportunityId) => Candidate.Create(
 		jobOpportunityId,
-		GenerateValidCandidateName());
+		GenerateCandidateName(),
+		GenerateCandidateEmail());
 
 	/// <summary>
 	///   Generates a valid <see cref="Candidate" />.
@@ -63,17 +64,25 @@ public abstract class CandidateBaseFixture : BaseFixture
 	/// <returns>Returns a valid <see cref="Candidate" />.</returns>
 	private Candidate GenerateValidCandidate() => Candidate.Create(
 		JobOpportunityId.New(),
-		GenerateValidCandidateName());
+		GenerateCandidateName(),
+		GenerateCandidateEmail());
 
 	/// <summary>
 	///   Generates a valid <see cref="CandidateName" />.
 	/// </summary>
 	/// <returns>Returns a valid <see cref="CandidateName" />.</returns>
-	protected CandidateName GenerateValidCandidateName() => new(
+	protected CandidateName GenerateCandidateName() => new(
 		Faker.Name.FirstName().ClampLength(3, 32),
 		Faker.Name.FirstName().ClampLength(3, 32),
 		Faker.Name.LastName().ClampLength(3, 32)
 	);
+
+	/// <summary>
+	///   Generates a valid <see cref="CandidateEmail" />.
+	/// </summary>
+	/// <returns>Returns a valid <see cref="CandidateEmail" />.</returns>
+	protected CandidateEmail GenerateCandidateEmail() => new(
+		Faker.Internet.Email());
 
 	/// <summary>
 	///   This method will seed the database with the given <see cref="JobOpportunity" /> and a list of

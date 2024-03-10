@@ -72,7 +72,8 @@ public abstract class CandidateBaseFixture : BaseFixture
 	/// <returns>The valid <see cref="Candidate" />.</returns>
 	protected Candidate GenerateValidCandidate() => Candidate.Create(
 		JobOpportunityId.New(),
-		GenerateValidName());
+		GenerateValidName(),
+		GenerateCandidateEmail());
 
 	/// <summary>
 	///   Generates a valid <see cref="Candidate" />.
@@ -84,6 +85,13 @@ public abstract class CandidateBaseFixture : BaseFixture
 		Faker.Name.LastName().ClampLength(3, 32)
 	);
 
+	/// <summary>
+	///   Generates a valid <see cref="CandidateEmail" />.
+	/// </summary>
+	/// <returns>Returns a valid <see cref="CandidateEmail" />.</returns>
+	protected CandidateEmail GenerateCandidateEmail() => new(
+		Faker.Internet.Email());
+
 	#endregion
 
 	#region UseCases - Create
@@ -92,7 +100,9 @@ public abstract class CandidateBaseFixture : BaseFixture
 	///   Generates a valid <see cref="CreateCandidateInput" />.
 	/// </summary>
 	/// <returns></returns>
-	private CreateCandidateInput GenerateCreateCandidateInput() => new(GenerateValidName());
+	private CreateCandidateInput GenerateCreateCandidateInput() => new(
+		GenerateValidName(),
+		GenerateCandidateEmail());
 
 	/// <summary>
 	///   Generates a valid <see cref="CreateCandidateRequest" />.

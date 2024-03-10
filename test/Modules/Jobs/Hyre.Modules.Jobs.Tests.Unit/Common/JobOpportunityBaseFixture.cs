@@ -119,7 +119,8 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 	/// <returns>The valid <see cref="Candidate" />.</returns>
 	protected Candidate GenerateCandidate() => Candidate.Create(
 		JobOpportunityId.New(),
-		GenerateCandidateName());
+		GenerateCandidateName(),
+		GenerateCandidateEmail());
 
 	/// <summary>
 	///   Generates a valid <see cref="Candidate" />.
@@ -130,6 +131,13 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 		Faker.Name.FirstName().ClampLength(3, 32),
 		Faker.Name.LastName().ClampLength(3, 32)
 	);
+
+	/// <summary>
+	///   Generates a valid <see cref="CandidateEmail" />.
+	/// </summary>
+	/// <returns>Returns a valid <see cref="CandidateEmail" />.</returns>
+	protected CandidateEmail GenerateCandidateEmail() => new(
+		Faker.Internet.Email());
 
 	#endregion
 

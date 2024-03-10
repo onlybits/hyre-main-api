@@ -44,7 +44,10 @@ internal class CreateCandidateUseCase : ICreateCandidateUseCase
 			throw new JobOpportunityNotFoundException();
 		}
 
-		var candidate = Candidate.Create(request.JobOpportunityId, request.Input.Name);
+		var candidate = Candidate.Create(
+			request.JobOpportunityId,
+			request.Input.Name,
+			request.Input.Email);
 
 		_repository.Candidate.Create(candidate);
 		jobOpportunity.AddCandidate(candidate);

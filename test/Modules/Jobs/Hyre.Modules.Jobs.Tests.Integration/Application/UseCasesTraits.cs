@@ -12,10 +12,10 @@ public abstract class UseCasesTraits
 	/// <summary>
 	///   Gets the name of the use case trait.
 	/// </summary>
-	public const string Name = "Jobs/Integration/Application";
+	public const string Name = "Integration/Application/UseCases";
 
 	/// <summary>
 	///   Gets the value of the use case trait.
 	/// </summary>
-	public const string Value = "UseCases";
+	public const string Value = "Jobs";
 }

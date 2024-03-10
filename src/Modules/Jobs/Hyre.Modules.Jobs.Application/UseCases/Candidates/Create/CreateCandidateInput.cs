@@ -14,5 +14,7 @@ namespace Hyre.Modules.Jobs.Application.UseCases.Candidates.Create;
 ///   Represents the input data for the create candidate use case.
 /// </summary>
 /// <param name="Name">The candidate's name.</param>
+/// <param name="Email">The candidate's email.</param>
 public sealed record CreateCandidateInput(
-	CandidateName Name);
+	CandidateName Name,
+	CandidateEmail Email);

@@ -67,6 +67,18 @@
             </summary>
             <param name="context">The jobs repository context.</param>
         </member>
+        <member name="T:Hyre.Modules.Jobs.Infrastructure.Migrations.AddCandidateEmail">
+            <inheritdoc />
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddCandidateEmail.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddCandidateEmail.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddCandidateEmail.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.Migrations.AddInitialJobOpportunities">
             <inheritdoc />
         </member>

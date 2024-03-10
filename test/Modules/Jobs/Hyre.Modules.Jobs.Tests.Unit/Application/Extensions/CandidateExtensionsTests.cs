@@ -32,6 +32,8 @@ public sealed class CandidateExtensionsTests : CandidateBaseFixture
 		_ = response.Should().NotBeNull();
 		_ = response.Id.Should().Be(candidate.Id);
 		_ = response.Name.Should().Be(candidate.Name);
+		_ = response.Email.Should().Be(candidate.Email);
+		_ = response.JobOpportunityId.Should().Be(candidate.JobOpportunityId);
 		_ = response.CreatedAt.Should().Be(candidate.CreatedAt);
 	}
 }

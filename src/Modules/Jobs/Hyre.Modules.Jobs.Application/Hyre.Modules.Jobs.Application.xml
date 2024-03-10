@@ -22,15 +22,17 @@
             </summary>
             <param name="Id">The candidate identifier.</param>
             <param name="Name">The candidate's name.</param>
+            <param name="Email">The candidate's email.</param>
             <param name="CreatedAt">The candidate creation date.</param>
             <param name="JobOpportunityId">The job opportunity identifier.</param>
         </member>
-        <member name="M:Hyre.Modules.Jobs.Application.Common.CandidateResponse.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName,Hyre.Shared.Abstractions.Kernel.ValueObjects.CreateDate,Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId)">
+        <member name="M:Hyre.Modules.Jobs.Application.Common.CandidateResponse.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail,Hyre.Shared.Abstractions.Kernel.ValueObjects.CreateDate,Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId)">
             <summary>
               Represents the response of a candidate.
             </summary>
             <param name="Id">The candidate identifier.</param>
             <param name="Name">The candidate's name.</param>
+            <param name="Email">The candidate's email.</param>
             <param name="CreatedAt">The candidate creation date.</param>
             <param name="JobOpportunityId">The job opportunity identifier.</param>
         </member>
@@ -39,6 +41,9 @@
         </member>
         <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.Name">
             <summary>The candidate's name.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.Email">
+            <summary>The candidate's email.</summary>
         </member>
         <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.CreatedAt">
             <summary>The candidate creation date.</summary>
@@ -145,15 +150,20 @@
               Represents the input data for the create candidate use case.
             </summary>
             <param name="Name">The candidate's name.</param>
+            <param name="Email">The candidate's email.</param>
         </member>
-        <member name="M:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName)">
+        <member name="M:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail)">
             <summary>
               Represents the input data for the create candidate use case.
             </summary>
             <param name="Name">The candidate's name.</param>
+            <param name="Email">The candidate's email.</param>
         </member>
         <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.Name">
             <summary>The candidate's name.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.Email">
+            <summary>The candidate's email.</summary>
         </member>
         <member name="T:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateRequest">
             <summary>

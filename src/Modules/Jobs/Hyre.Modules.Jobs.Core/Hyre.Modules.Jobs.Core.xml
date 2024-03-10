@@ -19,6 +19,12 @@
               Used when the identifier of the candidate is empty.
             </summary>
         </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.EmailInvalid(System.String)">
+            <summary>
+              Used when the email of the candidate is invalid.
+            </summary>
+            <param name="email">The email of the candidate.</param>
+        </member>
         <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.FirstNameTooShort">
             <summary>
               Used when the first name of the candidate is too short.
@@ -144,24 +150,31 @@
               This constructor is only used by EF Core.
             </summary>
         </member>
-        <member name="M:Hyre.Modules.Jobs.Core.Entities.Candidate.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName)">
+        <member name="M:Hyre.Modules.Jobs.Core.Entities.Candidate.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail)">
             <summary>
               Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Core.Entities.Candidate" /> class.
             </summary>
             <param name="jobOpportunityId">The job opportunity id where the candidate is applying.</param>
             <param name="name">The candidate's name.</param>
+            <param name="email">The candidate's email.</param>
         </member>
         <member name="P:Hyre.Modules.Jobs.Core.Entities.Candidate.Name">
             <summary>
               Gets or sets the candidate's name.
             </summary>
         </member>
-        <member name="M:Hyre.Modules.Jobs.Core.Entities.Candidate.Create(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName)">
+        <member name="P:Hyre.Modules.Jobs.Core.Entities.Candidate.Email">
+            <summary>
+              Gets or sets the candidate's email.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Entities.Candidate.Create(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail)">
             <summary>
               Creates a new instance of the <see cref="T:Hyre.Modules.Jobs.Core.Entities.Candidate" /> class.
             </summary>
             <param name="jobOpportunityId">The job opportunity id where the candidate is applying.</param>
             <param name="name">The candidate's name.</param>
+            <param name="email">The candidate's email.</param>
             <returns>Returns a new instance of the <see cref="T:Hyre.Modules.Jobs.Core.Entities.Candidate" /> class.</returns>
         </member>
         <member name="M:Hyre.Modules.Jobs.Core.Entities.Candidate.UpdateName(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName)">
@@ -327,6 +340,27 @@
             <summary>
               Represents the event that occurs when a candidate is created.
             </summary>
+            <param name="Email">The email of the candidate.</param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Events.CandidateCreatedEvent.#ctor(System.String)">
+            <summary>
+              Represents the event that occurs when a candidate is created.
+            </summary>
+            <param name="Email">The email of the candidate.</param>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Core.Events.CandidateCreatedEvent.Email">
+            <summary>The email of the candidate.</summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEmailInvalidException">
+            <summary>
+              Exception thrown when the middle name of the candidate is too long.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEmailInvalidException.#ctor(System.String)">
+            <summary>
+              Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEmailInvalidException" /> class.
+            </summary>
+            <param name="email">The email that is invalid.</param>
         </member>
         <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateFirstNameTooLongException">
             <summary>
@@ -663,6 +697,42 @@
             <summary>
               Parameters for the job opportunity listing.
             </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail">
+            <summary>
+              Represents the email of a candidate.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail.#ctor(System.String)">
+            <summary>
+              Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail" /> class.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail.Value">
+            <summary>
+              Gets the email of the candidate.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail.Validate">
+            <summary>
+              The method that validates the <see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail" />.
+            </summary>
+            <exception cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEmailInvalidException">Exception thrown when the email is invalid.</exception>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail.op_Implicit(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail)~System.String">
+            <summary>
+              Implicitly converts a <see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail" /> to a <see cref="T:System.String" />.
+            </summary>
+            <param name="candidateEmail">The <see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail" /> to convert.</param>
+            <returns>Returns the <see cref="T:System.String" /> representation of the <see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail" />.</returns>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail.op_Implicit(System.String)~Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail">
+            <summary>
+              Implicitly converts a <see cref="T:System.String" /> to a <see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail" />.
+            </summary>
+            <param name="value">The <see cref="T:System.String" /> to convert.</param>
+            <returns>Returns the <see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail" /> representation of the <see cref="T:System.String" />.</returns>
         </member>
         <member name="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId">
             <summary>

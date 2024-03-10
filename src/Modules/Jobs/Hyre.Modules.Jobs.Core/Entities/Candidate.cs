@@ -30,12 +30,15 @@ public sealed class Candidate : EntityBase<CandidateId>
 	/// </summary>
 	/// <param name="jobOpportunityId">The job opportunity id where the candidate is applying.</param>
 	/// <param name="name">The candidate's name.</param>
+	/// <param name="email">The candidate's email.</param>
 	private Candidate(
 		JobOpportunityId jobOpportunityId,
-		CandidateName name) : base(CandidateId.New())
+		CandidateName name,
+		CandidateEmail email) : base(CandidateId.New())
 	{
 		JobOpportunityId = jobOpportunityId;
 		Name = name;
+		Email = email;
 	}
 
 	/// <summary>
@@ -44,18 +47,24 @@ public sealed class Candidate : EntityBase<CandidateId>
 	public CandidateName Name { get; private set; }
 
 	/// <summary>
+	///   Gets or sets the candidate's email.
+	/// </summary>
+	public CandidateEmail Email { get; private set; }
+
+	/// <summary>
 	///   Creates a new instance of the <see cref="Candidate" /> class.
 	/// </summary>
 	/// <param name="jobOpportunityId">The job opportunity id where the candidate is applying.</param>
 	/// <param name="name">The candidate's name.</param>
+	/// <param name="email">The candidate's email.</param>
 	/// <returns>Returns a new instance of the <see cref="Candidate" /> class.</returns>
 	public static Candidate Create(
 		JobOpportunityId jobOpportunityId,
-		CandidateName name)
+		CandidateName name,
+		CandidateEmail email)
 	{
-		var candidate = new Candidate(jobOpportunityId, name);
-
-		var @event = new CandidateCreatedEvent();
+		var candidate = new Candidate(jobOpportunityId, name, email);
+		var @event = new CandidateCreatedEvent(email.Value);
 		candidate.RaiseEvent(@event);
 
 		return candidate;

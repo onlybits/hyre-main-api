@@ -25,15 +25,17 @@ public sealed class CandidateTests : CandidateBaseFixture
 	{
 		// Arrange
 		var name = GenerateValidName();
+		var email = GenerateCandidateEmail();
 		var jobOpportunityId = JobOpportunityId.New();
 
 		// Act
-		var sut = Candidate.Create(jobOpportunityId, name);
+		var sut = Candidate.Create(jobOpportunityId, name, email);
 
 		// Assert
 		_ = sut.Should().NotBeNull();
 		_ = sut.Id.Should().NotBe(default!);
 		_ = sut.Name.Should().Be(name);
+		_ = sut.Email.Should().Be(email);
 		_ = sut.CreatedAt.Should().NotBe(default!);
 		_ = sut.CreatedAt.Value.Should().BeCloseTo(DateTimeOffset.UtcNow, TimeSpan.FromSeconds(2));
 		_ = sut.JobOpportunityId.Should().NotBe(default!);

@@ -17,10 +17,12 @@ namespace Hyre.Modules.Jobs.Application.Common;
 /// </summary>
 /// <param name="Id">The candidate identifier.</param>
 /// <param name="Name">The candidate's name.</param>
+/// <param name="Email">The candidate's email.</param>
 /// <param name="CreatedAt">The candidate creation date.</param>
 /// <param name="JobOpportunityId">The job opportunity identifier.</param>
 public sealed record CandidateResponse(
 	CandidateId Id,
 	CandidateName Name,
+	CandidateEmail Email,
 	CreateDate CreatedAt,
 	JobOpportunityId JobOpportunityId);

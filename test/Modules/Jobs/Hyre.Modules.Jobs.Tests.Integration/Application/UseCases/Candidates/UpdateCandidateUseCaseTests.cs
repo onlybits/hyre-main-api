@@ -60,7 +60,7 @@ public sealed class UpdateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
 		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
-		var newCandidateName = GenerateValidCandidateName();
+		var newCandidateName = GenerateCandidateName();
 
 		await SeedDatabaseAsync(jobOpportunity, new[] { candidate });
 
@@ -86,7 +86,7 @@ public sealed class UpdateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
 		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
-		var newCandidateName = GenerateValidCandidateName();
+		var newCandidateName = GenerateCandidateName();
 
 		_ = await _context.JobOpportunities.AddAsync(jobOpportunity, _cancellationToken);
 		_ = await _context.Candidates.AddAsync(candidate, _cancellationToken);
@@ -113,7 +113,7 @@ public sealed class UpdateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
 		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
-		var newCandidateName = GenerateValidCandidateName();
+		var newCandidateName = GenerateCandidateName();
 
 		_ = await _context.JobOpportunities.AddAsync(jobOpportunity, _cancellationToken);
 		_ = await _context.Candidates.AddAsync(candidate, _cancellationToken);

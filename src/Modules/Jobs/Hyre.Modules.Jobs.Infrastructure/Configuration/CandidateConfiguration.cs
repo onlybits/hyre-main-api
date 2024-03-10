@@ -45,6 +45,11 @@ internal sealed class CandidateConfiguration : IEntityTypeConfiguration<Candidat
 			.HasMaxLength(32)
 			.IsRequired();
 
+		_ = builder.Property(c => c.Email)
+			.HasConversion(e => e.Value, value => new CandidateEmail(value))
+			.HasColumnName("email")
+			.IsRequired();
+		
 		_ = builder.Property(c => c.CreatedAt)
 			.HasConversion(c => c.Value, value => new CreateDate(value))
 			.HasColumnName("created_at")

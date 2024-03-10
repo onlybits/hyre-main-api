@@ -12,10 +12,10 @@ public abstract class EntitiesTraits
 	/// <summary>
 	///   Gets the name of the entities trait.
 	/// </summary>
-	public const string Name = "Jobs/Unit/Core";
+	public const string Name = "Unit/Core/Entities";
 
 	/// <summary>
 	///   Gets the value of the entities trait.
 	/// </summary>
-	public const string Value = "Entities";
+	public const string Value = "Jobs";
 }

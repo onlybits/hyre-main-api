@@ -24,6 +24,7 @@ public static class CandidateExtensions
 	public static CandidateResponse ToResponse(this Candidate candidate) => new(
 		candidate.Id,
 		candidate.Name,
+		candidate.Email,
 		candidate.CreatedAt,
 		candidate.JobOpportunityId);
 }
