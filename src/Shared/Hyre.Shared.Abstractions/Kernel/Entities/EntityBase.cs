@@ -15,7 +15,7 @@ namespace Hyre.Shared.Abstractions.Kernel.Entities;
 ///   This class is the base class for all entities in the system.
 /// </summary>
 /// <inheritdoc cref="IEntityBase" />
-public abstract class EntityBase<TId> : IEntityBase where TId : StronglyTypedId<Guid>
+public abstract class EntityBase<TId> : IEntityBase
 {
 	/// <summary>
 	///   Initializes a new instance of the <see cref="EntityBase{TId}" /> class.

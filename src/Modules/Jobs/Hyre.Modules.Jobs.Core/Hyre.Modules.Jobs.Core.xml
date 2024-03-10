@@ -9,11 +9,6 @@
               Error messages for the candidate entity properties.
             </summary>
         </member>
-        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.NotFound">
-            <summary>
-              Used when the candidate is not found.
-            </summary>
-        </member>
         <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.IdCannotBeEmpty">
             <summary>
               Used when the identifier of the candidate is empty.
@@ -24,6 +19,16 @@
               Used when the email of the candidate is invalid.
             </summary>
             <param name="email">The email of the candidate.</param>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.NotFound">
+            <summary>
+              Used when the candidate is not found.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.AlreadyExistsByEmail">
+            <summary>
+              Used when the candidate already exists by email.
+            </summary>
         </member>
         <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.FirstNameTooShort">
             <summary>
@@ -336,21 +341,6 @@
               When you need to be in a specific location to work every day.
             </summary>
         </member>
-        <member name="T:Hyre.Modules.Jobs.Core.Events.CandidateCreatedEvent">
-            <summary>
-              Represents the event that occurs when a candidate is created.
-            </summary>
-            <param name="Email">The email of the candidate.</param>
-        </member>
-        <member name="M:Hyre.Modules.Jobs.Core.Events.CandidateCreatedEvent.#ctor(System.String)">
-            <summary>
-              Represents the event that occurs when a candidate is created.
-            </summary>
-            <param name="Email">The email of the candidate.</param>
-        </member>
-        <member name="P:Hyre.Modules.Jobs.Core.Events.CandidateCreatedEvent.Email">
-            <summary>The email of the candidate.</summary>
-        </member>
         <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEmailInvalidException">
             <summary>
               Exception thrown when the middle name of the candidate is too long.
@@ -623,6 +613,16 @@
               This method is responsible for deleting a candidate.
             </summary>
             <param name="candidate">The candidate to be deleted.</param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Repositories.ICandidateRepository.ExistsAsync(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+              This method is responsible for checking if a candidate exists by arguments.
+            </summary>
+            <param name="jobOpportunityId">The job opportunity id.</param>
+            <param name="email">The candidate email.</param>
+            <param name="trackChanges">Should EF Core keep track of changes in the candidate entity.</param>
+            <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
+            <returns>Returns true if the candidate exists, otherwise false.</returns>
         </member>
         <member name="T:Hyre.Modules.Jobs.Core.Repositories.IJobOpportunityRepository">
             <summary>

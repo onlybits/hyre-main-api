@@ -10,6 +10,7 @@ using Hyre.Modules.Jobs.Core.Requests;
 using Hyre.Modules.Jobs.Infrastructure;
 using Hyre.Modules.Jobs.Tests.Integration.Common;
 using Hyre.Shared.Abstractions.Logging;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using NSubstitute;
 
@@ -29,7 +30,8 @@ public sealed class ListJobOpportunityUseCaseTests : JobOpportunityUseCaseTestsF
 	{
 		_context = CreateRepositoryContext();
 		var logger = Substitute.For<ILoggerManager>();
-		var repository = new JobsRepositoryManager(_context);
+		var publisherEndpoint = Substitute.For<IPublishEndpoint>();
+		var repository = new JobsRepositoryManager(_context, publisherEndpoint, logger);
 		_sut = new ListJobOpportunityUseCase(repository, logger);
 	}
 

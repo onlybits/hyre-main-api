@@ -198,4 +198,39 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 		_ = _context.Candidates.Should().NotContain(candidate);
 		_ = result.Should().BeNull();
 	}
+
+	[Fact(DisplayName = nameof(ExistsAsync_WhenCandidateExists_ShouldReturnTrue))]
+	[Trait(PersistenceTraits.Name, PersistenceTraits.Value)]
+	public async Task ExistsAsync_WhenCandidateExists_ShouldReturnTrue()
+	{
+		// Arrange
+		var jobOpportunity = GenerateValidJobOpportunity();
+		var candidates = GenerateCandidatesWithJobOpportunity(3, jobOpportunity.Id);
+		var candidate = candidates.First();
+
+		// Act
+		await SeedDatabaseAsync(jobOpportunity, candidates);
+
+		var result = await _sut.ExistsAsync(jobOpportunity.Id, candidate.Email, false, CancellationToken.None);
+
+		// Assert
+		_ = result.Should().BeTrue();
+	}
+
+	[Fact(DisplayName = nameof(ExistsAsync_WhenCandidateDoesNotExists_ShouldReturnFalse))]
+	[Trait(PersistenceTraits.Name, PersistenceTraits.Value)]
+	public async Task ExistsAsync_WhenCandidateDoesNotExists_ShouldReturnFalse()
+	{
+		// Arrange
+		var jobOpportunity = GenerateValidJobOpportunity();
+		var email = new CandidateEmail(Faker.Internet.Email());
+
+		// Act
+		await SeedDatabaseAsync(jobOpportunity);
+
+		var result = await _sut.ExistsAsync(jobOpportunity.Id, email, false, CancellationToken.None);
+
+		// Assert
+		_ = result.Should().BeFalse();
+	}
 }

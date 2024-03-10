@@ -1,7 +1,15 @@
+// Licensed to Hyre under one or more agreements.
+// Hyre [www.hyre.com.br] licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+#region
+
 using FluentAssertions;
 using Hyre.Modules.Notifications.Core.Enums;
 using Hyre.Modules.Notifications.Core.ValueObjects;
 using Hyre.Modules.Notifications.Tests.Unit.Common;
+
+#endregion
 
 namespace Hyre.Modules.Notifications.Tests.Unit.Core.ValueObjects;
 

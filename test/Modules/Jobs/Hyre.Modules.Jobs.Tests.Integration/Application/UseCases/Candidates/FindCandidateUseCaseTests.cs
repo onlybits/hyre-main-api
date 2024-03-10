@@ -10,6 +10,7 @@ using Hyre.Modules.Jobs.Application.UseCases.Candidates.Find;
 using Hyre.Modules.Jobs.Infrastructure;
 using Hyre.Modules.Jobs.Tests.Integration.Common;
 using Hyre.Shared.Abstractions.Logging;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using NSubstitute;
 
@@ -27,8 +28,9 @@ public sealed class FindCandidateUseCaseTests : CandidateBaseFixture, IAsyncLife
 	{
 		_context = CreateRepositoryContext();
 
-		_repository = new JobsRepositoryManager(_context);
 		var logger = Substitute.For<ILoggerManager>();
+		var publisherEndpoint = Substitute.For<IPublishEndpoint>();
+		_repository = new JobsRepositoryManager(_context, publisherEndpoint, logger);
 		_sut = new FindCandidateUseCase(_repository, logger);
 	}
 

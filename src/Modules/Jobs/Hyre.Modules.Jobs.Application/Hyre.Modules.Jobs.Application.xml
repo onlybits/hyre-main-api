@@ -96,6 +96,16 @@
         <member name="P:Hyre.Modules.Jobs.Application.Common.JobOpportunityResponse.CreatedAt">
             <summary>The job opportunity creation date.</summary>
         </member>
+        <member name="T:Hyre.Modules.Jobs.Application.Exceptions.CandidateAlreadyExistsByEmailException">
+            <summary>
+              Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Application.Exceptions.CandidateAlreadyExistsByEmailException" /> class.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Application.Exceptions.CandidateAlreadyExistsByEmailException.#ctor">
+            <summary>
+              Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Application.Exceptions.CandidateAlreadyExistsByEmailException" /> class.
+            </summary>
+        </member>
         <member name="T:Hyre.Modules.Jobs.Application.Exceptions.CandidateNotFoundException">
             <summary>
               Exception thrown when a candidate is not found.

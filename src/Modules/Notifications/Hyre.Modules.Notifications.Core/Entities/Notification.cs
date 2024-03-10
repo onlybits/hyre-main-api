@@ -17,10 +17,20 @@ namespace Hyre.Modules.Notifications.Core.Entities;
 public sealed class Notification : EntityBase<NotificationId>
 {
 	/// <summary>
+	///   This constructor is used by Entity Framework Core.
+	/// </summary>
+	private Notification() : base(NotificationId.New())
+	{
+	}
+
+	/// <summary>
 	///   Initializes a new instance of the <see cref="Notification" /> class.
 	/// </summary>
 	private Notification(NotificationRecipient recipient) : base(NotificationId.New()) => Recipient = recipient;
 
+	/// <summary>
+	///   Gets or sets the recipient of the notification.
+	/// </summary>
 	public NotificationRecipient Recipient { get; private set; }
 
 	/// <summary>

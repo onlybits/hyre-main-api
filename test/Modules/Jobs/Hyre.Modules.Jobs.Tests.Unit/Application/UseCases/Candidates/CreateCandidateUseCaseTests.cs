@@ -7,7 +7,9 @@
 using FluentAssertions;
 using Hyre.Modules.Jobs.Application.Exceptions;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.Create;
+using Hyre.Modules.Jobs.Core.Constants;
 using Hyre.Modules.Jobs.Core.Repositories;
+using Hyre.Modules.Jobs.Core.ValueObjects.Candidates;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 using Hyre.Modules.Jobs.Tests.Unit.Common;
 using Hyre.Shared.Abstractions.Logging;
@@ -76,6 +78,41 @@ public sealed class CreateCandidateUseCaseTests : CandidateBaseFixture
 
 		_logger.Received(1).LogError(
 			Arg.Is("Job opportunity with id {JobOpportunityId} not found."),
+			Arg.Any<object?[]>());
+	}
+
+	[Fact(DisplayName = nameof(Handle_WhenCandidateWithEmailExists_ShouldThrowCandidateWithEmailExistsException))]
+	[Trait(UseCaseTraits.Name, UseCaseTraits.Value)]
+	public void Handle_WhenCandidateWithEmailExists_ShouldThrowCandidateWithEmailExistsException()
+	{
+		// Arrange
+		var request = GenerateCreateCandidateRequest();
+		var jobOpportunity = GenerateValidJobOpportunity();
+
+		_ = _repository
+			.JobOpportunity
+			.FindByIdAsync(Arg.Any<JobOpportunityId>(), Arg.Any<bool>(), Arg.Any<bool>(), Arg.Any<CancellationToken>())
+			.Returns(jobOpportunity);
+
+		_ = _repository
+			.Candidate
+			.ExistsAsync(
+				Arg.Any<JobOpportunityId>(),
+				Arg.Any<CandidateEmail>(),
+				Arg.Any<bool>(),
+				Arg.Any<CancellationToken>())
+			.Returns(true);
+
+		// Act
+		var act = async () => await _sut.Handle(request, CancellationToken.None);
+
+		// Assert
+		_ = act.Should()
+			.ThrowExactlyAsync<CandidateAlreadyExistsByEmailException>()
+			.WithMessage(CandidateErrorMessages.AlreadyExistsByEmail);
+
+		_logger.Received(1).LogError(
+			Arg.Is("Candidate with email {Email} already exists for job opportunity {JobOpportunityId}."),
 			Arg.Any<object?[]>());
 	}
 }

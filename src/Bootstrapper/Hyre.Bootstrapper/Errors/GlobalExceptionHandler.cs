@@ -35,6 +35,7 @@ public sealed class GlobalExceptionHandler : IExceptionHandler
 			httpContext.Response.StatusCode = contextFeature.Error switch
 			{
 				NotFoundException => StatusCodes.Status404NotFound,
+				ConflictException => StatusCodes.Status409Conflict,
 				DomainException => StatusCodes.Status422UnprocessableEntity,
 				_ => StatusCodes.Status500InternalServerError
 			};

@@ -10,6 +10,7 @@ using Hyre.Modules.Jobs.Application.UseCases.Candidates.Create;
 using Hyre.Modules.Jobs.Infrastructure;
 using Hyre.Modules.Jobs.Tests.Integration.Common;
 using Hyre.Shared.Abstractions.Logging;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using NSubstitute;
 
@@ -29,8 +30,9 @@ public sealed class CreateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 	{
 		_context = CreateRepositoryContext();
 
-		var repository = new JobsRepositoryManager(_context);
 		var logger = Substitute.For<ILoggerManager>();
+		var publisherEndpoint = Substitute.For<IPublishEndpoint>();
+		var repository = new JobsRepositoryManager(_context, publisherEndpoint, logger);
 		_sut = new CreateCandidateUseCase(repository, logger);
 	}
 
@@ -84,5 +86,27 @@ public sealed class CreateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 		_ = await act
 			.Should()
 			.ThrowExactlyAsync<JobOpportunityNotFoundException>();
+	}
+
+	[Fact(DisplayName = nameof(Handle_WhenGivenCandidateWithEmailInDatabase_ShouldThrowException))]
+	[Trait(UseCasesTraits.Name, UseCasesTraits.Value)]
+	public async Task Handle_WhenGivenCandidateWithEmailInDatabase_ShouldThrowException()
+	{
+		// Arrange
+		var jobOpportunity = GenerateValidJobOpportunity();
+		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
+
+		var createCandidateInput = new CreateCandidateInput(GenerateCandidateName(), candidate.Email);
+		var createCandidateRequest = new CreateCandidateRequest(jobOpportunity.Id, createCandidateInput, false);
+
+		// Act
+		await SeedDatabaseAsync(jobOpportunity, new[] { candidate });
+
+		var act = async () => await _sut.Handle(createCandidateRequest, CancellationToken.None);
+
+		// Assert
+		_ = await act
+			.Should()
+			.ThrowExactlyAsync<CandidateAlreadyExistsByEmailException>();
 	}
 }

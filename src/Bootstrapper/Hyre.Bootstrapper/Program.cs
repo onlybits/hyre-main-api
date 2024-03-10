@@ -14,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
 	.AddCorsConfiguration()
 	.AddSwaggerConfiguration()
+	.AddRabbitMqConfiguration()
 	.AddModularInfrastructure()
 	.AddModulesConfiguration()
 	.AddExceptionHandler<GlobalExceptionHandler>()

@@ -44,13 +44,25 @@ internal class CreateCandidateUseCase : ICreateCandidateUseCase
 			throw new JobOpportunityNotFoundException();
 		}
 
+		var candidateExists = await _repository.Candidate.ExistsAsync(
+			jobOpportunity.Id,
+			request.Input.Email,
+			false,
+			cancellationToken);
+
+		if (candidateExists)
+		{
+			_logger.LogError("Candidate with email {Email} already exists for job opportunity {JobOpportunityId}.", request.Input.Email,
+				jobOpportunity.Id);
+			throw new CandidateAlreadyExistsByEmailException();
+		}
+
 		var candidate = Candidate.Create(
 			request.JobOpportunityId,
 			request.Input.Name,
 			request.Input.Email);
 
 		_repository.Candidate.Create(candidate);
-		jobOpportunity.AddCandidate(candidate);
 		await _repository.CommitChangesAsync(cancellationToken);
 
 		_logger.LogInfo("Candidate {CandidateId} created for job opportunity {JobOpportunityId}.", candidate.Id, jobOpportunity.Id);

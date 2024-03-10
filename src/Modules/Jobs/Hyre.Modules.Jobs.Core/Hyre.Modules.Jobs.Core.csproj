@@ -12,6 +12,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\..\Shared\Hyre.Shared.Infrastructure\Hyre.Shared.Infrastructure.csproj"/>
+        <ProjectReference Include="..\Hyre.Modules.Jobs.Core.Events\Hyre.Modules.Jobs.Core.Events.csproj"/>
     </ItemGroup>
     <ItemGroup>
         <InternalsVisibleTo Include="Hyre.Modules.Jobs.API"/>

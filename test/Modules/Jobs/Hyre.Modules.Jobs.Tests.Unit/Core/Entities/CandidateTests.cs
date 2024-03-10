@@ -6,6 +6,7 @@
 
 using FluentAssertions;
 using Hyre.Modules.Jobs.Core.Entities;
+using Hyre.Modules.Jobs.Core.Events;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 using Hyre.Modules.Jobs.Tests.Unit.Common;
 using Xunit;
@@ -42,6 +43,10 @@ public sealed class CandidateTests : CandidateBaseFixture
 		_ = sut.JobOpportunityId.Value.Should().NotBeEmpty();
 		_ = sut.JobOpportunityId.Should().Be(jobOpportunityId);
 		_ = sut.Events.Should().HaveCount(1);
+
+		var @event = sut.Events.First() as CandidateCreatedEvent;
+		_ = @event.Should().NotBeNull();
+		_ = @event!.Email.Should().Be(email);
 	}
 
 	[Fact(DisplayName = nameof(UpdateName_WhenGivenValidName_ShouldUpdateName))]

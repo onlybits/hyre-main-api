@@ -4,6 +4,7 @@
 
 #region
 
+using System.Diagnostics.CodeAnalysis;
 using Hyre.Shared.Abstractions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,7 @@ namespace Hyre.Shared.Infrastructure.Postgres;
 /// <remarks>
 ///   Each module should have its own Postgres context, and this class will initialize them all.
 /// </remarks>
+[SuppressMessage("Design", "CA1031:Do not catch general exception types")]
 internal sealed class DbContextAppInitializer : IHostedService
 {
 	private readonly ILoggerManager _logger;
@@ -48,7 +50,14 @@ internal sealed class DbContextAppInitializer : IHostedService
 			}
 
 			_logger.LogInfo("The {Name} is being initialized.", dbContextType.Name);
-			await dbContext.Database.MigrateAsync(cancellationToken);
+			try
+			{
+				await dbContext.Database.MigrateAsync(cancellationToken);
+			}
+			catch (Exception)
+			{
+				_logger.LogError("An error occurred while migrating the {Name}.", dbContextType.Name);
+			}
 		}
 	}
 

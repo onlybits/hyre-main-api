@@ -1,3 +1,9 @@
+// Licensed to Hyre under one or more agreements.
+// Hyre [www.hyre.com.br] licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+#region
+
 using System.Text.Json;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.Create;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete;
@@ -13,6 +19,8 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+
+#endregion
 
 namespace Hyre.Modules.Jobs.API.Controllers;
 

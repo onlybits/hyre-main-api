@@ -94,4 +94,26 @@ internal sealed class CandidateRepository : RepositoryBase<Candidate>, ICandidat
 	/// </summary>
 	/// <param name="candidate">The candidate to be deleted.</param>
 	public void Delete(Candidate candidate) => Remove(candidate);
+
+	/// <summary>
+	///   This method is responsible for checking if a candidate exists by arguments.
+	/// </summary>
+	/// <param name="jobOpportunityId">The job opportunity id.</param>
+	/// <param name="email">The candidate email.</param>
+	/// <param name="trackChanges">Should EF Core keep track of changes in the candidate entity.</param>
+	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
+	/// <returns>Returns true if the candidate exists, otherwise false.</returns>
+	public async Task<bool> ExistsAsync(
+		JobOpportunityId jobOpportunityId,
+		CandidateEmail email,
+		bool trackChanges,
+		CancellationToken cancellationToken = default)
+	{
+		var candidates = await FindByCondition(c => c.JobOpportunityId == jobOpportunityId && c.Email == email, trackChanges)
+			.ToListAsync(cancellationToken);
+
+		var existsByEmail = candidates.Any(x => x.Email == email);
+
+		return existsByEmail;
+	}
 }

@@ -61,34 +61,30 @@
             </summary>
             <inheritdoc cref="T:Hyre.Modules.Jobs.Core.Repositories.IJobsRepositoryManager" />
         </member>
-        <member name="M:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryManager.#ctor(Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext)">
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryManager.#ctor(Hyre.Modules.Jobs.Infrastructure.JobsRepositoryContext,MassTransit.IPublishEndpoint,Hyre.Shared.Abstractions.Logging.ILoggerManager)">
             <summary>
               Initializes a new instance of the <see cref="T:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryManager" /> class.
             </summary>
             <param name="context">The jobs repository context.</param>
+            <param name="publishEndpoint">The publish endpoint for the message broker.</param>
+            <param name="logger">The logger manager.</param>
         </member>
-        <member name="T:Hyre.Modules.Jobs.Infrastructure.Migrations.AddCandidateEmail">
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.JobsRepositoryManager.PublishEvents(System.Threading.CancellationToken)">
+            <summary>
+              This method publishes the domain events to the message broker.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Infrastructure.Migrations.AddInitial">
             <inheritdoc />
         </member>
-        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddCandidateEmail.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddInitial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddCandidateEmail.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddInitial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddCandidateEmail.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:Hyre.Modules.Jobs.Infrastructure.Migrations.AddInitialJobOpportunities">
-            <inheritdoc />
-        </member>
-        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddInitialJobOpportunities.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddInitialJobOpportunities.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddInitialJobOpportunities.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddInitial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.Persistence.CandidateRepository">
@@ -139,6 +135,16 @@
               This method is responsible for deleting a candidate.
             </summary>
             <param name="candidate">The candidate to be deleted.</param>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Persistence.CandidateRepository.ExistsAsync(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+              This method is responsible for checking if a candidate exists by arguments.
+            </summary>
+            <param name="jobOpportunityId">The job opportunity id.</param>
+            <param name="email">The candidate email.</param>
+            <param name="trackChanges">Should EF Core keep track of changes in the candidate entity.</param>
+            <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
+            <returns>Returns true if the candidate exists, otherwise false.</returns>
         </member>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.Persistence.JobOpportunityRepository">
             <summary>

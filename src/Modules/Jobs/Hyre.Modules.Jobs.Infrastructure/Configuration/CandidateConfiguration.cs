@@ -49,7 +49,10 @@ internal sealed class CandidateConfiguration : IEntityTypeConfiguration<Candidat
 			.HasConversion(e => e.Value, value => new CandidateEmail(value))
 			.HasColumnName("email")
 			.IsRequired();
-		
+
+		_ = builder.HasIndex(c => c.Email)
+			.IsUnique();
+
 		_ = builder.Property(c => c.CreatedAt)
 			.HasConversion(c => c.Value, value => new CreateDate(value))
 			.HasColumnName("created_at")

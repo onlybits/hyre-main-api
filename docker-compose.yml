@@ -26,10 +26,28 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - pg-data:/var/lib/postgresql/data
+      - ./containers/pg-data:/var/lib/postgresql/data
     networks:
       - hyre
+    depends_on: 
+      - hyre-message-broker
   
+  hyre-message-broker:
+    image: rabbitmq:management-alpine
+    container_name: hyre-message-broker
+    hostname: hyre-message-broker
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: hyre
+      RABBITMQ_DEFAULT_PASS: hyre123
+    volumes:
+      - ./containers/rabbitmq/data:/var/lib/rabbitmq
+      - ./containers/rabbitmq/logs:/var/log/rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - hyre
 
 volumes:
   pg-data:

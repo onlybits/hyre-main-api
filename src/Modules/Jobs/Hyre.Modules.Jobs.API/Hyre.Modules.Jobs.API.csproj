@@ -6,8 +6,12 @@
         <Nullable>enable</Nullable>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     </PropertyGroup>
-    <PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
         <DocumentationFile>Hyre.Modules.Jobs.API.xml</DocumentationFile>
+        <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <NoWarn>1701;1702;1591</NoWarn>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\Hyre.Modules.Jobs.Application\Hyre.Modules.Jobs.Application.csproj"/>

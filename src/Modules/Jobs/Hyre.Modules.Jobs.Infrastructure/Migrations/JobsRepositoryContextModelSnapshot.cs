@@ -45,6 +45,10 @@ namespace Hyre.Modules.Jobs.Infrastructure.Migrations
                     b.HasKey("Id")
                         .HasName("pk_candidates");
 
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasDatabaseName("ix_candidates_email");
+
                     b.HasIndex("JobOpportunityId")
                         .HasDatabaseName("ix_candidates_job_opportunity_id");
 

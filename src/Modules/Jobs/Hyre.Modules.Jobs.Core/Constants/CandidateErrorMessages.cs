@@ -9,15 +9,6 @@ namespace Hyre.Modules.Jobs.Core.Constants;
 /// </summary>
 public abstract class CandidateErrorMessages
 {
-	#region Application
-
-	/// <summary>
-	///   Used when the candidate is not found.
-	/// </summary>
-	public const string NotFound = "O candidato não foi encontrado.";
-
-	#endregion
-
 	#region Id
 
 	/// <summary>
@@ -34,6 +25,20 @@ public abstract class CandidateErrorMessages
 	/// </summary>
 	/// <param name="email">The email of the candidate.</param>
 	public static string EmailInvalid(string email) => $"O e-mail: '{email}' é inválido.";
+
+	#endregion
+
+	#region Application
+
+	/// <summary>
+	///   Used when the candidate is not found.
+	/// </summary>
+	public const string NotFound = "O candidato não foi encontrado.";
+
+	/// <summary>
+	///   Used when the candidate already exists by email.
+	/// </summary>
+	public const string AlreadyExistsByEmail = "Já existe um candidato com o e-mail informado cadastrado para esta oportunidade.";
 
 	#endregion
 

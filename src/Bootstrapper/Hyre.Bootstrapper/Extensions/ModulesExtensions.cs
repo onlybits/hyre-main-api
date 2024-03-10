@@ -5,6 +5,7 @@
 #region
 
 using Hyre.Modules.Jobs.API;
+using Hyre.Modules.Notifications.API;
 
 #endregion
 
@@ -21,7 +22,8 @@ internal static class ModulesExtensions
 	/// <param name="services">The service collection.</param>
 	/// <returns>It will return the service collection.</returns>
 	public static IServiceCollection AddModulesConfiguration(this IServiceCollection services) => services
-		.RegisterJobsModule();
+		.RegisterJobsModule()
+		.RegisterNotificationsModule();
 
 	/// <summary>
 	///   This method is used to configure all modules in the application builder.
@@ -29,5 +31,6 @@ internal static class ModulesExtensions
 	/// <param name="app">The application builder.</param>
 	/// <returns>It will return the application builder.</returns>
 	public static IApplicationBuilder UseModules(this IApplicationBuilder app) => app
-		.UseJobsModule();
+		.UseJobsModule()
+		.UseNotificationsModule();
 }

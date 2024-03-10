@@ -1,7 +1,15 @@
+// Licensed to Hyre under one or more agreements.
+// Hyre [www.hyre.com.br] licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+#region
+
 using System.ComponentModel.DataAnnotations;
 using Hyre.Modules.Notifications.Core.Enums;
 using Hyre.Modules.Notifications.Core.Exceptions;
 using Hyre.Shared.Abstractions.Kernel.ValueObjects;
+
+#endregion
 
 namespace Hyre.Modules.Notifications.Core.ValueObjects;
 

@@ -12,6 +12,7 @@ using Hyre.Modules.Jobs.Core.Repositories;
 using Hyre.Modules.Jobs.Infrastructure;
 using Hyre.Modules.Jobs.Tests.Integration.Common;
 using Hyre.Shared.Abstractions.Logging;
+using MassTransit;
 using NSubstitute;
 
 #endregion
@@ -31,7 +32,8 @@ public sealed class UpdateJobOpportunityUseCaseTests : JobOpportunityUseCaseTest
 	{
 		var context = CreateRepositoryContext();
 		var logger = Substitute.For<ILoggerManager>();
-		_repository = new JobsRepositoryManager(context);
+		var publisherEndpoint = Substitute.For<IPublishEndpoint>();
+		_repository = new JobsRepositoryManager(context, publisherEndpoint, logger);
 		_sut = new UpdateJobOpportunityUseCase(_repository, logger);
 	}
 

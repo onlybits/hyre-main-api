@@ -21,6 +21,7 @@
     <ItemGroup>
         <InternalsVisibleTo Include="Hyre.Bootstrapper"/>
         <InternalsVisibleTo Include="Hyre.Modules.Jobs.Infrastructure"/>
+        <InternalsVisibleTo Include="Hyre.Modules.Notifications.Infrastructure"/>
     </ItemGroup>
 
 </Project>

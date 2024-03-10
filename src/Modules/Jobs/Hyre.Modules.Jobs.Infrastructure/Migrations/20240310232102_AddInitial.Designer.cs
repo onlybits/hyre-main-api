@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Hyre.Modules.Jobs.Infrastructure.Migrations
 {
     [DbContext(typeof(JobsRepositoryContext))]
-    [Migration("20240310110952_AddInitialJobOpportunities")]
-    partial class AddInitialJobOpportunities
+    [Migration("20240310232102_AddInitial")]
+    partial class AddInitial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,12 +36,21 @@ namespace Hyre.Modules.Jobs.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_at");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("email");
+
                     b.Property<Guid>("JobOpportunityId")
                         .HasColumnType("uuid")
                         .HasColumnName("job_opportunity_id");
 
                     b.HasKey("Id")
                         .HasName("pk_candidates");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasDatabaseName("ix_candidates_email");
 
                     b.HasIndex("JobOpportunityId")
                         .HasDatabaseName("ix_candidates_job_opportunity_id");

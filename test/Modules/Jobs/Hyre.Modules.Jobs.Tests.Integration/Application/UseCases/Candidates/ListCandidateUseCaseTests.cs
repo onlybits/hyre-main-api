@@ -1,16 +1,25 @@
+// Licensed to Hyre under one or more agreements.
+// Hyre [www.hyre.com.br] licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+#region
+
 using FluentAssertions;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.List;
 using Hyre.Modules.Jobs.Core.Requests;
 using Hyre.Modules.Jobs.Infrastructure;
 using Hyre.Modules.Jobs.Tests.Integration.Common;
 using Hyre.Shared.Abstractions.Logging;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using NSubstitute;
+
+#endregion
 
 namespace Hyre.Modules.Jobs.Tests.Integration.Application.UseCases.Candidates;
 
 /// <summary>
-/// Integration tests for the <see cref="ListCandidateUseCase"/> class.
+///   Integration tests for the <see cref="ListCandidateUseCase" /> class.
 /// </summary>
 public sealed class ListCandidateUseCaseTests : CandidateBaseFixture, IAsyncLifetime
 {
@@ -21,8 +30,9 @@ public sealed class ListCandidateUseCaseTests : CandidateBaseFixture, IAsyncLife
 	{
 		_context = CreateRepositoryContext();
 
-		var repository = new JobsRepositoryManager(_context);
 		var logger = Substitute.For<ILoggerManager>();
+		var publisherEndpoint = Substitute.For<IPublishEndpoint>();
+		var repository = new JobsRepositoryManager(_context, publisherEndpoint, logger);
 		_sut = new ListCandidateUseCase(repository, logger);
 	}
 

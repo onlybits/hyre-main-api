@@ -6,6 +6,7 @@
         <InvariantGlobalization>false</InvariantGlobalization>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
     <PropertyGroup>
         <DocumentationFile>Hyre.Bootstrapper.xml</DocumentationFile>
@@ -19,11 +20,12 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\..\Modules\Jobs\Hyre.Modules.Jobs.API\Hyre.Modules.Jobs.API.csproj"/>
+        <ProjectReference Include="..\..\Modules\Notifications\Hyre.Modules.Notifications.API\Hyre.Modules.Notifications.API.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
         <Content Include="..\..\..\.dockerignore">
             <Link>.dockerignore</Link>
         </Content>
-    </ItemGroup>
-    <ItemGroup>
-        <ProjectReference Include="..\..\Modules\Jobs\Hyre.Modules.Jobs.API\Hyre.Modules.Jobs.API.csproj"/>
     </ItemGroup>
 </Project>

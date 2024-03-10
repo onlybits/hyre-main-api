@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Hyre.Modules.Jobs.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AddInitialJobOpportunities : Migration
+    public partial class AddInitial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -45,6 +45,7 @@ namespace Hyre.Modules.Jobs.Infrastructure.Migrations
                     first_name = table.Column<string>(type: "character varying(32)", maxLength: 32, nullable: false),
                     middle_name = table.Column<string>(type: "character varying(32)", maxLength: 32, nullable: false),
                     last_name = table.Column<string>(type: "character varying(32)", maxLength: 32, nullable: false),
+                    email = table.Column<string>(type: "text", nullable: false),
                     job_opportunity_id = table.Column<Guid>(type: "uuid", nullable: false),
                     created_at = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
@@ -59,6 +60,13 @@ namespace Hyre.Modules.Jobs.Infrastructure.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "ix_candidates_email",
+                schema: "jobs",
+                table: "candidates",
+                column: "email",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "ix_candidates_job_opportunity_id",

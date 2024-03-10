@@ -135,7 +135,7 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 	/// <returns>Returns a valid <see cref="CandidateEmail" />.</returns>
 	protected CandidateEmail GenerateCandidateEmail() => new(
 		Faker.Internet.Email());
-	
+
 	/// <summary>
 	///   This method is responsible for seeding the database with the given job opportunities.
 	/// </summary>

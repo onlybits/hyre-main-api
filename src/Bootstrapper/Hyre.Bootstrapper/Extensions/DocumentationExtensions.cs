@@ -4,8 +4,6 @@
 
 #region
 
-using System.Reflection;
-using Hyre.Modules.Jobs.API;
 using Microsoft.OpenApi.Models;
 
 #endregion
@@ -31,8 +29,8 @@ public static class DocumentationExtensions
 				Version = "v1"
 			});
 
-			var jobsXmlFile = $"{Assembly.GetAssembly(typeof(IJobsApiMarker))!.GetName().Name}.xml";
-			options.IncludeXmlComments(jobsXmlFile);
+			//	var jobsXmlFile = $"{Assembly.GetAssembly(typeof(IJobsApiMarker))!.GetName().Name}.xml";
+			//	options.IncludeXmlComments(jobsXmlFile);
 
 			options.CustomSchemaIds(type => type.ToString());
 		});
