@@ -4,6 +4,11 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Hyre.Modules.Notifications.Application\Hyre.Modules.Notifications.Application.csproj"/>
+    </ItemGroup>
 
 </Project>
