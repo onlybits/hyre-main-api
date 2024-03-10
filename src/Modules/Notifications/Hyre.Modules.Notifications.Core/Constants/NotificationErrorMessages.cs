@@ -23,4 +23,14 @@ internal abstract class NotificationErrorMessages
 	public const string NotificationIdCannotBeEmpty = "O Id da notificação não pode ser vazio.";
 
 	#endregion
+
+	#region Email
+
+	/// <summary>
+	///   Used when the email is invalid.
+	/// </summary>
+	/// <param name="email">The email that is invalid.</param>
+	public static string EmailInvalid(string email) => $"O e-mail: '{email}' é inválido.";
+
+	#endregion
 }

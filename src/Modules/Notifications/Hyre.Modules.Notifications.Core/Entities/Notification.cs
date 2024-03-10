@@ -19,17 +19,18 @@ public sealed class Notification : EntityBase<NotificationId>
 	/// <summary>
 	///   Initializes a new instance of the <see cref="Notification" /> class.
 	/// </summary>
-	private Notification() : base(NotificationId.New())
-	{
-	}
+	private Notification(NotificationRecipient recipient) : base(NotificationId.New()) => Recipient = recipient;
+
+	public NotificationRecipient Recipient { get; private set; }
 
 	/// <summary>
 	///   Creates a new instance of the <see cref="Notification" /> class.
 	/// </summary>
+	/// <param name="recipient">The recipient of the notification.</param>
 	/// <returns>Returns a new instance of the <see cref="Notification" /> class.</returns>
-	public static Notification Create()
+	public static Notification Create(NotificationRecipient recipient)
 	{
-		var notification = new Notification();
+		var notification = new Notification(recipient);
 		return notification;
 	}
 }

@@ -6,6 +6,7 @@
 
 using FluentAssertions;
 using Hyre.Modules.Notifications.Core.Entities;
+using Hyre.Modules.Notifications.Tests.Unit.Common;
 
 #endregion
 
@@ -14,19 +15,21 @@ namespace Hyre.Modules.Notifications.Tests.Unit.Core.Entities;
 /// <summary>
 ///   Unit tests for the <see cref="Notification" /> entity.
 /// </summary>
-public sealed class NotificationTests
+public sealed class NotificationTests : NotificationFixture
 {
 	[Fact(DisplayName = nameof(Create_WhenCalled_ShouldCreateNotification))]
 	[Trait(EntitiesTraits.Name, EntitiesTraits.Value)]
 	public void Create_WhenCalled_ShouldCreateNotification()
 	{
 		// Arrange
+		var recipient = GenerateNotificationRecipient();
 		// Act
-		var notification = Notification.Create();
+		var notification = Notification.Create(recipient);
 
 		// Assert
 		_ = notification.Should().NotBeNull();
 		_ = notification.Id.Should().NotBeNull();
 		_ = notification.Id.Value.Should().NotBeEmpty();
+		_ = notification.Recipient.Should().Be(recipient);
 	}
 }
