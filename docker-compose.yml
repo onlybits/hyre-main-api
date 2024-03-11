@@ -8,7 +8,8 @@ services:
       context: .
       dockerfile: src/Bootstrapper/Hyre.Bootstrapper/Dockerfile
     depends_on:
-      - hyre-database
+      hyre-database:
+        condition: service_healthy
     networks:
       - hyre
 
@@ -27,10 +28,16 @@ services:
       - "5432:5432"
     volumes:
       - ./containers/pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
       - hyre
     depends_on: 
-      - hyre-message-broker
+      hyre-message-broker:
+        condition: service_healthy
   
   hyre-message-broker:
     image: rabbitmq:management-alpine
@@ -48,6 +55,11 @@ services:
       - "15672:15672"
     networks:
       - hyre
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   pg-data:

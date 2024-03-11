@@ -34,10 +34,5 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
 
-    - name: Waits Containers
-      uses: iFaxity/wait-on-action@v1.1.0
-      with:
-        resource: http://localhost:5672
-    
     - name: Test
       run: dotnet test --no-build --verbosity normal
