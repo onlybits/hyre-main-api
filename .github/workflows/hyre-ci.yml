@@ -22,6 +22,9 @@ jobs:
       with:
         dotnet-version: 8.0.x
     
+    - name: Create network
+      run: docker network create -d bridge hyre-network
+      
     - name: Start containers
       run: docker compose -f "docker-compose.yml" up -d --build
       
