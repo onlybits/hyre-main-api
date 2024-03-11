@@ -87,6 +87,18 @@
         <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddInitial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Hyre.Modules.Jobs.Infrastructure.Migrations.AddOutboxPattern">
+            <inheritdoc />
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddOutboxPattern.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddOutboxPattern.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Infrastructure.Migrations.AddOutboxPattern.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:Hyre.Modules.Jobs.Infrastructure.Persistence.CandidateRepository">
             <summary>
               This is the repository for the <see cref="T:Hyre.Modules.Jobs.Core.Entities.Candidate" /> entity.

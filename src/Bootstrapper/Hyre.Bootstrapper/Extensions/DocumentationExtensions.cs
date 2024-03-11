@@ -29,6 +29,7 @@ public static class DocumentationExtensions
 				Version = "v1"
 			});
 
+			//TODO: Check a way to include the xml comments from the modules in the docker container.
 			//	var jobsXmlFile = $"{Assembly.GetAssembly(typeof(IJobsApiMarker))!.GetName().Name}.xml";
 			//	options.IncludeXmlComments(jobsXmlFile);
 

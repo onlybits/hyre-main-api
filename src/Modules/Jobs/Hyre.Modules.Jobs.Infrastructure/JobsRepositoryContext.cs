@@ -5,6 +5,7 @@
 #region
 
 using Hyre.Modules.Jobs.Core.Entities;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
 #endregion
@@ -45,5 +46,10 @@ internal sealed class JobsRepositoryContext : DbContext
 		base.OnModelCreating(modelBuilder);
 		_ = modelBuilder.HasDefaultSchema("jobs");
 		_ = modelBuilder.ApplyConfigurationsFromAssembly(typeof(JobsRepositoryContext).Assembly);
+
+		// MassTransit outbox pattern
+		modelBuilder.AddInboxStateEntity();
+		modelBuilder.AddOutboxMessageEntity();
+		modelBuilder.AddOutboxStateEntity();
 	}
 }

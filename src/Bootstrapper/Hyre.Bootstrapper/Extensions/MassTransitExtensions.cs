@@ -4,6 +4,7 @@
 
 #region
 
+using Hyre.Modules.Jobs.Infrastructure;
 using Hyre.Modules.Notifications.Application.Consumers;
 using Hyre.Shared.Infrastructure;
 using Hyre.Shared.Infrastructure.Messaging;
@@ -31,6 +32,7 @@ public static class MassTransitExtensions
 		{
 			busConfigurator.SetKebabCaseEndpointNameFormatter();
 			busConfigurator.AddConsumers();
+			busConfigurator.AddOutbox();
 
 			busConfigurator.UsingRabbitMq((ctx, cfg) =>
 			{
@@ -40,6 +42,7 @@ public static class MassTransitExtensions
 					h.Password(rabbitMqOptions.Password);
 				});
 
+				cfg.UseMessageRetry(r => r.Intervals(5, 5));
 				cfg.ConfigureEndpoints(ctx);
 			});
 		});
@@ -51,5 +54,12 @@ public static class MassTransitExtensions
 	/// </summary>
 	/// <param name="busConfigurator">The bus configurator.</param>
 	private static void AddConsumers(this IRegistrationConfigurator busConfigurator) => busConfigurator
-		.AddConsumer<CandidateCreatedConsumer>();
+		.AddConsumersFromNamespaceContaining<CandidateCreatedConsumer>();
+
+	private static void AddOutbox(this IBusRegistrationConfigurator busConfigurator) => busConfigurator
+		.AddEntityFrameworkOutbox<JobsRepositoryContext>(options =>
+		{
+			options.QueryDelay = TimeSpan.FromSeconds(10);
+			options.UsePostgres().UseBusOutbox();
+		});
 }

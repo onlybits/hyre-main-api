@@ -6,33 +6,33 @@
     <members>
         <member name="T:Hyre.Bootstrapper.Errors.ErrorDetails">
             <summary>
-              This class is used to return error details in the response body.
+                This class is used to return error details in the response body.
             </summary>
         </member>
         <member name="P:Hyre.Bootstrapper.Errors.ErrorDetails.Status">
             <summary>
-              Gets or sets the status code of the response.
+                Gets or sets the status code of the response.
             </summary>
         </member>
         <member name="P:Hyre.Bootstrapper.Errors.ErrorDetails.Message">
             <summary>
-              Gets or sets the error message of the response.
+                Gets or sets the error message of the response.
             </summary>
         </member>
         <member name="M:Hyre.Bootstrapper.Errors.ErrorDetails.ToString">
             <summary>
-              Used to return the validation errors in the response.
+                Used to return the validation errors in the response.
             </summary>
             <returns></returns>
         </member>
         <member name="T:Hyre.Bootstrapper.Errors.GlobalExceptionHandler">
             <summary>
-              This class contains the global exception handler.
+                This class contains the global exception handler.
             </summary>
         </member>
         <member name="M:Hyre.Bootstrapper.Errors.GlobalExceptionHandler.TryHandleAsync(Microsoft.AspNetCore.Http.HttpContext,System.Exception,System.Threading.CancellationToken)">
             <summary>
-              This method handles the exception.
+                This method handles the exception.
             </summary>
             <param name="httpContext">The http context.</param>
             <param name="exception">The exception.</param>
@@ -41,82 +41,84 @@
         </member>
         <member name="T:Hyre.Bootstrapper.Extensions.DocumentationExtensions">
             <summary>
-              This is an extension class that contains the documentation's configuration.
+                This is an extension class that contains the documentation's configuration.
             </summary>
         </member>
         <member name="M:Hyre.Bootstrapper.Extensions.DocumentationExtensions.AddSwaggerConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-              This configures the swagger to use in the Program.cs
+                This configures the swagger to use in the Program.cs
             </summary>
             <param name="services"></param>
             <returns>Returns the service collection.</returns>
         </member>
         <member name="M:Hyre.Bootstrapper.Extensions.DocumentationExtensions.AddSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
-              This tells the application to use the swagger
+                This tells the application to use the swagger
             </summary>
             <param name="app">The application builder.</param>
             <returns>Returns the application builder.</returns>
         </member>
         <member name="T:Hyre.Bootstrapper.Extensions.MassTransitExtensions">
             <summary>
-              This class contains extension methods for MassTransit.
+                This class contains extension methods for MassTransit.
             </summary>
         </member>
         <member name="M:Hyre.Bootstrapper.Extensions.MassTransitExtensions.AddRabbitMqConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-              This method adds the RabbitMq configuration to the service collection.
+                This method adds the RabbitMq configuration to the service collection.
             </summary>
             <param name="services">The service collection.</param>
             <returns>Returns the service collection with the RabbitMq configuration.</returns>
         </member>
         <member name="M:Hyre.Bootstrapper.Extensions.MassTransitExtensions.AddConsumers(MassTransit.IRegistrationConfigurator)">
             <summary>
-              This method adds the consumers to the bus configurator.
+                This method adds the consumers to the bus configurator.
             </summary>
             <param name="busConfigurator">The bus configurator.</param>
         </member>
         <member name="T:Hyre.Bootstrapper.Extensions.ModulesExtensions">
             <summary>
-              This extension method is used to configure all modules in the bootstrapper.
+                This extension method is used to configure all modules in the bootstrapper.
             </summary>
         </member>
         <member name="M:Hyre.Bootstrapper.Extensions.ModulesExtensions.AddModulesConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-              Use this method to configure all modules in the service collection.
+                Use this method to configure all modules in the service collection.
             </summary>
             <param name="services">The service collection.</param>
             <returns>It will return the service collection.</returns>
         </member>
         <member name="M:Hyre.Bootstrapper.Extensions.ModulesExtensions.UseModules(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
-              This method is used to configure all modules in the application builder.
+                This method is used to configure all modules in the application builder.
             </summary>
             <param name="app">The application builder.</param>
             <returns>It will return the application builder.</returns>
         </member>
         <member name="T:Hyre.Bootstrapper.Extensions.ServicesExtensions">
             <summary>
-              This class contains the extension methods for the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" /> interface.
+                This class contains the extension methods for the
+                <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>
+                interface.
             </summary>
         </member>
         <member name="M:Hyre.Bootstrapper.Extensions.ServicesExtensions.AddCorsConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-              This will configure the CORS policy for the application.
+                This will configure the CORS policy for the application.
             </summary>
             <param name="services">The service's collection.</param>
             <returns>Returns the services collection.</returns>
         </member>
         <member name="M:Hyre.Bootstrapper.Extensions.ServicesExtensions.AddControllersConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-              This will configure the controllers for the application.
+                This will configure the controllers for the application.
             </summary>
             <param name="services">The service's collection.</param>
             <returns>It will return the same services collection.</returns>
         </member>
         <member name="T:Hyre.Bootstrapper.IBootstrapperMarker">
             <summary>
-              This is a marker for the bootstrapper project.
+                This is a marker for the bootstrapper project.
             </summary>
         </member>
     </members>

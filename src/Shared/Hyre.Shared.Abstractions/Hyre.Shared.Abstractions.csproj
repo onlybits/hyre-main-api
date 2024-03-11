@@ -16,6 +16,7 @@
         <InternalsVisibleTo Include="Hyre.Shared.Abstractions.Tests.Unit"/>
     </ItemGroup>
     <ItemGroup>
+        <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.1.3"/>
         <PackageReference Include="MassTransit.RabbitMQ" Version="8.1.3"/>
     </ItemGroup>
 </Project>

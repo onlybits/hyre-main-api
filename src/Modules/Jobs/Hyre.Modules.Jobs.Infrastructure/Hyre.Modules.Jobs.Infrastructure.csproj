@@ -13,6 +13,7 @@
         <ProjectReference Include="..\Hyre.Modules.Jobs.Core\Hyre.Modules.Jobs.Core.csproj"/>
     </ItemGroup>
     <ItemGroup>
+        <InternalsVisibleTo Include="Hyre.Bootstrapper"/>
         <InternalsVisibleTo Include="Hyre.Modules.Jobs.API"/>
         <InternalsVisibleTo Include="Hyre.Modules.Jobs.Tests.Integration"/>
     </ItemGroup>
