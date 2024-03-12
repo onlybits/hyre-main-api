@@ -4,6 +4,7 @@
 
 #region
 
+using Hyre.Modules.Notifications.Core.Entities;
 using Hyre.Modules.Notifications.Core.Enums;
 using Hyre.Modules.Notifications.Core.ValueObjects;
 
@@ -16,6 +17,13 @@ namespace Hyre.Modules.Notifications.Tests.Unit.Common;
 /// </summary>
 public abstract class NotificationFixture : BaseFixture
 {
+	/// <summary>
+	///   Generates a new <see cref="Notification" />.
+	/// </summary>
+	/// <returns>Returns a new <see cref="Notification" />.</returns>
+	protected Notification GenerateNotification() => Notification.Create(
+		GenerateNotificationRecipient());
+
 	/// <summary>
 	///   Generates a new <see cref="NotificationRecipient" />.
 	/// </summary>

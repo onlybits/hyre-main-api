@@ -12,8 +12,16 @@ using Hyre.Modules.Notifications.Core.ValueObjects;
 
 namespace Hyre.Modules.Notifications.Application.Extensions;
 
+/// <summary>
+/// This class contains the extensions for the notification.
+/// </summary>
 public static class NotificationExtensions
 {
+	/// <summary>
+	/// This method converts the candidate created event to a notification recipient.
+	/// </summary>
+	/// <param name="event">The candidate created event.</param>
+	/// <returns>Returns the notification recipient.</returns>
 	public static NotificationRecipient ToNotificationRecipient(this CandidateCreatedEvent @event) => new(
 		NotificationType.Email,
 		@event.Email);
