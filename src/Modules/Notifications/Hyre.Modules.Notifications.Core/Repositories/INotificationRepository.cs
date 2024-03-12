@@ -14,11 +14,11 @@ namespace Hyre.Modules.Notifications.Core.Repositories;
 /// <summary>
 ///   This is the repository contract for the notification entity.
 /// </summary>
-public interface INotificationRepository : IRepositoryBase<Notification>
+public interface INotificationRepository : IRepositoryBase<NotificationBase>
 {
 	/// <summary>
 	///   This method is responsible for creating a new notification.
 	/// </summary>
-	/// <param name="notification">The notification to be created.</param>
-	void Create(Notification notification);
+	/// <param name="notificationBase">The notification to be created.</param>
+	void Create(NotificationBase notificationBase);
 }

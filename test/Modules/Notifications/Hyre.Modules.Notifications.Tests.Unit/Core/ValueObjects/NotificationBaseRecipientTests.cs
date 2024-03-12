@@ -16,7 +16,7 @@ namespace Hyre.Modules.Notifications.Tests.Unit.Core.ValueObjects;
 /// <summary>
 ///   Unit tests for <see cref="NotificationRecipient" />.
 /// </summary>
-public sealed class NotificationRecipientTests : NotificationFixture
+public sealed class NotificationBaseRecipientTests : NotificationBaseFixture
 {
 	[Fact(DisplayName = nameof(Create_WhenCalled_ShouldCreateInstance))]
 	[Trait(ValueObjectsTraits.Name, ValueObjectsTraits.Value)]

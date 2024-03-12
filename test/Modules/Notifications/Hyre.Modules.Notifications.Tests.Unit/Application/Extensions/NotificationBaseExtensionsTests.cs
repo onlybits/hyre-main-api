@@ -17,7 +17,7 @@ namespace Hyre.Modules.Notifications.Tests.Unit.Application.Extensions;
 /// <summary>
 ///   Unit tests for the notification extensions.
 /// </summary>
-public sealed class NotificationExtensionsTests : NotificationFixture
+public sealed class NotificationBaseExtensionsTests : NotificationBaseFixture
 {
 	[Fact(DisplayName = nameof(ToNotificationRecipient_WhenUsedInAnEvent_ShouldMapToNotificationRecipientObject))]
 	[Trait(ExtensionsTraits.Name, ExtensionsTraits.Value)]

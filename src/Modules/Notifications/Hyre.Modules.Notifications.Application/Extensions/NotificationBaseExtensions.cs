@@ -13,12 +13,12 @@ using Hyre.Modules.Notifications.Core.ValueObjects;
 namespace Hyre.Modules.Notifications.Application.Extensions;
 
 /// <summary>
-/// This class contains the extensions for the notification.
+///   This class contains the extensions for the notification.
 /// </summary>
-public static class NotificationExtensions
+public static class NotificationBaseExtensions
 {
 	/// <summary>
-	/// This method converts the candidate created event to a notification recipient.
+	///   This method converts the candidate created event to a notification recipient.
 	/// </summary>
 	/// <param name="event">The candidate created event.</param>
 	/// <returns>Returns the notification recipient.</returns>

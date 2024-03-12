@@ -15,13 +15,13 @@ namespace Hyre.Modules.Notifications.Tests.Unit.Common;
 /// <summary>
 ///   The base class fixture for all notification tests.
 /// </summary>
-public abstract class NotificationFixture : BaseFixture
+public abstract class NotificationBaseFixture : BaseFixture
 {
 	/// <summary>
-	///   Generates a new <see cref="Notification" />.
+	///   Generates a new <see cref="NotificationBase" />.
 	/// </summary>
-	/// <returns>Returns a new <see cref="Notification" />.</returns>
-	protected Notification GenerateNotification() => Notification.Create(
+	/// <returns>Returns a new <see cref="NotificationBase" />.</returns>
+	protected NotificationBase GenerateNotification() => NotificationBase.Create(
 		GenerateNotificationRecipient());
 
 	/// <summary>

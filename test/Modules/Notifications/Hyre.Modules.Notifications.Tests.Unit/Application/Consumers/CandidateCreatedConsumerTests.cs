@@ -19,7 +19,7 @@ namespace Hyre.Modules.Notifications.Tests.Unit.Application.Consumers;
 /// <summary>
 ///   Unit tests for the candidate created consumer.
 /// </summary>
-public sealed class CandidateCreatedConsumerTests : NotificationFixture
+public sealed class CandidateCreatedConsumerTests : NotificationBaseFixture
 {
 	private readonly ILoggerManager _logger = Substitute.For<ILoggerManager>();
 	private readonly INotificationsRepositoryManager _repository = Substitute.For<INotificationsRepositoryManager>();
