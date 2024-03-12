@@ -56,6 +56,10 @@ public static class MassTransitExtensions
 	private static void AddConsumers(this IRegistrationConfigurator busConfigurator) => busConfigurator
 		.AddConsumersFromNamespaceContaining<CandidateCreatedConsumer>();
 
+	/// <summary>
+	///   This method adds the outbox to the bus configurator.
+	/// </summary>
+	/// <param name="busConfigurator">The bus configurator.</param>
 	private static void AddOutbox(this IBusRegistrationConfigurator busConfigurator) => busConfigurator
 		.AddEntityFrameworkOutbox<JobsRepositoryContext>(options =>
 		{

@@ -4,10 +4,13 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Hyre.Modules.Identity.Core\Hyre.Modules.Identity.Core.csproj" />
+        <ProjectReference Include="..\Hyre.Modules.Identity.Core\Hyre.Modules.Identity.Core.csproj"/>
     </ItemGroup>
-
+    <ItemGroup>
+        <InternalsVisibleTo Include="Hyre.Modules.Identity.API"/>
+    </ItemGroup>
 </Project>

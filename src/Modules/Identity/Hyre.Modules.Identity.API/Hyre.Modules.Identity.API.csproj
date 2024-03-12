@@ -4,11 +4,15 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Hyre.Modules.Identity.Application\Hyre.Modules.Identity.Application.csproj" />
-      <ProjectReference Include="..\Hyre.Modules.Identity.Infrastructure\Hyre.Modules.Identity.Infrastructure.csproj" />
+        <ProjectReference Include="..\Hyre.Modules.Identity.Application\Hyre.Modules.Identity.Application.csproj"/>
+        <ProjectReference Include="..\Hyre.Modules.Identity.Infrastructure\Hyre.Modules.Identity.Infrastructure.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="Hyre.Bootstrapper"/>
     </ItemGroup>
 
 </Project>
