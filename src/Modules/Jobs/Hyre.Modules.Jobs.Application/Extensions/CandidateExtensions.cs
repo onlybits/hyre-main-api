@@ -25,6 +25,16 @@ public static class CandidateExtensions
 		candidate.Id,
 		candidate.Name,
 		candidate.Email,
-		candidate.CreatedAt,
-		candidate.JobOpportunityId);
+		candidate.Document,
+		candidate.DateOfBirth,
+		candidate.Seniority,
+		candidate.Disability,
+		candidate.Gender,
+		candidate.PhoneNumber,
+		candidate.Address,
+		candidate.Educations,
+		candidate.Experiences,
+		candidate.SocialNetwork,
+		candidate.Languages,
+		candidate.CreatedAt);
 }

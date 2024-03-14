@@ -7,6 +7,7 @@
 using FluentAssertions;
 using Hyre.Modules.Jobs.Application.Exceptions;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.Update;
+using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Core.Repositories;
 using Hyre.Modules.Jobs.Core.ValueObjects.Candidates;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
@@ -36,8 +37,9 @@ public sealed class UpdateCandidatesUseCaseTests : CandidateBaseFixture
 	public async Task Handle_WhenGivenValidRequest_ShouldUpdateCandidate()
 	{
 		// Arrange
+		var jobOpportunity = GenerateJobOpportunity();
 		var request = GenerateUpdateCandidateRequest();
-		var candidate = GenerateValidCandidate();
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
 
 		_ = _repository
 			.JobOpportunity
@@ -46,7 +48,7 @@ public sealed class UpdateCandidatesUseCaseTests : CandidateBaseFixture
 
 		_ = _repository
 			.Candidate
-			.FindByIdAsync(Arg.Any<JobOpportunityId>(), Arg.Any<CandidateId>(), Arg.Any<bool>(), Arg.Any<CancellationToken>())
+			.FindByIdAsync(Arg.Any<CandidateId>(), Arg.Any<bool>(), Arg.Any<CancellationToken>())
 			.Returns(candidate);
 
 		// Act
@@ -96,7 +98,7 @@ public sealed class UpdateCandidatesUseCaseTests : CandidateBaseFixture
 
 		_ = _repository
 			.Candidate
-			.FindByIdAsync(Arg.Any<JobOpportunityId>(), Arg.Any<CandidateId>(), Arg.Any<bool>(), Arg.Any<CancellationToken>())
+			.FindByIdAsync(Arg.Any<CandidateId>(), Arg.Any<bool>(), Arg.Any<CancellationToken>())
 			.ReturnsNull();
 
 		// Act

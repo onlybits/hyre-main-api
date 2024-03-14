@@ -101,7 +101,7 @@ internal sealed class CandidatesController : ControllerBase
 		CancellationToken cancellationToken = default)
 	{
 		var jobOpportunityId = new JobOpportunityId(jobOpportunityIdValue);
-		var request = new CreateCandidateRequest(jobOpportunityId, input, false);
+		var request = new CreateCandidateRequest(jobOpportunityId, input, true);
 		var response = await _sender.Send(request, cancellationToken);
 
 		return CreatedAtAction(nameof(Find), new { jobOpportunityIdValue, candidateIdValue = response.Id.Value }, response);
@@ -132,19 +132,17 @@ internal sealed class CandidatesController : ControllerBase
 	/// <summary>
 	///   This endpoint is responsible for deleting a candidate.
 	/// </summary>
-	/// <param name="jobOpportunityIdValue">The id of the job opportunity.</param>
 	/// <param name="candidateIdValue">The id of the candidate.</param>
 	/// <param name="cancellationToken">The cancellation token.</param>
 	/// <returns>Returns no content.</returns>
 	[HttpDelete("{candidateIdValue:guid}")]
 	[ProducesResponseType<NoContent>(StatusCodes.Status204NoContent)]
 	[ProducesResponseType<NotFoundException>(StatusCodes.Status404NotFound)]
-	public async Task<IActionResult> Delete([FromRoute] Guid jobOpportunityIdValue, [FromRoute] Guid candidateIdValue,
+	public async Task<IActionResult> Delete([FromRoute] Guid candidateIdValue,
 		CancellationToken cancellationToken = default)
 	{
-		var jobOpportunityId = new JobOpportunityId(jobOpportunityIdValue);
 		var candidateId = new CandidateId(candidateIdValue);
-		var request = new DeleteCandidateRequest(jobOpportunityId, candidateId, false);
+		var request = new DeleteCandidateRequest(candidateId, false);
 		await _sender.Send(request, cancellationToken);
 
 		return NoContent();

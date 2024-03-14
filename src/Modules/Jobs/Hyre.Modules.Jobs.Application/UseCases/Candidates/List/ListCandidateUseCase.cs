@@ -35,7 +35,10 @@ internal sealed class ListCandidateUseCase : IListCandidateUseCase
 			throw new JobOpportunityNotFoundException();
 		}
 
-		var candidates = await _repository.Candidate.ListAsync(request.JobOpportunityId, request.Parameters, cancellationToken);
+		var candidates = await _repository.Candidate.ListAsync(
+			request.Parameters,
+			cancellationToken);
+
 		_logger.LogInfo("{Count} Candidates listed successfully.", candidates.Count);
 		return new ListCandidateResponse(candidates.MetaData, candidates);
 	}

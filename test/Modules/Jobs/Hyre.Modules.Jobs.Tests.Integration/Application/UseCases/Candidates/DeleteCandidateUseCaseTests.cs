@@ -7,6 +7,7 @@
 using FluentAssertions;
 using Hyre.Modules.Jobs.Application.Exceptions;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete;
+using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Infrastructure;
 using Hyre.Modules.Jobs.Tests.Integration.Common;
 using Hyre.Shared.Abstractions.Logging;
@@ -56,8 +57,8 @@ public sealed class DeleteCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
-		var request = new DeleteCandidateRequest(jobOpportunity.Id, candidate.Id, false);
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
+		var request = new DeleteCandidateRequest(candidate.Id, false);
 
 		// Act
 		await SeedDatabaseAsync(jobOpportunity, new[] { candidate });
@@ -65,7 +66,7 @@ public sealed class DeleteCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 		await _sut.Handle(request, CancellationToken.None);
 		var deletedCandidate = await _repository
 			.Candidate
-			.FindByIdAsync(jobOpportunity.Id, candidate.Id, false, CancellationToken.None);
+			.FindByIdAsync(candidate.Id, false, CancellationToken.None);
 
 		// Assert
 		_ = deletedCandidate.Should().BeNull();
@@ -77,8 +78,8 @@ public sealed class DeleteCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
-		var request = new DeleteCandidateRequest(jobOpportunity.Id, candidate.Id, false);
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
+		var request = new DeleteCandidateRequest(candidate.Id, false);
 
 		// Act
 		var act = async () => await _sut.Handle(request, CancellationToken.None);
@@ -95,8 +96,8 @@ public sealed class DeleteCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
-		var request = new DeleteCandidateRequest(jobOpportunity.Id, Guid.NewGuid(), false);
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
+		var request = new DeleteCandidateRequest(Guid.NewGuid(), false);
 
 		// Act
 		await SeedDatabaseAsync(jobOpportunity, new[] { candidate });

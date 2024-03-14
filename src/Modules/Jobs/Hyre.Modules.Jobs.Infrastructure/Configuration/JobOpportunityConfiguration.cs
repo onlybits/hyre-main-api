@@ -81,9 +81,7 @@ internal sealed class JobOpportunityConfiguration : IEntityTypeConfiguration<Job
 			.IsRequired();
 
 		_ = builder.HasMany(jo => jo.Candidates)
-			.WithOne(c => c.JobOpportunity)
-			.HasForeignKey(c => c.JobOpportunityId)
-			.OnDelete(DeleteBehavior.Cascade);
+			.WithMany(c => c.JobOpportunities);
 
 		_ = builder.Ignore(jo => jo.Events);
 	}

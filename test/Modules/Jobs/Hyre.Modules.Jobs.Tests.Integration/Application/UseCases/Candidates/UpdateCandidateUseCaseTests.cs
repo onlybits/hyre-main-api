@@ -7,6 +7,7 @@
 using FluentAssertions;
 using Hyre.Modules.Jobs.Application.Exceptions;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.Update;
+using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Infrastructure;
 using Hyre.Modules.Jobs.Tests.Integration.Common;
 using Hyre.Shared.Abstractions.Logging;
@@ -61,7 +62,7 @@ public sealed class UpdateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
 		var newCandidateName = GenerateCandidateName();
 
 		await SeedDatabaseAsync(jobOpportunity, new[] { candidate });
@@ -71,7 +72,7 @@ public sealed class UpdateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 
 		// Act
 		await _sut.Handle(request, _cancellationToken);
-		var updatedCandidate = await _repository.Candidate.FindByIdAsync(jobOpportunity.Id, candidate.Id, false, _cancellationToken);
+		var updatedCandidate = await _repository.Candidate.FindByIdAsync(candidate.Id, false, _cancellationToken);
 
 		// Assert
 		_ = updatedCandidate.Should().NotBeNull();
@@ -87,7 +88,7 @@ public sealed class UpdateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
 		var newCandidateName = GenerateCandidateName();
 
 		_ = await _context.JobOpportunities.AddAsync(jobOpportunity, _cancellationToken);
@@ -114,7 +115,7 @@ public sealed class UpdateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
 		var newCandidateName = GenerateCandidateName();
 
 		_ = await _context.JobOpportunities.AddAsync(jobOpportunity, _cancellationToken);

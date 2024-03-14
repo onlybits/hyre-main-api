@@ -4,6 +4,7 @@
 
 #region
 
+using Bogus.Extensions.Brazil;
 using Hyre.Modules.Jobs.Core.Events;
 using Hyre.Modules.Notifications.Application.Consumers;
 using Hyre.Modules.Notifications.Core.Repositories;
@@ -30,7 +31,8 @@ public sealed class CandidateCreatedConsumerTests : NotificationBaseFixture
 	{
 		// Arrange
 		var email = Faker.Internet.Email();
-		var candidateCreatedEvent = new CandidateCreatedEvent(email);
+		var document = Faker.Person.Cpf();
+		var candidateCreatedEvent = new CandidateCreatedEvent(email, document);
 		var consumerContext = Substitute.For<ConsumeContext<CandidateCreatedEvent>>();
 		var consumer = new CandidateCreatedConsumer(_repository, _logger);
 

@@ -38,7 +38,6 @@ internal sealed class FindCandidateUseCase : IFindCandidateUseCase
 		}
 
 		var candidate = await _repository.Candidate.FindByIdAsync(
-			request.JobOpportunityId,
 			request.CandidateId,
 			request.CandidateTrackChanges,
 			cancellationToken);

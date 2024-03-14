@@ -4,6 +4,7 @@
 
 #region
 
+using Bogus.Extensions.Brazil;
 using FluentAssertions;
 using Hyre.Modules.Jobs.Core.Events;
 using Hyre.Modules.Notifications.Application.Extensions;
@@ -25,7 +26,8 @@ public sealed class NotificationBaseExtensionsTests : NotificationBaseFixture
 	{
 		// Arrange
 		var address = Faker.Internet.Email();
-		var notification = new CandidateCreatedEvent(address);
+		var document = Faker.Person.Cpf();
+		var notification = new CandidateCreatedEvent(address, document);
 
 		// Act
 		var recipient = notification.ToNotificationRecipient();

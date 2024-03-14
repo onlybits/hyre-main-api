@@ -191,8 +191,9 @@ public sealed class JobOpportunityTests : JobOpportunityBaseFixture
 	public void AddCandidate_WhenPassingValidCandidate_ShouldAddCandidate()
 	{
 		// Arrange
+		var jobOpportunity = GenerateJobOpportunity();
 		var sut = GenerateJobOpportunity();
-		var candidate = GenerateCandidate();
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
 
 		// Act
 		sut.AddCandidate(candidate);
@@ -200,6 +201,6 @@ public sealed class JobOpportunityTests : JobOpportunityBaseFixture
 		// Assert
 		_ = sut.Candidates.Should().NotBeEmpty();
 		_ = sut.Candidates.Should().Contain(candidate);
-		_ = sut.Candidates.Should().HaveCount(1);
+		_ = sut.Candidates.Should().HaveCount(2);
 	}
 }

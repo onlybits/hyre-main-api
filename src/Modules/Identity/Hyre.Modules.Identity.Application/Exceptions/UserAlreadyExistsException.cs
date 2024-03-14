@@ -23,17 +23,3 @@ public sealed class UserAlreadyExistsException : ConflictException
 	{
 	}
 }
-
-/// <summary>
-///   Exception that is thrown when the JWT secret key was not found in the environment variables.
-/// </summary>
-public sealed class JwtSecretKeyNotFoundException : Exception
-{
-	/// <summary>
-	///   Initializes a new instance of the <see cref="JwtSecretKeyNotFoundException" /> class.
-	/// </summary>
-	public JwtSecretKeyNotFoundException() : base("The JWT secret key was not found in the environment variables.")
-	{
-		//TODO: Add translation in the future
-	}
-}

@@ -4,6 +4,7 @@
 
 #region
 
+using Hyre.Modules.Identity.API;
 using Hyre.Modules.Jobs.API;
 using Hyre.Modules.Notifications.API;
 
@@ -22,6 +23,7 @@ internal static class ModulesExtensions
 	/// <param name="services">The service collection.</param>
 	/// <returns>It will return the service collection.</returns>
 	public static IServiceCollection AddModulesConfiguration(this IServiceCollection services) => services
+		.RegisterIdentityModule()
 		.RegisterJobsModule()
 		.RegisterNotificationsModule();
 
@@ -31,6 +33,7 @@ internal static class ModulesExtensions
 	/// <param name="app">The application builder.</param>
 	/// <returns>It will return the application builder.</returns>
 	public static IApplicationBuilder UseModules(this IApplicationBuilder app) => app
+		.UseIdentityModule()
 		.UseJobsModule()
 		.UseNotificationsModule();
 }

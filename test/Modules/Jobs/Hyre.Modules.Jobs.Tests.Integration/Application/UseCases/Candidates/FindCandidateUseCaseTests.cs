@@ -7,6 +7,7 @@
 using FluentAssertions;
 using Hyre.Modules.Jobs.Application.Exceptions;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.Find;
+using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Infrastructure;
 using Hyre.Modules.Jobs.Tests.Integration.Common;
 using Hyre.Shared.Abstractions.Logging;
@@ -54,7 +55,7 @@ public sealed class FindCandidateUseCaseTests : CandidateBaseFixture, IAsyncLife
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
 
 
 		var request = new FindCandidateRequest(jobOpportunity.Id, candidate.Id, false);
@@ -68,7 +69,17 @@ public sealed class FindCandidateUseCaseTests : CandidateBaseFixture, IAsyncLife
 		_ = response.Id.Should().Be(candidate.Id);
 		_ = response.Name.Should().Be(candidate.Name);
 		_ = response.Email.Should().Be(candidate.Email);
-		_ = response.JobOpportunityId.Should().Be(candidate.JobOpportunityId);
+		_ = response.Document.Should().Be(candidate.Document);
+		_ = response.DateOfBirth.Should().Be(candidate.DateOfBirth);
+		_ = response.Seniority.Should().Be(candidate.Seniority);
+		_ = response.Disability.Should().Be(candidate.Disability);
+		_ = response.Gender.Should().Be(candidate.Gender);
+		_ = response.PhoneNumber.Should().Be(candidate.PhoneNumber);
+		_ = response.Address.Should().Be(candidate.Address);
+		_ = response.Educations.Should().BeEquivalentTo(candidate.Educations);
+		_ = response.Experiences.Should().BeEquivalentTo(candidate.Experiences);
+		_ = response.SocialNetwork.Should().Be(candidate.SocialNetwork);
+		_ = response.Languages.Should().BeEquivalentTo(candidate.Languages);
 		_ = response.CreatedAt.Value.Should().BeCloseTo(candidate.CreatedAt.Value, TimeSpan.FromSeconds(2));
 	}
 
@@ -78,7 +89,7 @@ public sealed class FindCandidateUseCaseTests : CandidateBaseFixture, IAsyncLife
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
 
 		var request = new FindCandidateRequest(jobOpportunity.Id, candidate.Id, false);
 

@@ -7,6 +7,7 @@
 using FluentAssertions;
 using Hyre.Modules.Jobs.Application.Exceptions;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete;
+using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Core.Repositories;
 using Hyre.Modules.Jobs.Core.ValueObjects.Candidates;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
@@ -36,8 +37,9 @@ public sealed class DeleteCandidateUseCaseTests : CandidateBaseFixture
 	public async Task Handle_WhenGivenValidRequest_ShouldDeleteCandidate()
 	{
 		// Arrange
-		var candidate = GenerateValidCandidate();
-		var request = new DeleteCandidateRequest(candidate.JobOpportunityId, candidate.Id, false);
+		var jobOpportunity = GenerateJobOpportunity();
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
+		var request = new DeleteCandidateRequest(candidate.Id, false);
 
 		_ = _repository
 			.JobOpportunity
@@ -46,7 +48,7 @@ public sealed class DeleteCandidateUseCaseTests : CandidateBaseFixture
 
 		_ = _repository
 			.Candidate
-			.FindByIdAsync(Arg.Any<JobOpportunityId>(), Arg.Any<CandidateId>(), Arg.Any<bool>(), Arg.Any<CancellationToken>())
+			.FindByIdAsync(Arg.Any<CandidateId>(), Arg.Any<bool>(), Arg.Any<CancellationToken>())
 			.Returns(candidate);
 
 		// Act
@@ -63,8 +65,9 @@ public sealed class DeleteCandidateUseCaseTests : CandidateBaseFixture
 	public async Task Handle_WhenGivenInvalidJobOpportunityId_ShouldThrowJobOpportunityNotFoundException()
 	{
 		// Arrange
-		var candidate = GenerateValidCandidate();
-		var request = new DeleteCandidateRequest(candidate.JobOpportunityId, candidate.Id, false);
+		var jobOpportunity = GenerateJobOpportunity();
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
+		var request = new DeleteCandidateRequest(candidate.Id, false);
 
 		_ = _repository
 			.JobOpportunity
@@ -88,8 +91,9 @@ public sealed class DeleteCandidateUseCaseTests : CandidateBaseFixture
 	public async Task Handle_WhenGivenInvalidCandidateId_ShouldThrowCandidateNotFoundException()
 	{
 		// Arrange
-		var candidate = GenerateValidCandidate();
-		var request = new DeleteCandidateRequest(candidate.JobOpportunityId, candidate.Id, false);
+		var jobOpportunity = GenerateJobOpportunity();
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
+		var request = new DeleteCandidateRequest(candidate.Id, false);
 
 		_ = _repository
 			.JobOpportunity
@@ -98,7 +102,7 @@ public sealed class DeleteCandidateUseCaseTests : CandidateBaseFixture
 
 		_ = _repository
 			.Candidate
-			.FindByIdAsync(Arg.Any<JobOpportunityId>(), Arg.Any<CandidateId>(), Arg.Any<bool>(), Arg.Any<CancellationToken>())
+			.FindByIdAsync(Arg.Any<CandidateId>(), Arg.Any<bool>(), Arg.Any<CancellationToken>())
 			.ReturnsNull();
 
 		// Act

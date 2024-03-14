@@ -4,8 +4,6 @@
 
 #region
 
-using Hyre.Modules.Identity.Core.Entities;
-
 #endregion
 
 namespace Hyre.Modules.Identity.Core.Constants;
@@ -61,19 +59,4 @@ public abstract class UserRoles
 		/// </summary>
 		public const string Normalized = "CANDIDATE";
 	}
-}
-
-/// <summary>
-///   Error messages that are used for the <see cref="User" /> entity.
-/// </summary>
-public abstract class UserErrorMessages
-{
-	#region Application
-
-	/// <summary>
-	///   Used when the user already exists.
-	/// </summary>
-	public const string AlreadyExists = "O usuário com o e-mail informado já existe.";
-
-	#endregion
 }

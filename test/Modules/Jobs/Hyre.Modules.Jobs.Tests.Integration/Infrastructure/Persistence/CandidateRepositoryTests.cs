@@ -5,6 +5,7 @@
 #region
 
 using FluentAssertions;
+using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Core.Requests;
 using Hyre.Modules.Jobs.Core.ValueObjects.Candidates;
 using Hyre.Modules.Jobs.Infrastructure;
@@ -65,11 +66,11 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 			PageSize = pageSize,
 			PageNumber = pageNumber
 		};
-		var candidates = GenerateCandidatesWithJobOpportunity(generate, jobOpportunity.Id);
+		var candidates = GenerateCandidates(generate, new List<JobOpportunity> { jobOpportunity });
 
 		// Act
 		await SeedDatabaseAsync(jobOpportunity, candidates);
-		var result = await _sut.ListAsync(jobOpportunity.Id, parameters, CancellationToken.None);
+		var result = await _sut.ListAsync(parameters, CancellationToken.None);
 		var items = result.Select(c => c).ToList();
 		var metadata = result.MetaData;
 
@@ -92,13 +93,12 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-
-		var candidates = GenerateCandidatesWithJobOpportunity(5, jobOpportunity.Id);
+		var candidates = GenerateCandidates(5, new List<JobOpportunity> { jobOpportunity }).ToList();
 		var candidate = candidates.First();
 
 		// Act
 		await SeedDatabaseAsync(jobOpportunity, candidates);
-		var result = await _sut.FindByIdAsync(jobOpportunity.Id, candidate.Id, false, CancellationToken.None);
+		var result = await _sut.FindByIdAsync(candidate.Id, false, CancellationToken.None);
 
 		// Assert
 		_ = result.Should().NotBeNull();
@@ -112,11 +112,11 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidates = GenerateCandidatesWithJobOpportunity(5, jobOpportunity.Id);
+		var candidates = GenerateCandidates(5, new List<JobOpportunity> { jobOpportunity });
 
 		// Act
 		await SeedDatabaseAsync(jobOpportunity, candidates);
-		var result = await _sut.FindByIdAsync(jobOpportunity.Id, CandidateId.New(), false, CancellationToken.None);
+		var result = await _sut.FindByIdAsync(CandidateId.New(), false, CancellationToken.None);
 
 		// Assert
 		_ = result.Should().BeNull();
@@ -128,7 +128,7 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidates = GenerateCandidatesWithJobOpportunity(1, jobOpportunity.Id);
+		var candidates = GenerateCandidates(1, new List<JobOpportunity> { jobOpportunity });
 		var candidate = candidates.First();
 
 		// Act
@@ -136,7 +136,7 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 		_sut.Create(candidate);
 		_ = await _context.SaveChangesAsync();
 
-		var result = await _sut.FindByIdAsync(jobOpportunity.Id, candidate.Id, false, CancellationToken.None);
+		var result = await _sut.FindByIdAsync(candidate.Id, false, CancellationToken.None);
 
 		// Assert
 		_ = _context.Candidates.Should().Contain(candidate);
@@ -154,9 +154,9 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidates = GenerateCandidatesWithJobOpportunity(3, jobOpportunity.Id);
+		var candidates = GenerateCandidates(3, new List<JobOpportunity> { jobOpportunity }).ToList();
 		var candidate = candidates.First();
-		var newCandidate = GenerateValidCandidates(1).FirstOrDefault();
+		var newCandidate = GenerateCandidates(1, new List<JobOpportunity> { jobOpportunity }).FirstOrDefault();
 
 		// Act
 		await SeedDatabaseAsync(jobOpportunity, candidates);
@@ -165,7 +165,7 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 		_sut.Update(candidate);
 		_ = await _context.SaveChangesAsync();
 
-		var result = await _sut.FindByIdAsync(jobOpportunity.Id, candidate.Id, trackChanges, CancellationToken.None);
+		var result = await _sut.FindByIdAsync(candidate.Id, trackChanges, CancellationToken.None);
 
 		// Assert
 		_ = _context.Candidates.Should().Contain(candidate);
@@ -173,7 +173,7 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 		_ = result.Should().BeEquivalentTo(candidate, opt => opt
 			.Excluding(x => x.Id)
 			.Excluding(x => x.Events)
-			.Excluding(x => x.JobOpportunity)
+			.Excluding(x => x.JobOpportunities)
 			.Excluding(x => x.CreatedAt));
 	}
 
@@ -183,7 +183,7 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidates = GenerateCandidatesWithJobOpportunity(3, jobOpportunity.Id);
+		var candidates = GenerateCandidates(3, new List<JobOpportunity> { jobOpportunity }).ToList();
 		var candidate = candidates.First();
 
 		// Act
@@ -192,7 +192,7 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 		_sut.Delete(candidate);
 		_ = await _context.SaveChangesAsync();
 
-		var result = await _sut.FindByIdAsync(jobOpportunity.Id, candidate.Id, false, CancellationToken.None);
+		var result = await _sut.FindByIdAsync(candidate.Id, false, CancellationToken.None);
 
 		// Assert
 		_ = _context.Candidates.Should().NotContain(candidate);
@@ -205,13 +205,13 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidates = GenerateCandidatesWithJobOpportunity(3, jobOpportunity.Id);
+		var candidates = GenerateCandidates(3, new List<JobOpportunity> { jobOpportunity }).ToList();
 		var candidate = candidates.First();
 
 		// Act
 		await SeedDatabaseAsync(jobOpportunity, candidates);
 
-		var result = await _sut.ExistsAsync(jobOpportunity.Id, candidate.Email, false, CancellationToken.None);
+		var result = await _sut.ExistsAsync(candidate.Email, false, CancellationToken.None);
 
 		// Assert
 		_ = result.Should().BeTrue();
@@ -228,7 +228,7 @@ public sealed class CandidateRepositoryTests : CandidateBaseFixture, IAsyncLifet
 		// Act
 		await SeedDatabaseAsync(jobOpportunity);
 
-		var result = await _sut.ExistsAsync(jobOpportunity.Id, email, false, CancellationToken.None);
+		var result = await _sut.ExistsAsync(email, false, CancellationToken.None);
 
 		// Assert
 		_ = result.Should().BeFalse();

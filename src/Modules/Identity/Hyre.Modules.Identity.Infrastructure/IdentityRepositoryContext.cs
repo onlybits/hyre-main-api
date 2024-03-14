@@ -17,6 +17,11 @@ namespace Hyre.Modules.Identity.Infrastructure;
 /// </summary>
 internal sealed class IdentityRepositoryContext : IdentityDbContext<User>
 {
+	public IdentityRepositoryContext(DbContextOptions<IdentityRepositoryContext> options) : base(options)
+
+	{
+	}
+
 	/// <summary>
 	///   Override this method to further configure the model that was discovered by convention from the entity types.
 	/// </summary>

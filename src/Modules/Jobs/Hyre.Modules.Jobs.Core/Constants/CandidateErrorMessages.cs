@@ -18,6 +18,42 @@ public abstract class CandidateErrorMessages
 
 	#endregion
 
+	#region Document
+
+	/// <summary>
+	///   Used when the document of the candidate is not valid.
+	/// </summary>
+	public const string DocumentNotValid = "O documento informado não é válido.";
+
+	#endregion
+
+	#region Date of birth
+
+	/// <summary>
+	///   Used when the date of birth of the candidate is not valid.
+	/// </summary>
+	public const string DateOfBirthNotValid = "O candidato deve ter no mínimo 16 anos.";
+
+	#endregion
+
+	#region Address
+
+	/// <summary>
+	///   Used when the zip code address of the candidate is not valid.
+	/// </summary>
+	public const string ZipCodeNotValid = "O CEP informado não é válido.";
+
+	#endregion
+
+	#region Summary
+
+	/// <summary>
+	///   Used when the summary of the candidate is not valid.
+	/// </summary>
+	public const string SummaryValueNotValid = "O resumo deve conter entre 50 e 1000 caracteres.";
+
+	#endregion
+
 	#region Email
 
 	/// <summary>
@@ -25,6 +61,20 @@ public abstract class CandidateErrorMessages
 	/// </summary>
 	/// <param name="email">The email of the candidate.</param>
 	public static string EmailInvalid(string email) => $"O e-mail: '{email}' é inválido.";
+
+	#endregion
+
+	#region Phone Number
+
+	/// <summary>
+	///   Used when the phone number of the candidate is not valid.
+	/// </summary>
+	public const string PhoneNumberValueNotValid = "O número de telefone informado não é válido.";
+
+	/// <summary>
+	///   Used when the area code of the phone number is not valid.
+	/// </summary>
+	public const string PhoneNumberAreaCodeNotValid = "O DDD informado não é válido.";
 
 	#endregion
 

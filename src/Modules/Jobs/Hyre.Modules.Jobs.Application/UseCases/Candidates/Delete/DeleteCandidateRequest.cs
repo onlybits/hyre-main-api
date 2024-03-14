@@ -5,7 +5,6 @@
 #region
 
 using Hyre.Modules.Jobs.Core.ValueObjects.Candidates;
-using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 using MediatR;
 
 #endregion
@@ -15,10 +14,8 @@ namespace Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete;
 /// <summary>
 ///   Represents the request to delete a candidate.
 /// </summary>
-/// <param name="JobOpportunityId">The job opportunity id.</param>
 /// <param name="CandidateId">The candidate id.</param>
 /// <param name="CandidateTrackChanges">Should EF Core keep track of changes in the candidate entity.</param>
 public sealed record DeleteCandidateRequest(
-	JobOpportunityId JobOpportunityId,
 	CandidateId CandidateId,
 	bool CandidateTrackChanges) : IRequest;

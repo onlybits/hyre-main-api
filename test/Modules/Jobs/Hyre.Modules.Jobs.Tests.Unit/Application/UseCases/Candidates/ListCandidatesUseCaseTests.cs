@@ -50,7 +50,7 @@ public sealed class ListCandidatesUseCaseTests : CandidateBaseFixture
 
 		_ = _repository
 			.Candidate
-			.ListAsync(Arg.Any<JobOpportunityId>(), Arg.Any<CandidateParameters>(), Arg.Any<CancellationToken>())
+			.ListAsync(Arg.Any<CandidateParameters>(), Arg.Any<CancellationToken>())
 			.Returns(candidates);
 
 		// Act
