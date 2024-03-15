@@ -14,19 +14,19 @@ namespace Hyre.Modules.Notifications.Core.Entities;
 /// <summary>
 ///   Represents a notification sent to a user.
 /// </summary>
-public sealed class Notification : EntityBase<NotificationId>
+public sealed class NotificationBase : EntityBase<NotificationBaseId>
 {
 	/// <summary>
 	///   This constructor is used by Entity Framework Core.
 	/// </summary>
-	private Notification() : base(NotificationId.New())
+	private NotificationBase() : base(NotificationBaseId.New())
 	{
 	}
 
 	/// <summary>
-	///   Initializes a new instance of the <see cref="Notification" /> class.
+	///   Initializes a new instance of the <see cref="NotificationBase" /> class.
 	/// </summary>
-	private Notification(NotificationRecipient recipient) : base(NotificationId.New()) => Recipient = recipient;
+	private NotificationBase(NotificationRecipient recipient) : base(NotificationBaseId.New()) => Recipient = recipient;
 
 	/// <summary>
 	///   Gets or sets the recipient of the notification.
@@ -34,13 +34,13 @@ public sealed class Notification : EntityBase<NotificationId>
 	public NotificationRecipient Recipient { get; private set; }
 
 	/// <summary>
-	///   Creates a new instance of the <see cref="Notification" /> class.
+	///   Creates a new instance of the <see cref="NotificationBase" /> class.
 	/// </summary>
 	/// <param name="recipient">The recipient of the notification.</param>
-	/// <returns>Returns a new instance of the <see cref="Notification" /> class.</returns>
-	public static Notification Create(NotificationRecipient recipient)
+	/// <returns>Returns a new instance of the <see cref="NotificationBase" /> class.</returns>
+	public static NotificationBase Create(NotificationRecipient recipient)
 	{
-		var notification = new Notification(recipient);
+		var notification = new NotificationBase(recipient);
 		return notification;
 	}
 }

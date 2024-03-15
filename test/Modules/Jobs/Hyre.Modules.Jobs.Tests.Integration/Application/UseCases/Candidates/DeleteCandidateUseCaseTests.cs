@@ -7,6 +7,7 @@
 using FluentAssertions;
 using Hyre.Modules.Jobs.Application.Exceptions;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete;
+using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Infrastructure;
 using Hyre.Modules.Jobs.Tests.Integration.Common;
 using Hyre.Shared.Abstractions.Logging;
@@ -56,37 +57,19 @@ public sealed class DeleteCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
-		var request = new DeleteCandidateRequest(jobOpportunity.Id, candidate.Id, false);
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
+		var request = new DeleteCandidateRequest(candidate.Id, true);
 
 		// Act
-		await SeedDatabaseAsync(jobOpportunity, new[] { candidate });
+		await SeedDatabaseAsync(_context, true, jobOpportunity, new[] { candidate });
 
 		await _sut.Handle(request, CancellationToken.None);
 		var deletedCandidate = await _repository
 			.Candidate
-			.FindByIdAsync(jobOpportunity.Id, candidate.Id, false, CancellationToken.None);
+			.FindByIdAsync(candidate.Id, false, false, CancellationToken.None);
 
 		// Assert
 		_ = deletedCandidate.Should().BeNull();
-	}
-
-	[Fact(DisplayName = nameof(Handle_WhenGivenInvalidJobOpportunityId_ShouldThrowException))]
-	[Trait(UseCasesTraits.Name, UseCasesTraits.Value)]
-	public async Task Handle_WhenGivenInvalidJobOpportunityId_ShouldThrowException()
-	{
-		// Arrange
-		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
-		var request = new DeleteCandidateRequest(jobOpportunity.Id, candidate.Id, false);
-
-		// Act
-		var act = async () => await _sut.Handle(request, CancellationToken.None);
-
-		// Assert
-		_ = await act
-			.Should()
-			.ThrowExactlyAsync<JobOpportunityNotFoundException>();
 	}
 
 	[Fact(DisplayName = nameof(Handle_WhenGivenInvalidCandidateId_ShouldThrowException))]
@@ -95,11 +78,11 @@ public sealed class DeleteCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
-		var request = new DeleteCandidateRequest(jobOpportunity.Id, Guid.NewGuid(), false);
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
+		var request = new DeleteCandidateRequest(Guid.NewGuid(), false);
 
 		// Act
-		await SeedDatabaseAsync(jobOpportunity, new[] { candidate });
+		await SeedDatabaseAsync(_context, false, jobOpportunity, new[] { candidate });
 		var act = async () => await _sut.Handle(request, CancellationToken.None);
 
 		// Assert

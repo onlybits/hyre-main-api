@@ -13,9 +13,9 @@ using Hyre.Modules.Notifications.Tests.Unit.Common;
 namespace Hyre.Modules.Notifications.Tests.Unit.Core.Entities;
 
 /// <summary>
-///   Unit tests for the <see cref="Notification" /> entity.
+///   Unit tests for the <see cref="NotificationBase" /> entity.
 /// </summary>
-public sealed class NotificationTests : NotificationFixture
+public sealed class NotificationBaseTests : NotificationBaseFixture
 {
 	[Fact(DisplayName = nameof(Create_WhenCalled_ShouldCreateNotification))]
 	[Trait(EntitiesTraits.Name, EntitiesTraits.Value)]
@@ -24,7 +24,7 @@ public sealed class NotificationTests : NotificationFixture
 		// Arrange
 		var recipient = GenerateNotificationRecipient();
 		// Act
-		var notification = Notification.Create(recipient);
+		var notification = NotificationBase.Create(recipient);
 
 		// Assert
 		_ = notification.Should().NotBeNull();

@@ -8,7 +8,6 @@ using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Core.Repositories;
 using Hyre.Modules.Jobs.Core.Requests;
 using Hyre.Modules.Jobs.Core.ValueObjects.Candidates;
-using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 using Hyre.Shared.Abstractions.Requests;
 using Hyre.Shared.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -32,49 +31,27 @@ internal sealed class CandidateRepository : RepositoryBase<Candidate>, ICandidat
 	}
 
 	/// <summary>
-	///   This method is responsible for listing candidates.
+	///   This method is responsible for finding a candidate by its email.
 	/// </summary>
-	/// <param name="jobOpportunityId">The job opportunity id.</param>
-	/// <param name="parameters">The parameters to be used in the listing.</param>
-	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
-	/// <returns>Returns a paged list of candidates.</returns>
-	public async Task<PagedList<Candidate>> ListAsync(
-		JobOpportunityId jobOpportunityId,
-		CandidateParameters parameters,
-		CancellationToken cancellationToken = default)
-	{
-		var candidates = await FindAll(false)
-			.Where(c => c.JobOpportunityId == jobOpportunityId)
-			.OrderBy(c => c.Name.FirstName)
-			.ThenBy(c => c.Name.MiddleName)
-			.ThenBy(c => c.Name.LastName)
-			.Skip((parameters.PageNumber - 1) * parameters.PageSize)
-			.Take(parameters.PageSize)
-			.ToListAsync(cancellationToken);
-
-		var count = await FindAll(false).Where(c => c.JobOpportunityId == jobOpportunityId).CountAsync(cancellationToken);
-
-		return new PagedList<Candidate>(candidates, count, parameters.PageNumber, parameters.PageSize);
-	}
-
-	/// <summary>
-	///   This method is responsible for finding a candidate by its id.
-	/// </summary>
-	/// <param name="jobOpportunityId">The job opportunity id.</param>
-	/// <param name="candidateId">The candidate id.</param>
+	/// <param name="email">The candidate email.</param>
 	/// <param name="trackChanges">Should EF Core keep track of changes in the candidate entity.</param>
+	/// <param name="includeJobOpportunities">Should the job opportunities be included in the candidate entity.</param>
 	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
 	/// <returns>Returns the candidate found, or null if not found.</returns>
-	public async Task<Candidate?> FindByIdAsync(
-		JobOpportunityId jobOpportunityId,
-		CandidateId candidateId,
+	public async Task<Candidate?> FindByEmailAsync(
+		CandidateEmail email,
 		bool trackChanges,
+		bool includeJobOpportunities,
 		CancellationToken cancellationToken = default)
 	{
-		var candidate = await FindByCondition(c => c.Id == candidateId && c.JobOpportunityId == jobOpportunityId, trackChanges)
-			.SingleOrDefaultAsync(cancellationToken);
+		var candidateQuery = FindByCondition(c => c.Email == email, trackChanges);
 
-		return candidate;
+		if (includeJobOpportunities)
+		{
+			candidateQuery = candidateQuery.Include(x => x.JobOpportunities);
+		}
+
+		return await candidateQuery.SingleOrDefaultAsync(cancellationToken);
 	}
 
 	/// <summary>
@@ -96,20 +73,65 @@ internal sealed class CandidateRepository : RepositoryBase<Candidate>, ICandidat
 	public void Delete(Candidate candidate) => Remove(candidate);
 
 	/// <summary>
+	///   This method is responsible for finding a candidate by its id.
+	/// </summary>
+	/// <param name="candidateId">The candidate id.</param>
+	/// <param name="trackChanges">Should EF Core keep track of changes in the candidate entity.</param>
+	/// <param name="includeJobOpportunities">Should the job opportunities be included in the candidate entity.</param>
+	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
+	/// <returns>Returns the candidate found, or null if not found.</returns>
+	public async Task<Candidate?> FindByIdAsync(
+		CandidateId candidateId,
+		bool trackChanges,
+		bool includeJobOpportunities,
+		CancellationToken cancellationToken = default)
+	{
+		var candidateQuery = FindByCondition(c => c.Id == candidateId, trackChanges);
+
+		if (includeJobOpportunities)
+		{
+			candidateQuery = candidateQuery.Include(x => x.JobOpportunities);
+		}
+
+		return await candidateQuery.SingleOrDefaultAsync(cancellationToken);
+	}
+
+	/// <summary>
+	///   This method is responsible for listing candidates.
+	/// </summary>
+	/// <param name="parameters">The parameters to be used in the listing.</param>
+	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
+	/// <returns>Returns a paged list of candidates.</returns>
+	public async Task<PagedList<Candidate>> ListAsync(
+		CandidateParameters parameters,
+		CancellationToken cancellationToken = default)
+	{
+		var candidates = await FindAll(false)
+			.OrderBy(c => c.Name.FirstName)
+			.ThenBy(c => c.Name.MiddleName)
+			.ThenBy(c => c.Name.LastName)
+			.Skip((parameters.PageNumber - 1) * parameters.PageSize)
+			.Take(parameters.PageSize)
+			.ToListAsync(cancellationToken);
+
+		var count = await FindAll(false).CountAsync(cancellationToken);
+
+		return new PagedList<Candidate>(candidates, count, parameters.PageNumber, parameters.PageSize);
+	}
+
+	/// <summary>
 	///   This method is responsible for checking if a candidate exists by arguments.
 	/// </summary>
-	/// <param name="jobOpportunityId">The job opportunity id.</param>
 	/// <param name="email">The candidate email.</param>
 	/// <param name="trackChanges">Should EF Core keep track of changes in the candidate entity.</param>
 	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
 	/// <returns>Returns true if the candidate exists, otherwise false.</returns>
 	public async Task<bool> ExistsAsync(
-		JobOpportunityId jobOpportunityId,
 		CandidateEmail email,
 		bool trackChanges,
 		CancellationToken cancellationToken = default)
 	{
-		var candidates = await FindByCondition(c => c.JobOpportunityId == jobOpportunityId && c.Email == email, trackChanges)
+		var candidates = await FindByCondition(c => c.Email == email, trackChanges)
 			.ToListAsync(cancellationToken);
 
 		var existsByEmail = candidates.Any(x => x.Email == email);

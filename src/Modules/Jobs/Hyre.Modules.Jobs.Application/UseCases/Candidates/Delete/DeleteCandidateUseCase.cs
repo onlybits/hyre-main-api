@@ -28,14 +28,10 @@ internal sealed class DeleteCandidateUseCase : IDeleteCandidateUseCase
 
 	public async Task Handle(DeleteCandidateRequest request, CancellationToken cancellationToken)
 	{
-		var jobOpportunityExists = await _repository.JobOpportunity.ExistsAsync(request.JobOpportunityId, cancellationToken);
-		if (!jobOpportunityExists)
-		{
-			_logger.LogError("Job opportunity with id {JobOpportunityId} not found.", request.JobOpportunityId);
-			throw new JobOpportunityNotFoundException();
-		}
-
-		var candidate = await _repository.Candidate.FindByIdAsync(request.JobOpportunityId, request.CandidateId, request.CandidateTrackChanges,
+		var candidate = await _repository.Candidate.FindByIdAsync(
+			request.CandidateId,
+			request.CandidateTrackChanges,
+			false,
 			cancellationToken);
 		if (candidate is null)
 		{

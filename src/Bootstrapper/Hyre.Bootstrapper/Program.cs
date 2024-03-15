@@ -6,6 +6,7 @@
 
 using Hyre.Bootstrapper.Errors;
 using Hyre.Bootstrapper.Extensions;
+using Hyre.Modules.Identity.API;
 using Hyre.Shared.Infrastructure;
 
 #endregion
@@ -17,6 +18,7 @@ builder.Services
 	.AddRabbitMqConfiguration()
 	.AddModularInfrastructure()
 	.AddModulesConfiguration()
+	.AddIdentityConfiguration()
 	.AddExceptionHandler<GlobalExceptionHandler>()
 	.AddControllersConfiguration();
 
@@ -29,7 +31,9 @@ if (app.Environment.IsDevelopment())
 _ = app.UseExceptionHandler(_ => { });
 _ = app.UseHttpsRedirection()
 	.UseCors("Hyre.Cors")
-	.UseModules();
+	.UseModules()
+	.UseAuthentication()
+	.UseAuthorization();
 
 _ = app.MapControllers();
 app.Run();

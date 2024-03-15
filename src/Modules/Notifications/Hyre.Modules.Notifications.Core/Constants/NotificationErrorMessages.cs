@@ -11,7 +11,7 @@ using Hyre.Modules.Notifications.Core.Entities;
 namespace Hyre.Modules.Notifications.Core.Constants;
 
 /// <summary>
-///   Error messages for the <see cref="Notification" /> entity.
+///   Error messages for the <see cref="NotificationBase" /> entity.
 /// </summary>
 internal abstract class NotificationErrorMessages
 {

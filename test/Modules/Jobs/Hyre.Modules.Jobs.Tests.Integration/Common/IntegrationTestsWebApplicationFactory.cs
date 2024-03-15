@@ -50,8 +50,11 @@ public sealed class IntegrationTestsWebApplicationFactory : WebApplicationFactor
 	///   Configures the <see cref="IWebHostBuilder" /> to be used to create a test server.
 	/// </summary>
 	/// <param name="builder">The <see cref="IWebHostBuilder" /> to configure.</param>
-	protected override void ConfigureWebHost(IWebHostBuilder builder) => builder
-		.ConfigureTestServices(services =>
+	protected override void ConfigureWebHost(IWebHostBuilder builder)
+	{
+		base.ConfigureWebHost(builder);
+
+		_ = builder.ConfigureTestServices(services =>
 		{
 			var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<JobsRepositoryContext>));
 			if (descriptor is not null)
@@ -62,4 +65,7 @@ public sealed class IntegrationTestsWebApplicationFactory : WebApplicationFactor
 			_ = services.AddDbContext<JobsRepositoryContext>(options => options.UseNpgsql(_dbContainer.GetConnectionString())
 				.UseSnakeCaseNamingConvention());
 		});
+
+		_ = builder.UseTestServer();
+	}
 }

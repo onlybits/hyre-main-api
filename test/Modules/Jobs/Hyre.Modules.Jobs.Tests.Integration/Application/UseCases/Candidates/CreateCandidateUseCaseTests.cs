@@ -7,6 +7,7 @@
 using FluentAssertions;
 using Hyre.Modules.Jobs.Application.Exceptions;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.Create;
+using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Infrastructure;
 using Hyre.Modules.Jobs.Tests.Integration.Common;
 using Hyre.Shared.Abstractions.Logging;
@@ -56,11 +57,11 @@ public sealed class CreateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var createCandidateInput = new CreateCandidateInput(GenerateCandidateName(), GenerateCandidateEmail());
+		var createCandidateInput = GenerateCreateCandidateInput();
 		var createCandidateRequest = new CreateCandidateRequest(jobOpportunity.Id, createCandidateInput, false);
 
 		// Act
-		await SeedDatabaseAsync(jobOpportunity);
+		await SeedDatabaseAsync(_context, true, jobOpportunity);
 		var response = await _sut.Handle(createCandidateRequest, CancellationToken.None);
 
 		// Assert
@@ -68,7 +69,17 @@ public sealed class CreateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 		_ = response.Id.Should().NotBe(default);
 		_ = response.Name.Should().Be(createCandidateInput.Name);
 		_ = response.Email.Should().Be(createCandidateInput.Email);
-		_ = response.JobOpportunityId.Should().Be(jobOpportunity.Id);
+		_ = response.Document.Should().Be(createCandidateInput.Document);
+		_ = response.DateOfBirth.Should().Be(createCandidateInput.DateOfBirth);
+		_ = response.Seniority.Should().Be(createCandidateInput.Seniority);
+		_ = response.Disability.Should().Be(createCandidateInput.Disability);
+		_ = response.Gender.Should().Be(createCandidateInput.Gender);
+		_ = response.PhoneNumber.Should().Be(createCandidateInput.PhoneNumber);
+		_ = response.Address.Should().Be(createCandidateInput.Address);
+		_ = response.Educations.Should().BeEquivalentTo(createCandidateInput.Educations);
+		_ = response.Experiences.Should().BeEquivalentTo(createCandidateInput.Experiences);
+		_ = response.SocialNetwork.Should().BeEquivalentTo(createCandidateInput.SocialNetwork);
+		_ = response.Languages.Should().BeEquivalentTo(createCandidateInput.Languages);
 	}
 
 	[Fact(DisplayName = nameof(Handle_WhenGivenInvalidJobOpportunityId_ShouldThrowException))]
@@ -76,7 +87,7 @@ public sealed class CreateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 	public async Task Handle_WhenGivenInvalidJobOpportunityId_ShouldThrowException()
 	{
 		// Arrange
-		var createCandidateInput = new CreateCandidateInput(GenerateCandidateName(), GenerateCandidateEmail());
+		var createCandidateInput = GenerateCreateCandidateInput();
 		var createCandidateRequest = new CreateCandidateRequest(Guid.NewGuid(), createCandidateInput, false);
 
 		// Act
@@ -94,13 +105,13 @@ public sealed class CreateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
 
-		var createCandidateInput = new CreateCandidateInput(GenerateCandidateName(), candidate.Email);
+		var createCandidateInput = GenerateCreateCandidateInput(candidate.Email);
 		var createCandidateRequest = new CreateCandidateRequest(jobOpportunity.Id, createCandidateInput, false);
 
 		// Act
-		await SeedDatabaseAsync(jobOpportunity, new[] { candidate });
+		await SeedDatabaseAsync(_context, false, jobOpportunity, new[] { candidate });
 
 		var act = async () => await _sut.Handle(createCandidateRequest, CancellationToken.None);
 

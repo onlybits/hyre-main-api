@@ -23,18 +23,38 @@
             <param name="Id">The candidate identifier.</param>
             <param name="Name">The candidate's name.</param>
             <param name="Email">The candidate's email.</param>
+            <param name="Document">The candidate's document.</param>
+            <param name="DateOfBirth">The candidate's date of birth.</param>
+            <param name="Seniority">The candidate's experience level.</param>
+            <param name="Disability">The candidate's disability.</param>
+            <param name="Gender">The candidate's gender.</param>
+            <param name="PhoneNumber">The candidate's phone number.</param>
+            <param name="Address">The candidate's address.</param>
+            <param name="Educations">The candidate's educations.</param>
+            <param name="Experiences">The candidate's experiences.</param>
+            <param name="SocialNetwork">The candidate's social network.</param>
+            <param name="Languages">The candidate's languages.</param>
             <param name="CreatedAt">The candidate creation date.</param>
-            <param name="JobOpportunityId">The job opportunity identifier.</param>
         </member>
-        <member name="M:Hyre.Modules.Jobs.Application.Common.CandidateResponse.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail,Hyre.Shared.Abstractions.Kernel.ValueObjects.CreateDate,Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId)">
+        <member name="M:Hyre.Modules.Jobs.Application.Common.CandidateResponse.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateDocument,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateDateOfBirth,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateSeniority,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateDisability,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateGender,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidatePhoneNumber,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateAddress,System.Collections.Generic.ICollection{Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEducation},System.Collections.Generic.ICollection{Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateExperience},Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateSocialNetwork,System.Collections.Generic.ICollection{Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateLanguage},Hyre.Shared.Abstractions.Kernel.ValueObjects.CreateDate)">
             <summary>
                 Represents the response of a candidate.
             </summary>
             <param name="Id">The candidate identifier.</param>
             <param name="Name">The candidate's name.</param>
             <param name="Email">The candidate's email.</param>
+            <param name="Document">The candidate's document.</param>
+            <param name="DateOfBirth">The candidate's date of birth.</param>
+            <param name="Seniority">The candidate's experience level.</param>
+            <param name="Disability">The candidate's disability.</param>
+            <param name="Gender">The candidate's gender.</param>
+            <param name="PhoneNumber">The candidate's phone number.</param>
+            <param name="Address">The candidate's address.</param>
+            <param name="Educations">The candidate's educations.</param>
+            <param name="Experiences">The candidate's experiences.</param>
+            <param name="SocialNetwork">The candidate's social network.</param>
+            <param name="Languages">The candidate's languages.</param>
             <param name="CreatedAt">The candidate creation date.</param>
-            <param name="JobOpportunityId">The job opportunity identifier.</param>
         </member>
         <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.Id">
             <summary>The candidate identifier.</summary>
@@ -45,11 +65,41 @@
         <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.Email">
             <summary>The candidate's email.</summary>
         </member>
+        <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.Document">
+            <summary>The candidate's document.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.DateOfBirth">
+            <summary>The candidate's date of birth.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.Seniority">
+            <summary>The candidate's experience level.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.Disability">
+            <summary>The candidate's disability.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.Gender">
+            <summary>The candidate's gender.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.PhoneNumber">
+            <summary>The candidate's phone number.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.Address">
+            <summary>The candidate's address.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.Educations">
+            <summary>The candidate's educations.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.Experiences">
+            <summary>The candidate's experiences.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.SocialNetwork">
+            <summary>The candidate's social network.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.Languages">
+            <summary>The candidate's languages.</summary>
+        </member>
         <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.CreatedAt">
             <summary>The candidate creation date.</summary>
-        </member>
-        <member name="P:Hyre.Modules.Jobs.Application.Common.CandidateResponse.JobOpportunityId">
-            <summary>The job opportunity identifier.</summary>
         </member>
         <member name="T:Hyre.Modules.Jobs.Application.Common.JobOpportunityResponse">
             <summary>
@@ -169,19 +219,74 @@
             </summary>
             <param name="Name">The candidate's name.</param>
             <param name="Email">The candidate's email.</param>
+            <param name="Document">The candidate's document.</param>
+            <param name="DateOfBirth">The candidate's date of birth.</param>
+            <param name="Seniority">The candidate's experience level.</param>
+            <param name="Disability">The candidate's disability.</param>
+            <param name="Gender">The candidate's gender.</param>
+            <param name="PhoneNumber">The candidate's phone number.</param>
+            <param name="Address">The candidate's address.</param>
+            <param name="Educations">The candidate's educations.</param>
+            <param name="Experiences">The candidate's experiences.</param>
+            <param name="SocialNetwork">The candidate's social network.</param>
+            <param name="Languages">The candidate's languages.</param>
         </member>
-        <member name="M:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail)">
+        <member name="M:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateDocument,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateDateOfBirth,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateSeniority,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateDisability,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateGender,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidatePhoneNumber,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateAddress,System.Collections.Generic.ICollection{Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEducation},System.Collections.Generic.ICollection{Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateExperience},Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateSocialNetwork,System.Collections.Generic.ICollection{Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateLanguage})">
             <summary>
                 Represents the input data for the create candidate use case.
             </summary>
             <param name="Name">The candidate's name.</param>
             <param name="Email">The candidate's email.</param>
+            <param name="Document">The candidate's document.</param>
+            <param name="DateOfBirth">The candidate's date of birth.</param>
+            <param name="Seniority">The candidate's experience level.</param>
+            <param name="Disability">The candidate's disability.</param>
+            <param name="Gender">The candidate's gender.</param>
+            <param name="PhoneNumber">The candidate's phone number.</param>
+            <param name="Address">The candidate's address.</param>
+            <param name="Educations">The candidate's educations.</param>
+            <param name="Experiences">The candidate's experiences.</param>
+            <param name="SocialNetwork">The candidate's social network.</param>
+            <param name="Languages">The candidate's languages.</param>
         </member>
         <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.Name">
             <summary>The candidate's name.</summary>
         </member>
         <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.Email">
             <summary>The candidate's email.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.Document">
+            <summary>The candidate's document.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.DateOfBirth">
+            <summary>The candidate's date of birth.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.Seniority">
+            <summary>The candidate's experience level.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.Disability">
+            <summary>The candidate's disability.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.Gender">
+            <summary>The candidate's gender.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.PhoneNumber">
+            <summary>The candidate's phone number.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.Address">
+            <summary>The candidate's address.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.Educations">
+            <summary>The candidate's educations.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.Experiences">
+            <summary>The candidate's experiences.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.SocialNetwork">
+            <summary>The candidate's social network.</summary>
+        </member>
+        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateInput.Languages">
+            <summary>The candidate's languages.</summary>
         </member>
         <member name="T:Hyre.Modules.Jobs.Application.UseCases.Candidates.Create.CreateCandidateRequest">
             <summary>
@@ -223,20 +328,15 @@
             <summary>
                 Represents the request to delete a candidate.
             </summary>
-            <param name="JobOpportunityId">The job opportunity id.</param>
             <param name="CandidateId">The candidate id.</param>
             <param name="CandidateTrackChanges">Should EF Core keep track of changes in the candidate entity.</param>
         </member>
-        <member name="M:Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete.DeleteCandidateRequest.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityId,Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId,System.Boolean)">
+        <member name="M:Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete.DeleteCandidateRequest.#ctor(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId,System.Boolean)">
             <summary>
                 Represents the request to delete a candidate.
             </summary>
-            <param name="JobOpportunityId">The job opportunity id.</param>
             <param name="CandidateId">The candidate id.</param>
             <param name="CandidateTrackChanges">Should EF Core keep track of changes in the candidate entity.</param>
-        </member>
-        <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete.DeleteCandidateRequest.JobOpportunityId">
-            <summary>The job opportunity id.</summary>
         </member>
         <member name="P:Hyre.Modules.Jobs.Application.UseCases.Candidates.Delete.DeleteCandidateRequest.CandidateId">
             <summary>The candidate id.</summary>

@@ -14,4 +14,7 @@ namespace Hyre.Modules.Jobs.Core.Events;
 ///   Represents the event that occurs when a candidate is created.
 /// </summary>
 /// <param name="Email">The email of the candidate.</param>
-public sealed record CandidateCreatedEvent(string Email) : DomainEvent;
+/// <param name="Document">The document of the candidate (Brazilian CPF).</param>
+public sealed record CandidateCreatedEvent(
+	string Email,
+	string Document) : DomainEvent;

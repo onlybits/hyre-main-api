@@ -8,6 +8,7 @@ using FluentAssertions;
 using Hyre.Modules.Jobs.Application.Exceptions;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.Create;
 using Hyre.Modules.Jobs.Core.Constants;
+using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Core.Repositories;
 using Hyre.Modules.Jobs.Core.ValueObjects.Candidates;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
@@ -38,7 +39,7 @@ public sealed class CreateCandidateUseCaseTests : CandidateBaseFixture
 	{
 		// Arrange
 		var request = GenerateCreateCandidateRequest();
-		var jobOpportunity = GenerateValidJobOpportunity();
+		var jobOpportunity = GenerateJobOpportunity();
 
 		_ = _repository
 			.JobOpportunity
@@ -87,7 +88,8 @@ public sealed class CreateCandidateUseCaseTests : CandidateBaseFixture
 	{
 		// Arrange
 		var request = GenerateCreateCandidateRequest();
-		var jobOpportunity = GenerateValidJobOpportunity();
+		var jobOpportunity = GenerateJobOpportunity();
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
 
 		_ = _repository
 			.JobOpportunity
@@ -96,12 +98,12 @@ public sealed class CreateCandidateUseCaseTests : CandidateBaseFixture
 
 		_ = _repository
 			.Candidate
-			.ExistsAsync(
-				Arg.Any<JobOpportunityId>(),
+			.FindByEmailAsync(
 				Arg.Any<CandidateEmail>(),
 				Arg.Any<bool>(),
+				Arg.Any<bool>(),
 				Arg.Any<CancellationToken>())
-			.Returns(true);
+			.Returns(candidate);
 
 		// Act
 		var act = async () => await _sut.Handle(request, CancellationToken.None);

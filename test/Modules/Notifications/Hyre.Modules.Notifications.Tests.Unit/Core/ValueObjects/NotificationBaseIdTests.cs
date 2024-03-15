@@ -14,9 +14,9 @@ using Hyre.Modules.Notifications.Tests.Unit.Common;
 namespace Hyre.Modules.Notifications.Tests.Unit.Core.ValueObjects;
 
 /// <summary>
-///   Unit tests for <see cref="NotificationId" />.
+///   Unit tests for <see cref="NotificationBaseId" />.
 /// </summary>
-public sealed class NotificationIdTests : NotificationFixture
+public sealed class NotificationBaseIdTests : NotificationBaseFixture
 {
 	[Fact(DisplayName = nameof(Constructor_WithValidValue_ShouldCreateInstance))]
 	[Trait(ValueObjectsTraits.Name, ValueObjectsTraits.Value)]
@@ -26,7 +26,7 @@ public sealed class NotificationIdTests : NotificationFixture
 		var value = Faker.Random.Guid();
 
 		// Act
-		var notificationId = new NotificationId(value);
+		var notificationId = new NotificationBaseId(value);
 
 		// Assert
 		_ = notificationId.Should().NotBeNull();
@@ -41,7 +41,7 @@ public sealed class NotificationIdTests : NotificationFixture
 		var value = Guid.Empty;
 
 		// Act
-		var act = () => new NotificationId(value);
+		var act = () => new NotificationBaseId(value);
 
 		// Assert
 		_ = act.Should()
@@ -54,7 +54,7 @@ public sealed class NotificationIdTests : NotificationFixture
 	{
 		// Arrange
 		// Act
-		var notificationId = NotificationId.New();
+		var notificationId = NotificationBaseId.New();
 
 		// Assert
 		_ = notificationId.Should().NotBeNull();
@@ -68,11 +68,11 @@ public sealed class NotificationIdTests : NotificationFixture
 		var value = Faker.Random.Guid();
 
 		// Act
-		NotificationId notificationId = value;
+		NotificationBaseId notificationBaseId = value;
 
 		// Assert
-		_ = notificationId.Should().NotBeNull();
-		_ = notificationId.Value.Should().Be(value);
+		_ = notificationBaseId.Should().NotBeNull();
+		_ = notificationBaseId.Value.Should().Be(value);
 	}
 
 	[Fact(DisplayName = nameof(ImplicitOperator_WithNotificationId_ShouldCreateInstance))]
@@ -81,7 +81,7 @@ public sealed class NotificationIdTests : NotificationFixture
 	{
 		// Arrange
 		var value = Faker.Random.Guid();
-		var notificationId = new NotificationId(value);
+		var notificationId = new NotificationBaseId(value);
 
 		// Act
 		Guid guid = notificationId;

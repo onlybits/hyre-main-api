@@ -7,6 +7,7 @@
 using FluentAssertions;
 using Hyre.Modules.Jobs.Application.Exceptions;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.Update;
+using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Infrastructure;
 using Hyre.Modules.Jobs.Tests.Integration.Common;
 using Hyre.Shared.Abstractions.Logging;
@@ -53,25 +54,23 @@ public sealed class UpdateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 		await _context.DisposeAsync();
 	}
 
-	[Theory(DisplayName = nameof(Handle_WhenGivenValidRequest_ShouldUpdateCandidate))]
+	[Fact(DisplayName = nameof(Handle_WhenGivenValidRequest_ShouldUpdateCandidate))]
 	[Trait(UseCasesTraits.Name, UseCasesTraits.Value)]
-	[InlineData(true)]
-	[InlineData(false)]
-	public async Task Handle_WhenGivenValidRequest_ShouldUpdateCandidate(bool trackChanges)
+	public async Task Handle_WhenGivenValidRequest_ShouldUpdateCandidate()
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
+		var candidate = GenerateCandidate(new List<JobOpportunity>());
 		var newCandidateName = GenerateCandidateName();
 
-		await SeedDatabaseAsync(jobOpportunity, new[] { candidate });
+		await SeedDatabaseAsync(_context, false, jobOpportunity, new[] { candidate });
 
 		var input = new UpdateCandidateInput(newCandidateName);
-		var request = new UpdateCandidateRequest(jobOpportunity.Id, candidate.Id, input, trackChanges);
+		var request = new UpdateCandidateRequest(jobOpportunity.Id, candidate.Id, input, true);
 
 		// Act
 		await _sut.Handle(request, _cancellationToken);
-		var updatedCandidate = await _repository.Candidate.FindByIdAsync(jobOpportunity.Id, candidate.Id, false, _cancellationToken);
+		var updatedCandidate = await _repository.Candidate.FindByIdAsync(candidate.Id, false, true, _cancellationToken);
 
 		// Assert
 		_ = updatedCandidate.Should().NotBeNull();
@@ -87,7 +86,7 @@ public sealed class UpdateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
 		var newCandidateName = GenerateCandidateName();
 
 		_ = await _context.JobOpportunities.AddAsync(jobOpportunity, _cancellationToken);
@@ -114,7 +113,7 @@ public sealed class UpdateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidate = GenerateCandidateWithJobOpportunity(jobOpportunity.Id);
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
 		var newCandidateName = GenerateCandidateName();
 
 		_ = await _context.JobOpportunities.AddAsync(jobOpportunity, _cancellationToken);

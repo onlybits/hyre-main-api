@@ -15,17 +15,17 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Hyre.Modules.Notifications.Infrastructure.Configuration;
 
 /// <summary>
-///   This class configures the mapping of the <see cref="Notification" /> entity to the database.
+///   This class configures the mapping of the <see cref="NotificationBase" /> entity to the database.
 /// </summary>
-internal sealed class NotificationConfiguration : IEntityTypeConfiguration<Notification>
+internal sealed class NotificationConfiguration : IEntityTypeConfiguration<NotificationBase>
 {
-	public void Configure(EntityTypeBuilder<Notification> builder)
+	public void Configure(EntityTypeBuilder<NotificationBase> builder)
 	{
 		_ = builder.ToTable("notifications");
 
 		_ = builder.HasKey(n => n.Id);
 		_ = builder.Property(n => n.Id)
-			.HasConversion(id => id.Value, value => new NotificationId(value))
+			.HasConversion(id => id.Value, value => new NotificationBaseId(value))
 			.HasColumnName("id")
 			.IsRequired();
 

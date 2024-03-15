@@ -19,7 +19,7 @@ namespace Hyre.Modules.Jobs.Application.UseCases.Candidates.Create;
 ///   This use case is responsible for creating a candidate.
 /// </summary>
 /// <inheritdoc cref="ICreateCandidateUseCase" />
-internal class CreateCandidateUseCase : ICreateCandidateUseCase
+internal sealed class CreateCandidateUseCase : ICreateCandidateUseCase
 {
 	private readonly ILoggerManager _logger;
 	private readonly IJobsRepositoryManager _repository;
@@ -44,29 +44,52 @@ internal class CreateCandidateUseCase : ICreateCandidateUseCase
 			throw new JobOpportunityNotFoundException();
 		}
 
-		var candidateExists = await _repository.Candidate.ExistsAsync(
-			jobOpportunity.Id,
+		var candidate = await _repository.Candidate.FindByEmailAsync(
 			request.Input.Email,
 			false,
+			true,
 			cancellationToken);
 
-		if (candidateExists)
+		if (candidate is not null && candidate.JobOpportunities.Any(j => j.Id == jobOpportunity.Id))
 		{
-			_logger.LogError("Candidate with email {Email} already exists for job opportunity {JobOpportunityId}.", request.Input.Email,
+			_logger.LogError(
+				"Candidate with email {Email} already exists for job opportunity {JobOpportunityId}.",
+				request.Input.Email,
 				jobOpportunity.Id);
 			throw new CandidateAlreadyExistsByEmailException();
 		}
 
-		var candidate = Candidate.Create(
-			request.JobOpportunityId,
-			request.Input.Name,
-			request.Input.Email);
+		if (candidate is not null)
+		{
+			jobOpportunity.AddCandidate(candidate);
+			_repository.JobOpportunity.Update(jobOpportunity);
+			await _repository.CommitChangesAsync(cancellationToken);
+			return candidate.ToResponse();
+		}
 
-		_repository.Candidate.Create(candidate);
+		var jobOpportunities = new List<JobOpportunity> { jobOpportunity };
+
+		var newCandidate = Candidate.Create(
+			request.Input.Name,
+			request.Input.Email,
+			request.Input.Document,
+			request.Input.DateOfBirth,
+			request.Input.Seniority,
+			request.Input.Disability,
+			request.Input.Gender,
+			request.Input.PhoneNumber,
+			request.Input.Address,
+			request.Input.Educations,
+			request.Input.Experiences,
+			jobOpportunities,
+			request.Input.SocialNetwork,
+			request.Input.Languages);
+
+		jobOpportunity.AddCandidate(newCandidate);
 		await _repository.CommitChangesAsync(cancellationToken);
 
-		_logger.LogInfo("Candidate {CandidateId} created for job opportunity {JobOpportunityId}.", candidate.Id, jobOpportunity.Id);
+		_logger.LogInfo("Candidate {CandidateId} created for job opportunity {JobOpportunityId}.", newCandidate.Id, jobOpportunity.Id);
 
-		return candidate.ToResponse();
+		return newCandidate.ToResponse();
 	}
 }

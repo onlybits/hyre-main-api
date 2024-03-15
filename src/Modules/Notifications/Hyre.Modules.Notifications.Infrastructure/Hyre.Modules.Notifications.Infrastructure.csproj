@@ -13,5 +13,6 @@
 
     <ItemGroup>
         <InternalsVisibleTo Include="Hyre.Modules.Notifications.API"/>
+        <InternalsVisibleTo Include="Hyre.Modules.Notifications.Tests.Integration"/>
     </ItemGroup>
 </Project>

@@ -27,7 +27,7 @@ internal sealed class NotificationsRepositoryContext : DbContext
 	/// <summary>
 	///   Gets or sets the notifications.
 	/// </summary>
-	public DbSet<Notification> Notifications => Set<Notification>();
+	public DbSet<NotificationBase> Notifications => Set<NotificationBase>();
 
 	/// <summary>
 	///   Override this method to further configure the model that was discovered by convention from the entity types.

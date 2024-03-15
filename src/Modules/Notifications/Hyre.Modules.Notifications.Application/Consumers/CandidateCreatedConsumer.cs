@@ -39,7 +39,7 @@ public sealed class CandidateCreatedConsumer : IConsumer<CandidateCreatedEvent>
 		_logger.LogInfo("Consuming message for candidate with email: {Email}", context.Message.Email);
 
 		var notificationRecipient = context.Message.ToNotificationRecipient();
-		var notification = Notification.Create(notificationRecipient);
+		var notification = NotificationBase.Create(notificationRecipient);
 
 		_repository.Notifications.Create(notification);
 		await _repository.CommitChangesAsync();

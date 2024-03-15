@@ -6,6 +6,7 @@
 
 using FluentAssertions;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.List;
+using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Core.Requests;
 using Hyre.Modules.Jobs.Infrastructure;
 using Hyre.Modules.Jobs.Tests.Integration.Common;
@@ -66,7 +67,7 @@ public sealed class ListCandidateUseCaseTests : CandidateBaseFixture, IAsyncLife
 	{
 		// Arrange
 		var jobOpportunity = GenerateValidJobOpportunity();
-		var candidates = GenerateCandidatesWithJobOpportunity(generate, jobOpportunity.Id);
+		var candidates = GenerateCandidates(generate, new List<JobOpportunity> { jobOpportunity });
 		var parameters = new CandidateParameters
 		{
 			PageSize = pageSize,
@@ -76,7 +77,7 @@ public sealed class ListCandidateUseCaseTests : CandidateBaseFixture, IAsyncLife
 		var request = new ListCandidateRequest(jobOpportunity.Id, false, parameters);
 
 		// Act
-		await SeedDatabaseAsync(jobOpportunity, candidates);
+		await SeedDatabaseAsync(_context, false, jobOpportunity, candidates);
 		var (metadata, items) = await _sut.Handle(request, CancellationToken.None);
 
 		// Assert

@@ -13,21 +13,21 @@ using Hyre.Shared.Abstractions.Kernel.ValueObjects;
 namespace Hyre.Modules.Notifications.Core.ValueObjects;
 
 /// <summary>
-///   Represents the unique identifier of a <see cref="Notification" />.
+///   Represents the unique identifier of a <see cref="NotificationBase" />.
 /// </summary>
-public sealed record NotificationId : StronglyTypedId<Guid>
+public sealed record NotificationBaseId : StronglyTypedId<Guid>
 {
 	/// <summary>
-	///   Initializes a new instance of the <see cref="NotificationId" /> class.
+	///   Initializes a new instance of the <see cref="NotificationBaseId" /> class.
 	/// </summary>
 	/// <param name="Value">The value of the identifier.</param>
-	public NotificationId(Guid Value) : base(Value) => Validate();
+	public NotificationBaseId(Guid Value) : base(Value) => Validate();
 
 	/// <summary>
-	///   Creates a new instance of the <see cref="NotificationId" /> class.
+	///   Creates a new instance of the <see cref="NotificationBaseId" /> class.
 	/// </summary>
-	/// <returns>Returns a new instance of the <see cref="NotificationId" /> class.</returns>
-	public static NotificationId New() => new(Guid.NewGuid());
+	/// <returns>Returns a new instance of the <see cref="NotificationBaseId" /> class.</returns>
+	public static NotificationBaseId New() => new(Guid.NewGuid());
 
 	/// <summary>
 	///   This method is used to validate the identifier of the notification.
@@ -43,18 +43,18 @@ public sealed record NotificationId : StronglyTypedId<Guid>
 	#region Implicit Operators
 
 	/// <summary>
-	///   Implicitly converts the <see cref="Guid" /> to a <see cref="NotificationId" />.
+	///   Implicitly converts the <see cref="Guid" /> to a <see cref="NotificationBaseId" />.
 	/// </summary>
 	/// <param name="value">The value to be converted.</param>
-	/// <returns>Returns the <see cref="NotificationId" />.</returns>
-	public static implicit operator NotificationId(Guid value) => new(value);
+	/// <returns>Returns the <see cref="NotificationBaseId" />.</returns>
+	public static implicit operator NotificationBaseId(Guid value) => new(value);
 
 	/// <summary>
-	///   Implicitly converts the <see cref="NotificationId" /> to a <see cref="Guid" />.
+	///   Implicitly converts the <see cref="NotificationBaseId" /> to a <see cref="Guid" />.
 	/// </summary>
 	/// <param name="value">The value to be converted.</param>
 	/// <returns>Returns the <see cref="Guid" />.</returns>
-	public static implicit operator Guid(NotificationId value) => value.Value;
+	public static implicit operator Guid(NotificationBaseId value) => value.Value;
 
 	#endregion
 }

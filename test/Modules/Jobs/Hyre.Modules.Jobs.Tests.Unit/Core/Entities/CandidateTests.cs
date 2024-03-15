@@ -7,7 +7,6 @@
 using FluentAssertions;
 using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Core.Events;
-using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 using Hyre.Modules.Jobs.Tests.Unit.Common;
 using Xunit;
 
@@ -25,23 +24,61 @@ public sealed class CandidateTests : CandidateBaseFixture
 	public void Create_WhenGivenValidParameters_ShouldCreateAnInstance()
 	{
 		// Arrange
-		var name = GenerateValidName();
+		var name = GenerateCandidateName();
 		var email = GenerateCandidateEmail();
-		var jobOpportunityId = JobOpportunityId.New();
+		var document = GenerateCandidateDocument();
+		var dateOfBirth = GenerateCandidateDateOfBirth();
+		var seniority = GenerateCandidateSeniority();
+		var disability = GenerateCandidateDisability();
+		var gender = GenerateCandidateGender();
+		var phoneNumber = GenerateCandidatePhoneNumber();
+		var address = GenerateCandidateAddress();
+		var education = GenerateCandidateEducation(2);
+		var experience = GenerateCandidateExperience(2).ToList();
+		var jobOpportunities = new List<JobOpportunity>
+		{
+			GenerateJobOpportunity(),
+			GenerateJobOpportunity()
+		};
+		var socialNetwork = GenerateCandidateSocialNetwork();
+		var language = GenerateCandidateLanguage(2).ToList();
 
 		// Act
-		var sut = Candidate.Create(jobOpportunityId, name, email);
+		var sut = Candidate.Create(
+			name,
+			email,
+			document,
+			dateOfBirth,
+			seniority,
+			disability,
+			gender,
+			phoneNumber,
+			address,
+			education,
+			experience,
+			jobOpportunities,
+			socialNetwork,
+			language);
 
 		// Assert
 		_ = sut.Should().NotBeNull();
 		_ = sut.Id.Should().NotBe(default!);
 		_ = sut.Name.Should().Be(name);
 		_ = sut.Email.Should().Be(email);
+		_ = sut.Document.Should().Be(document);
+		_ = sut.DateOfBirth.Should().Be(dateOfBirth);
+		_ = sut.Seniority.Should().Be(seniority);
+		_ = sut.Disability.Should().Be(disability);
+		_ = sut.Gender.Should().Be(gender);
+		_ = sut.PhoneNumber.Should().Be(phoneNumber);
+		_ = sut.Address.Should().Be(address);
+		_ = sut.Educations.Should().BeEquivalentTo(education);
+		_ = sut.Experiences.Should().BeEquivalentTo(experience);
+		_ = sut.JobOpportunities.Should().BeEquivalentTo(jobOpportunities);
+		_ = sut.SocialNetwork.Should().Be(socialNetwork);
+		_ = sut.Languages.Should().BeEquivalentTo(language);
 		_ = sut.CreatedAt.Should().NotBe(default!);
 		_ = sut.CreatedAt.Value.Should().BeCloseTo(DateTimeOffset.UtcNow, TimeSpan.FromSeconds(2));
-		_ = sut.JobOpportunityId.Should().NotBe(default!);
-		_ = sut.JobOpportunityId.Value.Should().NotBeEmpty();
-		_ = sut.JobOpportunityId.Should().Be(jobOpportunityId);
 		_ = sut.Events.Should().HaveCount(1);
 
 		var @event = sut.Events.First() as CandidateCreatedEvent;
@@ -54,8 +91,12 @@ public sealed class CandidateTests : CandidateBaseFixture
 	public void UpdateName_WhenGivenValidName_ShouldUpdateName()
 	{
 		// Arrange
-		var sut = GenerateValidCandidate();
-		var newName = GenerateValidName();
+		var jobOpportunities = new List<JobOpportunity>
+		{
+			GenerateJobOpportunity()
+		};
+		var sut = GenerateCandidate(jobOpportunities);
+		var newName = GenerateCandidateName();
 
 		// Act
 		sut.UpdateName(newName);

@@ -76,6 +76,12 @@
             </summary>
             <param name="busConfigurator">The bus configurator.</param>
         </member>
+        <member name="M:Hyre.Bootstrapper.Extensions.MassTransitExtensions.AddOutbox(MassTransit.IBusRegistrationConfigurator)">
+            <summary>
+                This method adds the outbox to the bus configurator.
+            </summary>
+            <param name="busConfigurator">The bus configurator.</param>
+        </member>
         <member name="T:Hyre.Bootstrapper.Extensions.ModulesExtensions">
             <summary>
                 This extension method is used to configure all modules in the bootstrapper.

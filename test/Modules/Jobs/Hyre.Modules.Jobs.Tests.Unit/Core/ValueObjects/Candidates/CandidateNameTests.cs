@@ -23,7 +23,7 @@ public sealed class CandidateNameTests : CandidateBaseFixture
 	public void Constructor_WithValidParameters_ShouldCreateAnInstance()
 	{
 		// Arrange
-		var generated = GenerateValidName();
+		var generated = GenerateCandidateName();
 
 		// Act
 		var sut = new CandidateName(

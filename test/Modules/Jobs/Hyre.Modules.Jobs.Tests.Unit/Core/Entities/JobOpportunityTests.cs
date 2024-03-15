@@ -191,8 +191,9 @@ public sealed class JobOpportunityTests : JobOpportunityBaseFixture
 	public void AddCandidate_WhenPassingValidCandidate_ShouldAddCandidate()
 	{
 		// Arrange
+		var jobOpportunity = GenerateJobOpportunity();
 		var sut = GenerateJobOpportunity();
-		var candidate = GenerateCandidate();
+		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
 
 		// Act
 		sut.AddCandidate(candidate);

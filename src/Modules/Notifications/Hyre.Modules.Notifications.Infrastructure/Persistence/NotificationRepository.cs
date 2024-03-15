@@ -17,7 +17,7 @@ namespace Hyre.Modules.Notifications.Infrastructure.Persistence;
 ///   This is the repository contract for the notification entity.
 /// </summary>
 /// <inheritdoc cref="INotificationRepository" />
-internal sealed class NotificationRepository : RepositoryBase<Notification>, INotificationRepository
+internal sealed class NotificationRepository : RepositoryBase<NotificationBase>, INotificationRepository
 {
 	/// <summary>
 	///   Initializes a new instance of the <see cref="NotificationRepository" /> class.
@@ -30,6 +30,6 @@ internal sealed class NotificationRepository : RepositoryBase<Notification>, INo
 	/// <summary>
 	///   This method is responsible for creating a new notification.
 	/// </summary>
-	/// <param name="notification">The notification to be created.</param>
-	public void Create(Notification notification) => Insert(notification);
+	/// <param name="notificationBase">The notification to be created.</param>
+	public void Create(NotificationBase notificationBase) => Insert(notificationBase);
 }

@@ -4,7 +4,9 @@
 
 #region
 
+using System.Globalization;
 using Bogus.Extensions;
+using Bogus.Extensions.Brazil;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.Create;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.Find;
 using Hyre.Modules.Jobs.Application.UseCases.Candidates.Update;
@@ -56,34 +58,43 @@ public abstract class CandidateBaseFixture : BaseFixture
 	/// </summary>
 	/// <param name="count">The count of candidates to generate.</param>
 	/// <returns>Returns a valid list of <see cref="Candidate" />.</returns>
-	private List<Candidate> GenerateValidListOfCandidates(int count) =>
-		Enumerable
-			.Range(0, count)
-			.Select(_ => GenerateValidCandidate())
-			.ToList();
+	private IEnumerable<Candidate> GenerateValidListOfCandidates(int count) => Enumerable
+		.Range(0, count)
+		.Select(_ => GenerateCandidate(new List<JobOpportunity> { GenerateJobOpportunity() }))
+		.AsEnumerable();
 
 	#endregion
 
-	#region Core Entity
+	#region Core Entity - Candidate
 
 	/// <summary>
 	///   Generates a valid <see cref="Candidate" />.
 	/// </summary>
 	/// <returns>The valid <see cref="Candidate" />.</returns>
-	protected Candidate GenerateValidCandidate() => Candidate.Create(
-		JobOpportunityId.New(),
-		GenerateValidName(),
-		GenerateCandidateEmail());
+	protected Candidate GenerateCandidate(ICollection<JobOpportunity> jobOpportunities) => Candidate.Create(
+		GenerateCandidateName(),
+		GenerateCandidateEmail(),
+		GenerateCandidateDocument(),
+		GenerateCandidateDateOfBirth(),
+		GenerateCandidateSeniority(),
+		GenerateCandidateDisability(),
+		GenerateCandidateGender(),
+		GenerateCandidatePhoneNumber(),
+		GenerateCandidateAddress(),
+		GenerateCandidateEducation(2),
+		GenerateCandidateExperience(3).ToList(),
+		jobOpportunities,
+		GenerateCandidateSocialNetwork(),
+		GenerateCandidateLanguage(2).ToList());
 
 	/// <summary>
 	///   Generates a valid <see cref="Candidate" />.
 	/// </summary>
 	/// <returns>Returns a valid <see cref="Candidate" />.</returns>
-	protected CandidateName GenerateValidName() => new(
+	protected CandidateName GenerateCandidateName() => new(
 		Faker.Name.FirstName().ClampLength(3, 32),
 		Faker.Name.FirstName().ClampLength(3, 32),
-		Faker.Name.LastName().ClampLength(3, 32)
-	);
+		Faker.Name.LastName().ClampLength(3, 32));
 
 	/// <summary>
 	///   Generates a valid <see cref="CandidateEmail" />.
@@ -91,6 +102,115 @@ public abstract class CandidateBaseFixture : BaseFixture
 	/// <returns>Returns a valid <see cref="CandidateEmail" />.</returns>
 	protected CandidateEmail GenerateCandidateEmail() => new(
 		Faker.Internet.Email());
+
+	/// <summary>
+	///   Generates a valid <see cref="CandidateDocument" />.
+	/// </summary>
+	/// <returns>Returns a valid <see cref="CandidateDocument" />.</returns>
+	protected CandidateDocument GenerateCandidateDocument() => new(
+		Faker.Person.Cpf());
+
+	/// <summary>
+	///   Generates a valid <see cref="CandidateDateOfBirth" />.
+	/// </summary>
+	/// <returns>Returns a valid <see cref="CandidateDateOfBirth" />.</returns>
+	protected CandidateDateOfBirth GenerateCandidateDateOfBirth() => new(
+		DateOnly.FromDateTime(Faker.Date.Past(16, DateTime.Now.AddYears(-60))));
+
+	/// <summary>
+	///   Generates a valid <see cref="CandidateSeniority" />.
+	/// </summary>
+	/// <returns>Returns a valid <see cref="CandidateSeniority" />.</returns
+	protected CandidateSeniority GenerateCandidateSeniority() => new(
+		Faker.PickRandom<ExperienceLevel>());
+
+	/// <summary>
+	///   Generates a valid <see cref="CandidateDisability" />.
+	/// </summary>
+	/// <returns>Returns a valid <see cref="CandidateDisability" />.</returns>
+	protected CandidateDisability GenerateCandidateDisability() => new(
+		Faker.Random.Bool(),
+		Faker.Random.Bool(),
+		Faker.Random.Bool(),
+		Faker.Random.Bool());
+
+	/// <summary>
+	///   Generates a valid <see cref="CandidateGender" />.
+	/// </summary>
+	/// <returns>Returns a valid <see cref="CandidateGender" />.</returns>
+	protected CandidateGender GenerateCandidateGender() => new(
+		Faker.PickRandom<Gender>());
+
+	/// <summary>
+	///   Generates a valid <see cref="CandidatePhoneNumber" />.
+	/// </summary>
+	/// <returns>Returns a valid <see cref="CandidatePhoneNumber" />.</returns>
+	protected CandidatePhoneNumber GenerateCandidatePhoneNumber() => new(
+		Faker.Random.Number(10, 99).ToString(CultureInfo.InvariantCulture),
+		Faker.Random.Number(900000000, 999999999).ToString(CultureInfo.InvariantCulture));
+
+	/// <summary>
+	///   Generates a valid <see cref="CandidateAddress" />.
+	/// </summary>
+	/// <returns>Returns a valid <see cref="CandidateAddress" />.</returns>
+	protected CandidateAddress GenerateCandidateAddress() => new(
+		Faker.Address.Country(),
+		Faker.Address.StateAbbr(),
+		Faker.Address.City().ClampLength(3, 32),
+		Faker.Address.StreetName().ClampLength(3, 64),
+		Faker.Address.Direction(),
+		Convert.ToInt32(Faker.Address.BuildingNumber(), CultureInfo.InvariantCulture),
+		Faker.Address.ZipCode().ClampLength(8, 8));
+
+	/// <summary>
+	///   Generates a valid <see cref="CandidateEducation" />.
+	/// </summary>
+	/// <param name="count">The count of languages to generate.</param>
+	/// <returns>Returns a valid <see cref="CandidateEducation" />.</returns>
+	protected ICollection<CandidateEducation> GenerateCandidateEducation(int count) => Enumerable
+		.Range(1, count)
+		.Select(x => new CandidateEducation(
+			DateOnly.FromDateTime(Faker.Date.Past()),
+			DateOnly.FromDateTime(Faker.Date.Past()),
+			Faker.Company.CompanyName(),
+			Faker.Lorem.Paragraph().ClampLength(10, 500),
+			Faker.PickRandom<Degree>()))
+		.ToList();
+
+	/// <summary>
+	///   Generates a valid <see cref="CandidateExperience" />.
+	/// </summary>
+	/// <param name="count">The count of languages to generate.</param>
+	/// <returns>Returns a valid <see cref="CandidateExperience" />.</returns>
+	protected IEnumerable<CandidateExperience> GenerateCandidateExperience(int count) => Enumerable
+		.Range(1, count)
+		.Select(_ => new CandidateExperience(
+			DateOnly.FromDateTime(Faker.Date.Past()),
+			DateOnly.FromDateTime(Faker.Date.Past()),
+			Faker.Name.JobTitle(),
+			Faker.Company.CompanyName(),
+			Faker.Name.JobDescriptor()))
+		.AsEnumerable();
+
+	/// <summary>
+	///   Generates a valid <see cref="CandidateLanguage" />.
+	/// </summary>
+	/// <param name="count">The count of languages to generate.</param>
+	/// <returns>Returns a valid <see cref="CandidateLanguage" />.</returns>
+	protected IEnumerable<CandidateLanguage> GenerateCandidateLanguage(int count) =>
+		Enumerable.Range(1, count)
+			.Select(x => new CandidateLanguage(
+				Faker.Lorem.Word(),
+				Faker.PickRandom<LanguageProficiency>()))
+			.AsEnumerable();
+
+	/// <summary>
+	///   Generates a valid <see cref="CandidateSocialNetwork" />.
+	/// </summary>
+	/// <returns>Returns a valid <see cref="CandidateSocialNetwork" />.</returns>
+	protected CandidateSocialNetwork GenerateCandidateSocialNetwork() => new(
+		Faker.Internet.Url(),
+		Faker.Internet.Url());
 
 	#endregion
 
@@ -101,8 +221,19 @@ public abstract class CandidateBaseFixture : BaseFixture
 	/// </summary>
 	/// <returns></returns>
 	private CreateCandidateInput GenerateCreateCandidateInput() => new(
-		GenerateValidName(),
-		GenerateCandidateEmail());
+		GenerateCandidateName(),
+		GenerateCandidateEmail(),
+		GenerateCandidateDocument(),
+		GenerateCandidateDateOfBirth(),
+		GenerateCandidateSeniority(),
+		GenerateCandidateDisability(),
+		GenerateCandidateGender(),
+		GenerateCandidatePhoneNumber(),
+		GenerateCandidateAddress(),
+		GenerateCandidateEducation(2),
+		GenerateCandidateExperience(3).ToList(),
+		GenerateCandidateSocialNetwork(),
+		GenerateCandidateLanguage(2).ToList());
 
 	/// <summary>
 	///   Generates a valid <see cref="CreateCandidateRequest" />.
@@ -121,7 +252,7 @@ public abstract class CandidateBaseFixture : BaseFixture
 	///   Generates a valid <see cref="JobOpportunity" />.
 	/// </summary>
 	/// <returns>It will return a valid <see cref="JobOpportunity" />.</returns>
-	protected JobOpportunity GenerateValidJobOpportunity() => JobOpportunity.Create(
+	protected JobOpportunity GenerateJobOpportunity() => JobOpportunity.Create(
 		GenerateValidJobOpportunityName(),
 		GenerateValidJobOpportunityDescription(),
 		GenerateValidJobOpportunityLocation(),
@@ -190,7 +321,7 @@ public abstract class CandidateBaseFixture : BaseFixture
 	///   Generates a valid <see cref="UpdateCandidateInput" />.
 	/// </summary>
 	/// <returns>Returns a valid <see cref="UpdateCandidateInput" />.</returns>
-	private UpdateCandidateInput GenerateUpdateCandidateInput() => new(GenerateValidName());
+	private UpdateCandidateInput GenerateUpdateCandidateInput() => new(GenerateCandidateName());
 
 	#endregion
 }
