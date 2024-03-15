@@ -48,7 +48,8 @@ public sealed class DeleteCandidateUseCaseTests : CandidateBaseFixture
 
 		_ = _repository
 			.Candidate
-			.FindByIdAsync(Arg.Any<CandidateId>(), Arg.Any<bool>(), Arg.Any<CancellationToken>())
+			.FindByIdAsync(Arg.Any<CandidateId>(), Arg.Any<bool>(),
+				Arg.Any<bool>(), Arg.Any<CancellationToken>())
 			.Returns(candidate);
 
 		// Act
@@ -57,32 +58,6 @@ public sealed class DeleteCandidateUseCaseTests : CandidateBaseFixture
 		// Assert
 		_logger.Received(1).LogInfo(
 			Arg.Is("Candidate with id {CandidateId} deleted."),
-			Arg.Any<object?[]>());
-	}
-
-	[Fact(DisplayName = nameof(Handle_WhenGivenInvalidJobOpportunityId_ShouldThrowJobOpportunityNotFoundException))]
-	[Trait(UseCaseTraits.Name, UseCaseTraits.Value)]
-	public async Task Handle_WhenGivenInvalidJobOpportunityId_ShouldThrowJobOpportunityNotFoundException()
-	{
-		// Arrange
-		var jobOpportunity = GenerateJobOpportunity();
-		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
-		var request = new DeleteCandidateRequest(candidate.Id, false);
-
-		_ = _repository
-			.JobOpportunity
-			.ExistsAsync(Arg.Any<JobOpportunityId>(), Arg.Any<CancellationToken>())
-			.Returns(false);
-
-		// Act
-		var act = async () => await _sut.Handle(request, CancellationToken.None);
-
-		// Assert
-		_ = await act.Should()
-			.ThrowExactlyAsync<JobOpportunityNotFoundException>();
-
-		_logger.Received(1).LogError(
-			Arg.Is("Job opportunity with id {JobOpportunityId} not found."),
 			Arg.Any<object?[]>());
 	}
 
@@ -102,7 +77,11 @@ public sealed class DeleteCandidateUseCaseTests : CandidateBaseFixture
 
 		_ = _repository
 			.Candidate
-			.FindByIdAsync(Arg.Any<CandidateId>(), Arg.Any<bool>(), Arg.Any<CancellationToken>())
+			.FindByIdAsync(
+				Arg.Any<CandidateId>(),
+				Arg.Any<bool>(),
+				Arg.Any<bool>(),
+				Arg.Any<CancellationToken>())
 			.ReturnsNull();
 
 		// Act

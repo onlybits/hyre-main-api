@@ -77,7 +77,7 @@ public sealed class ListCandidateUseCaseTests : CandidateBaseFixture, IAsyncLife
 		var request = new ListCandidateRequest(jobOpportunity.Id, false, parameters);
 
 		// Act
-		await SeedDatabaseAsync(jobOpportunity, candidates);
+		await SeedDatabaseAsync(_context, false, jobOpportunity, candidates);
 		var (metadata, items) = await _sut.Handle(request, CancellationToken.None);
 
 		// Assert

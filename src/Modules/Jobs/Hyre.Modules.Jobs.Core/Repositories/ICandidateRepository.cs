@@ -34,11 +34,13 @@ public interface ICandidateRepository : IRepositoryBase<Candidate>
 	/// </summary>
 	/// <param name="candidateId">The candidate id.</param>
 	/// <param name="trackChanges">Should EF Core keep track of changes in the candidate entity.</param>
+	/// <param name="includeJobOpportunities">Should the job opportunities be included in the candidate entity.</param>
 	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
 	/// <returns>Returns the candidate found, or null if not found.</returns>
 	Task<Candidate?> FindByIdAsync(
 		CandidateId candidateId,
 		bool trackChanges,
+		bool includeJobOpportunities,
 		CancellationToken cancellationToken = default);
 
 	/// <summary>
@@ -46,11 +48,13 @@ public interface ICandidateRepository : IRepositoryBase<Candidate>
 	/// </summary>
 	/// <param name="email">The candidate email.</param>
 	/// <param name="trackChanges">Should EF Core keep track of changes in the candidate entity.</param>
+	/// <param name="includeJobOpportunities">Should the job opportunities be included in the candidate entity.</param>
 	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
 	/// <returns>Returns the candidate found, or null if not found.</returns>
 	Task<Candidate?> FindByEmailAsync(
 		CandidateEmail email,
 		bool trackChanges,
+		bool includeJobOpportunities,
 		CancellationToken cancellationToken = default);
 
 	/// <summary>

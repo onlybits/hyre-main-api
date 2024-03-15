@@ -40,6 +40,7 @@ internal sealed class FindCandidateUseCase : IFindCandidateUseCase
 		var candidate = await _repository.Candidate.FindByIdAsync(
 			request.CandidateId,
 			request.CandidateTrackChanges,
+			false,
 			cancellationToken);
 
 		if (candidate is null)

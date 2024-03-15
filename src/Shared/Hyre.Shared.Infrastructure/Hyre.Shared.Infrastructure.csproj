@@ -22,6 +22,7 @@
         <InternalsVisibleTo Include="Hyre.Bootstrapper"/>
         <InternalsVisibleTo Include="Hyre.Modules.Jobs.Infrastructure"/>
         <InternalsVisibleTo Include="Hyre.Modules.Notifications.Infrastructure"/>
+        <InternalsVisibleTo Include="Hyre.Modules.Identity.API"/>
     </ItemGroup>
 
 </Project>

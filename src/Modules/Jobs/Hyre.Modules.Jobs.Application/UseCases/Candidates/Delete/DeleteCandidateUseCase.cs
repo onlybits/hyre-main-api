@@ -31,6 +31,7 @@ internal sealed class DeleteCandidateUseCase : IDeleteCandidateUseCase
 		var candidate = await _repository.Candidate.FindByIdAsync(
 			request.CandidateId,
 			request.CandidateTrackChanges,
+			false,
 			cancellationToken);
 		if (candidate is null)
 		{

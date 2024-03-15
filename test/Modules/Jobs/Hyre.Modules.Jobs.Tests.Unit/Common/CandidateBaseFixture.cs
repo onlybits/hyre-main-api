@@ -146,8 +146,8 @@ public abstract class CandidateBaseFixture : BaseFixture
 	/// </summary>
 	/// <returns>Returns a valid <see cref="CandidatePhoneNumber" />.</returns>
 	protected CandidatePhoneNumber GenerateCandidatePhoneNumber() => new(
-		Faker.Random.Number(1, 99).ToString(CultureInfo.InvariantCulture),
-		Faker.Phone.PhoneNumber().ClampLength(11, 11));
+		Faker.Random.Number(10, 99).ToString(CultureInfo.InvariantCulture),
+		Faker.Random.Number(900000000, 999999999).ToString(CultureInfo.InvariantCulture));
 
 	/// <summary>
 	///   Generates a valid <see cref="CandidateAddress" />.

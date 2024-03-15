@@ -7,7 +7,9 @@
 using System.Text;
 using Hyre.Modules.Identity.Application.Exceptions;
 using Hyre.Modules.Identity.Core.Entities;
+using Hyre.Modules.Identity.Core.Options;
 using Hyre.Modules.Identity.Infrastructure;
+using Hyre.Shared.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -52,12 +54,9 @@ internal static class Extensions
 	/// <returns>Returns the services collection.</returns>
 	private static IServiceCollection ConfigureJwt(this IServiceCollection services)
 	{
-		var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
-		var audience = Environment.GetEnvironmentVariable("JWT_AUDIENCE");
-		var secretKey = Environment.GetEnvironmentVariable("JWT_SECRET");
-		var expiration = Environment.GetEnvironmentVariable("JWT_EXPIRATION");
+		var jwtOptions = services.GetOptions<JwtOptions>(JwtOptions.Name);
 
-		if (secretKey is null)
+		if (jwtOptions.Secret is null)
 		{
 			throw new JwtSecretKeyNotFoundException();
 		}
@@ -68,15 +67,15 @@ internal static class Extensions
 			opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 		}).AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters
 		{
-			ValidIssuer = issuer,
-			ValidAudience = audience,
+			ValidIssuer = jwtOptions.Issuer,
+			ValidAudience = jwtOptions.Audience,
 
 			ValidateIssuer = true,
 			ValidateAudience = true,
 			ValidateLifetime = true,
 			ValidateIssuerSigningKey = true,
 
-			IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
+			IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Secret))
 		});
 
 		return services;

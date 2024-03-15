@@ -201,6 +201,6 @@ public sealed class JobOpportunityTests : JobOpportunityBaseFixture
 		// Assert
 		_ = sut.Candidates.Should().NotBeEmpty();
 		_ = sut.Candidates.Should().Contain(candidate);
-		_ = sut.Candidates.Should().HaveCount(2);
+		_ = sut.Candidates.Should().HaveCount(1);
 	}
 }

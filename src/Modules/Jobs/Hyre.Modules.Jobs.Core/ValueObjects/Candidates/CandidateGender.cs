@@ -19,8 +19,8 @@ public sealed record CandidateGender : ValueObject
 	/// <summary>
 	///   Initializes a new instance of the <see cref="CandidateGender" /> class.
 	/// </summary>
-	/// <param name="gender">The candidate's gender value.</param>
-	public CandidateGender(Gender gender) => Value = gender;
+	/// <param name="value">The candidate's gender value.</param>
+	public CandidateGender(Gender value) => Value = value;
 
 	/// <summary>
 	///   Gets the candidate's gender value.

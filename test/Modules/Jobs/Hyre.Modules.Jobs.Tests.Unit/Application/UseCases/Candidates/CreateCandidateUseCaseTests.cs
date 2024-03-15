@@ -101,6 +101,7 @@ public sealed class CreateCandidateUseCaseTests : CandidateBaseFixture
 			.FindByEmailAsync(
 				Arg.Any<CandidateEmail>(),
 				Arg.Any<bool>(),
+				Arg.Any<bool>(),
 				Arg.Any<CancellationToken>())
 			.Returns(candidate);
 

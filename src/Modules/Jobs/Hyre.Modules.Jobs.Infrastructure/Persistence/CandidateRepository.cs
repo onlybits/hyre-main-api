@@ -35,11 +35,24 @@ internal sealed class CandidateRepository : RepositoryBase<Candidate>, ICandidat
 	/// </summary>
 	/// <param name="email">The candidate email.</param>
 	/// <param name="trackChanges">Should EF Core keep track of changes in the candidate entity.</param>
+	/// <param name="includeJobOpportunities">Should the job opportunities be included in the candidate entity.</param>
 	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
 	/// <returns>Returns the candidate found, or null if not found.</returns>
-	public async Task<Candidate?> FindByEmailAsync(CandidateEmail email, bool trackChanges, CancellationToken cancellationToken = default) =>
-		await FindByCondition(c => c.Email == email, trackChanges)
-			.SingleOrDefaultAsync(cancellationToken);
+	public async Task<Candidate?> FindByEmailAsync(
+		CandidateEmail email,
+		bool trackChanges,
+		bool includeJobOpportunities,
+		CancellationToken cancellationToken = default)
+	{
+		var candidateQuery = FindByCondition(c => c.Email == email, trackChanges);
+
+		if (includeJobOpportunities)
+		{
+			candidateQuery = candidateQuery.Include(x => x.JobOpportunities);
+		}
+
+		return await candidateQuery.SingleOrDefaultAsync(cancellationToken);
+	}
 
 	/// <summary>
 	///   This method is responsible for creating a new candidate.
@@ -64,17 +77,23 @@ internal sealed class CandidateRepository : RepositoryBase<Candidate>, ICandidat
 	/// </summary>
 	/// <param name="candidateId">The candidate id.</param>
 	/// <param name="trackChanges">Should EF Core keep track of changes in the candidate entity.</param>
+	/// <param name="includeJobOpportunities">Should the job opportunities be included in the candidate entity.</param>
 	/// <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
 	/// <returns>Returns the candidate found, or null if not found.</returns>
 	public async Task<Candidate?> FindByIdAsync(
 		CandidateId candidateId,
 		bool trackChanges,
+		bool includeJobOpportunities,
 		CancellationToken cancellationToken = default)
 	{
-		var candidate = await FindByCondition(c => c.Id == candidateId, trackChanges)
-			.SingleOrDefaultAsync(cancellationToken);
+		var candidateQuery = FindByCondition(c => c.Id == candidateId, trackChanges);
 
-		return candidate;
+		if (includeJobOpportunities)
+		{
+			candidateQuery = candidateQuery.Include(x => x.JobOpportunities);
+		}
+
+		return await candidateQuery.SingleOrDefaultAsync(cancellationToken);
 	}
 
 	/// <summary>

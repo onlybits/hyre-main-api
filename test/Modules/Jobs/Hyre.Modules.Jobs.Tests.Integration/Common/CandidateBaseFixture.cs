@@ -12,6 +12,7 @@ using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Core.Enums;
 using Hyre.Modules.Jobs.Core.ValueObjects.Candidates;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
+using Hyre.Modules.Jobs.Infrastructure;
 
 #endregion
 
@@ -34,11 +35,16 @@ public abstract class CandidateBaseFixture : BaseFixture
 	///   This method will seed the database with the given <see cref="JobOpportunity" /> and a list of
 	///   <see cref="Candidate" />.
 	/// </summary>
+	/// <param name="context">The jobs repository context.</param>
+	/// <param name="trackChanges">Should the changes be tracked?</param>
 	/// <param name="jobOpportunity">The <see cref="JobOpportunity" /> to seed the database with.</param>
 	/// <param name="candidates">The <see cref="Candidate" /> to seed the database with.</param>
-	protected async Task SeedDatabaseAsync(JobOpportunity? jobOpportunity = null, IEnumerable<Candidate>? candidates = null)
+	internal async Task SeedDatabaseAsync(
+		JobsRepositoryContext context,
+		bool trackChanges = false,
+		JobOpportunity? jobOpportunity = null,
+		IEnumerable<Candidate>? candidates = null)
 	{
-		var context = CreateRepositoryContext();
 		if (jobOpportunity is not null)
 		{
 			await context.JobOpportunities.AddRangeAsync(jobOpportunity);
@@ -52,7 +58,10 @@ public abstract class CandidateBaseFixture : BaseFixture
 		_ = await context.SaveChangesAsync();
 
 		// I need to clear the change tracker to avoid conflicts with the next test.
-		context.ChangeTracker.Clear();
+		if (!trackChanges)
+		{
+			context.ChangeTracker.Clear();
+		}
 	}
 
 	#region UseCases
@@ -61,9 +70,9 @@ public abstract class CandidateBaseFixture : BaseFixture
 	///   Generates a valid <see cref="CreateCandidateInput" />.
 	/// </summary>
 	/// <returns>Returns a valid <see cref="CreateCandidateInput" />.</returns>
-	protected CreateCandidateInput GenerateCreateCandidateInput() => new(
+	protected CreateCandidateInput GenerateCreateCandidateInput(CandidateEmail? email = null) => new(
 		GenerateCandidateName(),
-		GenerateCandidateEmail(),
+		email ?? GenerateCandidateEmail(),
 		GenerateCandidateDocument(),
 		GenerateCandidateDateOfBirth(),
 		GenerateCandidateSeniority(),
@@ -169,8 +178,8 @@ public abstract class CandidateBaseFixture : BaseFixture
 	/// </summary>
 	/// <returns>Returns a valid <see cref="CandidatePhoneNumber" />.</returns>
 	private CandidatePhoneNumber GenerateCandidatePhoneNumber() => new(
-		Faker.Random.Number(1, 99).ToString(CultureInfo.InvariantCulture),
-		Faker.Phone.PhoneNumber().ClampLength(11, 11));
+		Faker.Random.Number(10, 99).ToString(CultureInfo.InvariantCulture),
+		Faker.Random.Number(900000000, 999999999).ToString(CultureInfo.InvariantCulture));
 
 	/// <summary>
 	///   Generates a valid <see cref="CandidateAddress" />.

@@ -61,7 +61,7 @@ public sealed class FindCandidateUseCaseTests : CandidateBaseFixture, IAsyncLife
 		var request = new FindCandidateRequest(jobOpportunity.Id, candidate.Id, false);
 
 		// Act
-		await SeedDatabaseAsync(jobOpportunity, new[] { candidate });
+		await SeedDatabaseAsync(_context, false, jobOpportunity, new[] { candidate });
 		var response = await _sut.Handle(request, CancellationToken.None);
 
 		// Assert

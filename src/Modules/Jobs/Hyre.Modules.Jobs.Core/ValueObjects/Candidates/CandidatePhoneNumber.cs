@@ -48,13 +48,13 @@ public sealed record CandidatePhoneNumber : ValueObject
 	/// <exception cref="CandidatePhoneNumberValueNotValidException">Exception thrown when the phone number value is not valid.</exception>
 	private void Validate()
 	{
-		if (AreaCode.Length != 2 || IsNumeric(AreaCode))
+		if (AreaCode.Length != 2 || !IsNumeric(AreaCode))
 		{
 			throw new CandidatePhoneNumberAreaCodeNotValidException();
 		}
 
 		{
-			if (Number.Length != 11 || IsNumeric(Number))
+			if (Number.Length != 9 || !IsNumeric(Number))
 			{
 				throw new CandidatePhoneNumberValueNotValidException();
 			}

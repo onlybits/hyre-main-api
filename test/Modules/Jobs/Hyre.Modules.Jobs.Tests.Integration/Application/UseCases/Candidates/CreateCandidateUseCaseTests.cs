@@ -61,7 +61,7 @@ public sealed class CreateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 		var createCandidateRequest = new CreateCandidateRequest(jobOpportunity.Id, createCandidateInput, false);
 
 		// Act
-		await SeedDatabaseAsync(jobOpportunity);
+		await SeedDatabaseAsync(_context, true, jobOpportunity);
 		var response = await _sut.Handle(createCandidateRequest, CancellationToken.None);
 
 		// Assert
@@ -107,11 +107,11 @@ public sealed class CreateCandidateUseCaseTests : CandidateBaseFixture, IAsyncLi
 		var jobOpportunity = GenerateValidJobOpportunity();
 		var candidate = GenerateCandidate(new List<JobOpportunity> { jobOpportunity });
 
-		var createCandidateInput = GenerateCreateCandidateInput();
+		var createCandidateInput = GenerateCreateCandidateInput(candidate.Email);
 		var createCandidateRequest = new CreateCandidateRequest(jobOpportunity.Id, createCandidateInput, false);
 
 		// Act
-		await SeedDatabaseAsync(jobOpportunity, new[] { candidate });
+		await SeedDatabaseAsync(_context, false, jobOpportunity, new[] { candidate });
 
 		var act = async () => await _sut.Handle(createCandidateRequest, CancellationToken.None);
 

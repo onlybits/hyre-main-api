@@ -920,21 +920,25 @@
             <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
             <returns>Returns a paged list of candidates.</returns>
         </member>
-        <member name="M:Hyre.Modules.Jobs.Core.Repositories.ICandidateRepository.FindByIdAsync(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId,System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:Hyre.Modules.Jobs.Core.Repositories.ICandidateRepository.FindByIdAsync(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateId,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <summary>
                 This method is responsible for finding a candidate by its id.
             </summary>
             <param name="candidateId">The candidate id.</param>
             <param name="trackChanges">Should EF Core keep track of changes in the candidate entity.</param>
+            <param name="includeJobOpportunities">Should the job opportunities be included in the candidate entity.
+            </param>
             <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
             <returns>Returns the candidate found, or null if not found.</returns>
         </member>
-        <member name="M:Hyre.Modules.Jobs.Core.Repositories.ICandidateRepository.FindByEmailAsync(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail,System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:Hyre.Modules.Jobs.Core.Repositories.ICandidateRepository.FindByEmailAsync(Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <summary>
                 This method is responsible for finding a candidate by its email.
             </summary>
             <param name="email">The candidate email.</param>
             <param name="trackChanges">Should EF Core keep track of changes in the candidate entity.</param>
+            <param name="includeJobOpportunities">Should the job opportunities be included in the candidate entity.
+            </param>
             <param name="cancellationToken">The cancellation token, used to cancel the operation.</param>
             <returns>Returns the candidate found, or null if not found.</returns>
         </member>
@@ -1342,7 +1346,7 @@
                 <see cref="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateGender"/>
                 class.
             </summary>
-            <param name="gender">The candidate's gender value.</param>
+            <param name="value">The candidate's gender value.</param>
         </member>
         <member name="P:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateGender.Value">
             <summary>

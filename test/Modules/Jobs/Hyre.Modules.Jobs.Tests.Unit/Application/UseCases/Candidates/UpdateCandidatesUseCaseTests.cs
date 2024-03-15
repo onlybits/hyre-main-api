@@ -48,7 +48,11 @@ public sealed class UpdateCandidatesUseCaseTests : CandidateBaseFixture
 
 		_ = _repository
 			.Candidate
-			.FindByIdAsync(Arg.Any<CandidateId>(), Arg.Any<bool>(), Arg.Any<CancellationToken>())
+			.FindByIdAsync(
+				Arg.Any<CandidateId>(),
+				Arg.Any<bool>(),
+				Arg.Any<bool>(),
+				Arg.Any<CancellationToken>())
 			.Returns(candidate);
 
 		// Act
@@ -98,7 +102,11 @@ public sealed class UpdateCandidatesUseCaseTests : CandidateBaseFixture
 
 		_ = _repository
 			.Candidate
-			.FindByIdAsync(Arg.Any<CandidateId>(), Arg.Any<bool>(), Arg.Any<CancellationToken>())
+			.FindByIdAsync(
+				Arg.Any<CandidateId>(),
+				Arg.Any<bool>(),
+				Arg.Any<bool>(),
+				Arg.Any<CancellationToken>())
 			.ReturnsNull();
 
 		// Act

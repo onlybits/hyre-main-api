@@ -19,7 +19,7 @@ namespace Hyre.Modules.Jobs.Application.UseCases.Candidates.Create;
 ///   This use case is responsible for creating a candidate.
 /// </summary>
 /// <inheritdoc cref="ICreateCandidateUseCase" />
-internal class CreateCandidateUseCase : ICreateCandidateUseCase
+internal sealed class CreateCandidateUseCase : ICreateCandidateUseCase
 {
 	private readonly ILoggerManager _logger;
 	private readonly IJobsRepositoryManager _repository;
@@ -47,6 +47,7 @@ internal class CreateCandidateUseCase : ICreateCandidateUseCase
 		var candidate = await _repository.Candidate.FindByEmailAsync(
 			request.Input.Email,
 			false,
+			true,
 			cancellationToken);
 
 		if (candidate is not null && candidate.JobOpportunities.Any(j => j.Id == jobOpportunity.Id))
@@ -84,7 +85,7 @@ internal class CreateCandidateUseCase : ICreateCandidateUseCase
 			request.Input.SocialNetwork,
 			request.Input.Languages);
 
-		_repository.Candidate.Create(newCandidate);
+		jobOpportunity.AddCandidate(newCandidate);
 		await _repository.CommitChangesAsync(cancellationToken);
 
 		_logger.LogInfo("Candidate {CandidateId} created for job opportunity {JobOpportunityId}.", newCandidate.Id, jobOpportunity.Id);
