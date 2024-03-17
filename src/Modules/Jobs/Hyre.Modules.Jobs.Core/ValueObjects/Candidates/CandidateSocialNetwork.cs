@@ -4,6 +4,7 @@
 
 #region
 
+using Hyre.Modules.Jobs.Core.Exceptions.Candidates;
 using Hyre.Shared.Abstractions.Kernel.ValueObjects;
 
 #endregion
@@ -24,6 +25,7 @@ public sealed record CandidateSocialNetwork : ValueObject
 	{
 		LinkedIn = linkedIn;
 		GitHub = gitHub;
+		Validate();
 	}
 
 	/// <summary>
@@ -35,4 +37,20 @@ public sealed record CandidateSocialNetwork : ValueObject
 	///   Gets the candidate's GitHub.
 	/// </summary>
 	public string? GitHub { get; }
+
+	/// <summary>
+	///   This method is used to validate the object.
+	/// </summary>
+	private void Validate()
+	{
+		if (LinkedIn?.Length is < 3 or > 32)
+		{
+			throw new CandidateSocialNetworkLinkedinException();
+		}
+
+		if (GitHub?.Length is < 3 or > 32)
+		{
+			throw new CandidateSocialNetworkGitHubException();
+		}
+	}
 }

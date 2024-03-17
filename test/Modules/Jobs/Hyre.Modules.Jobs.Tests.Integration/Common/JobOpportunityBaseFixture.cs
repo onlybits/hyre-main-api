@@ -211,12 +211,12 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 	///   Generates a valid <see cref="CandidateAddress" />.
 	/// </summary>
 	/// <returns>Returns a valid <see cref="CandidateAddress" />.</returns>
-	private CandidateAddress GenerateCandidateAddress() => new(
-		Faker.Address.Country(),
-		Faker.Address.StateAbbr(),
-		Faker.Address.City().ClampLength(3, 32),
-		Faker.Address.StreetName().ClampLength(3, 64),
-		Faker.Address.Direction(),
+	protected CandidateAddress GenerateCandidateAddress() => new(
+		Faker.Address.Country().ClampLength(3, 50),
+		Faker.Address.State().ClampLength(3, 50),
+		Faker.Address.City().ClampLength(3, 50),
+		Faker.Address.StreetName().ClampLength(3, 50),
+		Faker.Address.Direction().ClampLength(3, 100),
 		Convert.ToInt32(Faker.Address.BuildingNumber(), CultureInfo.InvariantCulture),
 		Faker.Address.ZipCode().ClampLength(8, 8));
 

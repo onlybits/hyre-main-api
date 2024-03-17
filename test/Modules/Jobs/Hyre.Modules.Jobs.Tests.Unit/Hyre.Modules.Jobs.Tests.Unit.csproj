@@ -25,6 +25,7 @@
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\..\..\..\src\Modules\Jobs\Hyre.Modules.Jobs.API\Hyre.Modules.Jobs.API.csproj"/>
+        <ProjectReference Include="..\..\..\..\src\Modules\Jobs\Hyre.Modules.Jobs.Core\Hyre.Modules.Jobs.Core.csproj"/>
     </ItemGroup>
 
 </Project>

@@ -36,15 +36,6 @@ public abstract class CandidateErrorMessages
 
 	#endregion
 
-	#region Address
-
-	/// <summary>
-	///   Used when the zip code address of the candidate is not valid.
-	/// </summary>
-	public const string ZipCodeNotValid = "O CEP informado não é válido.";
-
-	#endregion
-
 	#region Summary
 
 	/// <summary>
@@ -61,6 +52,45 @@ public abstract class CandidateErrorMessages
 	/// </summary>
 	/// <param name="email">The email of the candidate.</param>
 	public static string EmailInvalid(string email) => $"O e-mail: '{email}' é inválido.";
+
+	#endregion
+
+	#region Address
+
+	/// <summary>
+	///   Used when the zip code address of the candidate is not valid.
+	/// </summary>
+	public const string ZipCodeNotValid = "O CEP informado não é válido.";
+
+	/// <summary>
+	///   Used when the country address of the candidate is not valid.
+	/// </summary>
+	public const string AddressCountryNotValid = "O país deve conter entre 3 e 50 caracteres.";
+
+	/// <summary>
+	///   Used when the state address of the candidate is not valid.
+	/// </summary>
+	public const string AddressStateNotValid = "O estado deve conter entre 3 e 50 caracteres.";
+
+	/// <summary>
+	///   Used when the city address of the candidate is not valid.
+	/// </summary>
+	public const string AddressCityNotValid = "A cidade deve conter entre 3 e 50 caracteres.";
+
+	/// <summary>
+	///   Used when the neighborhood address of the candidate is not valid.
+	/// </summary>
+	public const string AddressComplementNotValid = "O complemento do endereço deve conter entre 3 e 100 caracteres.";
+
+	/// <summary>
+	///   Used when the neighborhood address of the candidate is not valid.
+	/// </summary>
+	public const string AddressNumberNotValid = "O número do endereço é inválido.";
+
+	/// <summary>
+	///   Used when the neighborhood address of the candidate is not valid.
+	/// </summary>
+	public const string AddressNeighborhoodNotValid = "O bairro deve conter entre 3 e 50 caracteres.";
 
 	#endregion
 
@@ -123,6 +153,73 @@ public abstract class CandidateErrorMessages
 	///   Used when the last name of the candidate is too long.
 	/// </summary>
 	public const string LastNameTooLong = "O último nome do candidato deve ter no máximo 32 caracteres.";
+
+	#endregion
+
+	#region Education
+
+	/// <summary>
+	///   Used when the course of the candidate's education is not valid.
+	/// </summary>
+	public const string EducationStartDateInvalid = "A data de início da educação é inválida.";
+
+	/// <summary>
+	///   Used when the course of the candidate's education is not valid.
+	/// </summary>
+	public const string EducationEndDateInvalid = "A data de término da educação é inválida.";
+
+	/// <summary>
+	///   Used when the course of the candidate's education is not valid.
+	/// </summary>
+	public const string EducationInstitutionInvalid = "A instituição deve conter entre 3 e 50 caracteres.";
+
+	/// <summary>
+	///   Used when the course of the candidate's education is not valid.
+	/// </summary>
+	public const string EducationCourseInvalid = "O curso deve conter entre 3 e 50 caracteres.";
+
+	#endregion
+
+	#region Experience
+
+	/// <summary>
+	///   Used when the start date of the candidate's experience is not valid.
+	/// </summary>
+	public const string ExperienceStartDateInvalid = "A data de início da experiência é inválida.";
+
+	/// <summary>
+	///   Used when the end date of the candidate's experience is not valid.
+	/// </summary>
+	public const string ExperienceEndDateInvalid = "A data de término da experiência é inválida.";
+
+	/// <summary>
+	///   Used when the position of the candidate's experience is not valid.
+	/// </summary>
+	public const string ExperiencePositionInvalid = "A posição deve conter entre 3 e 50 caracteres.";
+
+	/// <summary>
+	///   Exception thrown when the company of the candidate's experience is not valid.
+	/// </summary>
+	public const string ExperienceCompanyInvalid = "A empresa deve conter entre 3 e 50 caracteres.";
+
+	/// <summary>
+	///   Used when the description of the candidate's experience is not valid.
+	/// </summary>
+	public const string ExperienceDescriptionInvalid = "A descrição da experiência deve conter entre 3 e 50 caracteres.";
+
+	#endregion
+
+	#region Social Network
+
+	/// <summary>
+	///   Exception thrown when the GitHub of the candidate's social network is not valid.
+	/// </summary>
+	public const string SocialNetworkGitHubInvalid = "O GitHub deve conter entre 3 e 32 caracteres.";
+
+	/// <summary>
+	///   Used when the LinkedIn of the candidate's social network is not valid.
+	/// </summary>
+	public const string SocialNetworkLinkedinInvalid = "O LinkedIn deve conter entre 3 e 32 caracteres.";
 
 	#endregion
 }

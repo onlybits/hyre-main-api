@@ -97,7 +97,9 @@ internal sealed class CandidatesController : ControllerBase
 	[HttpPost]
 	[ProducesResponseType<Candidate>(StatusCodes.Status201Created)]
 	[ProducesResponseType<NotFoundException>(StatusCodes.Status404NotFound)]
-	public async Task<IActionResult> Create([FromRoute] Guid jobOpportunityIdValue, [FromBody] CreateCandidateInput input,
+	public async Task<IActionResult> Create(
+		[FromRoute] Guid jobOpportunityIdValue,
+		[FromBody] CreateCandidateInput input,
 		CancellationToken cancellationToken = default)
 	{
 		var jobOpportunityId = new JobOpportunityId(jobOpportunityIdValue);
@@ -118,8 +120,11 @@ internal sealed class CandidatesController : ControllerBase
 	[HttpPut("{candidateIdValue:guid}")]
 	[ProducesResponseType<NoContent>(StatusCodes.Status204NoContent)]
 	[ProducesResponseType<NotFoundException>(StatusCodes.Status404NotFound)]
-	public async Task<IActionResult> Update([FromRoute] Guid jobOpportunityIdValue, [FromRoute] Guid candidateIdValue,
-		[FromBody] UpdateCandidateInput input, CancellationToken cancellationToken = default)
+	public async Task<IActionResult> Update(
+		[FromRoute] Guid jobOpportunityIdValue,
+		[FromRoute] Guid candidateIdValue,
+		[FromBody] UpdateCandidateInput input,
+		CancellationToken cancellationToken = default)
 	{
 		var jobOpportunityId = new JobOpportunityId(jobOpportunityIdValue);
 		var candidateId = new CandidateId(candidateIdValue);

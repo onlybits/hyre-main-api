@@ -122,10 +122,12 @@ internal sealed class CandidateConfiguration : IEntityTypeConfiguration<Candidat
 		var phoneNumber = builder.OwnsOne(c => c.PhoneNumber);
 		_ = phoneNumber.Property(p => p.AreaCode)
 			.HasColumnName("phone_area_code")
+			.HasMaxLength(2)
 			.IsRequired();
 
 		_ = phoneNumber.Property(p => p.Number)
 			.HasColumnName("phone_number")
+			.HasMaxLength(9)
 			.IsRequired();
 
 		#endregion
@@ -136,21 +138,26 @@ internal sealed class CandidateConfiguration : IEntityTypeConfiguration<Candidat
 
 		_ = address.Property(a => a.Country)
 			.HasColumnName("address_country")
+			.HasMaxLength(50)
 			.IsRequired();
 
 		_ = address.Property(a => a.State)
 			.HasColumnName("address_state")
+			.HasMaxLength(50)
 			.IsRequired();
 
 		_ = address.Property(a => a.Neighborhood)
 			.HasColumnName("address_neighborhood")
+			.HasMaxLength(50)
 			.IsRequired();
 
 		_ = address.Property(a => a.Complement)
+			.HasMaxLength(100)
 			.HasColumnName("address_complement");
 
 		_ = address.Property(a => a.City)
 			.HasColumnName("address_city")
+			.HasMaxLength(50)
 			.IsRequired();
 
 		_ = address.Property(a => a.Number)
@@ -169,10 +176,12 @@ internal sealed class CandidateConfiguration : IEntityTypeConfiguration<Candidat
 		var socialNetwork = builder.OwnsOne(c => c.SocialNetwork);
 
 		_ = socialNetwork.Property(sn => sn.GitHub)
-			.HasColumnName("social_network_github");
+			.HasColumnName("social_network_github")
+			.HasMaxLength(32);
 
 		_ = socialNetwork.Property(sn => sn.LinkedIn)
-			.HasColumnName("social_network_linkedin");
+			.HasColumnName("social_network_linkedin")
+			.HasMaxLength(32);
 
 		#endregion
 

@@ -5,6 +5,7 @@
 #region
 
 using Hyre.Modules.Jobs.Core.Enums;
+using Hyre.Modules.Jobs.Core.Exceptions.Candidates;
 using Hyre.Shared.Abstractions.Kernel.ValueObjects;
 
 #endregion
@@ -36,6 +37,7 @@ public sealed record CandidateEducation : ValueObject
 		Institution = institution;
 		Course = course;
 		Degree = degree;
+		Validate();
 	}
 
 	/// <summary>
@@ -62,4 +64,30 @@ public sealed record CandidateEducation : ValueObject
 	///   Gets the degree of the education.
 	/// </summary>
 	public Degree Degree { get; }
+
+	/// <summary>
+	///   The method to validate the education.
+	/// </summary>
+	private void Validate()
+	{
+		if (StartDate >= DateOnly.FromDateTime(DateTime.Now) || StartDate > EndDate)
+		{
+			throw new CandidateEducationStartDateInvalidException();
+		}
+
+		if (EndDate <= StartDate)
+		{
+			throw new CandidateEducationEndDateInvalidException();
+		}
+
+		if (Institution.Length is < 3 or > 50)
+		{
+			throw new CandidateEducationInstitutionInvalidException();
+		}
+
+		if (Course.Length is < 3 or > 50)
+		{
+			throw new CandidateEducationCourseInvalidException();
+		}
+	}
 }
