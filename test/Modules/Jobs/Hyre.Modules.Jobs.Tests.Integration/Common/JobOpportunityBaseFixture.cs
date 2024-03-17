@@ -225,30 +225,40 @@ public abstract class JobOpportunityBaseFixture : BaseFixture
 	/// </summary>
 	/// <param name="count">The count of languages to generate.</param>
 	/// <returns>Returns a valid <see cref="CandidateEducation" />.</returns>
-	private IEnumerable<CandidateEducation> GenerateCandidateEducation(int count) => Enumerable
-		.Range(1, count)
-		.Select(_ => new CandidateEducation(
-			DateOnly.FromDateTime(Faker.Date.Past()),
-			DateOnly.FromDateTime(Faker.Date.Past()),
-			Faker.Company.CompanyName(),
-			Faker.Lorem.Paragraph().ClampLength(10, 500),
-			Faker.PickRandom<Degree>()))
-		.AsEnumerable();
+	private IEnumerable<CandidateEducation> GenerateCandidateEducation(int count)
+	{
+		var startDate = DateOnly.FromDateTime(DateTime.Now.AddYears(-5));
+		var endDate = DateOnly.FromDateTime(DateTime.Now.AddYears(-10));
+		return Enumerable
+			.Range(1, count)
+			.Select(x => new CandidateEducation(
+				Faker.Date.BetweenDateOnly(startDate, endDate),
+				DateOnly.FromDateTime(DateTime.Now),
+				Faker.Company.CompanyName(),
+				Faker.Lorem.Paragraph().ClampLength(3, 50),
+				Faker.PickRandom<Degree>()))
+			.AsEnumerable();
+	}
 
 	/// <summary>
 	///   Generates a valid <see cref="CandidateExperience" />.
 	/// </summary>
 	/// <param name="count">The count of languages to generate.</param>
 	/// <returns>Returns a valid <see cref="CandidateExperience" />.</returns>
-	private IEnumerable<CandidateExperience> GenerateCandidateExperience(int count) => Enumerable
-		.Range(1, count)
-		.Select(_ => new CandidateExperience(
-			DateOnly.FromDateTime(Faker.Date.Past()),
-			DateOnly.FromDateTime(Faker.Date.Past()),
-			Faker.Name.JobTitle(),
-			Faker.Company.CompanyName(),
-			Faker.Name.JobDescriptor()))
-		.AsEnumerable();
+	private IEnumerable<CandidateExperience> GenerateCandidateExperience(int count)
+	{
+		var startDate = DateOnly.FromDateTime(DateTime.Now.AddYears(-5));
+		var endDate = DateOnly.FromDateTime(DateTime.Now.AddYears(-10));
+		return Enumerable
+			.Range(1, count)
+			.Select(_ => new CandidateExperience(
+				Faker.Date.BetweenDateOnly(startDate, endDate),
+				DateOnly.FromDateTime(DateTime.Now),
+				Faker.Name.JobTitle(),
+				Faker.Company.CompanyName(),
+				Faker.Name.JobDescriptor()))
+			.AsEnumerable();
+	}
 
 	/// <summary>
 	///   Generates a valid <see cref="CandidateLanguage" />.

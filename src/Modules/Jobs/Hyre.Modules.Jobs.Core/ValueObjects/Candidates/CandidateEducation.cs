@@ -70,7 +70,7 @@ public sealed record CandidateEducation : ValueObject
 	/// </summary>
 	private void Validate()
 	{
-		if (StartDate >= DateOnly.FromDateTime(DateTime.Now) || StartDate > EndDate)
+		if (StartDate >= DateOnly.FromDateTime(DateTime.Now))
 		{
 			throw new CandidateEducationStartDateInvalidException();
 		}

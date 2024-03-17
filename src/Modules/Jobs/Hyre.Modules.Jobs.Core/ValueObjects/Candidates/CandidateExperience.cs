@@ -36,6 +36,7 @@ public sealed record CandidateExperience : ValueObject
 		Position = position;
 		Company = company;
 		Description = description;
+		Validate();
 	}
 
 	/// <summary>
@@ -66,9 +67,9 @@ public sealed record CandidateExperience : ValueObject
 	/// <summary>
 	///   This method is used to validate the object.
 	/// </summary>
-	public void Validate()
+	private void Validate()
 	{
-		if (StartDate >= DateOnly.FromDateTime(DateTime.Now) || StartDate > EndDate)
+		if (StartDate >= DateOnly.FromDateTime(DateTime.Now))
 		{
 			throw new CandidateExperienceStartDateInvalidException();
 		}
