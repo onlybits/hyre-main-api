@@ -16,6 +16,7 @@
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.3"/>
     </ItemGroup>
     <ItemGroup>
+        <InternalsVisibleTo Include="Hyre.Bootstrapper"/>
         <InternalsVisibleTo Include="Hyre.Modules.Identity.API"/>
     </ItemGroup>
 </Project>

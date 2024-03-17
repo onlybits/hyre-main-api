@@ -4,8 +4,9 @@
 
 #region
 
+using Hyre.Modules.Identity.Application;
 using Hyre.Modules.Jobs.Infrastructure;
-using Hyre.Modules.Notifications.Application.Consumers;
+using Hyre.Modules.Notifications.Application;
 using Hyre.Shared.Infrastructure;
 using Hyre.Shared.Infrastructure.Messaging;
 using MassTransit;
@@ -53,15 +54,18 @@ public static class MassTransitExtensions
 	///   This method adds the consumers to the bus configurator.
 	/// </summary>
 	/// <param name="busConfigurator">The bus configurator.</param>
-	private static void AddConsumers(this IRegistrationConfigurator busConfigurator) => busConfigurator
-		.AddConsumersFromNamespaceContaining<CandidateCreatedConsumer>();
+	private static void AddConsumers(this IRegistrationConfigurator busConfigurator)
+	{
+		busConfigurator.AddConsumersFromNamespaceContaining<INotificationApplicationMarker>();
+		busConfigurator.AddConsumersFromNamespaceContaining<IIdentityApplicationMarker>();
+	}
 
 	/// <summary>
 	///   This method adds the outbox to the bus configurator.
 	/// </summary>
 	/// <param name="busConfigurator">The bus configurator.</param>
-	private static void AddOutbox(this IBusRegistrationConfigurator busConfigurator) => busConfigurator
-		.AddEntityFrameworkOutbox<JobsRepositoryContext>(options =>
+	private static void AddOutbox(this IBusRegistrationConfigurator busConfigurator) =>
+		busConfigurator.AddEntityFrameworkOutbox<JobsRepositoryContext>(options =>
 		{
 			options.QueryDelay = TimeSpan.FromSeconds(10);
 			options.UsePostgres().UseBusOutbox();

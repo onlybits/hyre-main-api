@@ -10,5 +10,7 @@
     <ItemGroup>
         <ProjectReference Include="..\Hyre.Modules.Notifications.Core\Hyre.Modules.Notifications.Core.csproj"/>
     </ItemGroup>
-
+    <ItemGroup>
+        <InternalsVisibleTo Include="Hyre.Bootstrapper"/>
+    </ItemGroup>
 </Project>

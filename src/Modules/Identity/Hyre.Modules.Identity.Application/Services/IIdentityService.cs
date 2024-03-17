@@ -13,7 +13,7 @@ namespace Hyre.Modules.Identity.Application.Services;
 /// <summary>
 ///   This is the service that will handle the identity operations.
 /// </summary>
-internal interface IIdentityService
+public interface IIdentityService
 {
 	/// <summary>
 	///   This method will create a new user in the database.

@@ -17,8 +17,11 @@ namespace Hyre.Modules.Identity.Infrastructure;
 /// </summary>
 internal sealed class IdentityRepositoryContext : IdentityDbContext<User>
 {
+	/// <summary>
+	///   Initializes a new instance of the <see cref="IdentityRepositoryContext" /> class.
+	/// </summary>
+	/// <param name="options">The options for this context.</param>
 	public IdentityRepositoryContext(DbContextOptions<IdentityRepositoryContext> options) : base(options)
-
 	{
 	}
 

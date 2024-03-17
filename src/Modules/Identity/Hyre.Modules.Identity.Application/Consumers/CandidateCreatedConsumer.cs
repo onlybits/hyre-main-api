@@ -19,7 +19,7 @@ namespace Hyre.Modules.Identity.Application.Consumers;
 /// <summary>
 ///   This consumer is responsible for creating a user when a candidate is created.
 /// </summary>
-internal sealed class CandidateCreatedConsumer : IConsumer<CandidateCreatedEvent>
+public sealed class CandidateCreatedConsumer : IConsumer<CandidateCreatedEvent>
 {
 	private readonly IIdentityService _identityService;
 	private readonly ILoggerManager _logger;
