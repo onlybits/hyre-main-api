@@ -24,11 +24,6 @@
                 Used when the date of birth of the candidate is not valid.
             </summary>
         </member>
-        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.ZipCodeNotValid">
-            <summary>
-                Used when the zip code address of the candidate is not valid.
-            </summary>
-        </member>
         <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.SummaryValueNotValid">
             <summary>
                 Used when the summary of the candidate is not valid.
@@ -39,6 +34,41 @@
                 Used when the email of the candidate is invalid.
             </summary>
             <param name="email">The email of the candidate.</param>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.ZipCodeNotValid">
+            <summary>
+                Used when the zip code address of the candidate is not valid.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.AddressCountryNotValid">
+            <summary>
+                Used when the country address of the candidate is not valid.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.AddressStateNotValid">
+            <summary>
+                Used when the state address of the candidate is not valid.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.AddressCityNotValid">
+            <summary>
+                Used when the city address of the candidate is not valid.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.AddressComplementNotValid">
+            <summary>
+                Used when the neighborhood address of the candidate is not valid.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.AddressNumberNotValid">
+            <summary>
+                Used when the neighborhood address of the candidate is not valid.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.AddressNeighborhoodNotValid">
+            <summary>
+                Used when the neighborhood address of the candidate is not valid.
+            </summary>
         </member>
         <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.PhoneNumberValueNotValid">
             <summary>
@@ -88,6 +118,61 @@
         <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.LastNameTooLong">
             <summary>
                 Used when the last name of the candidate is too long.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.EducationStartDateInvalid">
+            <summary>
+                Used when the course of the candidate's education is not valid.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.EducationEndDateInvalid">
+            <summary>
+                Used when the course of the candidate's education is not valid.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.EducationInstitutionInvalid">
+            <summary>
+                Used when the course of the candidate's education is not valid.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.EducationCourseInvalid">
+            <summary>
+                Used when the course of the candidate's education is not valid.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.ExperienceStartDateInvalid">
+            <summary>
+                Used when the start date of the candidate's experience is not valid.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.ExperienceEndDateInvalid">
+            <summary>
+                Used when the end date of the candidate's experience is not valid.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.ExperiencePositionInvalid">
+            <summary>
+                Used when the position of the candidate's experience is not valid.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.ExperienceCompanyInvalid">
+            <summary>
+                Exception thrown when the company of the candidate's experience is not valid.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.ExperienceDescriptionInvalid">
+            <summary>
+                Used when the description of the candidate's experience is not valid.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.SocialNetworkGitHubInvalid">
+            <summary>
+                Exception thrown when the GitHub of the candidate's social network is not valid.
+            </summary>
+        </member>
+        <member name="F:Hyre.Modules.Jobs.Core.Constants.CandidateErrorMessages.SocialNetworkLinkedinInvalid">
+            <summary>
+                Used when the LinkedIn of the candidate's social network is not valid.
             </summary>
         </member>
         <member name="T:Hyre.Modules.Jobs.Core.Constants.JobOpportunityErrorMessages">
@@ -558,6 +643,78 @@
                 When you need to be in a specific location to work every day.
             </summary>
         </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressCityNotValidException">
+            <summary>
+                Exception thrown when the city address of the candidate is not valid.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressCityNotValidException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressCityNotValidException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressComplementNotValidException">
+            <summary>
+                Exception thrown when the address complement of the candidate is not valid.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressComplementNotValidException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressComplementNotValidException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressCountryNotValidException">
+            <summary>
+                Exception thrown when the country address of the candidate is not valid.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressCountryNotValidException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressCountryNotValidException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressNeighborhoodNotValidException">
+            <summary>
+                Exception thrown when the address neighborhood of the candidate is not valid.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressNeighborhoodNotValidException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressNeighborhoodNotValidException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressNumberNotValidException">
+            <summary>
+                Exception thrown when the address number of the candidate is not valid.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressNumberNotValidException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressNumberNotValidException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressStateNotValidException">
+            <summary>
+                Exception thrown when the state address of the candidate is not valid.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressStateNotValidException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressStateNotValidException"/>
+                class.
+            </summary>
+        </member>
         <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateAddressZipCodeNotValidException">
             <summary>
                 Exception thrown when the zip code address of the candidate is not valid.
@@ -594,6 +751,54 @@
                 class.
             </summary>
         </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEducationCourseInvalidException">
+            <summary>
+                Exception thrown when the course of the candidate's education is not valid.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEducationCourseInvalidException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEducationCourseInvalidException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEducationEndDateInvalidException">
+            <summary>
+                Exception thrown when the end date of the candidate's education is not valid.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEducationEndDateInvalidException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEducationEndDateInvalidException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEducationInstitutionInvalidException">
+            <summary>
+                Exception thrown when the institution of the candidate's education is not valid.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEducationInstitutionInvalidException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEducationInstitutionInvalidException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEducationStartDateInvalidException">
+            <summary>
+                Exception thrown when the start date of the candidate's education is not valid.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEducationStartDateInvalidException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEducationStartDateInvalidException"/>
+                class.
+            </summary>
+        </member>
         <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateEmailInvalidException">
             <summary>
                 Exception thrown when the middle name of the candidate is too long.
@@ -606,6 +811,66 @@
                 class.
             </summary>
             <param name="email">The email that is invalid.</param>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateExperienceCompanyInvalidException">
+            <summary>
+                Exception thrown when the company of the candidate's experience is not valid.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateExperienceCompanyInvalidException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateExperienceCompanyInvalidException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateExperienceDescriptionInvalidException">
+            <summary>
+                Exception thrown when the description of the candidate's experience is not valid.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateExperienceDescriptionInvalidException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateExperienceDescriptionInvalidException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateExperienceEndDateInvalidException">
+            <summary>
+                Exception thrown when the end date of the candidate's experience is not valid.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateExperienceEndDateInvalidException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateExperienceEndDateInvalidException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateExperiencePositionInvalidException">
+            <summary>
+                Exception thrown when the position of the candidate's experience is not valid.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateExperiencePositionInvalidException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateExperiencePositionInvalidException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateExperienceStartDateInvalidException">
+            <summary>
+                Exception thrown when the start date of the candidate's experience is not valid.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateExperienceStartDateInvalidException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateExperienceStartDateInvalidException"/>
+                class.
+            </summary>
         </member>
         <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateFirstNameTooLongException">
             <summary>
@@ -712,6 +977,30 @@
             <summary>
                 Initializes a new instance of the
                 <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidatePhoneNumberValueNotValidException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateSocialNetworkGitHubException">
+            <summary>
+                Exception thrown when the GitHub of the candidate's social network is not valid.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateSocialNetworkGitHubException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateSocialNetworkGitHubException"/>
+                class.
+            </summary>
+        </member>
+        <member name="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateSocialNetworkLinkedinException">
+            <summary>
+                Exception thrown when the LinkedIn of the candidate's social network is not valid.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateSocialNetworkLinkedinException.#ctor">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Modules.Jobs.Core.Exceptions.Candidates.CandidateSocialNetworkLinkedinException"/>
                 class.
             </summary>
         </member>
@@ -1236,6 +1525,11 @@
                 Gets the degree of the education.
             </summary>
         </member>
+        <member name="M:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEducation.Validate">
+            <summary>
+                The method to validate the education.
+            </summary>
+        </member>
         <member name="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEmail">
             <summary>
                 Represents the email of a candidate.
@@ -1333,6 +1627,11 @@
         <member name="P:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateExperience.Description">
             <summary>
                 Gets the description of the experience.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateExperience.Validate">
+            <summary>
+                This method is used to validate the object.
             </summary>
         </member>
         <member name="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateGender">
@@ -1562,6 +1861,11 @@
         <member name="P:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateSocialNetwork.GitHub">
             <summary>
                 Gets the candidate's GitHub.
+            </summary>
+        </member>
+        <member name="M:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateSocialNetwork.Validate">
+            <summary>
+                This method is used to validate the object.
             </summary>
         </member>
         <member name="T:Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateSummary">

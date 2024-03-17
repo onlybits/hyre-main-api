@@ -9,734 +9,742 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Hyre.Modules.Jobs.Infrastructure.Migrations
+namespace Hyre.Modules.Jobs.Infrastructure.Migrations;
+
+[DbContext(typeof(JobsRepositoryContext))]
+partial class JobsRepositoryContextModelSnapshot : ModelSnapshot
 {
-    [DbContext(typeof(JobsRepositoryContext))]
-    partial class JobsRepositoryContextModelSnapshot : ModelSnapshot
-    {
-        protected override void BuildModel(ModelBuilder modelBuilder)
-        {
+	protected override void BuildModel(ModelBuilder modelBuilder)
+	{
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasDefaultSchema("jobs")
-                .HasAnnotation("ProductVersion", "8.0.3")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
-
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("CandidateJobOpportunity", b =>
-                {
-                    b.Property<Guid>("CandidatesId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("candidates_id");
-
-                    b.Property<Guid>("JobOpportunitiesId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("job_opportunities_id");
-
-                    b.HasKey("CandidatesId", "JobOpportunitiesId")
-                        .HasName("pk_candidate_job_opportunity");
-
-                    b.HasIndex("JobOpportunitiesId")
-                        .HasDatabaseName("ix_candidate_job_opportunity_job_opportunities_id");
-
-                    b.ToTable("candidate_job_opportunity", "jobs");
-                });
-
-            modelBuilder.Entity("Hyre.Modules.Jobs.Core.Entities.Candidate", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid")
-                        .HasColumnName("id");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at");
-
-                    b.Property<DateOnly>("DateOfBirth")
-                        .HasColumnType("date")
-                        .HasColumnName("date_of_birth");
-
-                    b.Property<string>("Document")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("document");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("email");
-
-                    b.Property<Gender>("Gender")
-                        .HasColumnType("integer")
-                        .HasColumnName("gender");
-
-                    b.Property<ExperienceLevel>("Seniority")
-                        .HasColumnType("integer")
-                        .HasColumnName("seniority");
-
-                    b.HasKey("Id")
-                        .HasName("pk_candidates");
-
-                    b.HasIndex("Email")
-                        .IsUnique()
-                        .HasDatabaseName("ix_candidates_email");
-
-                    b.ToTable("candidates", "jobs");
-                });
-
-            modelBuilder.Entity("Hyre.Modules.Jobs.Core.Entities.JobOpportunity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid")
-                        .HasColumnName("id");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)")
-                        .HasColumnName("description");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("character varying(64)")
-                        .HasColumnName("name");
-
-                    b.HasKey("Id")
-                        .HasName("pk_job_opportunities");
-
-                    b.ToTable("job_opportunities", "jobs");
-                });
-
-            modelBuilder.Entity("MassTransit.EntityFrameworkCoreIntegration.InboxState", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime?>("Consumed")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("consumed");
-
-                    b.Property<Guid>("ConsumerId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("consumer_id");
-
-                    b.Property<DateTime?>("Delivered")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("delivered");
-
-                    b.Property<DateTime?>("ExpirationTime")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("expiration_time");
-
-                    b.Property<long?>("LastSequenceNumber")
-                        .HasColumnType("bigint")
-                        .HasColumnName("last_sequence_number");
-
-                    b.Property<Guid>("LockId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("lock_id");
-
-                    b.Property<Guid>("MessageId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("message_id");
-
-                    b.Property<int>("ReceiveCount")
-                        .HasColumnType("integer")
-                        .HasColumnName("receive_count");
-
-                    b.Property<DateTime>("Received")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("received");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("bytea")
-                        .HasColumnName("row_version");
-
-                    b.HasKey("Id")
-                        .HasName("pk_inbox_state");
-
-                    b.HasAlternateKey("MessageId", "ConsumerId")
-                        .HasName("ak_inbox_state_message_id_consumer_id");
-
-                    b.HasIndex("Delivered")
-                        .HasDatabaseName("ix_inbox_state_delivered");
-
-                    b.ToTable("inbox_state", "jobs");
-                });
-
-            modelBuilder.Entity("MassTransit.EntityFrameworkCoreIntegration.OutboxMessage", b =>
-                {
-                    b.Property<long>("SequenceNumber")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("sequence_number");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("SequenceNumber"));
-
-                    b.Property<string>("Body")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("body");
-
-                    b.Property<string>("ContentType")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)")
-                        .HasColumnName("content_type");
-
-                    b.Property<Guid?>("ConversationId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("conversation_id");
-
-                    b.Property<Guid?>("CorrelationId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("correlation_id");
-
-                    b.Property<string>("DestinationAddress")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)")
-                        .HasColumnName("destination_address");
-
-                    b.Property<DateTime?>("EnqueueTime")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("enqueue_time");
-
-                    b.Property<DateTime?>("ExpirationTime")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("expiration_time");
-
-                    b.Property<string>("FaultAddress")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)")
-                        .HasColumnName("fault_address");
-
-                    b.Property<string>("Headers")
-                        .HasColumnType("text")
-                        .HasColumnName("headers");
-
-                    b.Property<Guid?>("InboxConsumerId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("inbox_consumer_id");
-
-                    b.Property<Guid?>("InboxMessageId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("inbox_message_id");
-
-                    b.Property<Guid?>("InitiatorId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("initiator_id");
-
-                    b.Property<Guid>("MessageId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("message_id");
-
-                    b.Property<string>("MessageType")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("message_type");
-
-                    b.Property<Guid?>("OutboxId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("outbox_id");
-
-                    b.Property<string>("Properties")
-                        .HasColumnType("text")
-                        .HasColumnName("properties");
-
-                    b.Property<Guid?>("RequestId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("request_id");
-
-                    b.Property<string>("ResponseAddress")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)")
-                        .HasColumnName("response_address");
-
-                    b.Property<DateTime>("SentTime")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("sent_time");
-
-                    b.Property<string>("SourceAddress")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)")
-                        .HasColumnName("source_address");
-
-                    b.HasKey("SequenceNumber")
-                        .HasName("pk_outbox_message");
-
-                    b.HasIndex("EnqueueTime")
-                        .HasDatabaseName("ix_outbox_message_enqueue_time");
-
-                    b.HasIndex("ExpirationTime")
-                        .HasDatabaseName("ix_outbox_message_expiration_time");
-
-                    b.HasIndex("OutboxId", "SequenceNumber")
-                        .IsUnique()
-                        .HasDatabaseName("ix_outbox_message_outbox_id_sequence_number");
-
-                    b.HasIndex("InboxMessageId", "InboxConsumerId", "SequenceNumber")
-                        .IsUnique()
-                        .HasDatabaseName("ix_outbox_message_inbox_message_id_inbox_consumer_id_sequence_");
-
-                    b.ToTable("outbox_message", "jobs");
-                });
-
-            modelBuilder.Entity("MassTransit.EntityFrameworkCoreIntegration.OutboxState", b =>
-                {
-                    b.Property<Guid>("OutboxId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("outbox_id");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created");
-
-                    b.Property<DateTime?>("Delivered")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("delivered");
-
-                    b.Property<long?>("LastSequenceNumber")
-                        .HasColumnType("bigint")
-                        .HasColumnName("last_sequence_number");
-
-                    b.Property<Guid>("LockId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("lock_id");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("bytea")
-                        .HasColumnName("row_version");
-
-                    b.HasKey("OutboxId")
-                        .HasName("pk_outbox_state");
-
-                    b.HasIndex("Created")
-                        .HasDatabaseName("ix_outbox_state_created");
-
-                    b.ToTable("outbox_state", "jobs");
-                });
-
-            modelBuilder.Entity("CandidateJobOpportunity", b =>
-                {
-                    b.HasOne("Hyre.Modules.Jobs.Core.Entities.Candidate", null)
-                        .WithMany()
-                        .HasForeignKey("CandidatesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_candidate_job_opportunity_candidates_candidates_id");
-
-                    b.HasOne("Hyre.Modules.Jobs.Core.Entities.JobOpportunity", null)
-                        .WithMany()
-                        .HasForeignKey("JobOpportunitiesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_candidate_job_opportunity_job_opportunities_job_opportuniti");
-                });
-
-            modelBuilder.Entity("Hyre.Modules.Jobs.Core.Entities.Candidate", b =>
-                {
-                    b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateAddress", "Address", b1 =>
-                        {
-                            b1.Property<Guid>("CandidateId")
-                                .HasColumnType("uuid")
-                                .HasColumnName("id");
-
-                            b1.Property<string>("City")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("address_city");
-
-                            b1.Property<string>("Complement")
-                                .HasColumnType("text")
-                                .HasColumnName("address_complement");
-
-                            b1.Property<string>("Country")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("address_country");
-
-                            b1.Property<string>("Neighborhood")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("address_neighborhood");
-
-                            b1.Property<int>("Number")
-                                .HasColumnType("integer")
-                                .HasColumnName("address_number");
-
-                            b1.Property<string>("State")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("address_state");
-
-                            b1.Property<string>("ZipCode")
-                                .IsRequired()
-                                .HasMaxLength(8)
-                                .HasColumnType("character varying(8)")
-                                .HasColumnName("address_zip_code");
-
-                            b1.HasKey("CandidateId");
-
-                            b1.ToTable("candidates", "jobs");
-
-                            b1.WithOwner()
-                                .HasForeignKey("CandidateId")
-                                .HasConstraintName("fk_candidates_candidates_id");
-                        });
-
-                    b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateDisability", "Disability", b1 =>
-                        {
-                            b1.Property<Guid>("CandidateId")
-                                .HasColumnType("uuid")
-                                .HasColumnName("id");
-
-                            b1.Property<bool?>("Hearing")
-                                .HasColumnType("boolean")
-                                .HasColumnName("disability_hearing");
-
-                            b1.Property<bool?>("Intellectual")
-                                .HasColumnType("boolean")
-                                .HasColumnName("disability_intellectual");
-
-                            b1.Property<bool?>("Physical")
-                                .HasColumnType("boolean")
-                                .HasColumnName("disability_physical");
-
-                            b1.Property<bool?>("Vision")
-                                .HasColumnType("boolean")
-                                .HasColumnName("disability_vision");
-
-                            b1.HasKey("CandidateId");
-
-                            b1.ToTable("candidates", "jobs");
-
-                            b1.WithOwner()
-                                .HasForeignKey("CandidateId")
-                                .HasConstraintName("fk_candidates_candidates_id");
-                        });
-
-                    b.OwnsMany("Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEducation", "Educations", b1 =>
-                        {
-                            b1.Property<Guid>("CandidateId")
-                                .HasColumnType("uuid");
-
-                            b1.Property<int>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("integer");
-
-                            b1.Property<string>("Course")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasAnnotation("Relational:JsonPropertyName", "course");
-
-                            b1.Property<int>("Degree")
-                                .HasColumnType("integer")
-                                .HasAnnotation("Relational:JsonPropertyName", "degree");
-
-                            b1.Property<DateOnly?>("EndDate")
-                                .HasColumnType("date")
-                                .HasAnnotation("Relational:JsonPropertyName", "end_date");
-
-                            b1.Property<string>("Institution")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasAnnotation("Relational:JsonPropertyName", "institution");
-
-                            b1.Property<DateOnly>("StartDate")
-                                .HasColumnType("date")
-                                .HasAnnotation("Relational:JsonPropertyName", "start_date");
-
-                            b1.HasKey("CandidateId", "Id");
-
-                            b1.ToTable("candidates", "jobs");
-
-                            b1.ToJson("educations");
-
-                            b1.WithOwner()
-                                .HasForeignKey("CandidateId")
-                                .HasConstraintName("fk_candidates_candidates_candidate_id");
-                        });
-
-                    b.OwnsMany("Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateExperience", "Experiences", b1 =>
-                        {
-                            b1.Property<Guid>("CandidateId")
-                                .HasColumnType("uuid");
-
-                            b1.Property<int>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("integer");
-
-                            b1.Property<string>("Company")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasAnnotation("Relational:JsonPropertyName", "company");
-
-                            b1.Property<string>("Description")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasAnnotation("Relational:JsonPropertyName", "description");
-
-                            b1.Property<DateOnly?>("EndDate")
-                                .HasColumnType("date")
-                                .HasAnnotation("Relational:JsonPropertyName", "end_date");
-
-                            b1.Property<string>("Position")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasAnnotation("Relational:JsonPropertyName", "position");
-
-                            b1.Property<DateOnly>("StartDate")
-                                .HasColumnType("date")
-                                .HasAnnotation("Relational:JsonPropertyName", "start_date");
-
-                            b1.HasKey("CandidateId", "Id");
-
-                            b1.ToTable("candidates", "jobs");
-
-                            b1.ToJson("experiences");
-
-                            b1.WithOwner()
-                                .HasForeignKey("CandidateId")
-                                .HasConstraintName("fk_candidates_candidates_candidate_id");
-                        });
-
-                    b.OwnsMany("Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateLanguage", "Languages", b1 =>
-                        {
-                            b1.Property<Guid>("CandidateId")
-                                .HasColumnType("uuid");
-
-                            b1.Property<int>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("integer");
-
-                            b1.Property<string>("Language")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasAnnotation("Relational:JsonPropertyName", "language");
-
-                            b1.Property<int>("Proficiency")
-                                .HasColumnType("integer")
-                                .HasAnnotation("Relational:JsonPropertyName", "proficiency");
-
-                            b1.HasKey("CandidateId", "Id");
-
-                            b1.ToTable("candidates", "jobs");
-
-                            b1.ToJson("languages");
-
-                            b1.WithOwner()
-                                .HasForeignKey("CandidateId")
-                                .HasConstraintName("fk_candidates_candidates_candidate_id");
-                        });
-
-                    b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName", "Name", b1 =>
-                        {
-                            b1.Property<Guid>("CandidateId")
-                                .HasColumnType("uuid")
-                                .HasColumnName("id");
-
-                            b1.Property<string>("FirstName")
-                                .IsRequired()
-                                .HasMaxLength(32)
-                                .HasColumnType("character varying(32)")
-                                .HasColumnName("first_name");
-
-                            b1.Property<string>("LastName")
-                                .IsRequired()
-                                .HasMaxLength(32)
-                                .HasColumnType("character varying(32)")
-                                .HasColumnName("last_name");
-
-                            b1.Property<string>("MiddleName")
-                                .IsRequired()
-                                .HasMaxLength(32)
-                                .HasColumnType("character varying(32)")
-                                .HasColumnName("middle_name");
-
-                            b1.HasKey("CandidateId");
-
-                            b1.ToTable("candidates", "jobs");
-
-                            b1.WithOwner()
-                                .HasForeignKey("CandidateId")
-                                .HasConstraintName("fk_candidates_candidates_id");
-                        });
-
-                    b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidatePhoneNumber", "PhoneNumber", b1 =>
-                        {
-                            b1.Property<Guid>("CandidateId")
-                                .HasColumnType("uuid")
-                                .HasColumnName("id");
-
-                            b1.Property<string>("AreaCode")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("phone_area_code");
-
-                            b1.Property<string>("Number")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("phone_number");
-
-                            b1.HasKey("CandidateId");
-
-                            b1.ToTable("candidates", "jobs");
-
-                            b1.WithOwner()
-                                .HasForeignKey("CandidateId")
-                                .HasConstraintName("fk_candidates_candidates_id");
-                        });
-
-                    b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateSocialNetwork", "SocialNetwork", b1 =>
-                        {
-                            b1.Property<Guid>("CandidateId")
-                                .HasColumnType("uuid")
-                                .HasColumnName("id");
-
-                            b1.Property<string>("GitHub")
-                                .HasColumnType("text")
-                                .HasColumnName("social_network_github");
-
-                            b1.Property<string>("LinkedIn")
-                                .HasColumnType("text")
-                                .HasColumnName("social_network_linkedin");
-
-                            b1.HasKey("CandidateId");
-
-                            b1.ToTable("candidates", "jobs");
-
-                            b1.WithOwner()
-                                .HasForeignKey("CandidateId")
-                                .HasConstraintName("fk_candidates_candidates_id");
-                        });
-
-                    b.Navigation("Address")
-                        .IsRequired();
-
-                    b.Navigation("Disability")
-                        .IsRequired();
-
-                    b.Navigation("Educations");
-
-                    b.Navigation("Experiences");
-
-                    b.Navigation("Languages");
-
-                    b.Navigation("Name")
-                        .IsRequired();
-
-                    b.Navigation("PhoneNumber")
-                        .IsRequired();
-
-                    b.Navigation("SocialNetwork")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Hyre.Modules.Jobs.Core.Entities.JobOpportunity", b =>
-                {
-                    b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityContract", "Contract", b1 =>
-                        {
-                            b1.Property<Guid>("JobOpportunityId")
-                                .HasColumnType("uuid")
-                                .HasColumnName("id");
-
-                            b1.Property<decimal>("MaxSalary")
-                                .HasColumnType("numeric")
-                                .HasColumnName("contract_max_salary");
-
-                            b1.Property<decimal>("MinSalary")
-                                .HasColumnType("numeric")
-                                .HasColumnName("contract_min_salary");
-
-                            b1.Property<string>("Type")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("contract_type");
-
-                            b1.HasKey("JobOpportunityId");
-
-                            b1.ToTable("job_opportunities", "jobs");
-
-                            b1.WithOwner()
-                                .HasForeignKey("JobOpportunityId")
-                                .HasConstraintName("fk_job_opportunities_job_opportunities_id");
-                        });
-
-                    b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityLocation", "Location", b1 =>
-                        {
-                            b1.Property<Guid>("JobOpportunityId")
-                                .HasColumnType("uuid")
-                                .HasColumnName("id");
-
-                            b1.Property<string>("City")
-                                .HasMaxLength(32)
-                                .HasColumnType("character varying(32)")
-                                .HasColumnName("location_city");
-
-                            b1.Property<string>("State")
-                                .HasMaxLength(2)
-                                .HasColumnType("character varying(2)")
-                                .HasColumnName("location_state");
-
-                            b1.Property<string>("Type")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("location_type");
-
-                            b1.HasKey("JobOpportunityId");
-
-                            b1.ToTable("job_opportunities", "jobs");
-
-                            b1.WithOwner()
-                                .HasForeignKey("JobOpportunityId")
-                                .HasConstraintName("fk_job_opportunities_job_opportunities_id");
-                        });
-
-                    b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityRequirements", "Requirements", b1 =>
-                        {
-                            b1.Property<Guid>("JobOpportunityId")
-                                .HasColumnType("uuid");
-
-                            b1.Property<string[]>("Values")
-                                .IsRequired()
-                                .HasColumnType("text[]")
-                                .HasAnnotation("Relational:JsonPropertyName", "values");
-
-                            b1.HasKey("JobOpportunityId");
-
-                            b1.ToTable("job_opportunities", "jobs");
-
-                            b1.ToJson("requirements");
-
-                            b1.WithOwner()
-                                .HasForeignKey("JobOpportunityId")
-                                .HasConstraintName("fk_job_opportunities_job_opportunities_id");
-                        });
-
-                    b.Navigation("Contract")
-                        .IsRequired();
-
-                    b.Navigation("Location")
-                        .IsRequired();
-
-                    b.Navigation("Requirements");
-                });
+		modelBuilder
+			.HasDefaultSchema("jobs")
+			.HasAnnotation("ProductVersion", "8.0.3")
+			.HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+		NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+		modelBuilder.Entity("CandidateJobOpportunity", b =>
+		{
+			b.Property<Guid>("CandidatesId")
+				.HasColumnType("uuid")
+				.HasColumnName("candidates_id");
+
+			b.Property<Guid>("JobOpportunitiesId")
+				.HasColumnType("uuid")
+				.HasColumnName("job_opportunities_id");
+
+			b.HasKey("CandidatesId", "JobOpportunitiesId")
+				.HasName("pk_candidate_job_opportunity");
+
+			b.HasIndex("JobOpportunitiesId")
+				.HasDatabaseName("ix_candidate_job_opportunity_job_opportunities_id");
+
+			b.ToTable("candidate_job_opportunity", "jobs");
+		});
+
+		modelBuilder.Entity("Hyre.Modules.Jobs.Core.Entities.Candidate", b =>
+		{
+			b.Property<Guid>("Id")
+				.HasColumnType("uuid")
+				.HasColumnName("id");
+
+			b.Property<DateTimeOffset>("CreatedAt")
+				.HasColumnType("timestamp with time zone")
+				.HasColumnName("created_at");
+
+			b.Property<DateOnly>("DateOfBirth")
+				.HasColumnType("date")
+				.HasColumnName("date_of_birth");
+
+			b.Property<string>("Document")
+				.IsRequired()
+				.HasColumnType("text")
+				.HasColumnName("document");
+
+			b.Property<string>("Email")
+				.IsRequired()
+				.HasColumnType("text")
+				.HasColumnName("email");
+
+			b.Property<Gender>("Gender")
+				.HasColumnType("integer")
+				.HasColumnName("gender");
+
+			b.Property<ExperienceLevel>("Seniority")
+				.HasColumnType("integer")
+				.HasColumnName("seniority");
+
+			b.HasKey("Id")
+				.HasName("pk_candidates");
+
+			b.HasIndex("Email")
+				.IsUnique()
+				.HasDatabaseName("ix_candidates_email");
+
+			b.ToTable("candidates", "jobs");
+		});
+
+		modelBuilder.Entity("Hyre.Modules.Jobs.Core.Entities.JobOpportunity", b =>
+		{
+			b.Property<Guid>("Id")
+				.HasColumnType("uuid")
+				.HasColumnName("id");
+
+			b.Property<DateTimeOffset>("CreatedAt")
+				.HasColumnType("timestamp with time zone")
+				.HasColumnName("created_at");
+
+			b.Property<string>("Description")
+				.IsRequired()
+				.HasMaxLength(500)
+				.HasColumnType("character varying(500)")
+				.HasColumnName("description");
+
+			b.Property<string>("Name")
+				.IsRequired()
+				.HasMaxLength(64)
+				.HasColumnType("character varying(64)")
+				.HasColumnName("name");
+
+			b.HasKey("Id")
+				.HasName("pk_job_opportunities");
+
+			b.ToTable("job_opportunities", "jobs");
+		});
+
+		modelBuilder.Entity("MassTransit.EntityFrameworkCoreIntegration.InboxState", b =>
+		{
+			b.Property<long>("Id")
+				.ValueGeneratedOnAdd()
+				.HasColumnType("bigint")
+				.HasColumnName("id");
+
+			NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+			b.Property<DateTime?>("Consumed")
+				.HasColumnType("timestamp with time zone")
+				.HasColumnName("consumed");
+
+			b.Property<Guid>("ConsumerId")
+				.HasColumnType("uuid")
+				.HasColumnName("consumer_id");
+
+			b.Property<DateTime?>("Delivered")
+				.HasColumnType("timestamp with time zone")
+				.HasColumnName("delivered");
+
+			b.Property<DateTime?>("ExpirationTime")
+				.HasColumnType("timestamp with time zone")
+				.HasColumnName("expiration_time");
+
+			b.Property<long?>("LastSequenceNumber")
+				.HasColumnType("bigint")
+				.HasColumnName("last_sequence_number");
+
+			b.Property<Guid>("LockId")
+				.HasColumnType("uuid")
+				.HasColumnName("lock_id");
+
+			b.Property<Guid>("MessageId")
+				.HasColumnType("uuid")
+				.HasColumnName("message_id");
+
+			b.Property<int>("ReceiveCount")
+				.HasColumnType("integer")
+				.HasColumnName("receive_count");
+
+			b.Property<DateTime>("Received")
+				.HasColumnType("timestamp with time zone")
+				.HasColumnName("received");
+
+			b.Property<byte[]>("RowVersion")
+				.IsConcurrencyToken()
+				.ValueGeneratedOnAddOrUpdate()
+				.HasColumnType("bytea")
+				.HasColumnName("row_version");
+
+			b.HasKey("Id")
+				.HasName("pk_inbox_state");
+
+			b.HasAlternateKey("MessageId", "ConsumerId")
+				.HasName("ak_inbox_state_message_id_consumer_id");
+
+			b.HasIndex("Delivered")
+				.HasDatabaseName("ix_inbox_state_delivered");
+
+			b.ToTable("inbox_state", "jobs");
+		});
+
+		modelBuilder.Entity("MassTransit.EntityFrameworkCoreIntegration.OutboxMessage", b =>
+		{
+			b.Property<long>("SequenceNumber")
+				.ValueGeneratedOnAdd()
+				.HasColumnType("bigint")
+				.HasColumnName("sequence_number");
+
+			NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("SequenceNumber"));
+
+			b.Property<string>("Body")
+				.IsRequired()
+				.HasColumnType("text")
+				.HasColumnName("body");
+
+			b.Property<string>("ContentType")
+				.IsRequired()
+				.HasMaxLength(256)
+				.HasColumnType("character varying(256)")
+				.HasColumnName("content_type");
+
+			b.Property<Guid?>("ConversationId")
+				.HasColumnType("uuid")
+				.HasColumnName("conversation_id");
+
+			b.Property<Guid?>("CorrelationId")
+				.HasColumnType("uuid")
+				.HasColumnName("correlation_id");
+
+			b.Property<string>("DestinationAddress")
+				.HasMaxLength(256)
+				.HasColumnType("character varying(256)")
+				.HasColumnName("destination_address");
+
+			b.Property<DateTime?>("EnqueueTime")
+				.HasColumnType("timestamp with time zone")
+				.HasColumnName("enqueue_time");
+
+			b.Property<DateTime?>("ExpirationTime")
+				.HasColumnType("timestamp with time zone")
+				.HasColumnName("expiration_time");
+
+			b.Property<string>("FaultAddress")
+				.HasMaxLength(256)
+				.HasColumnType("character varying(256)")
+				.HasColumnName("fault_address");
+
+			b.Property<string>("Headers")
+				.HasColumnType("text")
+				.HasColumnName("headers");
+
+			b.Property<Guid?>("InboxConsumerId")
+				.HasColumnType("uuid")
+				.HasColumnName("inbox_consumer_id");
+
+			b.Property<Guid?>("InboxMessageId")
+				.HasColumnType("uuid")
+				.HasColumnName("inbox_message_id");
+
+			b.Property<Guid?>("InitiatorId")
+				.HasColumnType("uuid")
+				.HasColumnName("initiator_id");
+
+			b.Property<Guid>("MessageId")
+				.HasColumnType("uuid")
+				.HasColumnName("message_id");
+
+			b.Property<string>("MessageType")
+				.IsRequired()
+				.HasColumnType("text")
+				.HasColumnName("message_type");
+
+			b.Property<Guid?>("OutboxId")
+				.HasColumnType("uuid")
+				.HasColumnName("outbox_id");
+
+			b.Property<string>("Properties")
+				.HasColumnType("text")
+				.HasColumnName("properties");
+
+			b.Property<Guid?>("RequestId")
+				.HasColumnType("uuid")
+				.HasColumnName("request_id");
+
+			b.Property<string>("ResponseAddress")
+				.HasMaxLength(256)
+				.HasColumnType("character varying(256)")
+				.HasColumnName("response_address");
+
+			b.Property<DateTime>("SentTime")
+				.HasColumnType("timestamp with time zone")
+				.HasColumnName("sent_time");
+
+			b.Property<string>("SourceAddress")
+				.HasMaxLength(256)
+				.HasColumnType("character varying(256)")
+				.HasColumnName("source_address");
+
+			b.HasKey("SequenceNumber")
+				.HasName("pk_outbox_message");
+
+			b.HasIndex("EnqueueTime")
+				.HasDatabaseName("ix_outbox_message_enqueue_time");
+
+			b.HasIndex("ExpirationTime")
+				.HasDatabaseName("ix_outbox_message_expiration_time");
+
+			b.HasIndex("OutboxId", "SequenceNumber")
+				.IsUnique()
+				.HasDatabaseName("ix_outbox_message_outbox_id_sequence_number");
+
+			b.HasIndex("InboxMessageId", "InboxConsumerId", "SequenceNumber")
+				.IsUnique()
+				.HasDatabaseName("ix_outbox_message_inbox_message_id_inbox_consumer_id_sequence_");
+
+			b.ToTable("outbox_message", "jobs");
+		});
+
+		modelBuilder.Entity("MassTransit.EntityFrameworkCoreIntegration.OutboxState", b =>
+		{
+			b.Property<Guid>("OutboxId")
+				.ValueGeneratedOnAdd()
+				.HasColumnType("uuid")
+				.HasColumnName("outbox_id");
+
+			b.Property<DateTime>("Created")
+				.HasColumnType("timestamp with time zone")
+				.HasColumnName("created");
+
+			b.Property<DateTime?>("Delivered")
+				.HasColumnType("timestamp with time zone")
+				.HasColumnName("delivered");
+
+			b.Property<long?>("LastSequenceNumber")
+				.HasColumnType("bigint")
+				.HasColumnName("last_sequence_number");
+
+			b.Property<Guid>("LockId")
+				.HasColumnType("uuid")
+				.HasColumnName("lock_id");
+
+			b.Property<byte[]>("RowVersion")
+				.IsConcurrencyToken()
+				.ValueGeneratedOnAddOrUpdate()
+				.HasColumnType("bytea")
+				.HasColumnName("row_version");
+
+			b.HasKey("OutboxId")
+				.HasName("pk_outbox_state");
+
+			b.HasIndex("Created")
+				.HasDatabaseName("ix_outbox_state_created");
+
+			b.ToTable("outbox_state", "jobs");
+		});
+
+		modelBuilder.Entity("CandidateJobOpportunity", b =>
+		{
+			b.HasOne("Hyre.Modules.Jobs.Core.Entities.Candidate", null)
+				.WithMany()
+				.HasForeignKey("CandidatesId")
+				.OnDelete(DeleteBehavior.Cascade)
+				.IsRequired()
+				.HasConstraintName("fk_candidate_job_opportunity_candidates_candidates_id");
+
+			b.HasOne("Hyre.Modules.Jobs.Core.Entities.JobOpportunity", null)
+				.WithMany()
+				.HasForeignKey("JobOpportunitiesId")
+				.OnDelete(DeleteBehavior.Cascade)
+				.IsRequired()
+				.HasConstraintName("fk_candidate_job_opportunity_job_opportunities_job_opportuniti");
+		});
+
+		modelBuilder.Entity("Hyre.Modules.Jobs.Core.Entities.Candidate", b =>
+		{
+			b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateAddress", "Address", b1 =>
+			{
+				b1.Property<Guid>("CandidateId")
+					.HasColumnType("uuid")
+					.HasColumnName("id");
+
+				b1.Property<string>("City")
+					.IsRequired()
+					.HasMaxLength(50)
+					.HasColumnType("character varying(50)")
+					.HasColumnName("address_city");
+
+				b1.Property<string>("Complement")
+					.HasMaxLength(100)
+					.HasColumnType("character varying(100)")
+					.HasColumnName("address_complement");
+
+				b1.Property<string>("Country")
+					.IsRequired()
+					.HasMaxLength(50)
+					.HasColumnType("character varying(50)")
+					.HasColumnName("address_country");
+
+				b1.Property<string>("Neighborhood")
+					.IsRequired()
+					.HasMaxLength(50)
+					.HasColumnType("character varying(50)")
+					.HasColumnName("address_neighborhood");
+
+				b1.Property<int>("Number")
+					.HasColumnType("integer")
+					.HasColumnName("address_number");
+
+				b1.Property<string>("State")
+					.IsRequired()
+					.HasMaxLength(50)
+					.HasColumnType("character varying(50)")
+					.HasColumnName("address_state");
+
+				b1.Property<string>("ZipCode")
+					.IsRequired()
+					.HasMaxLength(8)
+					.HasColumnType("character varying(8)")
+					.HasColumnName("address_zip_code");
+
+				b1.HasKey("CandidateId");
+
+				b1.ToTable("candidates", "jobs");
+
+				b1.WithOwner()
+					.HasForeignKey("CandidateId")
+					.HasConstraintName("fk_candidates_candidates_id");
+			});
+
+			b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateDisability", "Disability", b1 =>
+			{
+				b1.Property<Guid>("CandidateId")
+					.HasColumnType("uuid")
+					.HasColumnName("id");
+
+				b1.Property<bool?>("Hearing")
+					.HasColumnType("boolean")
+					.HasColumnName("disability_hearing");
+
+				b1.Property<bool?>("Intellectual")
+					.HasColumnType("boolean")
+					.HasColumnName("disability_intellectual");
+
+				b1.Property<bool?>("Physical")
+					.HasColumnType("boolean")
+					.HasColumnName("disability_physical");
+
+				b1.Property<bool?>("Vision")
+					.HasColumnType("boolean")
+					.HasColumnName("disability_vision");
+
+				b1.HasKey("CandidateId");
+
+				b1.ToTable("candidates", "jobs");
+
+				b1.WithOwner()
+					.HasForeignKey("CandidateId")
+					.HasConstraintName("fk_candidates_candidates_id");
+			});
+
+			b.OwnsMany("Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateEducation", "Educations", b1 =>
+			{
+				b1.Property<Guid>("CandidateId")
+					.HasColumnType("uuid");
+
+				b1.Property<int>("Id")
+					.ValueGeneratedOnAdd()
+					.HasColumnType("integer");
+
+				b1.Property<string>("Course")
+					.IsRequired()
+					.HasColumnType("text")
+					.HasAnnotation("Relational:JsonPropertyName", "course");
+
+				b1.Property<int>("Degree")
+					.HasColumnType("integer")
+					.HasAnnotation("Relational:JsonPropertyName", "degree");
+
+				b1.Property<DateOnly?>("EndDate")
+					.HasColumnType("date")
+					.HasAnnotation("Relational:JsonPropertyName", "end_date");
+
+				b1.Property<string>("Institution")
+					.IsRequired()
+					.HasColumnType("text")
+					.HasAnnotation("Relational:JsonPropertyName", "institution");
+
+				b1.Property<DateOnly>("StartDate")
+					.HasColumnType("date")
+					.HasAnnotation("Relational:JsonPropertyName", "start_date");
+
+				b1.HasKey("CandidateId", "Id");
+
+				b1.ToTable("candidates", "jobs");
+
+				b1.ToJson("educations");
+
+				b1.WithOwner()
+					.HasForeignKey("CandidateId")
+					.HasConstraintName("fk_candidates_candidates_candidate_id");
+			});
+
+			b.OwnsMany("Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateExperience", "Experiences", b1 =>
+			{
+				b1.Property<Guid>("CandidateId")
+					.HasColumnType("uuid");
+
+				b1.Property<int>("Id")
+					.ValueGeneratedOnAdd()
+					.HasColumnType("integer");
+
+				b1.Property<string>("Company")
+					.IsRequired()
+					.HasColumnType("text")
+					.HasAnnotation("Relational:JsonPropertyName", "company");
+
+				b1.Property<string>("Description")
+					.IsRequired()
+					.HasColumnType("text")
+					.HasAnnotation("Relational:JsonPropertyName", "description");
+
+				b1.Property<DateOnly?>("EndDate")
+					.HasColumnType("date")
+					.HasAnnotation("Relational:JsonPropertyName", "end_date");
+
+				b1.Property<string>("Position")
+					.IsRequired()
+					.HasColumnType("text")
+					.HasAnnotation("Relational:JsonPropertyName", "position");
+
+				b1.Property<DateOnly>("StartDate")
+					.HasColumnType("date")
+					.HasAnnotation("Relational:JsonPropertyName", "start_date");
+
+				b1.HasKey("CandidateId", "Id");
+
+				b1.ToTable("candidates", "jobs");
+
+				b1.ToJson("experiences");
+
+				b1.WithOwner()
+					.HasForeignKey("CandidateId")
+					.HasConstraintName("fk_candidates_candidates_candidate_id");
+			});
+
+			b.OwnsMany("Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateLanguage", "Languages", b1 =>
+			{
+				b1.Property<Guid>("CandidateId")
+					.HasColumnType("uuid");
+
+				b1.Property<int>("Id")
+					.ValueGeneratedOnAdd()
+					.HasColumnType("integer");
+
+				b1.Property<string>("Language")
+					.IsRequired()
+					.HasColumnType("text")
+					.HasAnnotation("Relational:JsonPropertyName", "language");
+
+				b1.Property<int>("Proficiency")
+					.HasColumnType("integer")
+					.HasAnnotation("Relational:JsonPropertyName", "proficiency");
+
+				b1.HasKey("CandidateId", "Id");
+
+				b1.ToTable("candidates", "jobs");
+
+				b1.ToJson("languages");
+
+				b1.WithOwner()
+					.HasForeignKey("CandidateId")
+					.HasConstraintName("fk_candidates_candidates_candidate_id");
+			});
+
+			b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateName", "Name", b1 =>
+			{
+				b1.Property<Guid>("CandidateId")
+					.HasColumnType("uuid")
+					.HasColumnName("id");
+
+				b1.Property<string>("FirstName")
+					.IsRequired()
+					.HasMaxLength(32)
+					.HasColumnType("character varying(32)")
+					.HasColumnName("first_name");
+
+				b1.Property<string>("LastName")
+					.IsRequired()
+					.HasMaxLength(32)
+					.HasColumnType("character varying(32)")
+					.HasColumnName("last_name");
+
+				b1.Property<string>("MiddleName")
+					.IsRequired()
+					.HasMaxLength(32)
+					.HasColumnType("character varying(32)")
+					.HasColumnName("middle_name");
+
+				b1.HasKey("CandidateId");
+
+				b1.ToTable("candidates", "jobs");
+
+				b1.WithOwner()
+					.HasForeignKey("CandidateId")
+					.HasConstraintName("fk_candidates_candidates_id");
+			});
+
+			b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidatePhoneNumber", "PhoneNumber", b1 =>
+			{
+				b1.Property<Guid>("CandidateId")
+					.HasColumnType("uuid")
+					.HasColumnName("id");
+
+				b1.Property<string>("AreaCode")
+					.IsRequired()
+					.HasMaxLength(2)
+					.HasColumnType("character varying(2)")
+					.HasColumnName("phone_area_code");
+
+				b1.Property<string>("Number")
+					.IsRequired()
+					.HasMaxLength(9)
+					.HasColumnType("character varying(9)")
+					.HasColumnName("phone_number");
+
+				b1.HasKey("CandidateId");
+
+				b1.ToTable("candidates", "jobs");
+
+				b1.WithOwner()
+					.HasForeignKey("CandidateId")
+					.HasConstraintName("fk_candidates_candidates_id");
+			});
+
+			b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.Candidates.CandidateSocialNetwork", "SocialNetwork", b1 =>
+			{
+				b1.Property<Guid>("CandidateId")
+					.HasColumnType("uuid")
+					.HasColumnName("id");
+
+				b1.Property<string>("GitHub")
+					.HasMaxLength(32)
+					.HasColumnType("character varying(32)")
+					.HasColumnName("social_network_github");
+
+				b1.Property<string>("LinkedIn")
+					.HasMaxLength(32)
+					.HasColumnType("character varying(32)")
+					.HasColumnName("social_network_linkedin");
+
+				b1.HasKey("CandidateId");
+
+				b1.ToTable("candidates", "jobs");
+
+				b1.WithOwner()
+					.HasForeignKey("CandidateId")
+					.HasConstraintName("fk_candidates_candidates_id");
+			});
+
+			b.Navigation("Address")
+				.IsRequired();
+
+			b.Navigation("Disability")
+				.IsRequired();
+
+			b.Navigation("Educations");
+
+			b.Navigation("Experiences");
+
+			b.Navigation("Languages");
+
+			b.Navigation("Name")
+				.IsRequired();
+
+			b.Navigation("PhoneNumber")
+				.IsRequired();
+
+			b.Navigation("SocialNetwork")
+				.IsRequired();
+		});
+
+		modelBuilder.Entity("Hyre.Modules.Jobs.Core.Entities.JobOpportunity", b =>
+		{
+			b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityContract", "Contract", b1 =>
+			{
+				b1.Property<Guid>("JobOpportunityId")
+					.HasColumnType("uuid")
+					.HasColumnName("id");
+
+				b1.Property<decimal>("MaxSalary")
+					.HasColumnType("numeric")
+					.HasColumnName("contract_max_salary");
+
+				b1.Property<decimal>("MinSalary")
+					.HasColumnType("numeric")
+					.HasColumnName("contract_min_salary");
+
+				b1.Property<string>("Type")
+					.IsRequired()
+					.HasColumnType("text")
+					.HasColumnName("contract_type");
+
+				b1.HasKey("JobOpportunityId");
+
+				b1.ToTable("job_opportunities", "jobs");
+
+				b1.WithOwner()
+					.HasForeignKey("JobOpportunityId")
+					.HasConstraintName("fk_job_opportunities_job_opportunities_id");
+			});
+
+			b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityLocation", "Location", b1 =>
+			{
+				b1.Property<Guid>("JobOpportunityId")
+					.HasColumnType("uuid")
+					.HasColumnName("id");
+
+				b1.Property<string>("City")
+					.HasMaxLength(32)
+					.HasColumnType("character varying(32)")
+					.HasColumnName("location_city");
+
+				b1.Property<string>("State")
+					.HasMaxLength(2)
+					.HasColumnType("character varying(2)")
+					.HasColumnName("location_state");
+
+				b1.Property<string>("Type")
+					.IsRequired()
+					.HasColumnType("text")
+					.HasColumnName("location_type");
+
+				b1.HasKey("JobOpportunityId");
+
+				b1.ToTable("job_opportunities", "jobs");
+
+				b1.WithOwner()
+					.HasForeignKey("JobOpportunityId")
+					.HasConstraintName("fk_job_opportunities_job_opportunities_id");
+			});
+
+			b.OwnsOne("Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities.JobOpportunityRequirements", "Requirements", b1 =>
+			{
+				b1.Property<Guid>("JobOpportunityId")
+					.HasColumnType("uuid");
+
+				b1.Property<string[]>("Values")
+					.IsRequired()
+					.HasColumnType("text[]")
+					.HasAnnotation("Relational:JsonPropertyName", "values");
+
+				b1.HasKey("JobOpportunityId");
+
+				b1.ToTable("job_opportunities", "jobs");
+
+				b1.ToJson("requirements");
+
+				b1.WithOwner()
+					.HasForeignKey("JobOpportunityId")
+					.HasConstraintName("fk_job_opportunities_job_opportunities_id");
+			});
+
+			b.Navigation("Contract")
+				.IsRequired();
+
+			b.Navigation("Location")
+				.IsRequired();
+
+			b.Navigation("Requirements");
+		});
 #pragma warning restore 612, 618
-        }
-    }
+	}
 }

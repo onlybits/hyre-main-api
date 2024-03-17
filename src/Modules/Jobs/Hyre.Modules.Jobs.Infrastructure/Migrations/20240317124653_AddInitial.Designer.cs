@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Hyre.Modules.Jobs.Infrastructure.Migrations
 {
     [DbContext(typeof(JobsRepositoryContext))]
-    [Migration("20240314100007_AddInitial")]
+    [Migration("20240317124653_AddInitial")]
     partial class AddInitial
     {
         /// <inheritdoc />
@@ -361,21 +361,25 @@ namespace Hyre.Modules.Jobs.Infrastructure.Migrations
 
                             b1.Property<string>("City")
                                 .IsRequired()
-                                .HasColumnType("text")
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)")
                                 .HasColumnName("address_city");
 
                             b1.Property<string>("Complement")
-                                .HasColumnType("text")
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)")
                                 .HasColumnName("address_complement");
 
                             b1.Property<string>("Country")
                                 .IsRequired()
-                                .HasColumnType("text")
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)")
                                 .HasColumnName("address_country");
 
                             b1.Property<string>("Neighborhood")
                                 .IsRequired()
-                                .HasColumnType("text")
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)")
                                 .HasColumnName("address_neighborhood");
 
                             b1.Property<int>("Number")
@@ -384,7 +388,8 @@ namespace Hyre.Modules.Jobs.Infrastructure.Migrations
 
                             b1.Property<string>("State")
                                 .IsRequired()
-                                .HasColumnType("text")
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)")
                                 .HasColumnName("address_state");
 
                             b1.Property<string>("ZipCode")
@@ -588,12 +593,14 @@ namespace Hyre.Modules.Jobs.Infrastructure.Migrations
 
                             b1.Property<string>("AreaCode")
                                 .IsRequired()
-                                .HasColumnType("text")
+                                .HasMaxLength(2)
+                                .HasColumnType("character varying(2)")
                                 .HasColumnName("phone_area_code");
 
                             b1.Property<string>("Number")
                                 .IsRequired()
-                                .HasColumnType("text")
+                                .HasMaxLength(9)
+                                .HasColumnType("character varying(9)")
                                 .HasColumnName("phone_number");
 
                             b1.HasKey("CandidateId");
@@ -612,11 +619,13 @@ namespace Hyre.Modules.Jobs.Infrastructure.Migrations
                                 .HasColumnName("id");
 
                             b1.Property<string>("GitHub")
-                                .HasColumnType("text")
+                                .HasMaxLength(32)
+                                .HasColumnType("character varying(32)")
                                 .HasColumnName("social_network_github");
 
                             b1.Property<string>("LinkedIn")
-                                .HasColumnType("text")
+                                .HasMaxLength(32)
+                                .HasColumnType("character varying(32)")
                                 .HasColumnName("social_network_linkedin");
 
                             b1.HasKey("CandidateId");

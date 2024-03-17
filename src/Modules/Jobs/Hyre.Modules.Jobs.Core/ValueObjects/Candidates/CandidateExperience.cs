@@ -4,6 +4,7 @@
 
 #region
 
+using Hyre.Modules.Jobs.Core.Exceptions.Candidates;
 using Hyre.Shared.Abstractions.Kernel.ValueObjects;
 
 #endregion
@@ -35,6 +36,7 @@ public sealed record CandidateExperience : ValueObject
 		Position = position;
 		Company = company;
 		Description = description;
+		Validate();
 	}
 
 	/// <summary>
@@ -61,4 +63,36 @@ public sealed record CandidateExperience : ValueObject
 	///   Gets the description of the experience.
 	/// </summary>
 	public string Description { get; }
+
+	/// <summary>
+	///   This method is used to validate the object.
+	/// </summary>
+	private void Validate()
+	{
+		if (StartDate >= DateOnly.FromDateTime(DateTime.Now))
+		{
+			throw new CandidateExperienceStartDateInvalidException();
+		}
+
+
+		if (EndDate <= StartDate)
+		{
+			throw new CandidateExperienceEndDateInvalidException();
+		}
+
+		if (Position.Length is < 3 or > 50)
+		{
+			throw new CandidateExperiencePositionInvalidException();
+		}
+
+		if (Company.Length is < 3 or > 50)
+		{
+			throw new CandidateExperienceCompanyInvalidException();
+		}
+
+		if (Description.Length is < 3 or > 500)
+		{
+			throw new CandidateExperienceDescriptionInvalidException();
+		}
+	}
 }

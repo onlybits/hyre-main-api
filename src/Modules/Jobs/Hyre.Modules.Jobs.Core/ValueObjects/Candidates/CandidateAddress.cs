@@ -89,5 +89,35 @@ public sealed record CandidateAddress : ValueObject
 		{
 			throw new CandidateAddressZipCodeNotValidException();
 		}
+
+		if (Country.Length is < 3 or > 50)
+		{
+			throw new CandidateAddressCountryNotValidException();
+		}
+
+		if (State.Length is < 3 or > 50)
+		{
+			throw new CandidateAddressStateNotValidException();
+		}
+
+		if (City.Length is < 3 or > 50)
+		{
+			throw new CandidateAddressCityNotValidException();
+		}
+
+		if (Complement?.Length is < 3 or > 100)
+		{
+			throw new CandidateAddressComplementNotValidException();
+		}
+
+		if (Neighborhood.Length is < 3 or > 100)
+		{
+			throw new CandidateAddressNeighborhoodNotValidException();
+		}
+
+		if (Number <= 0)
+		{
+			throw new CandidateAddressNumberNotValidException();
+		}
 	}
 }
