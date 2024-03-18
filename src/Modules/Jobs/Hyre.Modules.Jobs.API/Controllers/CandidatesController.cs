@@ -16,6 +16,7 @@ using Hyre.Modules.Jobs.Core.ValueObjects.Candidates;
 using Hyre.Modules.Jobs.Core.ValueObjects.JobOpportunities;
 using Hyre.Shared.Abstractions.Exceptions;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -46,6 +47,7 @@ internal sealed class CandidatesController : ControllerBase
 	/// <param name="parameters">The parameters used to filter the candidates.</param>
 	/// <param name="cancellationToken">The cancellation token.</param>
 	/// <returns>Returns a list of candidates.</returns>
+	[Authorize]
 	[HttpGet]
 	[ProducesResponseType<List<Candidate>>(StatusCodes.Status200OK)]
 	[ProducesResponseType<NoContent>(StatusCodes.Status204NoContent)]
@@ -71,6 +73,7 @@ internal sealed class CandidatesController : ControllerBase
 	/// <param name="candidateIdValue">The id of the candidate.</param>
 	/// <param name="cancellationToken">The cancellation token.</param>
 	/// <returns>Returns the candidate.</returns>
+	[Authorize]
 	[HttpGet("{candidateIdValue:guid}")]
 	[ProducesResponseType<Candidate>(StatusCodes.Status200OK)]
 	[ProducesResponseType<NotFoundException>(StatusCodes.Status404NotFound)]
@@ -117,6 +120,7 @@ internal sealed class CandidatesController : ControllerBase
 	/// <param name="input">The input data used to update the candidate.</param>
 	/// <param name="cancellationToken">The cancellation token.</param>
 	/// <returns>Returns no content.</returns>
+	[Authorize]
 	[HttpPut("{candidateIdValue:guid}")]
 	[ProducesResponseType<NoContent>(StatusCodes.Status204NoContent)]
 	[ProducesResponseType<NotFoundException>(StatusCodes.Status404NotFound)]
@@ -137,15 +141,20 @@ internal sealed class CandidatesController : ControllerBase
 	/// <summary>
 	///   This endpoint is responsible for deleting a candidate.
 	/// </summary>
+	/// <param name="jobOpportunityIdValue">The id of the job opportunity.</param>
 	/// <param name="candidateIdValue">The id of the candidate.</param>
 	/// <param name="cancellationToken">The cancellation token.</param>
 	/// <returns>Returns no content.</returns>
+	[Authorize]
 	[HttpDelete("{candidateIdValue:guid}")]
 	[ProducesResponseType<NoContent>(StatusCodes.Status204NoContent)]
 	[ProducesResponseType<NotFoundException>(StatusCodes.Status404NotFound)]
-	public async Task<IActionResult> Delete([FromRoute] Guid candidateIdValue,
+	public async Task<IActionResult> Delete(
+		[FromRoute] Guid jobOpportunityIdValue,
+		[FromRoute] Guid candidateIdValue,
 		CancellationToken cancellationToken = default)
 	{
+		var jobOpportunityId = new JobOpportunityId(jobOpportunityIdValue);
 		var candidateId = new CandidateId(candidateIdValue);
 		var request = new DeleteCandidateRequest(candidateId, false);
 		await _sender.Send(request, cancellationToken);

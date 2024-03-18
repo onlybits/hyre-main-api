@@ -4,6 +4,7 @@
 
 #region
 
+using System.IdentityModel.Tokens.Jwt;
 using Hyre.Modules.Identity.Core.Entities;
 
 #endregion
@@ -30,4 +31,30 @@ public interface IIdentityService
 	/// <param name="email">The email of the user.</param>
 	/// <returns>Returns true if the user exists, otherwise false.</returns>
 	Task<bool> UserExistsAsync(string email);
+
+	/// <summary>
+	///   This method will validate the user.
+	/// </summary>
+	/// <param name="email">The email of the user.</param>
+	/// <param name="password">The password of the user.</param>
+	/// <returns>Returns true if the user is valid, otherwise false.</returns>
+	Task<bool> ValidateAsync(string email, string password);
+
+	/// <summary>
+	///   This method will create the access token.
+	/// </summary>
+	/// <param name="populateExpiresAt">
+	///   A value indicating whether to populate the <see cref="JwtSecurityToken.ValidTo" />
+	///   property.
+	/// </param>
+	/// <returns>Returns the access token and the refresh token.</returns>
+	Task<(string accessToken, string refreshToken)> CreateAccessTokenAsync(bool populateExpiresAt);
+
+	/// <summary>
+	///   This method will create the refresh token.
+	/// </summary>
+	/// <param name="accessToken">The access token.</param>
+	/// <param name="refreshToken">The refresh token.</param>
+	/// <returns>Returns the access token and the refresh token.</returns>
+	Task<(string accessToken, string refreshToken)> CreateRefreshTokenAsync(string accessToken, string refreshToken);
 }

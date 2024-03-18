@@ -22,5 +22,15 @@ public abstract class UserErrorMessages
 	/// </summary>
 	public const string AlreadyExists = "O usuário com o e-mail informado já existe.";
 
+	/// <summary>
+	///   Used when the user credentials are invalid.
+	/// </summary>
+	public const string InvalidCredentials = "As credenciais informadas são inválidas.";
+
+	/// <summary>
+	///   Used when the refresh token is invalid.
+	/// </summary>
+	public const string InvalidRefreshToken = "O token de atualização informado é inválido.";
+
 	#endregion
 }

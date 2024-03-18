@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Hyre.Modules.Identity.Infrastructure.Migrations
 {
     [DbContext(typeof(IdentityRepositoryContext))]
-    [Migration("20240317135218_AddInitial")]
-    partial class AddInitial
+    [Migration("20240317222352_AddRefreshToken")]
+    partial class AddRefreshToken
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -139,19 +139,19 @@ namespace Hyre.Modules.Identity.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6f37df87-6caa-4cd4-a981-70a5b432458f",
+                            Id = "35c32022-97e6-499c-b704-2a89a4f23527",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "fb04f04b-a13e-40a6-a417-429cf1cefd04",
+                            Id = "a9f508f1-8130-4eab-8f15-699069231e4e",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "5a312ae6-f5a8-4f96-b2a9-26d581f998d6",
+                            Id = "85bce6eb-bc3c-46f7-8056-5304b485fbac",
                             Name = "Candidate",
                             NormalizedName = "CANDIDATE"
                         });
@@ -288,6 +288,35 @@ namespace Hyre.Modules.Identity.Infrastructure.Migrations
                         .HasName("pk_user_tokens");
 
                     b.ToTable("user_tokens", "identity");
+                });
+
+            modelBuilder.Entity("Hyre.Modules.Identity.Core.Entities.User", b =>
+                {
+                    b.OwnsOne("Hyre.Modules.Identity.Core.ValueObjects.RefreshToken", "RefreshToken", b1 =>
+                        {
+                            b1.Property<string>("UserId")
+                                .HasColumnType("text")
+                                .HasColumnName("id");
+
+                            b1.Property<DateTime>("ExpiresAt")
+                                .HasColumnType("timestamp with time zone")
+                                .HasColumnName("refresh_token_expires_at");
+
+                            b1.Property<string>("Value")
+                                .IsRequired()
+                                .HasColumnType("text")
+                                .HasColumnName("refresh_token");
+
+                            b1.HasKey("UserId");
+
+                            b1.ToTable("users", "identity");
+
+                            b1.WithOwner()
+                                .HasForeignKey("UserId")
+                                .HasConstraintName("fk_users_users_id");
+                        });
+
+                    b.Navigation("RefreshToken");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

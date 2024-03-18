@@ -54,10 +54,11 @@
             <param name="cancellationToken">The cancellation token.</param>
             <returns>Returns no content.</returns>
         </member>
-        <member name="M:Hyre.Modules.Jobs.API.Controllers.CandidatesController.Delete(System.Guid,System.Threading.CancellationToken)">
+        <member name="M:Hyre.Modules.Jobs.API.Controllers.CandidatesController.Delete(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <summary>
                 This endpoint is responsible for deleting a candidate.
             </summary>
+            <param name="jobOpportunityIdValue">The id of the job opportunity.</param>
             <param name="candidateIdValue">The id of the candidate.</param>
             <param name="cancellationToken">The cancellation token.</param>
             <returns>Returns no content.</returns>

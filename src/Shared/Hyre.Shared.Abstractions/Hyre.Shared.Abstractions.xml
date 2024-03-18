@@ -4,6 +4,45 @@
         <name>Hyre.Shared.Abstractions</name>
     </assembly>
     <members>
+        <member name="T:Hyre.Shared.Abstractions.Exceptions.AuthenticationException">
+            <summary>
+                Base exception that is used when a authentication error occurs.
+            </summary>
+        </member>
+        <member name="M:Hyre.Shared.Abstractions.Exceptions.AuthenticationException.#ctor(System.String)">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Shared.Abstractions.Exceptions.AuthenticationException"/>
+                class.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:Hyre.Shared.Abstractions.Exceptions.AuthorizationException">
+            <summary>
+                Base exception that is used when a authorization error occurs.
+            </summary>
+        </member>
+        <member name="M:Hyre.Shared.Abstractions.Exceptions.AuthorizationException.#ctor(System.String)">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Shared.Abstractions.Exceptions.AuthorizationException"/>
+                class.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:Hyre.Shared.Abstractions.Exceptions.BadRequestException">
+            <summary>
+                Base exception that is used when a bad request error occurs.
+            </summary>
+        </member>
+        <member name="M:Hyre.Shared.Abstractions.Exceptions.BadRequestException.#ctor(System.String)">
+            <summary>
+                Initializes a new instance of the
+                <see cref="T:Hyre.Shared.Abstractions.Exceptions.BadRequestException"/>
+                class.
+            </summary>
+            <param name="message"></param>
+        </member>
         <member name="T:Hyre.Shared.Abstractions.Exceptions.ConflictException">
             <summary>
                 Base exception that is used when a already exists.

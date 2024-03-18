@@ -17,5 +17,15 @@ namespace Hyre.Modules.Identity.Infrastructure.Configuration;
 /// </summary>
 internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
 {
-	public void Configure(EntityTypeBuilder<User> builder) => _ = builder.ToTable("users");
+	public void Configure(EntityTypeBuilder<User> builder)
+	{
+		_ = builder.ToTable("users");
+
+		var refreshToken = builder.OwnsOne(u => u.RefreshToken);
+		_ = refreshToken.Property(x => x.Value)
+			.HasColumnName("refresh_token");
+
+		_ = refreshToken.Property(x => x.ExpiresAt)
+			.HasColumnName("refresh_token_expires_at");
+	}
 }

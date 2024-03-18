@@ -4,6 +4,7 @@
 
 #region
 
+using Hyre.Modules.Identity.Core.ValueObjects;
 using Microsoft.AspNetCore.Identity;
 
 #endregion
@@ -25,6 +26,17 @@ public sealed class User : IdentityUser
 		EmailConfirmed = true;
 		UserName = email;
 	}
+
+	/// <summary>
+	///   Gets or sets the refresh token.
+	/// </summary>
+	public RefreshToken? RefreshToken { get; private set; }
+
+	/// <summary>
+	///   This method will add a refresh token to the user.
+	/// </summary>
+	/// <param name="refreshToken">The refresh token to be added.</param>
+	public void AddRefreshToken(RefreshToken refreshToken) => RefreshToken = refreshToken;
 
 	/// <summary>
 	///   Creates a new instance of the <see cref="User" /> class.

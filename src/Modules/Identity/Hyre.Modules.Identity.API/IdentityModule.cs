@@ -4,7 +4,7 @@
 
 #region
 
-using Hyre.Modules.Identity.Application.Services;
+using Hyre.Modules.Identity.Application;
 using Hyre.Modules.Identity.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,7 +23,7 @@ public static class IdentityModule
 	/// </summary>
 	/// <param name="services">The services collection.</param>
 	public static IServiceCollection RegisterIdentityModule(this IServiceCollection services) => services
-		.AddScoped<IIdentityService, IdentityService>()
+		.AddApplication()
 		.AddInfrastructure();
 
 	/// <summary>

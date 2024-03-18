@@ -34,6 +34,9 @@ public sealed class GlobalExceptionHandler : IExceptionHandler
 		{
 			httpContext.Response.StatusCode = contextFeature.Error switch
 			{
+				BadRequestException => StatusCodes.Status400BadRequest,
+				AuthenticationException => StatusCodes.Status401Unauthorized,
+				UnauthorizedAccessException => StatusCodes.Status403Forbidden,
 				NotFoundException => StatusCodes.Status404NotFound,
 				ConflictException => StatusCodes.Status409Conflict,
 				DomainException => StatusCodes.Status422UnprocessableEntity,

@@ -12,28 +12,32 @@ using Hyre.Shared.Infrastructure;
 #endregion
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services
-	.AddCorsConfiguration()
-	.AddSwaggerConfiguration()
-	.AddRabbitMqConfiguration()
-	.AddModularInfrastructure()
-	.AddModulesConfiguration()
-	.AddIdentityConfiguration()
-	.AddExceptionHandler<GlobalExceptionHandler>()
-	.AddControllersConfiguration();
-
-var app = builder.Build();
-if (app.Environment.IsDevelopment())
 {
-	_ = app.AddSwagger();
+	_ = builder.Services.AddCorsConfiguration();
+	_ = builder.Services.AddSwaggerConfiguration();
+	_ = builder.Services.AddRabbitMqConfiguration();
+	_ = builder.Services.AddModularInfrastructure();
+	_ = builder.Services.AddModulesConfiguration();
+	_ = builder.Services.AddOptionsConfiguration(builder.Configuration);
+	_ = builder.Services.AddIdentityConfiguration();
+	_ = builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+	builder.Services.AddControllersConfiguration();
 }
 
-_ = app.UseExceptionHandler(_ => { });
-_ = app.UseHttpsRedirection()
-	.UseCors("Hyre.Cors")
-	.UseModules()
-	.UseAuthentication()
-	.UseAuthorization();
+var app = builder.Build();
+{
+	if (app.Environment.IsDevelopment())
+	{
+		_ = app.AddSwagger();
+	}
 
-_ = app.MapControllers();
-app.Run();
+	_ = app.UseExceptionHandler(_ => { });
+	_ = app.UseHttpsRedirection();
+	_ = app.UseCors("Hyre.Cors");
+	_ = app.UseModules();
+	_ = app.UseAuthentication();
+	_ = app.UseAuthorization();
+
+	_ = app.MapControllers();
+	app.Run();
+}

@@ -14,6 +14,7 @@ using Hyre.Modules.Jobs.Core.Entities;
 using Hyre.Modules.Jobs.Core.Requests;
 using Hyre.Shared.Abstractions.Exceptions;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -79,6 +80,7 @@ internal sealed class JobOpportunitiesController : ControllerBase
 	/// <param name="input">The input data used to create the job opportunity.</param>
 	/// <param name="cancellationToken">The cancellation token.</param>
 	/// <returns>Returns the created job opportunity.</returns>
+	[Authorize]
 	[HttpPost]
 	[ProducesResponseType<JobOpportunity>(StatusCodes.Status201Created)]
 	public async Task<IActionResult> Create([FromBody] CreateJobOpportunityInput input, CancellationToken cancellationToken = default)
@@ -96,6 +98,7 @@ internal sealed class JobOpportunitiesController : ControllerBase
 	/// <param name="input">The input data used to update the job opportunity.</param>
 	/// <param name="cancellationToken">The cancellation token.</param>
 	/// <returns>Returns no content.</returns>
+	[Authorize]
 	[HttpPut("{id:guid}")]
 	[ProducesResponseType<NoContent>(StatusCodes.Status204NoContent)]
 	public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateJobOpportunityInput input,
@@ -113,6 +116,7 @@ internal sealed class JobOpportunitiesController : ControllerBase
 	/// <param name="id">The id of the job opportunity.</param>
 	/// <param name="cancellationToken">The cancellation token.</param>
 	/// <returns>Returns no content.</returns>
+	[Authorize]
 	[HttpDelete("{id:guid}")]
 	[ProducesResponseType<NoContent>(StatusCodes.Status204NoContent)]
 	public async Task<IActionResult> Delete([FromRoute] Guid id, CancellationToken cancellationToken = default)
